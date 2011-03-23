@@ -1,0 +1,1146 @@
+/*********************************************************************************************
+
+Theme Name: On Demand
+Theme URI: http://www.press75.com/
+Description: Designed by Jason Schuller
+Version: 2.3.3
+Author: Press75.com
+Author URI: http://www.press75.com/
+
+**********************************************************************************************
+
+Designed and Built by Jason Schuller - theSevenFive.com
+
+CSS, XHTML and Design Files are all Copyright 2007-2011 Circa75 Media, LLC
+
+Be inspired, but please don't steal :)
+
+**********************************************************************************************
+
+0.  CSS Reset  -------------------------  All Theme Files
+1.  Basic Setup  -----------------------  All Theme Files
+2.  Header Styles  ---------------------  header.php
+3.  Navigation and Menu Styles  --------  header.php
+4.  Search Form  -----------------------  searchform.php
+5.  Main Content Containers  -----------  home.php, index.php, single.php, page.php
+6.  Carousel Styles  -------------------  home.php
+7.  Carousel Content  ------------------  home.php
+8.  Featured Categories  ---------------  home.php
+9.  Gallery and Post Thumbnail Styles  -  home.php, index.php
+10. Post Content Styles ----------------  index.php, single.php, page.php
+11. Post Comment Styles ----------------  single.php
+12. Sidebar and Widgets  ---------------  sidebar.php
+13. Footer Styles  ---------------------  footer.php
+14. CSS3 Elements  ---------------------  style.css3.css
+15. IE7 Styles  ------------------------  style.ie7.css
+16. IE8 Styles  ------------------------  style.ie8.css
+
+**********************************************************************************************/
+
+
+/********************************************************************************************* 
+
+0. CSS Reset  -------------------------  All Theme Files
+
+*********************************************************************************************/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+margin: 0;
+padding: 0;
+}
+
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+fieldset, img {border: 0;}
+
+address, caption, cite, code, dfn, em, strong, th, var {
+font-style: normal;
+font-weight: normal;
+}
+
+ol, ul {list-style: none;}
+caption, th {text-align: left;}
+
+h1, h2, h3, h4, h5, h6 {
+font-size: 100%;
+font-weight: normal;
+}
+
+q:before, q:after {content: '';}
+abbr, acronym {border: 0;}
+
+
+/*********************************************************************************************
+
+1. Basic Setup  -----------------------  All Theme Files
+
+*********************************************************************************************/
+body {
+background: #1A1D1F;
+width: auto;
+height: auto;
+font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
+font-size: 12px;
+line-height: 18px;
+color: #A9C3CC;
+}
+
+h1 {
+font-size: 30px;
+font-weight: normal;
+margin: 0 0 15px 0;
+}
+
+h2 {
+font-size: 18px;
+font-weight: normal;
+margin: 0 0 5px 0;
+}
+
+h3 {
+font-size: 14px;
+font-weight: normal;
+margin: 0 0 5px 0;
+}
+
+h4 {
+font-size: 12px;
+font-weight: normal;
+margin: 0 0 2px 0;
+}
+
+blockquote {
+color: #A9C3CC;
+padding: 0 0 0 15px;
+font-style: italic;
+border-left: 1px solid #A9C3CC;
+}
+
+strong {font-weight: bold;}
+
+a:link, a:visited {
+color: #E6F5F7;
+font-weight: bold;
+}
+
+a:hover {
+color: #A9C3CC;
+
+}
+
+abbr,acronym {
+border-bottom: 1px dotted;
+cursor: help;
+} 
+
+em {font-style: italic;}
+ol,ul {margin: 0;}
+ol li {list-style: decimal outside;}
+ul li {list-style: none;}
+
+th,td {
+border: 1px solid;
+padding: 8px;
+}
+
+th {
+font-weight:bold;
+text-align:center;
+}
+
+caption {
+margin-bottom: 8px;
+text-align: center;
+}
+
+p,fieldset,table {margin-bottom: 15px;}
+a:link, a:visited {text-decoration: none;}
+
+:focus {
+outline: 0;
+}
+
+.alignleft {
+float: left;
+}
+
+.alignright {
+float: right;
+}
+
+
+/*********************************************************************************************
+
+2. Header Styles  ---------------------  header.php
+
+*********************************************************************************************/
+#header {
+width: 100%;
+float: left;
+}
+
+#header-inside {
+width: 980px;
+margin: 0px auto;
+}
+
+#full-width-ad {
+border: 1px solid #DA1013;
+background: #DA1013;
+width: 980px;
+float: left;
+text-align: center;
+margin: 30px 0 0 0;
+padding: 10px 0 10px 0;
+}
+
+#header-left { /* For the Logo */
+width: 490px;
+float: left;
+padding: 30px 0 30px 0;
+}
+
+#header-left h1 {
+font-size: 50px;
+margin: 18px 0 0 0;
+}
+
+#header-right {
+text-align: right;
+width: 490px;
+float: left;
+}
+
+
+/*********************************************************************************************
+
+3. Navigation and Menu Styles  --------  header.php
+
+*********************************************************************************************/
+#navigation {
+width: 100%;
+float: left;
+font-size: 12px;
+}
+
+.navigation-inside {
+background: url(../images/menubar.png) top left no-repeat;
+width: 980px;
+margin: 0px auto;
+height: 31px;
+}
+
+.navigation-video {
+background: url(../images/menubar-home.png) top left no-repeat;
+height: 35px;
+}
+
+.navigation-category {
+background: url(../images/menubar.png) top left no-repeat;
+height: 31px;
+}
+
+.menu, .menu * { /* SuperFish Menu Styles */
+margin: 0;
+padding: 0;
+list-style: none;
+position:relative;
+z-index: 99;
+}
+
+.menu {
+float: left;
+width: 965px;
+padding: 6px 0 0 15px;
+}
+
+.menu a {
+display: block;
+position: relative;
+}
+
+.menu a, .menu a:visited  {
+color: #E6F5F7;
+font-weight:bold;
+}
+
+.menu a:hover  {
+color: #A9C3CC;
+font-weight:bold;
+}
+
+.menu ul li {
+width: 100%;
+}
+
+.menu ul {
+position: absolute;
+top: -15000px;
+width: 160px; /* Left Offset of Sub-Menus Need to Match */
+}
+
+.menu li:hover ul, 
+.menu li.sfHover ul {
+left: -15px;
+top: 22px; /* Match Top UL List Item Height */
+z-index: 10000;
+}
+
+ul.menu li:hover li ul, 
+ul.menu li.sfHover li ul {
+top: -15000px;
+}
+
+ul.menu li li:hover ul, 
+ul.menu li li.sfHover ul {
+left: 160px; /* Match ul width. */
+top: 0;
+}
+
+ul.menu li li:hover li ul, 
+ul.menu li li.sfHover li ul {
+top: -15000px;
+}
+
+ul.menu li li li:hover ul, 
+ul.menu li li li.sfHover ul {
+left: 160px; /* Match ul Width. */
+top: 0;
+}
+
+.menu li {
+float: left;
+position: relative;
+padding: 0 20px 0 0;
+}
+
+.menu li:hover {
+visibility: inherit; /* Fixes IE7 Sticky Bug */
+}
+
+.menu li ul {
+background: #1A1D1F;
+font-size: 12px;
+width: 125px;
+margin: 10px 0 0 0;
+padding: 10px 40px 10px 15px;
+}
+
+.menu li ul a:link, .menu li ul a:visited {
+color: #E6F5F7;
+}
+
+.menu li ul a:hover {
+color: #A9C3CC;
+}
+
+.menu li li {
+background: none;
+margin: 0 0 0 0;
+padding: 0 0 0 0;
+text-transform: none;
+}
+
+.menu li li ul {
+background: #1A1D1F;
+margin: -10px 0 0 -50px;
+}
+
+li.subscribe {
+background: url(../images/rss.png) top left no-repeat;
+padding: 0 15px 0 20px;
+float: right;
+}
+
+li.subscribe:hover {
+background: url(../images/rss.png) top left no-repeat;
+}
+
+li.signin {
+background: url(../images/twitter.png) top left no-repeat;
+padding: 0 20px 0 20px;
+float: right;
+}
+
+li.signin:hover {
+background: url(../images/twitter.png) top left no-repeat;
+}
+
+/*********************************************************************************************
+
+4. Search Form  -----------------------  searchform.php
+
+*********************************************************************************************/
+#site-search {
+background: url(../images/search.png) top left no-repeat;
+width: 350px;
+height: 50px;
+float: right;
+margin: 30px 0 0 0;
+}
+
+input#s {
+border: none;
+background: none;
+color: #3E4852;
+font-size: 14px;
+float: left;
+width: 260px;
+margin: 16px 0 0 15px;
+}
+
+input#search-submit {
+background: url(../images/search-submit.png) 0 0;
+border: none;
+cursor: pointer;
+width: 55px;
+height: 50px;
+float: left;
+margin: 0 0 0 20px;
+}
+
+input#search-submit:hover {
+background: url(../images/search-submit.png) 0 -50px;
+color: #FFFFFF;
+}
+
+
+/*********************************************************************************************
+
+5. Main Content Containers  -----------  home.php, index.php, single.php, page.php
+
+*********************************************************************************************/
+#content {
+width: 100%;
+float: left;
+}
+
+#content-inside {
+width: 980px;
+margin: 0px auto;
+}
+
+#post-container {
+width: 980px;
+float: left;
+}
+
+#posts {
+border-right: 1px solid #A9C3CC;
+width: 660px;
+float: left;
+padding: 25px 0 30px 0;
+}
+
+#posts-page {
+border-right: 1px solid #A9C3CC;
+width: 660px;
+float: left;
+padding: 25px 0 0 0;
+}
+
+#posts-full {
+width: 980px;
+float: left;
+padding: 25px 0 0 0;
+}
+
+#paginate {
+border-top: 1px solid #A9C3CC;
+width: 655px;
+float: left;
+margin: -30px 0 0 0;
+padding: 5px 0 5px 5px;
+}
+
+
+/*********************************************************************************************
+
+6. Carousel Styles  -------------------  home.php
+
+*********************************************************************************************/
+.coda-slider, .coda-slider .panel {
+background: #3E4852;
+width: 980px;
+height: 380px;
+} 
+
+.coda-slider-wrapper.arrows .coda-slider, .coda-slider-wrapper.arrows .coda-slider .panel {
+width: 980px;
+}
+
+#coda-nav {
+width: 980px;
+position: relative;
+}
+
+.coda-nav-left a {
+background: url(../images/left.png) 0 0;
+position: absolute;
+width: 58px;
+height: 102px;
+top: 125px;
+left: -5px;
+z-index: 500000;
+}
+
+.coda-nav-left a:hover {
+background: url(../images/left.png) 0 -102px;
+}
+
+.coda-nav-right a {
+background: url(../images/right.png) 0 0;
+position: absolute;
+width: 58px;
+height: 102px;
+top: 125px;
+right: -5px;
+z-index: 500000;
+}
+
+.coda-nav-right a:hover {
+background: url(../images/right.png) 0 -102px;
+}
+
+.coda-slider-wrapper {
+clear: both;
+overflow: auto;
+}
+
+.coda-slider {
+float: left;
+overflow: hidden;
+position: relative;
+}
+
+.coda-slider .panel {
+display: block;
+float: left;
+}
+
+.coda-slider .panel-container {
+position: relative;
+}
+
+
+/*********************************************************************************************
+
+7. Carousel Content  ------------------  home.php
+
+*********************************************************************************************/
+.featured-post {
+background: #3E4852;
+color: #A9C3CC;
+width: 840px;
+height: 315px;
+margin: 30px 0 0 70px;
+}
+
+.attachment-featured {
+float: left;
+}
+
+.featured-post-description h2 a {
+font-size: 16px;
+color: #E6F5F7;
+font-weight:bold;
+}
+
+.featured-post-description h2 a:hover {
+font-size: 16px;
+color: #A9C3CC;
+}
+
+.featured-post-description {
+width: 230px;
+float: left;
+margin: 0 0 0 30px;
+}
+
+.continue {
+background: url(../images/button1.png) 0 0;
+width: 143px;
+height: 28px;
+float: left;
+text-align: center;
+margin: 0 0 0 -2px;
+padding: 7px 0 0 0;
+}
+
+.continue:hover {
+background: url(../images/button2.png) 0 0;
+}
+
+a.continue {
+color: #A9C3CC;
+}
+
+
+/*********************************************************************************************
+
+8. Featured Categories  ---------------  home.php
+
+*********************************************************************************************/
+#featured-categories {
+background: url(../images/categories.png) top left no-repeat;
+width: 980px;
+float: left;
+height: 160px;
+}
+
+.featured-category {
+background: url(../images/category.png) top left no-repeat;
+width: 90px;
+height: 90px;
+float: left;
+margin: 30px 0 0 20px;
+padding: 10px 0 0 10px;
+}
+
+#categories a {
+color: #A9C3CC;
+float:left;
+position:relative;
+}
+
+#categories span {
+display: none;
+background: url(../images/tip.png) top left no-repeat;
+width: 152px;
+height: 38px;
+position: absolute;
+left: -35px;
+text-align: center;
+padding: 5px 0 0 0;
+}
+
+
+/*********************************************************************************************
+
+9. Gallery and Post Thumbnail Styles  -  home.php, index.php
+
+*********************************************************************************************/
+.gallery-item {
+width: 200px;
+float: left;
+margin: 0 20px 20px 0;
+}
+
+.gallery-item-single {
+margin: 0;
+}
+
+.gallery-item h2 {
+border-bottom: 1px solid #A9C3CC;
+font-size: 14px;
+margin: 0 0 5px 0;
+padding: 0 0 5px 5px;
+}
+
+.instant {
+display: none;
+}
+
+.instant-view {
+text-align: center;
+}
+
+.post-thumbnail {
+width: 200px;
+height: 150px;
+float: left;
+margin: 0 0 10px 0;
+}
+
+.thumbnail-frame {
+background: url(../images/frame.png) 0 0;
+width: 200px;
+height: 150px;
+position: absolute;
+}
+
+.thumbnail-frame:hover {
+background: url(../images/frame.png) 0 -150px;
+width: 200px;
+height: 150px;
+position: absolute;
+}
+
+.thumbnail-frame-video {
+background: url(../images/frame-video.png) 0 0;
+width: 200px;
+height: 150px;
+position: absolute;
+}
+
+.thumbnail-frame-video:hover {
+background: url(../images/frame-video.png) 0 -150px;
+width: 200px;
+height: 150px;
+position: absolute;
+}
+
+.attachment-post-thumbnail {
+margin: 10px 0 0 10px;
+}
+
+ul.post-meta {
+font-size: 11px;
+}
+
+ul.post-meta li {
+margin: -2px 0 0 0;
+}
+
+li.date {
+border-bottom: 1px solid #A9C3CC;
+color: #A9C3CC;
+font-size: 13px;
+padding: 0 0 2px 5px;
+}
+
+li.categories {
+border-bottom: 1px solid #A9C3CC;
+color: #A9C3CC;
+font-size: 12px;
+padding: 5px 0 2px 5px;
+}
+
+li.categories a:link, li.categories a:visited {
+color: #E6F5F7;
+font-size: 12px;
+font-weight: bold;
+}
+
+li.categories a:hover {
+color: #A9C3CC;
+}
+
+li.comments {
+color: #E6F5F7;
+font-size: 11px;
+padding: 5px 0 0 5px;
+}
+
+li.comments a:link, li.comments a:visited {
+color: #E6F5F7;
+font-size: 11px;
+}
+
+li.comments a:hover {
+color: #A9C3CC;
+}
+
+
+/*********************************************************************************************
+
+10. Post Content Styles ----------------  index.php, single.php, page.php
+
+*********************************************************************************************/
+#video-container {
+background: #3E4852;
+width: 980px;
+float: left;
+text-align: center;
+padding: 30px 0 34px 0;
+}
+
+iframe {
+z-index: 0;
+}
+
+.post-item {
+padding-left: 5px;
+}
+
+.post-details {
+width: 655px;
+float: left;
+margin: 0 0 15px 0;
+}
+
+.post-details-full {
+width: 970px;
+}
+
+.details {
+width: 455px;
+float: left;
+}
+
+.post-details h2 {
+border-bottom: 1px solid #A9C3CC;
+font-size: 16px;
+margin: 0 0 5px 0;
+padding: 0 0 5px 0;
+}
+
+ul.post-meta-post {
+margin-bottom: 0;
+}
+
+.post-meta-post li {
+padding-left: 0;
+}
+
+.post-content {
+width: 635px;
+float: left;
+padding: 0 0 20px 0;
+}
+
+.post-content a {
+text-decoration: underline;
+}
+
+.post-content-full {
+width: 970px;
+}
+
+.post-content h1 {
+font-size: 22px;
+margin: 0 0 5px 0;
+}
+
+.post-content h2 {
+margin: 0 0 2px 0;
+}
+
+.post-content h3 {
+margin: 0 0 2px 0;
+}
+
+.post-content h4 {
+margin: 0;
+}
+
+.post-content ul {
+margin: 0 0 15px 0;
+}
+
+.post-content ul li {
+background: url(images/bullet.jpg) top left no-repeat;
+padding: 0 0 0 15px;
+}
+
+.post-content ol {
+margin: 0 0 15px 15px;
+}
+
+p img {
+padding: 0;
+max-width: 100%;
+}
+
+img.centered {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+img.alignright {
+float: right;
+padding: 5px;
+margin: 0 0 2px 15px;
+}
+
+img.alignleft {
+float: left;
+padding: 5px;
+margin: 0 15px 2px 0;
+}
+
+.wp-caption {
+background: #3E4852;
+text-align: center;
+padding: 10px 5px 5px 5px;
+margin: 5px 0 20px 0;
+}
+
+.wp-caption.alignright {
+margin: 0 0 25px 25px;
+}
+
+.wp-caption.aligncenter {
+margin-left: auto;
+margin-right: auto;
+}
+
+.wp-caption.alignleft {
+margin: 0 25px 25px 0;
+}
+
+.wp-caption img {
+padding: 0;
+margin: 0 0 5px;
+}
+
+.wp-caption-text {
+margin: 10px 0 0;
+padding: 0;
+}
+
+.wp-caption .wp-caption-text, .wp-caption .wp-caption-dd {
+font-size: 12px !important;
+text-align: center; 
+margin: 0;
+padding: 0;
+}
+
+h4.not-here {
+font-size: 14px;
+}
+
+
+/*********************************************************************************************
+
+11. Post Comment Styles ----------------  single.php
+
+não alterei ainda!
+
+*********************************************************************************************/
+#comments-meta {
+border-top: 1px solid #3E4852;
+width: 655px;
+float: left;
+margin: -15px 0 0 0;
+padding: 0 0 0 5px;
+}
+
+#comments {
+border-top: 1px solid #3E4852;
+width: 635px;
+float: left;
+padding: 0 20px 0 5px;
+}
+
+#comments-meta p {
+margin: 0;
+padding: 5px 0 5px 0;
+}
+
+#comments ol {
+margin: 0 0 20px 0;
+}
+
+#comments ol li {
+list-style: none;
+}
+
+ol.commentlist li {
+background: url(../images/comment.png) top left no-repeat;
+padding: 10px 0 0 32px;
+margin: 20px 0 20px 0;
+}
+
+ol.commentlist li.alt {
+background: url(../images/comment.png) top left no-repeat;
+padding: 10px 0 0 32px;
+margin: 20px 0 20px 0;
+}
+
+ol.commentlist li ul.children { 
+list-style: none; 
+text-indent: 0; 
+}
+
+ol.commentlist li ul.children li {
+background: url(../images/comment.png) top left no-repeat;
+padding: 10px 0 0 32px;
+margin: 20px 0 20px 0;
+}
+
+ol.commentlist li ul.children li.alt {
+background: url(../images/comment.png) top left no-repeat;
+padding: 10px 0 0 32px;
+margin: 20px 0 20px 0;
+}
+
+.comment-meta {
+font-size: 11px;
+margin: 0 0 12px 0;
+}
+
+.comment-meta a {
+color: #A9C3CC;	
+}
+
+span.says {
+display: none;
+}
+
+.comment-author {
+font-size: 14px;
+}
+
+.avatar {
+background: #6B7E8C;
+float: right;
+margin: -8px 0 20px 20px;
+padding: 8px;
+}
+
+div.reply {
+font-size: 11px;
+}
+
+div.reply a {
+background: url(images/reply.jpg) left no-repeat;
+color: #A9C3CC;
+padding: 0 0 0 18px;
+}
+
+.cancel-comment-reply a {
+display: none;
+}
+
+#respond {
+width: 100%;
+padding: 20px 0 34px 5px;
+}
+
+#author, #email, #url, #comment {
+background: #3E4852 url(images/fields.jpg) top left repeat-x;
+border: 1px solid #A9C3CC;
+font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
+font-size: 12px;
+line-height: 18px;
+color: #A9C3CC;
+padding: 6px 4px 6px 4px;
+}
+
+#comment {
+width: 98%;
+max-width: 625px;
+}
+
+input#submit {
+background: url(../images/button.png) 0 0;
+border: none;
+color: #A9C3CC;
+width: 143px;
+height: 35px;
+float: left;
+text-align: center;
+margin: 0 0 0 -2px;
+padding: 0 0 2px 0;
+cursor: pointer;
+}
+
+input#submit:hover {
+background: url(../images/button.png) 0 -35px;
+}
+
+
+/*********************************************************************************************
+
+12. Sidebar and Widgets  ---------------  sidebar.php
+
+*********************************************************************************************/
+#sidebar {
+border-left: 1px solid #A9C3CC;
+width: 319px;
+float: left;
+margin: 0 0 0 -1px;
+}
+
+#sidebar h3 {
+font-size:14px;
+color: #E6F5F7;
+margin: 0 0 2px 0;
+}
+
+#sidebar p {
+margin: 0 0 10px 0;
+}
+
+.widget  {
+background: url(../images/widget.png) top left no-repeat;
+color: #A9C3CC;
+width: 300px;
+float: left;
+padding: 22px 0 14px 19px;
+}
+
+.cat-post-item {
+width: 300px;
+float: left;
+margin: 10px 0 0 0;
+}
+
+.cat-post-content {
+padding: 2px 0 0 0;
+}
+
+.post-thumbnail-side {
+width: 102px;
+height: 102px;
+float: left;
+margin: 0 12px 10px 0;
+}
+
+.post-thumbnail-side img {
+padding: 11px;
+}
+
+.thumbnail-frame-side {
+background: url(../images/frame-side.png) 0 0;
+width: 102px;
+height: 102px;
+position: absolute;
+}
+
+.thumbnail-frame-side:hover {
+background: url(../images/frame-side.png) 0 -102px;
+}
+
+.sidebar-ad {
+margin: 5px 0 20px 25px;
+}
+
+a.simple-ads {
+background: none;
+}
+
+
+/*********************************************************************************************
+
+13. Footer Styles  ---------------------  footer.php
+
+*********************************************************************************************/
+#footer {
+width: 100%;
+float: left;
+}
+
+#footer-inside {
+width: 980px;
+margin: 0px auto;
+}
+
+#footer-content {
+border-top: 1px solid #A9C3CC;
+width: 980px;
+float: left;
+padding: 10px 0 30px 0;
+}
+
+#footer-content h3 {
+font-size: 14px;
+color: #A9C3CC;
+margin: 0 0 2px 0;
+padding: 0 0 0 5px;
+}
+
+#footer-content p {
+color: #7B95A6;
+font-size: 13px;
+margin: -2px 0 0 0;
+padding: 0 0 0 5px;
+}
+
+#footer-content a {
+color: #A9C3CC;
+}
