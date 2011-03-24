@@ -354,18 +354,9 @@ padding: 0 15px 0 20px;
 float: right;
 }
 
-li.subscribe:hover {
-background: url(../images/rss.png) top left no-repeat;
-}
-
 li.signin {
-background: url(../images/twitter.png) top left no-repeat;
 padding: 0 20px 0 20px;
 float: right;
-}
-
-li.signin:hover {
-background: url(../images/twitter.png) top left no-repeat;
 }
 
 /*********************************************************************************************
@@ -378,7 +369,7 @@ background: url(../images/search.png) top left no-repeat;
 width: 350px;
 height: 50px;
 float: right;
-margin: 30px 0 0 0;
+margin: 30px 0;
 }
 
 input#s {
@@ -903,7 +894,7 @@ font-size: 14px;
 
 11. Post Comment Styles ----------------  single.php
 
-não alterei ainda!
+nï¿½o alterei ainda!
 
 *********************************************************************************************/
 #comments-meta {
