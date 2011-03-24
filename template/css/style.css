@@ -115,7 +115,7 @@ blockquote {
 color: #A9C3CC;
 padding: 0 0 0 15px;
 font-style: italic;
-border-left: 1px solid #A9C3CC;
+border-left: 1px solid #4C4C4C;
 }
 
 strong {font-weight: bold;}
@@ -187,7 +187,7 @@ margin: 0px auto;
 }
 
 #full-width-ad {
-border: 1px solid #DA1013;
+border: 1px solid #4C4C4C;
 background: #DA1013;
 width: 980px;
 float: left;
@@ -428,14 +428,14 @@ float: left;
 }
 
 #posts {
-border-right: 1px solid #A9C3CC;
+border-right: 1px solid #4C4C4C;
 width: 660px;
 float: left;
 padding: 25px 0 30px 0;
 }
 
 #posts-page {
-border-right: 1px solid #A9C3CC;
+border-right: 1px solid #4C4C4C;
 width: 660px;
 float: left;
 padding: 25px 0 0 0;
@@ -448,11 +448,16 @@ padding: 25px 0 0 0;
 }
 
 #paginate {
-border-top: 1px solid #A9C3CC;
+border-top: 1px solid #4C4C4C;
 width: 655px;
 float: left;
 margin: -30px 0 0 0;
 padding: 5px 0 5px 5px;
+}
+
+#sort_by {
+width: 100%;
+float: left;
 }
 
 
@@ -633,7 +638,7 @@ margin: 0;
 }
 
 .gallery-item h2 {
-border-bottom: 1px solid #A9C3CC;
+border-bottom: 1px solid #4C4C4C;
 font-size: 14px;
 margin: 0 0 5px 0;
 padding: 0 0 5px 5px;
@@ -695,26 +700,26 @@ margin: -2px 0 0 0;
 }
 
 li.date {
-border-bottom: 1px solid #A9C3CC;
+border-bottom: 1px solid #4C4C4C;
 color: #A9C3CC;
 font-size: 13px;
 padding: 0 0 2px 5px;
 }
 
-li.categories {
-border-bottom: 1px solid #A9C3CC;
+li.info {
+border-bottom: 1px solid #4C4C4C;
 color: #A9C3CC;
 font-size: 12px;
 padding: 5px 0 2px 5px;
 }
 
-li.categories a:link, li.categories a:visited {
+li.info a:link, li.info a:visited {
 color: #E6F5F7;
 font-size: 12px;
 font-weight: bold;
 }
 
-li.categories a:hover {
+li.info a:hover {
 color: #A9C3CC;
 }
 
@@ -771,7 +776,7 @@ float: left;
 }
 
 .post-details h2 {
-border-bottom: 1px solid #A9C3CC;
+border-bottom: 1px solid #4C4C4C;
 font-size: 16px;
 margin: 0 0 5px 0;
 padding: 0 0 5px 0;
@@ -902,7 +907,7 @@ não alterei ainda!
 
 *********************************************************************************************/
 #comments-meta {
-border-top: 1px solid #3E4852;
+border-top: 1px solid #4C4C4C;
 width: 655px;
 float: left;
 margin: -15px 0 0 0;
@@ -910,7 +915,7 @@ padding: 0 0 0 5px;
 }
 
 #comments {
-border-top: 1px solid #3E4852;
+border-top: 1px solid #4C4C4C;
 width: 635px;
 float: left;
 padding: 0 20px 0 5px;
@@ -1003,7 +1008,7 @@ padding: 20px 0 34px 5px;
 
 #author, #email, #url, #comment {
 background: #3E4852 url(images/fields.jpg) top left repeat-x;
-border: 1px solid #A9C3CC;
+border: 1px solid #4C4C4C;
 font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
 font-size: 12px;
 line-height: 18px;
@@ -1040,7 +1045,7 @@ background: url(../images/button.png) 0 -35px;
 
 *********************************************************************************************/
 #sidebar {
-border-left: 1px solid #A9C3CC;
+border-left: 1px solid #4C4C4C;
 width: 319px;
 float: left;
 margin: 0 0 0 -1px;
@@ -1121,7 +1126,7 @@ margin: 0px auto;
 }
 
 #footer-content {
-border-top: 1px solid #A9C3CC;
+border-top: 1px solid #4C4C4C;
 width: 980px;
 float: left;
 padding: 10px 0 30px 0;
