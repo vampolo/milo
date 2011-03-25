@@ -237,6 +237,15 @@ background: url(../images/menubar-home.png) top left no-repeat;
 height: 35px;
 }
 
+.navigation-orientation {
+background: url(../images/menubar-orientation.png) top left no-repeat;
+height: 35px;
+width: 100%;
+float: left;
+font-size: 12px;
+}
+
+
 .navigation-category {
 background: url(../images/menubar.png) top left no-repeat;
 height: 31px;
@@ -444,11 +453,6 @@ width: 655px;
 float: left;
 margin: -30px 0 0 0;
 padding: 5px 0 5px 5px;
-}
-
-#sort_by {
-width: 100%;
-float: left;
 }
 
 
