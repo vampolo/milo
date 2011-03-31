@@ -1,22 +1,5 @@
 /*********************************************************************************************
 
-Theme Name: On Demand
-Theme URI: http://www.press75.com/
-Description: Designed by Jason Schuller
-Version: 2.3.3
-Author: Press75.com
-Author URI: http://www.press75.com/
-
-**********************************************************************************************
-
-Designed and Built by Jason Schuller - theSevenFive.com
-
-CSS, XHTML and Design Files are all Copyright 2007-2011 Circa75 Media, LLC
-
-Be inspired, but please don't steal :)
-
-**********************************************************************************************
-
 0.  CSS Reset  -------------------------  All Theme Files
 1.  Basic Setup  -----------------------  All Theme Files
 2.  Header Styles  ---------------------  header.php
@@ -25,7 +8,7 @@ Be inspired, but please don't steal :)
 5.  Main Content Containers  -----------  home.php, index.php, single.php, page.php
 6.  Carousel Styles  -------------------  home.php
 7.  Carousel Content  ------------------  home.php
-8.  Featured Categories  ---------------  home.php
+8.  Recommended Categories  ---------------  home.php
 9.  Gallery and Post Thumbnail Styles  -  home.php, index.php
 10. Post Content Styles ----------------  index.php, single.php, page.php
 11. Post Comment Styles ----------------  single.php
@@ -96,7 +79,7 @@ margin: 0 0 15px 0;
 h2 {
 font-size: 18px;
 font-weight: normal;
-margin: 0 0 5px 0;
+margin: 0 0 10px 0;
 }
 
 h3 {
@@ -199,7 +182,7 @@ padding: 10px 0 10px 0;
 #header-left { /* For the Logo */
 width: 490px;
 float: left;
-padding: 30px 0 30px 0;
+padding: 20px 0 20px 0;
 }
 
 #header-left h1 {
@@ -434,6 +417,10 @@ float: left;
 padding: 25px 0 30px 0;
 }
 
+#posts h2{
+padding: 0 0 8px 0;
+}
+
 #posts-page {
 border-right: 1px solid #4C4C4C;
 width: 660px;
@@ -530,7 +517,7 @@ position: relative;
 7. Carousel Content  ------------------  home.php
 
 *********************************************************************************************/
-.featured-post {
+.Recommended-post {
 background: #3E4852;
 color: #A9C3CC;
 width: 840px;
@@ -538,34 +525,86 @@ height: 315px;
 margin: 30px 0 0 70px;
 }
 
-.attachment-featured {
+.attachment-Recommended {
 float: left;
 }
 
-.featured-post-description h2 a {
-font-size: 16px;
-color: #E6F5F7;
+.Recommended-post-description  h2{
 font-weight:bold;
+color: #FFFFFF;
+margin: 0 0 20px -2px;
 }
 
-.featured-post-description h2 a:hover {
-font-size: 16px;
+
+.Recommended-post-description h2 a:hover {
 color: #A9C3CC;
 }
 
-.featured-post-description {
+.Recommended-post-description {
 width: 230px;
 float: left;
 margin: 0 0 0 30px;
 }
 
+ul.Recommended-post-description {
+float: right;
+font-weight:bold;
+padding: 0 0 0 0;
+}
+
+ul.post-meta li {
+list-style = none;
+}
+
+li.date-recommended {
+color: #A9C3CC;
+font-weight: bold;
+font-size: 13px;
+padding: 0 0 2px 5px;
+}
+
+li.info-recommended {
+color: #A9C3CC;
+font-weight: bold;
+font-size: 12px;
+padding: 5px 0 2px 5px;
+}
+
+li.info-recommended a:link, li.info a:visited {
+color: #E6F5F7;
+font-size: 12px;
+font-weight: bold;
+}
+
+li.info-recommended a:hover {
+color: #A9C3CC;
+}
+
+li.genre-recommended {
+color: #A9C3CC;
+font-size: 13px;
+font-weight: bold;
+padding: 5px 0 2px 5px;
+}
+
+li.genre-recommended a:link, li.info a:visited {
+color: #E6F5F7;
+font-size: 13px;
+font-weight: bold;
+}
+
+li.genre-recommended a:hover {
+color: #A9C3CC;
+}
+
 .continue {
 background: url(../images/button1.png) 0 0;
 width: 143px;
+font-weight:bold;
 height: 28px;
 float: left;
 text-align: center;
-margin: 0 0 0 -2px;
+margin: 0 0 20px -2px;
 padding: 7px 0 0 0;
 }
 
@@ -574,23 +613,23 @@ background: url(../images/button2.png) 0 0;
 }
 
 a.continue {
-color: #A9C3CC;
+color: #FFFFFF;
 }
 
 
 /*********************************************************************************************
 
-8. Featured Categories  ---------------  home.php
+8. Recommended Categories  ---------------  home.php
 
 *********************************************************************************************/
-#featured-categories {
+#Recommended-categories {
 background: url(../images/categories.png) top left no-repeat;
 width: 980px;
 float: left;
 height: 160px;
 }
 
-.featured-category {
+.Recommended-category {
 background: url(../images/category.png) top left no-repeat;
 width: 90px;
 height: 90px;
@@ -715,6 +754,23 @@ font-weight: bold;
 }
 
 li.info a:hover {
+color: #A9C3CC;
+}
+
+li.genre {
+border-bottom: 1px solid #4C4C4C;
+color: #A9C3CC;
+font-size: 13px;
+padding: 5px 0 2px 5px;
+}
+
+li.genre a:link, li.info a:visited {
+color: #E6F5F7;
+font-size: 13px;
+font-weight: bold;
+}
+
+li.genre a:hover {
 color: #A9C3CC;
 }
 
