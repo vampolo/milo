@@ -4,7 +4,7 @@
 <head profile="http://gmpg.org/xfn/11">
   <!-- page titles -->
 
-  <title>|&nbsp;Milo&nbsp;|</title><!-- meta tags -->
+  <title>Recommended Movies&nbsp;|&nbsp;Milo&nbsp;</title><!-- meta tags -->
   <meta http-equiv="content-language" content="en" />
   <meta http-equiv="cache-control" content="no-cache" />
   <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
@@ -45,7 +45,7 @@
 <script type="text/javascript">			
 			window.onload = function() {
 			var canvas = document.getElementById('graphic');
-			var data = document.getElementById('data').getElementsByTagName('article');
+			var data = document.getElementById('data').getElementsByTagName('article');			
 			
 			if(canvas.getContext) {
 				var ctx = canvas.getContext('2d');
@@ -67,7 +67,12 @@
 					ctx.clip();
 					var img = value.getElementsByTagName('img')[0];
 					var title = value.getElementsByTagName('p')[0];
-					ctx.drawImage(img,x-radius,y-radius, radius*2, (radius*2*img.height/img.width));
+					//Trying to add url
+					//var url = value.getElementsByTagName('a')[0];
+					ctx.drawImage(img,x-radius,y-radius, radius*2, (radius*2*img.height/img.width));			
+					//Trying to add mouseEvent
+					//ctx.addEventListener("click", BubbleOnClick, false);					
+					
 					ctx.restore();
 					
 				}	
@@ -193,7 +198,7 @@
 		<section id='data' style="display:none">
 			<article>
 				<p>Star wars 1</p>
-				<img src="../images/Covers_Sizetest/StarWars1Covers.jpg" alt="Title" />
+				<img src="../images/Covers_Sizetest/StarWars1Cover.jpg" alt="Title" />
 			</article>
 			<article>
 				<p>Guerre stellari 2</p>
@@ -209,7 +214,7 @@
 			</article>
 			<article>
 				<p>Matrix reloaded</p>
-				<img src="../images/Covers_Sizetest/matrix_reloaded_Cover.jpg" alt="Title" />
+				<img src="../images/Covers_Sizetest/matrix_reloaded_cover.jpg" alt="Title" />
 			</article>
 			<article>
 				<p>Matrix revolution</p>
@@ -259,10 +264,14 @@
 				<p>Up</p>
 				<img src="../images/Covers_Sizetest/up.jpg" alt="Title" />
 			</article>
-			<article>
+			<article class="thumbnail-frame">
 				<p>Finding Nemo</p>
-				<a class="thumbnail" href="#thumb"><img src="../images/Covers_Sizetest/fnemo.jpg"/>
-				<span><img src="../images/Covers_Sizetest/fnemo.jpg" /><br />Simply beautiful.</span></a>
+				<img src="../images/Covers_Sizetest/fnemo.jpg" />
+				<a href="../video_page/index.html">
+            	<!--<a class="post-thumbnail thumbnail-frame" href="../video_page/index.html" title="See the trailer and details">
+            	<img width="180" height="250" src="../images/Covers_Sizetest/fnemo.jpg" class=
+            	"recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
+					<span><img width="180" height="260" src="../images/Covers_Sizetest/fnemo.jpg" /></span></a>-->            
 			</article>				
 		</section>
 			
