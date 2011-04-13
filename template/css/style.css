@@ -427,6 +427,27 @@ padding: 22px 0 30px 0;
 padding: 0 0 5px 0;
 }
 
+#about-us-container{
+width: 100%;
+float: left;
+margin: 0px auto;
+
+}
+
+#about-us{
+width: 980px;
+float: left;
+padding: 22px 0 30px 150px;
+}
+
+#about-us h2, li{
+padding: 0 0 5px 0;
+}
+
+#about-us ol{
+padding: 0 0 0 15px;
+}
+
 #posts-page {
 border-right: 1px solid #4C4C4C;
 width: 660px;
@@ -735,6 +756,10 @@ position: absolute;
 }
 
 .attachment-post-thumbnail {
+margin: 10px 0 0 10px;
+}
+
+.recommended-post-thumbnail {
 margin: -50px 0 0 10px;
 position: absolute;
 clip:rect(60px,180px,190px,0px);
