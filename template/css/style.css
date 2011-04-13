@@ -720,50 +720,6 @@ display: none;
 text-align: center;
 }
 
-.post-thumbnail {
-width: 200px;
-height: 150px;
-float: left;
-margin: 0 0 10px 0;
-}
-
-.thumbnail-frame {
-background: url(../images/frame.png) 0 0;
-width: 200px;
-height: 150px;
-position: absolute;
-}
-
-.thumbnail-frame:hover {
-background: url(../images/frame.png) 0 -150px;
-width: 200px;
-height: 150px;
-position: absolute;
-}
-
-.thumbnail-frame-video {
-background: url(../images/frame-video.png) 0 0;
-width: 200px;
-height: 150px;
-position: absolute;
-}
-
-.thumbnail-frame-video:hover {
-background: url(../images/frame-video.png) 0 -150px;
-width: 200px;
-height: 150px;
-position: absolute;
-}
-
-.attachment-post-thumbnail {
-margin: 10px 0 0 10px;
-}
-
-.recommended-post-thumbnail {
-margin: -50px 0 0 10px;
-position: absolute;
-clip:rect(60px,180px,190px,0px);
-}
 
 ul.post-meta {
 font-size: 11px;
@@ -1374,3 +1330,82 @@ padding: 0 0 0 5px;
 #footer-content a {
 color: #A9C3CC;
 }
+
+/*********************************************************************************************
+
+14. Expand Thumbnails
+
+*********************************************************************************************/
+.post-thumbnail {
+width: 200px;
+height: 150px;
+float: left;
+margin: 0 0 10px 0;
+}
+
+.thumbnail-frame {
+background: url(../images/frame.png) 0 0;
+width: 200px;
+height: 150px;
+position: absolute;
+}
+
+.thumbnail-frame:hover {
+background: url(../images/frame.png) 0 -150px;
+background-color: transparent;
+width: 200px;
+height: 150px;
+position: absolute;
+z-index: 50;
+}
+
+.thumbnail-frame span{ /*CSS for enlarged image*/
+position: absolute;
+background-color: lightgrey;
+padding: 5px;
+left: -1000px;
+border: 1px solid gray;
+visibility: hidden;
+color: black;
+text-decoration: none;
+}
+
+.thumbnail-frame span img{ /*CSS for enlarged image*/
+border-width: 0;
+padding: 2px;
+}
+
+.thumbnail-frame:hover span{ /*CSS for enlarged image on hover*/
+visibility: visible;
+top: 0;
+left: 1px; /*position where enlarged image should offset horizontally */
+
+}
+
+.thumbnail-frame-video {
+background: url(../images/frame-video.png) 0 0;
+width: 200px;
+height: 150px;
+position: absolute;
+}
+
+.thumbnail-frame-video:hover {
+background: url(../images/frame-video.png) 0 -150px;
+width: 200px;
+height: 150px;
+position: absolute;
+}
+
+.attachment-post-thumbnail {
+margin: 10px 0 0 10px;
+}
+
+.recommended-post-thumbnail {
+margin: -50px 0 0 10px;
+position: absolute;
+clip:rect(60px,180px,190px,0px);
+}
+
+
+
+
