@@ -5,7 +5,7 @@
 <head profile="http://gmpg.org/xfn/11">
   <!-- page titles -->
 
-  <title>|&nbsp;Milo&nbsp;|</title><!-- meta tags -->
+  <title>&nbsp;Login or Register&nbsp;|&nbsp;Milo&nbsp;</title><!-- meta tags -->
   <meta http-equiv="content-language" content="en" />
   <meta http-equiv="cache-control" content="no-cache" />
   <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
@@ -144,45 +144,47 @@
       <div id="Recommended-content">
        
 
-        <div id="post-container">
+        <div id="forms_container">
           
 		  <div id="Register_form">
-			<h2 id="Register_form">Register on Milo!</h2>
+			<h2>Register on Milo!</h2>
 			<p id="Register_form">Subscribe to create your on profile and get the best reccomendations by Milo, friends and the Community!</p>
 			<p id="Register_form">
 			<form>
 			<li>First name: <input type="text" name="firstname" /></li>
 			<li>Last name: <input type="text" name="lastname" /></li>
-			<li>Email: <input type="text" name="email" /></li>
-			<li>Password: <input type="password" name="pass"/></li>
-			<li>Repeat Password: <input type="password" name="pass"/></li>
-			<input type="submit" value="Submit" />
+			<li>*&nbsp;Email: <input type="text" name="email" /></li>
+			<li>*&nbsp;Password: <input type="password" name="pass"/></li>
+			<li>*&nbsp;Repeat Password: <input type="password" name="pass"/></li>
+			<a href="../login_home/index.html" ><input id="register" type="submit" value=""/></a>
 			</form>
 			</p>
 			
           </div><!-- Register form -->
 
-          <div class="login_form">
-			<h2 id="sidebar">Already has a Login?</h2>
-			
+          <div id="sidebar">
+         <div id="login_form"> 
+			<h2 id="login_form">Already have a Login?</h2>	
 
-            <p id="sidebar">
+         <p>
 			<form id="login_form" name="input" action="html_form_action.asp" method="get">
 			<p>
 			<li>Username: <input type="text" name="user"/></li>
 			<li>Password: <input type="password" name="pass"/></li>
 			</p>
-			<input type="submit" value="Submit" />
-			<br>
-			or	
-			<div id="fb-root"></div>	
-			<fb:login-button perms="user_likes, email"></fb:login-button>
-					
+			<a href="../login_home/index.html" ><input id="login" type="submit" value=""/></a>
 			</form>
-			</p>
+			</p>	
+			
+			<h2 id="login_form">Have a Facebook Account?</h2>			
+			<p>Login using your facebook account to find your friends!</p>
+			<div id="fb-root"></div>	
+			<fb:login-button style="margin-left: 5px"></fb:login-button>
+			
+			</div> <!-- login-form -->
           </div><!-- login - sidebar -->
        
-	   </div><!-- post-container -->
+	   </div><!-- forms-container -->
       </div><!-- content-inside -->
     </div><!-- content -->
 
