@@ -2,9 +2,11 @@ from resources import *
 from datetime import datetime
 
 def my_view(request):
-	a = Movie(title='test', date=datetime.today())
+	'''
+	ws = Ws()
+	print ws.client
+	print Movie.objects.all()
+	'''
+	a = User(email='test', password='test')
 	a.save()
-	print a
-	for i in  Movie.objects.all():
-		print i 	
 	return {'project':'milo_app'}
