@@ -1,11 +1,8 @@
 from mongoengine import *
 
-connect('milo')
-
 class Root(object):
     def __init__(self, request):
         self.request = request
-
 
 class User(Document):
 	email = StringField(required=True)
@@ -18,8 +15,8 @@ class Comment(EmbeddedDocument):
 
 class Movie(Document):
 	title = StringField(required=True)
-	year = DateTimeField(required=True)
+	date = DateTimeField(required=True)
 	description = StringField()
 	trailer = URLField()
-	cover = FileField()
+	cover = URLField()
 	comments = ListField(EmbeddedDocumentField(Comment))
