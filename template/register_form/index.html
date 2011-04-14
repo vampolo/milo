@@ -39,6 +39,9 @@
 </script>
   <script type='text/javascript' src='../js/fancybox/jquery.fancybox.js_ver=3.1'>
 </script>
+
+<script src="http://connect.facebook.net/en_US/all.js#appId=113902308692268&amp;xfbml=1"></script>
+
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../xmlrpc.php_rsd" />
   <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../js/wlwmanifest.xml" />
   <link rel='index' title='Milo' />
@@ -161,6 +164,8 @@
 
           <div class="login_form">
 			<h2 id="sidebar">Already has a Login?</h2>
+			
+
             <p id="sidebar">
 			<form id="login_form" name="input" action="html_form_action.asp" method="get">
 			<p>
@@ -168,6 +173,11 @@
 			<li>Password: <input type="password" name="pass"/></li>
 			</p>
 			<input type="submit" value="Submit" />
+			<br>
+			or	
+			<div id="fb-root"></div>	
+			<fb:login-button perms="user_likes, email"></fb:login-button>
+					
 			</form>
 			</p>
           </div><!-- login - sidebar -->
