@@ -78,7 +78,7 @@ margin: 0 0 15px 0;
 
 h2 {
 font-size: 18px;
-font-weight: normal;
+font-weight: bold;
 margin: 0 0 10px 0;
 }
 
@@ -1362,9 +1362,10 @@ z-index: 50;
 .thumbnail-frame span{ /*CSS for enlarged image*/
 position: absolute;
 background-color: lightgrey;
-padding: 5px;
+padding: 6px;
 left: -1000px;
 border: 1px solid gray;
+border-radius: 5px;
 visibility: hidden;
 color: black;
 text-decoration: none;
