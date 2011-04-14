@@ -1,7 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!doctype html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US" xml:lang="en-US">
+<html lang="en">
 <head profile="http://gmpg.org/xfn/11">
   <meta name="generator" content="Bluefish 2.0.1" />
   <!-- page titles -->
@@ -57,15 +56,42 @@
       <div id="header-right">
         <div id="site-search">
           <script type="text/javascript">
-//<![CDATA[
+			//<![CDATA[
           function doClear(theText) {
                 if (theText.value == theText.defaultValue) {
                         theText.value = ""
                 }
           }
           //]]>
-          </script>
+      
+      //This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+      tag.src = "http://www.youtube.com/player_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+      //  This function creates an <iframe> (and YouTube player)
+      //  after the API code downloads.
+      var player;
+      function onYouTubePlayerAPIReady() {
+        player = new YT.Player('player', {     
+         events: {
+            'onReady': onPlayerReady,
+            'onPlaybackQualityChange': onPlayerPlaybackQualityChange,
+      		'onStateChange': onPlayerStateChange,
+      		'onError': onPlayerError
+          }
+        });
+      }
+		      
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+      	event.target.setVolume(60);
+        	event.target.playVideo();	
+      }
+      
+    </script>          
+          
           <div id="search">
             <form method="get" id="search-form" action="../" name="search-form">
               <input type="text" name="s" id="s" value="Find Something" onfocus=
@@ -141,14 +167,10 @@
     <div id="content-inside">
       <div id="video-container">
         <div class='video-embed'>
-          <object type="application/x-shockwave-flash" data=
-          "http://vimeo.com/moogaloop.swf" width="604" height="340">
-            <param name="allowscriptaccess" value="always" />
-            <param name="allowfullscreen" value="true" />
-            <param name="movie" value="http://vimeo.com/moogaloop.swf" />
-            <param name="flashvars" value=
-            "clip_id=1418995&amp;color=00adef&amp;fullscreen=1&amp;server=vimeo.com&amp;show_byline=1&amp;show_portrait=1&amp;show_title=1" />
-          </object>
+
+			<iframe id="player" type="text/html" 
+  			src="http://www.youtube.com/embed/gfgeIZyrIM0?enablejsapi=1&rel=0&autohide=1"></iframe>         
+        
        
 			<div class='related-films'>
 			<h2 title="List of films with similar content">Related films</h2>
@@ -243,10 +265,9 @@
             </div>
 
             <div class="post-content">
-              <div id="attachment_378" class="wp-caption alignright" style=
-              "width: 310px">
-                <img src="../images/2009/10/fireplays-300x167.jpg" alt="Fireplays" title=
-                "fireplays" width="300" height="167" class="size-medium wp-image-378" />
+              <div id="attachment_378" class="wp-caption alignright">
+                <img src="../images/Covers_Sizetest/fnemo.jpg" alt="Finding Nemo" title=
+                "Finding Nemo" width="180" height="250" class="size-medium wp-image-378" />
 
                 <p class="wp-caption-text">Sample Image Caption</p>
               </div>

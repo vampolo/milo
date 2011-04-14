@@ -67,12 +67,7 @@
 					ctx.clip();
 					var img = value.getElementsByTagName('img')[0];
 					var title = value.getElementsByTagName('p')[0];
-					//Trying to add url
-					//var url = value.getElementsByTagName('a')[0];
-					ctx.drawImage(img,x-radius,y-radius, radius*2, (radius*2*img.height/img.width));			
-					//Trying to add mouseEvent
-					//ctx.addEventListener("click", BubbleOnClick, false);					
-					
+					ctx.drawImage(img,x-radius,y-radius, radius*2, (radius*2*img.height/img.width));						
 					ctx.restore();
 					
 				}	
@@ -81,6 +76,32 @@
 				document.getElementById('no-canvas').style.display = 'block';
 			}
 			}
+			
+			//new functions
+			function handleMouseover(e) {
+				if (isMouseoverRectangularRegion(e, 
+					rectangularRegions[0])){
+					drawEventDisplay("Darth Vader!");
+				}
+				else if (isMouseoverRectangularRegion(e, 
+				rectangularRegions[1])){
+				drawEventDisplay("Yoda!");
+				}
+				else {
+				drawEventDisplay("Mouseover an image...");
+				}
+			}
+
+			function drawEventDisplay(image) {					
+			drawImage(100,50,200,137,image);		
+
+            	<!--<a class="post-thumbnail thumbnail-frame" href="../video_page/index.html" title="See the trailer and details">
+            	<img width="180" height="250" src="../images/Covers_Sizetest/fnemo.jpg" class=
+            	"recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
+					<span><img width="180" height="260" src="../images/Covers_Sizetest/fnemo.jpg" /></span></a>-->
+
+			}
+			
 		</script>
   
 </head>
@@ -193,7 +214,7 @@
 			</h2>
 			
 		<section>
-		<canvas id='graphic' height='550px' width='660px'></canvas>		
+		<canvas id='graphic' height='550px' width='660px' onmousemove="handleMouseover(event)"></canvas>		
 		</section>
 		<section id='data' style="display:none">
 			<article>
@@ -267,11 +288,6 @@
 			<article class="thumbnail-frame">
 				<p>Finding Nemo</p>
 				<img src="../images/Covers_Sizetest/fnemo.jpg" />
-				<a href="../video_page/index.html">
-            	<!--<a class="post-thumbnail thumbnail-frame" href="../video_page/index.html" title="See the trailer and details">
-            	<img width="180" height="250" src="../images/Covers_Sizetest/fnemo.jpg" class=
-            	"recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
-					<span><img width="180" height="260" src="../images/Covers_Sizetest/fnemo.jpg" /></span></a>-->            
 			</article>				
 		</section>
 			
