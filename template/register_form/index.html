@@ -38,9 +38,6 @@
 </script>
   <script type='text/javascript' src='../js/fancybox/jquery.fancybox.js_ver=3.1'>
 </script>
-
-<script src="http://connect.facebook.net/en_US/all.js#appId=113902308692268&amp;xfbml=1"></script>
-
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../xmlrpc.php_rsd" />
   <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../js/wlwmanifest.xml" />
   <link rel='index' title='Milo' />
@@ -150,11 +147,15 @@
 			<p id="Register_form">Subscribe to create your on profile and get the best reccomendations by Milo, friends and the Community!</p>
 			<p id="Register_form">
 			<form>
-			<li>First name: <input type="text" name="firstname" /></li>
-			<li>Last name: <input type="text" name="lastname" /></li>
-			<li>*&nbsp;Email: <input type="text" name="email" /></li>
-			<li>*&nbsp;Password: <input type="password" name="pass"/></li>
-			<li>*&nbsp;Repeat Password: <input type="password" name="pass"/></li>
+			<li>First name:
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="firstname" /></li>
+			<li>Last name:
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="lastname" /></li>
+			<li>*&nbsp;Email:
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="email" /></li>
+			<li>*&nbsp;Password:
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="pass"/></li>
+			<li>*&nbsp;Repeat Password:&nbsp;&nbsp;<input type="password" name="pass"/></li>
 			<a href="../login_home/index.html" ><input id="register" type="submit" value=""/></a>
 			</form>
 			</p>
@@ -175,10 +176,12 @@
 			
 			<h2 id="login_form">Have a Facebook Account?</h2>			
 			<p id="login_form">Login using your facebook account to find your friends!</p>
-			<div id="login_form">			
-			<div id="fb-root"></div>	
+			
+			<div id="login_form"> 
+			<div id="fb-root"></div>
+			<script src="http://connect.facebook.net/en_US/all.js#appId=113902308692268&amp;xfbml=1"></script>	
 			<fb:login-button></fb:login-button>
-			</div>
+			</div>			
 						
 			</form>
 			</div> <!-- login-form -->
