@@ -6,6 +6,7 @@ production.ini
 setup.cfg
 setup.py
 milo_app/__init__.py
+milo_app/login.py
 milo_app/resources.py
 milo_app/tests.py
 milo_app/views.py
@@ -26,4 +27,5 @@ milo_app/static/pylons.css
 milo_app/static/pyramid-small.png
 milo_app/static/pyramid.png
 milo_app/static/transparent.gif
+milo_app/templates/login.pt
 milo_app/templates/mytemplate.pt
