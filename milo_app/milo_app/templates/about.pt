@@ -1,0 +1,9 @@
+<metal:html use-macro="base_pt.macros['main']">
+     <metal:content fill-slot="content">
+     <div id="content-inside">
+		<div id='post-container'>
+     	Here you can put the about informations
+     	</div>
+     </div>
+     </metal:content>
+</metal:html>

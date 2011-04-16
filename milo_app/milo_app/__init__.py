@@ -16,10 +16,10 @@ def main(global_config, **settings):
     config = Configurator(root_factory=Root, settings=settings,
     								authentication_policy=authn_policy,
     								authorization_policy=authz_policy)
-    config.add_view('milo_app.views.my_view',
-                    context='milo_app:resources.Root',
-                    renderer='milo_app:templates/mytemplate.pt')
     config.add_static_view('static', 'milo_app:static')
+    config.add_static_view('css', 'milo_app:static/css')
+    config.add_static_view('js', 'milo_app:static/js')
+    config.add_static_view('images', 'milo_app:static/images')
     config.scan()
     connect(settings['db_name'])
     return config.make_wsgi_app()
