@@ -1,0 +1,49 @@
+/********************************************************************************************* 
+
+CSS3 Elements Separated to Maintain Validation
+
+*********************************************************************************************/
+#video-container, .no-categories {
+-moz-border-radius-bottomleft: 4px;
+-moz-border-radius-bottomright: 4px;
+-webkit-border-bottom-lefSt-radius: 4px;
+-webkit-border-bottom-right-radius: 4px;
+}
+
+.avatar, .wp-caption {
+-moz-border-radius: 2px;
+-webkit-border-radius: 2px;
+-webkit-box-shadow: 0px 0px 2px #CCCCCC;
+-moz-box-shadow: 0px 0px 2px #CCCCCC;
+box-shadow: 0px 0px 2px #CCCCCC;
+}
+
+.featured-category img, .featured-post img  {
+-webkit-box-shadow: 0px 0px 4px #000000;
+-moz-box-shadow: 0px 0px 4px #000000;
+box-shadow: 0px 0px 4px #000000;
+}
+
+#author, #email, #url, #comment, .menu li ul {
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+}
+
+.menu li ul {
+-webkit-box-shadow: 0px 0px 4px #333333;
+-moz-box-shadow: 0px 0px 4px #333333;
+box-shadow: 0px 0px 4px #333333;
+opacity: 0.9;
+}
+
+.menu a, .menu a:visited, a.continue, #categories a, input#submit {
+text-shadow: 0 -1px 0 #333333;
+}
+
+.menu li ul a, .menu li ul a:visited {
+text-shadow: none;
+}
+
+.featured-post-description h2 a {
+text-shadow: 0 -1px 0 #000000;
+}

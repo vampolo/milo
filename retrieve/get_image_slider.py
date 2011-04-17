@@ -3,7 +3,7 @@ from lxml.html import parse
 
 from ipdb import set_trace
 
-movie_title = 'finding nemo'
+movie_title = 'wolverine'
 
 page_search_list = parse(urllib.urlopen('http://moviepicturedb.com/browse/search?'+urllib.urlencode({'title': movie_title})))
 

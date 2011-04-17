@@ -1,0 +1,743 @@
+/********************************************************************************************* 
+
+0. CSS Reset  -------------------------  All Theme Files
+
+*********************************************************************************************/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+margin: 0;
+padding: 0;
+}
+
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+fieldset, img {border: 0;}
+
+address, caption, cite, code, dfn, em, strong, th, var {
+font-style: normal;
+font-weight: normal;
+}
+
+ol, ul {list-style: none;}
+caption, th {text-align: left;}
+
+h1, h2, h3, h4, h5, h6 {
+font-size: 100%;
+font-weight: normal;
+}
+
+q:before, q:after {content: '';}
+abbr, acronym {border: 0;}
+
+/*********************************************************************************************
+
+1. Basic Setup  -----------------------  All Theme Files
+
+*********************************************************************************************/
+body {
+background: #1A1D1F;
+width: auto;
+height: auto;
+font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
+font-size: 12px;
+line-height: 18px;
+color: #A9C3CC;
+}
+
+h1 {
+font-size: 30px;
+font-weight: normal;
+margin: 0 0 15px 0;
+}
+
+h2 {
+font-size: 18px;
+font-weight: bold;
+margin: 0 0 8px 2px;
+}
+
+h3 {
+font-size: 14px;
+font-weight: normal;
+margin: 0 0 5px 0;
+}
+
+h4 {
+font-size: 12px;
+font-weight: normal;
+margin: 0 0 2px 0;
+}
+
+blockquote {
+color: #A9C3CC;
+padding: 0 0 0 15px;
+font-style: italic;
+border-left: 1px solid #4C4C4C;
+}
+
+strong {font-weight: bold;}
+
+a:link, a:visited {
+color: #E6F5F7;
+font-weight: bold;
+}
+
+a:hover {
+color: #A9C3CC;
+
+}
+
+abbr,acronym {
+border-bottom: 1px dotted;
+cursor: help;
+} 
+
+em {font-style: italic;}
+ol,ul {margin: 0;}
+ol li {list-style: decimal outside;}
+ul li {list-style: none;}
+
+th,td {
+border: 1px solid;
+padding: 8px;
+}
+
+th {
+font-weight:bold;
+text-align:center;
+}
+
+caption {
+margin-bottom: 8px;
+text-align: center;
+}
+
+p,fieldset,table {margin-bottom: 15px;}
+a:link, a:visited {text-decoration: none;}
+
+:focus {
+outline: 0;
+}
+
+.alignleft {
+float: left;
+}
+
+.alignright {
+float: right;
+}
+
+/*********************************************************************************************
+
+2. Header Styles
+
+*********************************************************************************************/
+
+#header {
+width: 100%;
+float: left;
+}
+
+#header-inside {
+width: 980px;
+margin: 0px auto;
+}
+
+#header-left { /* For the Logo */
+width: 490px;
+float: left;
+padding: 20px 0 20px 0;
+}
+
+#header-right {
+text-align: right;
+width: 490px;
+float: left;
+}
+
+#site-search {
+background: url(../images/search.png) top left no-repeat;
+width: 350px;
+height: 50px;
+float: right;
+margin: 45px 0;
+}
+
+input#s {
+border: none;
+background: none;
+color: #3E4852;
+font-size: 14px;
+float: left;
+width: 260px;
+margin: 16px 0 0 15px;
+}
+
+input#search-submit {
+background: url(../images/search-submit.png) 0 0;
+border: none;
+cursor: pointer;
+width: 55px;
+height: 50px;
+float: left;
+margin: 0 0 0 20px;
+}
+
+input#search-submit:hover {
+background: url(../images/search-submit.png) 0 -50px;
+color: #FFFFFF;
+}
+
+/*********************************************************************************************
+
+3. Navigation and Menu Styles  --------  header.php
+
+*********************************************************************************************/
+#navigation {
+width: 100%;
+float: left;
+font-size: 12px;
+}
+
+.navigation-inside {
+background: url(../images/menubar.png) top left no-repeat;
+width: 980px;
+margin: 0px auto;
+height: 31px;
+}
+
+.navigation-video {
+background: url(../images/menubar-home.png) top left no-repeat;
+height: 35px;
+}
+
+.menu, .menu * { /* SuperFish Menu Styles */
+margin: 0;
+padding: 0;
+list-style: none;
+position:relative;
+z-index: 99;
+}
+
+.menu {
+float: left;
+width: 965px;
+padding: 6px 0 0 15px;
+}
+
+.menu a {
+display: block;
+position: relative;
+}
+
+.menu a, .menu a:visited  {
+color: #E6F5F7;
+font-weight:bold;
+}
+
+.menu a:hover  {
+color: #A9C3CC;
+font-weight:bold;
+}
+
+.menu ul li {
+width: 100%;
+}
+
+.menu ul {
+position: absolute;
+top: -15000px;
+width: 160px; /* Left Offset of Sub-Menus Need to Match */
+}
+
+.menu li:hover ul, 
+.menu li.sfHover ul {
+left: -15px;
+top: 22px; /* Match Top UL List Item Height */
+z-index: 10000;
+}
+
+ul.menu li:hover li ul, 
+ul.menu li.sfHover li ul {
+top: -15000px;
+}
+
+ul.menu li li:hover ul, 
+ul.menu li li.sfHover ul {
+left: 160px; /* Match ul width. */
+top: 0;
+}
+
+ul.menu li li:hover li ul, 
+ul.menu li li.sfHover li ul {
+top: -15000px;
+}
+
+ul.menu li li li:hover ul, 
+ul.menu li li li.sfHover ul {
+left: 160px; /* Match ul Width. */
+top: 0;
+}
+
+.menu li {
+float: left;
+position: relative;
+padding: 0 20px 0 0;
+}
+
+.menu li:hover {
+visibility: inherit; /* Fixes IE7 Sticky Bug */
+}
+
+.menu li ul {
+background: #1A1D1F;
+font-size: 12px;
+width: 125px;
+margin: 10px 0 0 0;
+padding: 10px 40px 10px 15px;
+}
+
+.menu li ul a:link, .menu li ul a:visited {
+color: #E6F5F7;
+}
+
+.menu li ul a:hover {
+color: #A9C3CC;
+}
+
+.menu li li {
+background: none;
+margin: 0 0 0 0;
+padding: 0 0 0 0;
+text-transform: none;
+}
+
+.menu li li ul {
+background: #1A1D1F;
+margin: -10px 0 0 -50px;
+}
+
+
+#feed {
+background: url(../images/rss.png) top left no-repeat;
+padding: 0 15px 0 20px;
+float: right;
+}
+
+#signin {
+padding: 0 20px 0 30px;
+float: right;
+}
+
+#signout {
+background: url(../icons/exit.png) top left no-repeat;
+padding: 0 20px 0 30px;
+float: right;
+}
+
+/*********************************************************************************************
+
+4. Main Content Containers
+
+*********************************************************************************************/
+#content {
+width: 100%;
+float: left;
+}
+
+#content-inside {
+width: 980px;
+margin: 0px auto;
+}
+
+#post-container {
+width: 980px;
+float: left;
+}
+
+#posts {
+border-right: 1px solid #4C4C4C;
+width: 660px;
+float: left;
+padding: 22px 0 30px 0;
+}
+
+#posts h2{
+padding: 0 0 3px 0;
+}
+
+
+/*********************************************************************************************
+
+5. Carousel Styles
+
+*********************************************************************************************/
+
+.coda-slider, .coda-slider .panel {
+background: #3E4852;
+width: 980px;
+height: 380px;
+} 
+
+#coda-nav {
+width: 980px;
+position: relative;
+}
+
+.coda-slider {
+float: left;
+overflow: hidden;
+position: relative;
+}
+
+.coda-slider .panel {
+display: block;
+float: left;
+}
+
+.coda-nav-left a {
+background: url(../images/left.png) 0 0;
+position: absolute;
+width: 58px;
+height: 102px;
+top: 125px;
+left: -5px;
+z-index: 500000;
+}
+
+.coda-nav-left a:hover {
+background: url(../images/left.png) 0 -102px;
+}
+
+.coda-nav-right a {
+background: url(../images/right.png) 0 0;
+position: absolute;
+width: 58px;
+height: 102px;
+top: 125px;
+right: -5px;
+z-index: 500000;
+}
+
+.coda-nav-right a:hover {
+background: url(../images/right.png) 0 -102px;
+}
+
+#slider-foot {
+background: url(../images/menubar-orientation.png) top left no-repeat;
+height: 35px;
+width: 100%;
+float: left;
+}
+
+#filter {
+margin: 8px 15px 0 10px;
+font-size: 13px;	
+font-weight: bold;
+}
+
+/*********************************************************************************************
+
+6. Carousel Content
+
+*********************************************************************************************/
+
+.slider-post {
+background: #3E4852;
+color: #A9C3CC;
+width: 840px;
+height: 315px;
+margin: 30px 0 0 70px;
+}
+
+.slider-image {
+float: left;
+width: 500px;
+height: 315px;
+}
+
+.slider-movie-description  h2{
+font-weight:bold;
+color: #FFFFFF;
+margin: 0 0 20px -2px;
+}
+
+
+.slider-movie-description h2 a:hover {
+color: #A9C3CC;
+}
+
+.slider-movie-description {
+width: 230px;
+float: left;
+margin: 0 0 0 30px;
+}
+
+.continue {
+background: url(../images/button1.png) 0 0;
+width: 146px;
+height: 28px;
+float: left;
+margin: 0 0 20px -2px;
+padding: 7px 0 0 0;
+}
+
+.continue:hover {
+background: url(../images/buttoncontinue.png) 0 0;
+width: 146px;
+height: 28px;
+float: left;
+margin: 0 0 20px -2px;
+padding: 7px 0 0 0;
+}
+
+/*********************************************************************************************
+
+7. Gallery and Post Thumbnail Styles
+
+*********************************************************************************************/
+.gallery-item {
+width: 200px;
+float: left;
+margin: 0 20px 20px 0;
+}
+
+.gallery-item a{
+font-size: 16px;
+}
+
+.post-thumbnail {
+width: 200px;
+height: 150px;
+float: left;
+margin: 0 0 10px 0;
+}
+
+.thumbnail-frame {
+background: url(../images/frame.png) 0 0;
+width: 200px;
+height: 150px;
+position: absolute;
+}
+
+
+.thumbnail-frame:hover {
+background: url(../images/frame.png) 0 -150px;
+background-color: transparent;
+width: 200px;
+height: 150px;
+position: absolute;
+z-index: 50;
+}
+
+
+.thumbnail-frame span{ /*CSS for enlarged image*/
+position: absolute;
+background-color: lightgrey;
+padding: 6px;
+left: -1000px;
+border: 1px solid gray;
+border-radius: 5px;
+visibility: hidden;
+color: black;
+text-decoration: none;
+}
+
+.thumbnail-frame span img{ /*CSS for enlarged image*/
+border-width: 0;
+padding: 2px;
+}
+
+.thumbnail-frame:hover span{ /*CSS for enlarged image on hover*/
+visibility: visible;
+top: 0;
+left: 1px; /*position where enlarged image should offset horizontally */
+}
+
+.recommended-post-thumbnail {
+margin: -50px 0 0 10px;
+position: absolute;
+clip:rect(60px,180px,190px,0px);
+}
+
+
+/*********************************************************************************************
+
+8. Post Meta Styles
+
+*********************************************************************************************/
+
+ul.post-meta {
+font-size: 11px;
+}
+
+ul.post-meta li {
+margin: -2px 0 0 0;
+list-style = none;
+}
+
+li.date {
+border-bottom: 1px solid #4C4C4C;
+color: #A9C3CC;
+font-size: 13px;
+padding: 0 0 2px 5px;
+}
+
+li.info {
+border-bottom: 1px solid #4C4C4C;
+color: #A9C3CC;
+font-size: 12px;
+padding: 5px 0 2px 5px;
+}
+
+li.info a:link, li.info a:visited {
+color: #E6F5F7;
+font-size: 12px;
+font-weight: bold;
+}
+
+li.info a:hover {
+color: #A9C3CC;
+}
+
+li.genre {
+border-bottom: 1px solid #4C4C4C;
+color: #A9C3CC;
+font-size: 13px;
+padding: 5px 0 2px 5px;
+}
+
+li.genre a:link, li.info a:visited {
+color: #E6F5F7;
+font-size: 13px;
+font-weight: bold;
+}
+
+li.genre a:hover {
+color: #A9C3CC;
+}
+
+li.comments {
+color: #E6F5F7;
+font-size: 11px;
+padding: 5px 0 0 5px;
+}
+
+li.comments a:link, li.comments a:visited {
+color: #E6F5F7;
+font-size: 11px;
+}
+
+li.comments a:hover {
+color: #A9C3CC;
+}
+
+/*********************************************************************************************
+
+9. Sidebar and Widgets
+
+*********************************************************************************************/
+#sidebar {
+border-left: 1px solid #4C4C4C;
+width: 319px;
+float: left;
+margin: 0 0 0 -1px;
+}
+
+#sidebar h3 {
+font-size:14px;
+color: #E6F5F7;
+margin: 0 0 2px 0;
+}
+
+#sidebar p {
+margin: 0 0 10px 0;
+}
+
+.widget  {
+color: #A9C3CC;
+width: 300px;
+float: left;
+padding: 22px 0 14px 19px;
+}
+
+.sidebar-item {
+width: 300px;
+float: left;
+margin: 10px 0 0 0;
+}
+
+.post-thumbnail-side {
+width: 102px;
+height: 102px;
+float: left;
+margin: 0 12px 10px 0;
+}
+
+.post-thumbnail-side img {
+padding: 11px;
+}
+
+.thumbnail-frame-side {
+background: url(../images/frame-side.png) 0 0;
+width: 102px;
+height: 102px;
+position: absolute;
+}
+
+.thumbnail-frame-side:hover {
+background: url(../images/frame-side.png) 0 -102px;
+}
+
+.sidebar-item-content {
+padding: 2px 0 0 0;
+}
+
+
+/********************************************************************************************* 
+
+Not used yet
+
+*********************************************************************************************/
+
+/*********************************************************************************************
+
+1. Footer Styles
+
+*********************************************************************************************/
+#footer {
+width: 100%;
+float: left;
+}
+
+#footer-inside {
+width: 980px;
+margin: 0px auto;
+}
+
+#footer-content {
+border-top: 1px solid #4C4C4C;
+width: 980px;
+float: left;
+padding: 10px 0 30px 0;
+}
+
+#footer-content h3 {
+font-size: 14px;
+color: #A9C3CC;
+margin: 0 0 2px 0;
+padding: 0 0 0 5px;
+}
+
+#footer-content p {
+color: #7B95A6;
+font-size: 13px;
+margin: -2px 0 0 0;
+padding: 0 0 0 5px;
+}
+
+#footer-content a {
+color: #A9C3CC;
+}
