@@ -4,15 +4,17 @@ from pyramid.security import remember
 from pyramid.security import forget
 from pyramid.view import view_config
 from pyramid.url import resource_url
+from pyramid.renderers import get_renderer
 
 from resources import User
 
 
 @view_config(context='milo_app:resources.Root', name='login',
-             renderer='templates/login.pt')
+             renderer='templates/login_milo.pt')
 @view_config(context='pyramid.exceptions.Forbidden',
-             renderer='templates/login.pt')
+             renderer='templates/login_milo.pt')
 def login(request):
+    basept = get_renderer('templates/base.pt').implementation()
     login_url = resource_url(request.context, request, 'login')
     referrer = request.url
     if referrer == login_url:
@@ -37,6 +39,7 @@ def login(request):
         came_from = came_from,
         login = login,
         password = password,
+        base_pt = basept
         )
     
 @view_config(context='milo_app:resources.Root', name='logout')

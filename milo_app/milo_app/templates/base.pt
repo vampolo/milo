@@ -129,9 +129,7 @@
 
         <li><a href="${request.resource_url(request.root, 'about')}" title="Find out more about this web application">About Us</a></li>
 
-        <li class="subscribe"><a href="#" title="Feed RSS">Feed</a></li>
-
-        <li class="signin"><a href="register_form/index.html" title="Login">Sign In or Register</a></li>
+        <li class="signin"><a href="${request.resource_url(request.root, 'login')}" title="Login">Sign In or Register</a></li>
         <!-- in case of logged in: sign out -->
       </ul>
     </div><!-- navigation-inside -->

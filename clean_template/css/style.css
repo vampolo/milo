@@ -140,6 +140,33 @@ width: 100%;
 float: left;
 }
 
+#communication-panel {
+	position:fixed;
+	left:50%;
+	z-index:100;
+	background-color:lightGrey;
+	width:600px;
+	margin-left:-300px;
+	border: 1px solid gray;
+	border-bottom-right-radius: 5px 5px;
+	border-bottom-left-radius: 5px 5px;
+}
+
+#communication-panel div {
+	font-size:16px;
+	margin: 20px;
+	color:#3E4852;
+	text-align:center;
+}
+
+#communication-panel div img{
+	margin:-11px 7px;
+}
+
+#communication-panel div span{
+	padding-right:11px;
+}
+
 #header-inside {
 width: 980px;
 margin: 0px auto;
