@@ -1,16 +1,51 @@
 <metal:html use-macro="base_pt.macros['main']">
      <metal:content fill-slot="content">
      <div id="content-inside">
-		<div id='post-container'>
-        <form action="${url}" method="post">
-          <input type="hidden" name="came_from" value="${came_from}"/>
-          <input type="text" name="login" value="${login}"/><br/>
-          <input type="password" name="password"
-                 value="${password}"/><br/>
-          <input type="submit" name="form.submitted" value="Log In"/>
-        </form>
-    ${message}
-     	</div>
-     </div>
+     <h3>${message}</h3>
+		<div id="forms-container">
+         <div id="registration">
+				
+			<h2>Register</h2>
+              <div id="register_input" class="form-input">
+				<form id="register_form" name="input" action="${url}" method="POST">
+				<input type="hidden" name="came_from" value="${came_from}"/>
+				<label for="register_first_name">Name:</label><input id="register_first_name" type="text" name="name"/>
+				<label for="register_surname">Surname:</label><input id="register_surname" type="text" name="surname"/>
+				<label for="register_email">Email:</label><input id="register_email" type="text" name="email"/>
+				<label for="register_password">Password:</label><input id="register_password" type="password" name="password"/>
+				<input id="register_button" name="form.registration.submitted" type="submit" value=""/>
+				</form><!-- login-form -->
+              </div><!-- form-input--> 
+              
+          </div><!-- registration -->
+				
+			<div id="sidebar">
+			
+			<div id="login" class="widget">
+              <h2>Login</h2>
+              
+              <div id="login_input" class="form-input">
+				<form id="login_form" name="input" action="${url}" method="POST">
+				<input type="hidden" name="came_from" value="${came_from}"/>
+				<label for="login_field_1">Email:</label>
+				<input id="login_field_1" type="text" name="login" value="${login}"/>
+				<label for="password">Password:</label>
+				<input id="password" type="password" name="password" value="${password}"/>
+				<input id="login_button" type="submit" name="form.submitted" value=""/>	
+				</form><!-- login-form -->
+              </div><!-- form-input--> 
+              
+            </div><!-- login -->  
+					
+            <div id="facebook-login" class="widget">
+              <h2>Login by Facebook Account</h2>
+              <p> Already have a facebook account? Login using it and find your friends that also use Milo! </p>
+              <div id="fb-root"></div>
+				<fb:login-button>Login with Facebook</fb:login-button>
+            </div><!-- facebook-login -->
+          
+         </div><!-- sidebar -->
+        </div><!-- forms-container -->
+      </div><!-- content-inside -->
      </metal:content>
 </metal:html>

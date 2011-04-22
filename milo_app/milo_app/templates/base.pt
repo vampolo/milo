@@ -1,64 +1,86 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:tal="http://xml.zope.org/namespaces/tal" 
 	xmlns:metal="http://xml.zope.org/namespaces/metal" 
 	dir="ltr" lang="en-US" xml:lang="en-US"
 	>
-	<metal:html define-macro="main">
+<metal:html define-macro="main">
 <head profile="http://gmpg.org/xfn/11">
-  <title>|&nbsp;Milo&nbsp;|</title><!-- meta tags -->
+  
+  <!-- page titles -->
+
+  <title>|&nbsp;Milo&nbsp;|</title>
+  
+  <!-- meta tags -->
   <meta http-equiv="content-language" content="en" />
   <meta http-equiv="cache-control" content="no-cache" />
-  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+  <meta name="description" content="Movie Recommender Engine" />
+  <meta name="keywords" content="movie, film, recommendation, recommended, cinema" />
+
   <!-- import required theme styles -->
   <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="css/style.css3.css" type="text/css" media="screen" />
+
   <!--[if IE 7]>
                 <link rel="stylesheet" href="#" type="text/css" media="screen" />
         <![endif]-->
+
   <!--[if IE 8]>
                 <link rel="stylesheet" href="#" type="text/css" media="screen" />
         <![endif]-->
+
   <!-- custom theme styles -->
-  <!-- Small Logo 
-                <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" /> -->
+ 
+  
   <link rel='stylesheet' id='fancybox-css' href='js/fancybox/style.css_ver=3.1' type=
   'text/css' media='all' />
+
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.js')}">
+  </script>
   <script type='text/javascript' src='js/l10n.js_ver=20101110'>
-</script>
-  <script type='text/javascript' src='js/jquery/jquery.js_ver=1.4.4'>
-</script>
+  </script>
   <script type='text/javascript' src='js/jquery.superfish.js_ver=3.1'>
-</script>
+  </script>
   <script type='text/javascript' src='js/jquery.easing.js_ver=3.1'>
-</script>
+  </script>
   <script type='text/javascript' src='js/jquery.coda.js_ver=3.1'>
-</script>
+  </script>
   <script type='text/javascript' src='js/jquery.float.js_ver=3.1'>
-</script>
+  </script>
   <script type='text/javascript' src='js/jquery.equal.js_ver=3.1'>
-</script>
+  </script>
   <script type='text/javascript' src='js/fancybox/jquery.fancybox.js_ver=3.1'>
-</script>
+  </script>
+  
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="xmlrpc.php_rsd" />
+
   <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="js/wlwmanifest.xml" />
-  <link rel='index' title='Milo' />
-  <meta name="generator" content="Bluefish 2.0.3" />
+
 </head>
 
 <body>
   <div id="header">
-    <div id="header-inside">
+	  <div id="communication-panel">
+		  <div>
+			  <span>A new recommendation is available. Do you want to load it?</span>
+			  <img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/>
+			  <img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/>
+		  </div>
+		  <!-- $('#communication-panel').slideUp('slow'); -->
+		  <!-- $('#communication-panel').slideDown('slow'); -->
+	  </div>
+    <div id="header-inside">      
+      
       <div id="header-left">
-        <a title="Home" href="${request.resource_url(request.root)}"><img class="fade" src="images/milo_logo.png" alt="Milo" /></a>
+        <a title="Home" href="${request.resource_url(request.root)}"><img class="fade" src="${request.static_url('milo_app:static/images/milo_logo.png')}" alt="Milo" /></a>
       </div><!-- header-left -->
 
       <div id="header-right">
         <div id="site-search">
+
           <script type="text/javascript">
-//<![CDATA[
+			 //<![CDATA[
           function doClear(theText) {
                 if (theText.value == theText.defaultValue) {
                         theText.value = ""
@@ -70,242 +92,195 @@
           <div id="search">
             <form method="get" id="search-form" action="index.html" name="search-form">
               <input type="text" name="s" id="s" value="Find Something" onfocus=
-              "doClear(this)" /> <input type="submit" id="search-submit" value="" />
+              "doClear(this)" /> 
+              <input type="submit" id="search-submit" value="" />
             </form>
           </div><!-- search -->
-        </div>
+        
+        </div><!-- site-search-->
       </div><!-- header-right -->
+    
     </div><!-- header-inside -->
   </div><!-- header -->
 
   <div id="navigation">
     <div class="navigation-inside navigation-video">
       <ul class="menu">
-        <li class=""><a href="index.html" title="Home">Home</a></li>
+        
+        <li><a href="latest_logout/index.html" title="List recently updated movies">Latest</a></li>
 
-        <li class=""><a href="#" title=
-        "List recently updated movies">Latest</a></li>
+        <li><a href="popular_logout/index.html" title="List most popular movies">Popular</a></li>
 
-        <li class=""><a href="#" title=
-        "List most popular movies">Popular</a></li>
+        <li>
+          <a href="categories_logout/index.html" title="Check list of films">Categories</a>
 
-        <li class="">
-          <a href="#" title="Check list of films">Categories</a>
-
-          <ul class='children'>
-            <li class="">
+          <ul>    
+            <li>
               <a href="#" title="Films by Genre">by Genre</a>
-
-              <ul class='children'>
-                <li class=""><a href="#" title="">Action</a></li>
-
-                <li class=""><a href="#" title="">Adventure</a></li>
-
-                <li class=""><a href="#" title="">Sci-Fi</a></li>
+              <ul>
+                <li><a href="#" title="">Action</a></li>
+                <li><a href="#" title="">Adventure</a></li>
+                <li><a href="#" title="">Sci-Fi</a></li>
               </ul>
-            </li>
+          	</li>
 
-            <li class=""><a href="#" title="Films by Date of Release">by Release Date</a></li>
+            <li><a href="#" title="Films by Date of Release">by Release Date</a></li>
 
-            <li class=""><a href="#" title="Films by Rating">by Rating</a></li>
+            <li><a href="#" title="Films by Rating">by Rating</a></li>
 
-            <li class=""><a href="#" title="Films by Country">by Country</a></li>
+            <li><a href="#" title="Films by Country">by Country</a></li>
 
-            <li class=""><a href="#" title="Films by Original Language">by Language</a></li>
+            <li><a href="#" title="Films by Original Language">by Language</a></li>
 
-            <li class=""><a href="#" title="Films by Release Date">by Release Date</a>
-			<ul class='children'>
-                <li class=""><a href="#" title="Films released on 2011">2011</a></li>
-                <li class=""><a href="#" title="Films released on 2010">2010</a></li>
-                <li class=""><a href="#" title="Films released from 2005 until 2009">2005 - 2009</a></li>
-                <li class=""><a href="#" title="Films released from 2000 to 2004">2000 - 2004</a></li>
-                <li class=""><a href="#" title="Films released on 90'">90'</a></li>
-                <li class=""><a href="#" title="Films released on 80' or earlies">80' or before</a></li>
-			</ul>
-			</li>
-            <li class=""><a href="#" title="Films by Name (Alphabetically)">by Title</a></li>
+            <li><a href="#" title="Films by Release Date">by Release Date</a>
+					<ul>
+                <li><a href="#" title="Films released on 2011">2011</a></li>
+                <li><a href="#" title="Films released on 2010">2010</a></li>
+                <li><a href="#" title="Films released from 2005 until 2009">2005 - 2009</a></li>
+                <li><a href="#" title="Films released from 2000 to 2004">2000 - 2004</a></li>
+                <li><a href="#" title="Films released on 90'">90'</a></li>
+                <li><a href="#" title="Films released on 80' or earlies">80' or before</a></li>
+					</ul>				
+				</li>
+				
+            <li><a href="#" title="Films by Name (Alphabetically)">by Title</a></li>
           </ul>
+        
         </li>
 
         <li><a href="${request.resource_url(request.root, 'about')}" title="Find out more about this web application">About Us</a></li>
 
-        <li class="signin"><a href="${request.resource_url(request.root, 'login')}" title="Login">Sign In or Register</a></li>
-        <!-- in case of logged in: sign out -->
+        <li id="feed"><a href="#" title="Feed RSS">Feed</a></li>
+
+        <li id="signin"><a href="${request.resource_url(request.root, 'login')}" title="Login">Sign In or Register</a></li>
       </ul>
     </div><!-- navigation-inside -->
   </div><!-- navigation -->
+
   <div id="content">
-  	<metal:content metal:define-slot="content">
+	<metal:content metal:define-slot="content">
     <div id="content-inside">
-      <div id="Recommended-content">
-        <div id="Recommended-posts">
-          <div id="coda-nav">
+      <div id="coda-nav">
             <div class="coda-slider" id="slider">
+              
               <div class="panel">
-                <div class="Recommended-post">
-                  <a class="inline" href="#video-186" title=
-                  "This is a Sample Recommended Video"><img width="560" height="315" src=
-                  "images/2009/10/rain-lights-560x315.jpg" class=
-                  "attachment-Recommended wp-post-image" alt="Rain Lights" title=
-                  "rain-lights" /></a>
+                <div class="slider-post">
+                 
+                  <img src="http://www.moviepicturedb.com/pictures/08_12/2003/266543/l_266543_daa6ecb8.jpg" 
+                  class="slider-image" alt="Movie-title-#1" title="Movie-title-#1" />
+                  
+                  <div class="slider-movie-description">
+                    <h2><a href="video_page/index.html" title="Movie-title-#1">Title Top Video #1</a></h2>
+                    <p>Here we must give a brief description of the top 1 film</p>
+                    <a class="continue" href="video_page/index.html" title="Continue Reading"></a>
+                  </div><!-- slider-movie-description-->
 
-                  <div class="instant">
-                    <div id="video-186" class="instant-view">
-                      <div class='video-embed'>
-                        <object type="application/x-shockwave-flash" data=
-                        "http://vimeo.com/moogaloop.swf" width="604" height="340">
-                          <param name="allowscriptaccess" value="always" />
-                          <param name="allowfullscreen" value="true" />
-                          <param name="movie" value="http://vimeo.com/moogaloop.swf" />
-                          <param name="flashvars" value=
-                          "clip_id=7047863&amp;color=00adef&amp;fullscreen=1&amp;server=vimeo.com&amp;show_byline=1&amp;show_portrait=1&amp;show_title=1" />
-                        </object>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="Recommended-post-description">
-                    <h2><a href="video_page/index.html" title=
-                    "This is a Sample Recommended Video">Top Video #1</a></h2>
-
-                    <p>Here we must give a brief description of the top 1
-                    film</p><a class="continue" href="video_page/index.html" title=
-                    "This is a Sample Recommended Video"></a>
-                  </div>
-                </div><!-- Recommended-post -->
+                </div><!-- slider-post -->
               </div><!-- panel -->
 
               <div class="panel">
-                <div class="Recommended-post">
-                  <a class="inline" href="#video-126" title=
-                  "This is a Sample Recommended Video"><img width="560" height="315" src=
-                  "images/2009/10/beach-560x315.jpg" class=
-                  "attachment-Recommended wp-post-image" alt="Beach" title="beach" /></a>
+                <div class="slider-post">
+                 
+                  <img src="http://www.moviepicturedb.com/pictures/10_02/2009/1119646/l_1119646_f45d348f.jpg" 
+                  class="slider-image" alt="Movie-title-#2" title="Movie-title-#2" />
+                  
+                  <div class="slider-movie-description">
+                    <h2><a href="video_page/index.html" title="Movie-title-#2">Title Top Video #2</a></h2>
+                    <p>Here we must give a brief description of the top 2 film</p>
+                    <a class="continue" href="video_page/index.html" title="Continue Reading"></a>
+                  </div><!-- slider-movie-description-->
 
-                  <div class="instant">
-                    <div id="video-126" class="instant-view">
-                      <div class='video-embed'>
-                        <object type="application/x-shockwave-flash" data=
-                        "http://vimeo.com/moogaloop.swf" width="604" height="340">
-                          <param name="allowscriptaccess" value="always" />
-                          <param name="allowfullscreen" value="true" />
-                          <param name="movie" value="http://vimeo.com/moogaloop.swf" />
-                          <param name="flashvars" value=
-                          "clip_id=6231058&amp;color=00adef&amp;fullscreen=1&amp;server=vimeo.com&amp;show_byline=1&amp;show_portrait=1&amp;show_title=1" />
-                        </object>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="Recommended-post-description">
-                    <h2><a href="video_page/index.html" title=
-                    "This is a Sample Recommended Video Post">Top Video #2</a></h2>
-
-                    <p>Here we must give a brief description of the Recommended
-                    film</p><a class="continue" href="video_page/index.html" title=
-                    "This is a Sample Video Post"></a>
-                  </div>
-                </div><!-- Recommended-post -->
+                </div><!-- slider-post -->
               </div><!-- panel -->
 
               <div class="panel">
-                <div class="Recommended-post">
-                  <a href="video_page/index.html" title=
-                  "This is a Sample Non Video Post"><img width="560" height="315" src=
-                  "images/2009/05/ape-560x315.jpg" class=
-                  "attachment-Recommended wp-post-image" alt="Sample" title="ape" /></a>
+                <div class="slider-post">
+                 
+                  <img src="http://www.moviepicturedb.com/pictures/08_12/2007/413300/l_413300_d9648a88.jpg" 
+                  class="slider-image" alt="Movie-title-#3" title="Movie-title-#3" />
+                  
+                  <div class="slider-movie-description">
+                    <h2><a href="video_page/index.html" title="Movie-title-#1">Title Top Video #3</a></h2>
+                    <p>Here we must give a brief description of the top 3 film</p>
+                    <a class="continue" href="video_page/index.html" title="Continue Reading"></a>
+                  </div><!-- slider-movie-description-->
 
-                  <div class="Recommended-post-description">
-                    <h2><a href="video_page/index.html" title=
-                    "This is a Sample Non Video Post">Top Video #3</a></h2>
-
-                    <p>Here we must give a brief description of the Recommended
-                    film</p><a class="continue" href="video_page/index.html" title=
-                    "This is a Sample Non Video Post"></a>
-                  </div>
-                </div><!-- Recommended-post -->
+                </div><!-- slider-post -->
               </div><!-- panel -->
 
               <div class="panel">
-                <div class="Recommended-post">
-                  <a class="inline" href="#video-184" title=
-                  "This is a Sample Video Post"><img width="560" height="315" src=
-                  "images/2009/05/sample-560x315.jpg" class=
-                  "attachment-Recommended wp-post-image" alt="Sample" title="sample" /></a>
+                <div class="slider-post">
+                 
+                  <img src="http://www.moviepicturedb.com/pictures/09_09/2009/458525/l_458525_ca22fc35.jpg" 
+                  class="slider-image" alt="Movie-title-#4" title="Movie-title-#4" />
+                  
+                  <div class="slider-movie-description">
+                    <h2><a href="video_page/index.html" title="Movie-title-#1">Title Top Video #4</a></h2>
+                    <p>Here we must give a brief description of the top 4 film</p>
+                    <a class="continue" href="video_page/index.html" title="Continue Reading"></a>
+                  </div><!-- slider-movie-description-->
 
-                  <div class="instant">
-                    <div id="video-184" class="instant-view">
-                      <div class='video-embed'>
-                        <object type="application/x-shockwave-flash" data=
-                        "http://vimeo.com/moogaloop.swf" width="604" height="340">
-                          <param name="allowscriptaccess" value="always" />
-                          <param name="allowfullscreen" value="true" />
-                          <param name="movie" value="http://vimeo.com/moogaloop.swf" />
-                          <param name="flashvars" value=
-                          "clip_id=6725625&amp;color=00adef&amp;fullscreen=1&amp;server=vimeo.com&amp;show_byline=1&amp;show_portrait=1&amp;show_title=1" />
-                        </object>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="Recommended-post-description">
-                    <h2><a href="video_page/index.html" title=
-                    "This is a Sample Video Post">Top Video #4</a></h2>
-
-                    <p>Here we must give a brief description of the Recommended
-                    film</p><a class="continue" href="video_page/index.html" title=
-                    "This is a Sample Video Post"></a>
-                  </div>
-                </div><!-- Recommended-post -->
+                </div><!-- slider-post -->
               </div><!-- panel -->
-            </div><!-- coda-slider -->
-          </div><!-- coda-nav -->
-        </div><!-- Recommended-posts -->
 
-        <div class="navigation-orientation">
-          <!-- orientation goes here! -->
+              <div class="panel">
+                <div class="slider-post">
+                 
+                  <img src="http://www.moviepicturedb.com/pictures/10_10/2010/1231583/l_1231583_2ab44e7e.jpg" 
+                  class="slider-image" alt="Movie-title-#5" title="Movie-title-#5" />
+                  
+                  <div class="slider-movie-description">
+                    <h2><a href="video_page/index.html" title="Movie-title-#1">Title Top Video #5</a></h2>
+                    <p>Here we must give a brief description of the top 5 film</p>
+                    <a class="continue" href="video_page/index.html" title="Continue Reading"></a>
+                  </div><!-- slider-movie-description-->
 
-          <ul class="menu" style="margin-top: 5px">
-            <li><a href="a">Browsing by CATEGORY_NAME sorted by</a></li>
+                </div><!-- slider-post -->
+              </div><!-- panel -->
+              
+    			</div><!-- coda-slider -->
+   	</div><!-- coda-nav -->
 
-            <li style="list-style: none"><select style="margin-left: -15px">
+        <div id="slider-foot">
+			<div id="filter">
+			Browsing by
+			<select>
               <option>
                 Last Updated
               </option>
-
               <option>
                 Popularity
               </option>
-            </select></li>
-          </ul>
-        </div>
+         </select>			
+			</div><!-- filter -->
+        </div><!-- slider-foot-->
 
 		<div id="post-container">
-          <div id="posts">
-			<h2 title="Orientation here">Latest Updates</h2>
+         <div id="posts">
+				
+				<h2 title="Orientation here">Latest Updates</h2>
             
             <div class="gallery-item">
             	<div class="post-thumbnail">
             	<a class="thumbnail-frame" href="video_page/index.html" title="See the trailer and details">
-            	<img width="180" height="250" src="images/Covers_Sizetest/fnemo.jpg" class=
-            	"recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
+            	<img width="180" height="250" src="images/Covers_Sizetest/fnemo.jpg" class="recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
 					<span><img width="180" height="260" src="images/Covers_Sizetest/fnemo.jpg" /></span></a>            
             	</div>
 
-              	<h2><a href="video_page/index.html" title=
-              	"Go to this movie page"> TITLE Video 1</a></h2>
+              	<h2><a href="video_page/index.html" title="Go to this movie page"> TITLE Video 1</a></h2>
 
               	<ul class="post-meta">
                	 <li class="date">Posted on 03.29.10</li>
 
-                	<li class="info"><img src="images/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="images/heart.png" style=
+                	<li class="info"><img src="${request.static_url('milo_app:static/images/icons/play.png')}" style=
+                	"width: 12px; height:10px;" /> 2.000 <img src="${request.static_url('milo_app:static/images/icons/heart.png')}" style=
                 	"width: 12px; height:10px;" /> 542 </li>
 				
 						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
 
                 	<li class="comments"><a href="#comments" title="View comments about this movie">6 Comments</a></li>
               </ul>
+              
             </div><!-- gallery-item -->
 
             <div class="gallery-item">
@@ -322,8 +297,8 @@
               	<ul class="post-meta">
                	 <li class="date">Posted on 03.29.10</li>
 
-                	<li class="info"><img src="images/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="images/heart.png" style=
+                	<li class="info"><img src="icons/play.png" style=
+                	"width: 12px; height:10px;" /> 2.000 <img src="icons/heart.png" style=
                 	"width: 12px; height:10px;" /> 542 </li>
 				
 						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
@@ -346,8 +321,8 @@
               	<ul class="post-meta">
                	 <li class="date">Posted on 03.29.10</li>
 
-                	<li class="info"><img src="images/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="images/heart.png" style=
+                	<li class="info"><img src="icons/play.png" style=
+                	"width: 12px; height:10px;" /> 2.000 <img src="icons/heart.png" style=
                 	"width: 12px; height:10px;" /> 542 </li>
 				
 						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
@@ -370,8 +345,8 @@
               	<ul class="post-meta">
                	 <li class="date">Posted on 03.29.10</li>
 
-                	<li class="info"><img src="images/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="images/heart.png" style=
+                	<li class="info"><img src="icons/play.png" style=
+                	"width: 12px; height:10px;" /> 2.000 <img src="icons/heart.png" style=
                 	"width: 12px; height:10px;" /> 542 </li>
 				
 						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
@@ -394,8 +369,8 @@
               	<ul class="post-meta">
                	 <li class="date">Posted on 03.29.10</li>
 
-                	<li class="info"><img src="images/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="images/heart.png" style=
+                	<li class="info"><img src="icons/play.png" style=
+                	"width: 12px; height:10px;" /> 2.000 <img src="icons/heart.png" style=
                 	"width: 12px; height:10px;" /> 542 </li>
 				
 						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
@@ -404,7 +379,6 @@
               </ul>
             </div><!-- gallery-item -->
 				
-								
 				<div class="gallery-item">
             	<div class="post-thumbnail">
             	<a class="thumbnail-frame" href="video_page/index.html" title="See the trailer and details">
@@ -419,8 +393,8 @@
               	<ul class="post-meta">
                	 <li class="date">Posted on 03.29.10</li>
 
-                	<li class="info"><img src="images/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="images/heart.png" style=
+                	<li class="info"><img src="icons/play.png" style=
+                	"width: 12px; height:10px;" /> 2.000 <img src="icons/heart.png" style=
                 	"width: 12px; height:10px;" /> 542 </li>
 				
 						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
@@ -428,8 +402,7 @@
                 	<li class="comments"><a href="#comments" title="View comments about this movie">6 Comments</a></li>
               </ul>
             </div><!-- gallery-item -->
-								
-				
+									
 				<div class="gallery-item">
             	<div class="post-thumbnail">
             	<a class="thumbnail-frame" href="video_page/index.html" title="See the trailer and details">
@@ -444,8 +417,8 @@
               	<ul class="post-meta">
                	 <li class="date">Posted on 03.29.10</li>
 
-                	<li class="info"><img src="images/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="images/heart.png" style=
+                	<li class="info"><img src="icons/play.png" style=
+                	"width: 12px; height:10px;" /> 2.000 <img src="icons/heart.png" style=
                 	"width: 12px; height:10px;" /> 542 </li>
 				
 						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
@@ -468,8 +441,8 @@
               	<ul class="post-meta">
                	 <li class="date">Posted on 03.29.10</li>
 
-                	<li class="info"><img src="images/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="images/heart.png" style=
+                	<li class="info"><img src="icons/play.png" style=
+                	"width: 12px; height:10px;" /> 2.000 <img src="icons/heart.png" style=
                 	"width: 12px; height:10px;" /> 542 </li>
 				
 						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
@@ -492,8 +465,8 @@
               	<ul class="post-meta">
                	 <li class="date">Posted on 03.29.10</li>
 
-                	<li class="info"><img src="images/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="images/heart.png" style=
+                	<li class="info"><img src="icons/play.png" style=
+                	"width: 12px; height:10px;" /> 2.000 <img src="icons/heart.png" style=
                 	"width: 12px; height:10px;" /> 542 </li>
 				
 						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
@@ -502,97 +475,47 @@
               </ul>
             </div><!-- gallery-item -->
           </div><!-- posts -->
-
-          <div id="sidebar">
-            <div id="categoryposts-3" class="widget widget_categoryposts">
+				
+			<div id="sidebar">
+           <div id="top-movies-sidebar" class="widget">
               <h2>Top Films</h2>
 
-              <div class="cat-post-item">
+              <div class="sidebar-item">
                 <div class="post-thumbnail-side"><a class="thumbnail-frame-side" href="#"
-                title="This is a Sample Non Video Post"><!-- nothing to see here --></a>
-                <img width="80" height="80" src="images/2009/10/can-80x80.jpg" class=
-                "attachment-category wp-post-image" alt="Can" title="can" /></div>
+                title="Movie-Title#6"><!-- nothing to see here --></a>
+                <img width="80" height="80" src="images/2009/10/can-80x80.jpg" alt="Can" title="can" />
+                </div>
 
-                <div class="cat-post-content">
-                  <h3 class="Recommended"><a href="#" rel="bookmark" title=
-                  "Permanent link to This is a Sample Non Video Post">Top Video
-                  #5</a></h3>
+                <div class="sidebar-item-content">
+                  <h3><a href="#" rel="bookmark" title="Movie-Title#6">Top Video #6</a></h3>
 
                   <p>Brief description</p>
                 </div>
               </div>
-
-              <div class="cat-post-item">
-                <div class="post-thumbnail-side"><a class="thumbnail-frame-side" href="#"
-                title="This is a Sample Non Video Post"><!-- nothing to see here --></a>
-                <img width="80" height="80" src="images/2009/10/bike-80x80.jpg" class=
-                "attachment-category wp-post-image" alt="Bike" title="bike" /></div>
-
-                <div class="cat-post-content">
-                  <h3 class="Recommended"><a href="#" rel="bookmark" title=
-                  "Permanent link to This is a Sample Non Video Post">Top Video
-                  #6</a></h3>
-
-                  <p>Brief description</p>
-                </div>
-              </div>
-
-              <div class="cat-post-item">
-                <div class="post-thumbnail-side"><a class="thumbnail-frame-side" href="#"
-                title="This is a Sample Video Post"><!-- nothing to see here --></a>
-                <img width="80" height="80" src="images/2009/09/car-80x80.jpg" class=
-                "attachment-category wp-post-image" alt="Car" title="car" /></div>
-
-                <div class="cat-post-content">
-                  <h3 class="Recommended"><a href="#" rel="bookmark" title=
-                  "Permanent link to This is a Sample Video Post">Top Video #7</a></h3>
-
-                  <p>Brief description</p>
-                </div>
-              </div>
-
-              <div class="cat-post-item">
-                <div class="post-thumbnail-side"><a class="thumbnail-frame-side" href="#"
-                title="This is a Sample Non Video Post"><!-- nothing to see here --></a>
-                <img width="80" height="80" src="images/2009/05/ape-80x80.jpg" class=
-                "attachment-category wp-post-image" alt="Sample" title="ape" /></div>
-
-                <div class="cat-post-content">
-                  <h3 class="Recommended"><a href="#" rel="bookmark" title=
-                  "Permanent link to This is a Sample Non Video Post">Top Video
-                  #8</a></h3>
-
-                  <p>Brief description</p>
-                </div>
-              </div>
-            </div>
-
-            <div id="text-3" class="widget widget_text">
-              <h3>Other Profile Info</h3>
-
-              <div class="textwidget">
-                <p>nanananananannananan<a href="" target="_blank" title=""></a>.</p>
-              </div>
-            </div>
-          </div><!-- sidebar -->
+            </div><!-- top-movies-sidebar -->  
+					
+            <div id="sidebar-profile" class="widget">
+              <h2></h2>
+                <p><a href="" target="_blank" title=""></a></p>
+            </div><!-- sidebar-profile -->
+          
+         </div><!-- sidebar -->
         </div><!-- post-container -->
       </div><!-- content-inside -->
-     </metal:content>
-    </div><!-- content -->
-
+      </metal:content>
+	</div><!-- content -->
     <div id="footer">
       <div id="footer-inside">
-        <!--            <div id='paginate'>Pages ... 1 <a href="http://www.press75.com/themes/on-demand/page/2/">2</a> <a href="http://www.press75.com/themes/on-demand/page/2/" ></a></div>                                                                            
- -->
-
-        <div id="footer-content"></div>
+        <div id="footer-content">
+        </div><!-- footer-content-->
       </div><!-- footer-inside -->
     </div><!-- footer -->
+    
     <!--[if IE 6]>
         <script type="text/javascript"> 
                 /*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; } 
                 var IE6UPDATE_OPTIONS = {
-                        images_path: "http://static.ie6update.com/hosted/ie6update/images/"
+                        icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
                 }
         </script>
         <script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>

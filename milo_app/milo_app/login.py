@@ -32,6 +32,21 @@ def login(request):
             return HTTPFound(location = came_from,
                              headers = headers)
         message = 'Failed login'
+    
+    if 'form.registration.submitted' in request.params:
+		#we are in case of new user
+		login = request.params['email']
+		password = request.params['password']
+		name = request.params['name']
+		surname = request.params['surname']
+		user = User.objects.filter(email=login).first()
+		if user is None:
+			user = User(email=login, first_name=name, last_name=surname, password=password)
+			#create a cwid here
+			user.save()
+			headers = remember(request, login)
+			return HTTPFound(location = came_from, headers = headers)
+		message = 'User already exists' 
 
     return dict(
         message = message,

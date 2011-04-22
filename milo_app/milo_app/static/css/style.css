@@ -31,7 +31,6 @@ font-weight: normal;
 q:before, q:after {content: '';}
 abbr, acronym {border: 0;}
 
-
 /*********************************************************************************************
 
 1. Basic Setup  -----------------------  All Theme Files
@@ -56,7 +55,7 @@ margin: 0 0 15px 0;
 h2 {
 font-size: 18px;
 font-weight: bold;
-margin: 0 0 10px 0;
+margin: 0 0 8px 2px;
 }
 
 h3 {
@@ -130,30 +129,48 @@ float: left;
 float: right;
 }
 
-
 /*********************************************************************************************
 
-2. Header Styles  ---------------------  header.php
+2. Header Styles
 
 *********************************************************************************************/
+
 #header {
 width: 100%;
 float: left;
 }
 
+#communication-panel {
+	display:none;
+	position:fixed;
+	left:50%;
+	z-index:100;
+	background-color:lightGrey;
+	width:600px;
+	margin-left:-300px;
+	border: 1px solid gray;
+	border-bottom-right-radius: 5px 5px;
+	border-bottom-left-radius: 5px 5px;
+}
+
+#communication-panel div {
+	font-size:16px;
+	margin: 20px;
+	color:#3E4852;
+	text-align:center;
+}
+
+#communication-panel div img{
+	margin:-11px 7px;
+}
+
+#communication-panel div span{
+	padding-right:11px;
+}
+
 #header-inside {
 width: 980px;
 margin: 0px auto;
-}
-
-#full-width-ad {
-border: 1px solid #4C4C4C;
-background: #DA1013;
-width: 980px;
-float: left;
-text-align: center;
-margin: 30px 0 0 0;
-padding: 10px 0 10px 0;
 }
 
 #header-left { /* For the Logo */
@@ -162,17 +179,44 @@ float: left;
 padding: 20px 0 20px 0;
 }
 
-#header-left h1 {
-font-size: 50px;
-margin: 18px 0 0 0;
-}
-
 #header-right {
 text-align: right;
 width: 490px;
 float: left;
 }
 
+#site-search {
+background: url(../images/search.png) top left no-repeat;
+width: 350px;
+height: 50px;
+float: right;
+margin: 45px 0;
+}
+
+input#s {
+border: none;
+background: none;
+color: #3E4852;
+font-size: 14px;
+float: left;
+width: 260px;
+margin: 16px 0 0 15px;
+}
+
+input#search-submit {
+background: url(../images/search-submit.png) 0 0;
+border: none;
+cursor: pointer;
+width: 55px;
+height: 50px;
+float: left;
+margin: 0 0 0 20px;
+}
+
+input#search-submit:hover {
+background: url(../images/search-submit.png) 0 -50px;
+color: #FFFFFF;
+}
 
 /*********************************************************************************************
 
@@ -195,20 +239,6 @@ height: 31px;
 .navigation-video {
 background: url(../images/menubar-home.png) top left no-repeat;
 height: 35px;
-}
-
-.navigation-orientation {
-background: url(../images/menubar-orientation.png) top left no-repeat;
-height: 35px;
-width: 100%;
-float: left;
-font-size: 12px;
-}
-
-
-.navigation-category {
-background: url(../images/menubar.png) top left no-repeat;
-height: 31px;
 }
 
 .menu, .menu * { /* SuperFish Menu Styles */
@@ -317,18 +347,24 @@ background: #1A1D1F;
 margin: -10px 0 0 -50px;
 }
 
-li.subscribe {
+
+#feed {
 background: url(../images/rss.png) top left no-repeat;
 padding: 0 15px 0 20px;
 float: right;
 }
 
-li.signin {
+#signin {
 padding: 0 20px 0 30px;
 float: right;
 }
 
-li.signout {
+#username {
+padding: 0 20px 0 30px;
+float: right;
+}
+
+#signout {
 background: url(../icons/exit.png) top left no-repeat;
 padding: 0 20px 0 30px;
 float: right;
@@ -336,46 +372,7 @@ float: right;
 
 /*********************************************************************************************
 
-4. Search Form  -----------------------  searchform.php
-
-*********************************************************************************************/
-#site-search {
-background: url(../images/search.png) top left no-repeat;
-width: 350px;
-height: 50px;
-float: right;
-margin: 55px 0;
-}
-
-input#s {
-border: none;
-background: none;
-color: #3E4852;
-font-size: 14px;
-float: left;
-width: 260px;
-margin: 16px 0 0 15px;
-}
-
-input#search-submit {
-background: url(../images/search-submit.png) 0 0;
-border: none;
-cursor: pointer;
-width: 55px;
-height: 50px;
-float: left;
-margin: 0 0 0 20px;
-}
-
-input#search-submit:hover {
-background: url(../images/search-submit.png) 0 -50px;
-color: #FFFFFF;
-}
-
-
-/*********************************************************************************************
-
-5. Main Content Containers  -----------  home.php, index.php, single.php, page.php
+4. Main Content Containers
 
 *********************************************************************************************/
 #content {
@@ -401,70 +398,100 @@ padding: 22px 0 30px 0;
 }
 
 #posts h2{
-padding: 0 0 5px 0;
+padding: 0 0 3px 0;
 }
 
-#about-us-container{
-width: 100%;
+.post-content {
+width: 635px;
 float: left;
-margin: 0px auto;
-
+padding: 0 0 20px 0;
 }
 
-#about-us{
-width: 980px;
-float: left;
-padding: 22px 0 30px 150px;
+#list-view{
+float: right;
+font-size:14px;
+padding: 0 20px 0 0;
 }
 
-#about-us h2, li{
-padding: 0 0 5px 0;
+#list-view a{
+padding: 0 4px 0 4px;
 }
 
-#about-us ol{
-padding: 0 0 0 15px;
+#list-orientation{
+margin-bottom: 15px;
 }
 
-#posts-page {
-border-right: 1px solid #4C4C4C;
-width: 660px;
-float: left;
-padding: 25px 0 0 0;
-}
-
-#posts-full {
-width: 980px;
-float: left;
-padding: 25px 0 0 0;
-}
-
-#paginate {
-border-top: 1px solid #4C4C4C;
+#film-description-header {
 width: 655px;
 float: left;
-margin: -30px 0 0 0;
-padding: 5px 0 5px 5px;
+margin: 0 0 5px 0;
+font-weight: bold;
 }
+
+#film-cover-container{
+background: #3E4852;
+text-align: center;
+padding: 10px 5px 5px 5px;
+border-radius: 2px;
+margin: 0 0 25px 25px;
+float: right;
+}
+
+.image-caption{
+font-size: 12px !important;
+text-align: center;
+margin: 0;
+padding: 0;
+color: #A9C3CC;
+font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
+}
+
+.div-movie-details{
+width: 442px;
+margin: 10px 0 15px 3px;
+}
+
+.div-movie-details h3{
+font-weight: bold;
+font-size: 15px;
+}
+
+.div-movie-details a{
+font-size: 13px;
+}
+
+.div-movie-details p{
+margin: 8px 0 8px 0;
+}
+
 
 
 /*********************************************************************************************
 
-6. Carousel Styles  -------------------  home.php
+5. Carousel Styles
 
 *********************************************************************************************/
+
 .coda-slider, .coda-slider .panel {
 background: #3E4852;
 width: 980px;
 height: 380px;
 } 
 
-.coda-slider-wrapper.arrows .coda-slider, .coda-slider-wrapper.arrows .coda-slider .panel {
-width: 980px;
-}
-
 #coda-nav {
 width: 980px;
 position: relative;
+}
+
+.coda-slider {
+float: left;
+overflow: hidden;
+position: relative;
+}
+
+.coda-slider .panel {
+display: block;
+float: left;
 }
 
 .coda-nav-left a {
@@ -495,33 +522,37 @@ z-index: 500000;
 background: url(../images/right.png) 0 -102px;
 }
 
-.coda-slider-wrapper {
-clear: both;
-overflow: auto;
-}
-
-.coda-slider {
-float: left;
-overflow: hidden;
-position: relative;
-}
-
-.coda-slider .panel {
-display: block;
+#slider-foot {
+background: url(../images/menubar-orientation.png) top left no-repeat;
+height: 35px;
+width: 100%;
 float: left;
 }
 
-.coda-slider .panel-container {
-position: relative;
+#filter {
+margin: 5px 15px 0 20px;
+font-size: 13px;	
+font-weight: bold;
+color:#E6F5F7;
+text-shadow: 0 -1px 0 #333;
 }
 
+#filter select{
+background: #A9C3CC;
+padding: 3px 3px 3px 3px;
+border-radius: 4px;
+font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
+font-size: 13px;
+font-color: #1A1D1F;
+}
 
 /*********************************************************************************************
 
-7. Carousel Content  ------------------  home.php
+6. Carousel Content
 
 *********************************************************************************************/
-.Recommended-post {
+
+.slider-post {
 background: #3E4852;
 color: #A9C3CC;
 width: 840px;
@@ -529,85 +560,34 @@ height: 315px;
 margin: 30px 0 0 70px;
 }
 
-.attachment-Recommended {
+.slider-image {
 float: left;
+width: 500px;
+height: 315px;
 }
 
-.Recommended-post-description  h2{
+.slider-movie-description  h2{
 font-weight:bold;
 color: #FFFFFF;
 margin: 0 0 20px -2px;
 }
 
 
-.Recommended-post-description h2 a:hover {
+.slider-movie-description h2 a:hover {
 color: #A9C3CC;
 }
 
-.Recommended-post-description {
+.slider-movie-description {
 width: 230px;
 float: left;
 margin: 0 0 0 30px;
 }
 
-ul.Recommended-post-description {
-float: right;
-font-weight:bold;
-padding: 0 0 0 0;
-}
-
-ul.post-meta li {
-list-style = none;
-}
-
-li.date-recommended {
-color: #A9C3CC;
-font-weight: bold;
-font-size: 13px;
-padding: 0 0 2px 5px;
-}
-
-li.info-recommended {
-color: #A9C3CC;
-font-weight: bold;
-font-size: 12px;
-padding: 5px 0 2px 5px;
-}
-
-li.info-recommended a:link, li.info a:visited {
-color: #E6F5F7;
-font-size: 12px;
-font-weight: bold;
-}
-
-li.info-recommended a:hover {
-color: #A9C3CC;
-}
-
-li.genre-recommended {
-color: #A9C3CC;
-font-size: 13px;
-font-weight: bold;
-padding: 5px 0 2px 5px;
-}
-
-li.genre-recommended a:link, li.info a:visited {
-color: #E6F5F7;
-font-size: 13px;
-font-weight: bold;
-}
-
-li.genre-recommended a:hover {
-color: #A9C3CC;
-}
-
 .continue {
 background: url(../images/button1.png) 0 0;
 width: 146px;
-font-weight:bold;
 height: 28px;
 float: left;
-text-align: center;
 margin: 0 0 20px -2px;
 padding: 7px 0 0 0;
 }
@@ -615,61 +595,137 @@ padding: 7px 0 0 0;
 .continue:hover {
 background: url(../images/buttoncontinue.png) 0 0;
 width: 146px;
-font-weight:bold;
 height: 28px;
 float: left;
-text-align: center;
 margin: 0 0 20px -2px;
 padding: 7px 0 0 0;
 }
 
-a.continue {
-color: #FFFFFF;
-}
-
-
-/*********************************************************************************************
-
-8. Recommended Categories  ---------------  home.php
-
-*********************************************************************************************/
-#Recommended-categories {
-background: url(../images/categories.png) top left no-repeat;
-width: 980px;
+.slider-movie-details{
 float: left;
-height: 160px;
+width: 100%;
 }
 
-.Recommended-category {
-background: url(../images/category.png) top left no-repeat;
-width: 90px;
-height: 90px;
-float: left;
-margin: 30px 0 0 20px;
-padding: 10px 0 0 10px;
-}
-
-#categories a {
+.date-slider {
 color: #A9C3CC;
-float:left;
-position:relative;
+font-weight: bold;
+font-size: 13px;
+padding: 0 0 2px 5px;
 }
 
-#categories span {
-display: none;
-background: url(../images/tip.png) top left no-repeat;
-width: 152px;
-height: 38px;
-position: absolute;
-left: -35px;
-text-align: center;
+.info-slider {
+color: #A9C3CC;
+font-weight: bold;
+font-size: 12px;
+padding: 5px 0 2px 5px;
+}
+
+.info-slider a:link, li.info a:visited {
+color: #E6F5F7;
+font-size: 12px;
+font-weight: bold;
+}
+
+.info-slider a:hover {
+color: #A9C3CC;
+}
+
+
+.genre-slider{
+color: #A9C3CC;
+font-size: 13px;
+font-weight: bold;
+padding: 5px 0 2px 5px;
+}
+
+.genre-slider a:link, li.info a:visited {
+color: #E6F5F7;
+font-size: 13px;
+font-weight: bold;
+}
+
+.genre-slider a:hover {
+color: #A9C3CC;
+}
+
+#video-container {
+background: #3E4852;
+width: 950px;
+float: left;
+text-align: left;
+padding: 30px 0 0 30px;
+border-radius: 3px;
+}
+
+#player{
+border-width: 5px;
+border-color: lightgrey;
+border-style: solid;
+border-radius: 5px;
+height: 390px;
+width: 600px;
+}
+
+.related-films{
+float: right;
+color: #A9C3CC;
+width: 300px;
+border-left: 1px solid #A9C3CC;
+padding: 0 10px 0 15px;
+}
+
+.related-item {
+width: 300px;
+float: left;
+margin: 10px 0 0 0;
+}
+
+.related-content {
+padding: 2px 0 0 0;
+}
+
+#embedded-video-footer{
+width: 630px;
+float: left;
+list-style: none;
+padding-top: 10px;
+}
+
+p.infoandlike-film {
+color: #A9C3CC;
+font-weight: bold;
+font-size: 14px;
 padding: 5px 0 0 0;
 }
 
+p.infoandlike-film a:link, li.info a:visited {
+color: #E6F5F7;
+font-size: 14px;
+font-weight: bold;
+padding-right: 8px;
+}
+
+p.infoandlike-film a:hover {
+color: #A9C3CC;
+}
+
+#like-film{
+width: 310px;
+list-style: none;
+float: right;
+}
+
+#info-film{
+width: 310px;
+list-style: none;
+float: left;
+padding: 0 0 0 5px;
+}
+
 
 /*********************************************************************************************
 
-9. Gallery and Post Thumbnail Styles  -  home.php, index.php
+7. Gallery and Post Thumbnail Styles
 
 *********************************************************************************************/
 .gallery-item {
@@ -678,25 +734,70 @@ float: left;
 margin: 0 20px 20px 0;
 }
 
-.gallery-item-single {
-margin: 0;
+.gallery-item a{
+font-size: 16px;
 }
 
-.gallery-item h2 {
-border-bottom: 1px solid #4C4C4C;
-font-size: 14px;
-margin: 0 0 5px 0;
-padding: 0 0 5px 5px;
+.post-thumbnail {
+width: 200px;
+height: 150px;
+float: left;
+margin: 0 0 10px 0;
 }
 
-.instant {
-display: none;
+.thumbnail-frame {
+background: url(../images/frame.png) 0 0;
+width: 200px;
+height: 150px;
+position: absolute;
 }
 
-.instant-view {
-text-align: center;
+
+.thumbnail-frame:hover {
+background: url(../images/frame.png) 0 -150px;
+background-color: transparent;
+width: 200px;
+height: 150px;
+position: absolute;
+z-index: 50;
 }
 
+
+.thumbnail-frame span{ /*CSS for enlarged image*/
+position: absolute;
+background-color: lightgrey;
+padding: 6px;
+left: -1000px;
+border: 1px solid gray;
+border-radius: 5px;
+visibility: hidden;
+color: black;
+text-decoration: none;
+}
+
+.thumbnail-frame span img{ /*CSS for enlarged image*/
+border-width: 0;
+padding: 2px;
+}
+
+.thumbnail-frame:hover span{ /*CSS for enlarged image on hover*/
+visibility: visible;
+top: 0;
+left: 1px; /*position where enlarged image should offset horizontally */
+}
+
+.recommended-post-thumbnail {
+margin: -50px 0 0 10px;
+position: absolute;
+clip:rect(60px,180px,190px,0px);
+}
+
+
+/*********************************************************************************************
+
+8. Post Meta Styles
+
+*********************************************************************************************/
 
 ul.post-meta {
 font-size: 11px;
@@ -704,6 +805,7 @@ font-size: 11px;
 
 ul.post-meta li {
 margin: -2px 0 0 0;
+list-style = none;
 }
 
 li.date {
@@ -747,6 +849,215 @@ li.genre a:hover {
 color: #A9C3CC;
 }
 
+ul.post-meta-post {
+margin-bottom: 0;
+}
+
+.post-meta-post li {
+padding-left: 0;
+}
+
+/*********************************************************************************************
+
+9. Sidebar and Widgets
+
+*********************************************************************************************/
+#sidebar {
+border-left: 1px solid #4C4C4C;
+width: 319px;
+float: left;
+margin: 0 0 0 -1px;
+}
+
+#sidebar h3 {
+font-size:14px;
+color: #E6F5F7;
+margin: 0 0 2px 0;
+}
+
+#sidebar p {
+margin: 0 0 10px 0;
+}
+
+.widget  {
+color: #A9C3CC;
+width: 300px;
+float: left;
+padding: 22px 0 14px 19px;
+}
+
+.sidebar-item {
+width: 300px;
+float: left;
+margin: 10px 0 0 0;
+}
+
+.post-thumbnail-side {
+width: 102px;
+height: 102px;
+float: left;
+margin: 0 12px 10px 0;
+}
+
+.post-thumbnail-side img {
+padding: 11px;
+}
+
+.thumbnail-frame-side {
+background: url(../images/frame-side.png) 0 0;
+width: 102px;
+height: 102px;
+position: absolute;
+}
+
+.thumbnail-frame-side:hover {
+background: url(../images/frame-side.png) 0 -102px;
+}
+
+.sidebar-item-content {
+padding: 2px 0 0 0;
+}
+
+/********************************************************************************************* 
+
+10. Login & Register forms
+
+*********************************************************************************************/
+
+
+#forms-container {
+width: 980px;
+float: left;
+}
+
+#registration {
+border-right: 1px solid #4C4C4C;
+width: 489px;
+float: left;
+padding: 22px 0 30px 0;
+}
+
+#registration p{
+margin-bottom: 10px;
+}
+
+.form-names{
+width: 65px;
+float: left;
+margin: 5px 0 0 2px;
+}
+
+#register_names{
+width: 115px;
+}
+
+input#register_button {
+background: url(../images/register1.png) 0 0;
+border: none;
+color: #3E4852;
+width: 144px;
+height: 32px;
+margin: 5px 0 5px 5px;
+padding: 0 0 2px 0;
+cursor: pointer;
+}
+
+input#register_button:hover {
+background: url(../images/register2.png);
+}
+
+
+.form-names p{
+padding-top: 8px;
+margin-left: 4px;
+font-size: 13px;
+}
+
+.form-input{
+margin-top: 7px;
+width: 200px;
+float: left;
+}
+
+.form-input input{
+margin-bottom: 10px;
+padding-bottom: 6px;
+font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
+background:#3E4852;
+font-size: 12px;
+line-height: 18px;
+color:#FFFFFF;
+width: 200px;
+border: 1px solid #4C4C4C;
+border-radius: 5px;
+}
+
+
+input#login_button {
+background: url(../images/login1.png) 0 0;
+border: none;
+color: #3E4852;
+width: 109px;
+height: 28px;
+float: left;
+text-align: center;
+margin: 5px 0 5px 5px;
+cursor: pointer; 
+}
+
+input#login_button:hover {
+background: url(../images/login2.png);
+}
+
+#facebook-login{
+margin-left: 2px;
+}
+
+#facebook-login h2{
+margin-left: -4px;
+margin-top: -10px;
+}
+
+#facebook-login p{
+padding-top: 8px;
+}
+
+/*********************************************************************************************
+
+11. Post Comment Styles
+
+*********************************************************************************************/
+
+#comments-meta {
+border-top: 1px solid #4C4C4C;
+border-bottom: 1px solid #4C4C4C;
+border-right: 1px solid #4C4C4C;
+width: 655px;
+float: left;
+margin: -15px 0 0 0;
+padding: 0 0 0 5px;
+}
+
+#comments-meta h3 {
+margin: 0;
+font-weight: bold;
+padding: 5px 0 5px 0;
+}
+
+
+#comments {
+width: 645px;
+float: left;
+padding: 0 0 20px 5px;
+padding-right: 10px;
+border-right: 1px solid #4C4C4C;
+}
+
+
+#comments ol li {
+list-style: none;
+}
+
 li.comments {
 color: #E6F5F7;
 font-size: 11px;
@@ -760,289 +1071,6 @@ font-size: 11px;
 
 li.comments a:hover {
 color: #A9C3CC;
-}
-
-
-/*********************************************************************************************
-
-10. Post Content Styles ----------------  index.php, single.php, page.php
-
-*********************************************************************************************/
-#video-container {
-background: #3E4852;
-width: 950px;
-float: left;
-text-align: left;
-padding: 30px 0 0 30px;
-}
-
-iframe {
-z-index: 0;
-}
-
-.related-films{
-float: right;
-color: #A9C3CC;
-width: 300px;
-border-left: 1px solid #A9C3CC;
-padding: 0 0 0 20px;
-}
-
-.addfavorite{
-width: 300px;
-list-style: none;
-float: right;
-}
-
-.infofilm{
-width: 300px;
-list-style: none;
-float: left;
-padding: 0 0 0 5px;
-}
-
-.infoandlike-film{
-width: 660px;
-padding: 10px 0 15px 0;
-list-style: none;
-}
-
-p.infoandlike-film {
-color: #A9C3CC;
-font-weight: bold;
-font-size: 14px;
-padding: 5px 0 0 0;
-}
-
-p.infoandlike-film a:link, li.info a:visited {
-color: #E6F5F7;
-font-size: 14px;
-font-weight: bold;
-}
-
-p.infoandlike-film a:hover {
-color: #A9C3CC;
-}
-
-.addfavoriteactor{
-width: 660px;
-list-style: none;
-float: left;
-}
-
-.infoandlike-actor{
-float: left;
-list-style: none;
-margin: 0 0 10px 0;
-}
-
-p.infoandlike-actor {
-color: #A9C3CC;
-font-weight: bold;
-font-size: 14px;
-padding: 5px 0 5px 5px;
-}
-
-p.infoandlike-actor a:link, li.info a:visited {
-color: #E6F5F7;
-font-size: 14px;
-font-weight: bold;
-}
-
-p.infoandlike-actor a:hover {
-color: #A9C3CC;
-}
-
-
-.post-item {
-padding-left: 5px;
-}
-
-.film-description {
-width: 655px;
-float: left;
-margin: 0 0 15px 0;
-font-weight: bold;
-}
-
-.post-details-full {
-width: 970px;
-}
-
-.details {
-width: 455px;
-float: left;
-}
-
-.post-details h2 {
-border-bottom: 1px solid #4C4C4C;
-font-size: 16px;
-margin: 0 0 5px 0;
-padding: 0 0 5px 0;
-}
-
-ul.post-meta-post {
-margin-bottom: 0;
-}
-
-.post-meta-post li {
-padding-left: 0;
-}
-
-.post-content {
-width: 635px;
-float: left;
-padding: 0 0 20px 0;
-}
-
-.post-content a {
-text-decoration: underline;
-font-size: 13px;
-font-weight: bold;
-color: #E6F5F7;
-}
-
-.post-content-full {
-width: 970px;
-}
-
-.post-content h1 {
-font-size: 22px;
-margin: 0 0 5px 0;
-}
-
-.post-content h2 {
-margin: 0 0 2px 0;
-}
-
-.post-content h3 {
-margin: 0 0 2px 0;
-font-weight: bold;
-}
-
-.post-content h4 {
-margin: 0;
-}
-
-.post-content ul {
-margin: 0 0 15px 0;
-}
-
-.post-content ul li {
-background: url(images/bullet.jpg) top left no-repeat;
-padding: 0 0 0 15px;
-}
-
-.post-content ol {
-margin: 0 0 15px 15px;
-}
-
-p img {
-padding: 0;
-max-width: 100%;
-}
-
-img.centered {
-display: block;
-margin-left: auto;
-margin-right: auto;
-}
-
-img.alignright {
-float: right;
-padding: 5px;
-margin: 0 0 2px 15px;
-}
-
-img.alignleft {
-float: left;
-padding: 5px;
-margin: 0 15px 2px 0;
-}
-
-.wp-caption {
-background: #3E4852;
-text-align: center;
-padding: 10px 5px 5px 5px;
-margin: 5px 0 20px 0;
-}
-
-.wp-caption.alignright {
-margin: 0 0 25px 25px;
-}
-
-.wp-caption.aligncenter {
-margin-left: auto;
-margin-right: auto;
-}
-
-.wp-caption.alignleft {
-margin: 0 25px 25px 0;
-}
-
-.wp-caption img {
-padding: 0;
-margin: 0 0 5px;
-}
-
-.wp-caption-text {
-margin: 10px 0 0;
-padding: 0;
-}
-
-.wp-caption .wp-caption-text, .wp-caption .wp-caption-dd {
-font-size: 12px !important;
-text-align: center; 
-margin: 0;
-padding: 0;
-}
-
-h4.not-here {
-font-size: 14px;
-}
-
-
-/*********************************************************************************************
-
-11. Post Comment Styles ----------------  single.php
-
-n�o alterei ainda!
-
-*********************************************************************************************/
-#comments-meta {
-border-top: 1px solid #4C4C4C;
-width: 655px;
-float: left;
-margin: -15px 0 0 0;
-padding: 0 0 0 5px;
-}
-
-#comments {
-border-top: 1px solid #4C4C4C;
-width: 635px;
-float: left;
-padding: 0 0 20px 5px;
-}
-
-#comments-meta p {
-margin: 0;
-padding: 5px 0 5px 0;
-background:#A9C3CC;
-}
-
-
-#comments-meta h3 {
-margin: 0;
-font-weight: bold;
-padding: 5px 0 5px 0;
-}
-
-#comments ol {
-margin: 0 0 20px 0;
-}
-
-#comments ol li {
-list-style: none;
 }
 
 ol.commentlist li {
@@ -1074,21 +1102,20 @@ padding: 10px 0 0 32px;
 margin: 20px 0 20px 0;
 }
 
-.comment-meta {
-font-size: 11px;
-margin: 0 0 12px 0;
-}
-
-.comment-meta a {
-color: #3E4852;	
-}
-
-span.says {
-display: none;
+.comment {
+width: 90%;
+max-width: 615px;
 }
 
 .comment-author {
-font-size: 14px;
+font-size: 15px;
+}
+
+
+.comment-meta {
+font-size: 13px;
+margin: 0 0 12px 0;
+color: #3E4852
 }
 
 .avatar {
@@ -1099,8 +1126,12 @@ padding: 8px;
 color: #3E4852;
 }
 
+
 .reply {
 font-size: 11px;
+float: left;
+width:90%;
+margin-bottom: 10px;
 }
 
 .reply a {
@@ -1112,16 +1143,17 @@ height: 32px;
 float: left;
 }
 
-.cancel-comment-reply a {
-display: none;
-}
-
 #respond {
 width: 100%;
-padding: 20px 0 34px 5px;
+float: left;
+margin: 5px 5px 5px 0;
 }
 
-#author, #email, #url, #comment {
+#commentform{
+padding-left: 30px;
+}
+
+#author, #email, #url, #newcomment {
 background:#3E4852;
 border: 1px solid #4C4C4C;
 font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
@@ -1131,10 +1163,6 @@ color:#A9C3CC;
 padding: 6px 4px 6px 4px;
 }
 
-#comment {
-width: 98%;
-max-width: 625px;
-}
 
 input#submit {
 background: url(../images/submitcomment.png) 0 0;
@@ -1144,7 +1172,7 @@ width: 142px;
 height: 32px;
 float: left;
 text-align: center;
-margin: 0 0 0 -2px;
+margin: 0 0 0 2px;
 padding: 0 0 2px 0;
 cursor: pointer;
 }
@@ -1154,204 +1182,15 @@ background: url(../images/submitcomment2.png);
 }
 
 
-/*********************************************************************************************
+/********************************************************************************************* 
 
-12. Sidebar and Widgets  ---------------  sidebar.php
-
-*********************************************************************************************/
-#sidebar {
-border-left: 1px solid #4C4C4C;
-width: 319px;
-float: left;
-margin: 0 0 0 -1px;
-}
-
-#sidebar h3 {
-font-size:14px;
-color: #E6F5F7;
-margin: 0 0 2px 0;
-}
-
-#sidebar p {
-margin: 0 0 10px 0;
-}
-
-.widget  {
-color: #A9C3CC;
-width: 300px;
-float: left;
-padding: 22px 0 14px 19px;
-}
-
-.cat-post-item {
-width: 300px;
-float: left;
-margin: 10px 0 0 0;
-}
-
-.cat-post-content {
-padding: 2px 0 0 0;
-}
-
-.cast-post-item {
-width: 660px;
-float: left;
-margin: 10px 0 0 0;
-}
-
-.cast-post-content {
-padding: 2px 0 0 0;
-font-size:14px;
-}
-
-
-.cast-post-content h3{
-font-size: 16px;
-}
-
-.post-thumbnail-side {
-width: 102px;
-height: 102px;
-float: left;
-margin: 0 12px 10px 0;
-}
-
-.post-thumbnail-side img {
-padding: 11px;
-}
-
-.thumbnail-frame-side {
-background: url(../images/frame-side.png) 0 0;
-width: 102px;
-height: 102px;
-position: absolute;
-}
-
-.thumbnail-frame-side:hover {
-background: url(../images/frame-side.png) 0 -102px;
-}
-
-.sidebar-ad {
-margin: 5px 0 20px 25px;
-}
-
-a.simple-ads {
-background: none;
-}
-
-/*********************************************************************************************
-
-13. NOT ORGANIZED YET
+Not used yet
 
 *********************************************************************************************/
 
-#forms_container {
-width: 980px;
-float: left;
-font-size: 13px;
-}
-
-#Register_form{
-border-right: 1px solid #4C4C4C;
-width: 660px;
-float: left;
-padding: 22px 0 30px 0;
-}
-
-#Register_form h2{
-padding: 0 0 5px 0;
-}
-
-#Register_form li{
-list-style: none;
-font-weight: bold;
-margin-bottom: 5px;
-}
-
-#Register_form p{
-padding: 18px 0 5px 0;
-margin: 0 0 0 0;
-}
-
-input#register {
-background: url(../images/register1.png) 0 0;
-border: none;
-color: #3E4852;
-width: 144px;
-height: 32px;
-float: left;
-text-align: center;
-margin: 5px 0 5px 5px;
-padding: 0 0 2px 0;
-cursor: pointer;
-}
-
-input#register:hover {
-background: url(../images/register2.png);
-}
-
-#login_form{
-color: #A9C3CC;
-width: 320px;
-float: left;
-padding: 10px 0 0 5px;
-}
-
-
-#login_form p{
-margin-left: 5px;
-}
-
-#login_form form{
-padding: 0 0 5px 5px;
-}
-
-#login_form li{
-list-style: none;
-font-weight: bold;
-margin-bottom: 5px;
-}
-
-#login_form h2{
-margin-left: 5px;	
-}
-
-input#login {
-background: url(../images/login1.png) 0 0;
-border: none;
-color: #3E4852;
-width: 109px;
-height: 28px;
-float: left;
-text-align: center;
-margin: 5px 0 5px 5px;
-cursor: pointer; 
-}
-
-input#login:hover {
-background: url(../images/login2.png);
-}
-
-a#rec_view{
-float: right;
-font-size:14px;
-padding: 0 20px 0 0;
-}
-
-#player{
-border-width: 5px;
-border-color: lightgrey;
-border-style: solid;
-border-radius: 5px;
-height: 390px;
-width: 600px;
-}
-
-
-
 /*********************************************************************************************
 
-13. Footer Styles  ---------------------  footer.php
+1. Footer Styles
 
 *********************************************************************************************/
 #footer {
@@ -1388,83 +1227,3 @@ padding: 0 0 0 5px;
 #footer-content a {
 color: #A9C3CC;
 }
-
-/*********************************************************************************************
-
-14. Expand Thumbnails
-
-*********************************************************************************************/
-.post-thumbnail {
-width: 200px;
-height: 150px;
-float: left;
-margin: 0 0 10px 0;
-}
-
-.thumbnail-frame {
-background: url(../images/frame.png) 0 0;
-width: 200px;
-height: 150px;
-position: absolute;
-}
-
-.thumbnail-frame:hover {
-background: url(../images/frame.png) 0 -150px;
-background-color: transparent;
-width: 200px;
-height: 150px;
-position: absolute;
-z-index: 50;
-}
-
-.thumbnail-frame span{ /*CSS for enlarged image*/
-position: absolute;
-background-color: lightgrey;
-padding: 6px;
-left: -1000px;
-border: 1px solid gray;
-border-radius: 5px;
-visibility: hidden;
-color: black;
-text-decoration: none;
-}
-
-.thumbnail-frame span img{ /*CSS for enlarged image*/
-border-width: 0;
-padding: 2px;
-}
-
-.thumbnail-frame:hover span{ /*CSS for enlarged image on hover*/
-visibility: visible;
-top: 0;
-left: 1px; /*position where enlarged image should offset horizontally */
-
-}
-
-.thumbnail-frame-video {
-background: url(../images/frame-video.png) 0 0;
-width: 200px;
-height: 150px;
-position: absolute;
-}
-
-.thumbnail-frame-video:hover {
-background: url(../images/frame-video.png) 0 -150px;
-width: 200px;
-height: 150px;
-position: absolute;
-}
-
-.attachment-post-thumbnail {
-margin: 10px 0 0 10px;
-}
-
-.recommended-post-thumbnail {
-margin: -50px 0 0 10px;
-position: absolute;
-clip:rect(60px,180px,190px,0px);
-}
-
-
-
-
