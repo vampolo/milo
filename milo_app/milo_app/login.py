@@ -18,7 +18,7 @@ def login(request):
     login_url = resource_url(request.context, request, 'login')
     referrer = request.url
     if referrer == login_url:
-        referrer = '/' # never use the login form itself as came_from
+        referrer = request.application_url
     came_from = request.params.get('came_from', referrer)
     message = ''
     login = ''
