@@ -1,7 +1,8 @@
 from pyramid.config import Configurator
 from pyramid.events import subscriber
-from pyramid.events import NewRequest
+from pyramid.events import BeforeRender
 from milo_app.resources import Root
+from milo_app import helpers
 
 from mongoengine import connect
 
@@ -16,6 +17,7 @@ def main(global_config, **settings):
     config = Configurator(root_factory=Root, settings=settings,
     								authentication_policy=authn_policy,
     								authorization_policy=authz_policy)
+    config.add_subscriber(add_renderer_globals, BeforeRender)
     config.add_static_view('static', 'milo_app:static')
     config.add_static_view('css', 'milo_app:static/css')
     config.add_static_view('js', 'milo_app:static/js')
@@ -23,3 +25,6 @@ def main(global_config, **settings):
     config.scan()
     connect(settings['db_name'])
     return config.make_wsgi_app()
+
+def add_renderer_globals(event):
+	event['h'] = helpers 

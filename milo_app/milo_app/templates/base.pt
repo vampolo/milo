@@ -3,9 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:tal="http://xml.zope.org/namespaces/tal" 
 	xmlns:metal="http://xml.zope.org/namespaces/metal" 
-	dir="ltr" lang="en-US" xml:lang="en-US"
-	>
-<metal:html define-macro="main">
+	dir="ltr" lang="en-US" xml:lang="en-US">
+<metal:html define-macro="main" tal:define="logged h.pyramid.security.authenticated_userid(request)">
 <head profile="http://gmpg.org/xfn/11">
   
   <!-- page titles -->
@@ -21,6 +20,7 @@
   <!-- import required theme styles -->
   <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="css/style.css3.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="${request.static_url('milo_app:static/css/smoothness/jquery-ui.css')}" type="text/css" media="screen" />
 
   <!--[if IE 7]>
                 <link rel="stylesheet" href="#" type="text/css" media="screen" />
@@ -37,6 +37,10 @@
   'text/css' media='all' />
 
   <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.js')}">
+  </script>
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jqueryui.js')}">
+  </script>
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/ui.js')}">
   </script>
   <script type='text/javascript' src='js/l10n.js_ver=20101110'>
   </script>
@@ -107,12 +111,15 @@
     <div class="navigation-inside navigation-video">
       <ul class="menu">
         
-        <li><a href="latest_logout/index.html" title="List recently updated movies">Latest</a></li>
+        <li>
+			<a tal:condition="not logged" href="${request.resource_url(request.root)}" title="List recently updated movies">Latest</a>
+			<a tal:condition="logged" href="${request.resource_url(request.root)}" title="Show a recommendation">Recommended</a>
+        </li>
 
-        <li><a href="popular_logout/index.html" title="List most popular movies">Popular</a></li>
+        <li><a href="${request.resource_url(request.root)}" title="Show popular movies">Popular</a></li>
 
         <li>
-          <a href="categories_logout/index.html" title="Check list of films">Categories</a>
+          <a href="${request.resource_url(request.root, 'categories')}" title="Show all movies by category">Categories</a>
 
           <ul>    
             <li>
@@ -150,9 +157,15 @@
 
         <li><a href="${request.resource_url(request.root, 'about')}" title="Find out more about this web application">About Us</a></li>
 
+		<!--
         <li id="feed"><a href="#" title="Feed RSS">Feed</a></li>
-
-        <li id="signin"><a href="${request.resource_url(request.root, 'login')}" title="Login">Sign In or Register</a></li>
+		-->
+		<tal:logged condition="logged">
+			<li id="signin"><a href="${request.resource_url(request.root, 'logout')}" title="Logout">Logout</a></li>
+		</tal:logged>
+		<tal:not_logged condition="not logged">
+			<li id="signin"><a href="${request.resource_url(request.root, 'login')}" title="Login">Sign In or Register</a></li>
+		</tal:not_logged>
       </ul>
     </div><!-- navigation-inside -->
   </div><!-- navigation -->

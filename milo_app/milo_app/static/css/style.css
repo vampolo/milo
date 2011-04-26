@@ -401,6 +401,10 @@ padding: 22px 0 30px 0;
 padding: 0 0 3px 0;
 }
 
+#posts p{
+padding: 10px 0 0 5px;
+}
+
 .post-content {
 width: 635px;
 float: left;
@@ -464,6 +468,51 @@ font-size: 13px;
 margin: 8px 0 8px 0;
 }
 
+
+.cast-post-item {
+width: 660px;
+float: left;
+margin: 10px 0 0 0;
+}
+
+.cast-post-content {
+padding: 2px 0 0 0;
+font-size:14px;
+}
+
+.cast-post-content h3{
+font-size: 16px;
+}
+
+#actor-name-list{
+width: 660px;
+float: left;
+}
+
+#actor-name-list h2{
+float: left;
+}
+
+#actor-bookmark{
+float: right;
+padding: 2px 20px 0 0;
+font-size: 14px;
+}
+
+#director-name-list{
+width: 660px;
+float: left;
+}
+
+#director-name-list h2{
+float: left;
+}
+
+#director-bookmark{
+float: right;
+padding: 2px 20px 0 0;
+font-size: 14px;
+}
 
 
 /*********************************************************************************************
@@ -1181,6 +1230,127 @@ input#submit:hover {
 background: url(../images/submitcomment2.png);
 }
 
+/*********************************************************************************************
+
+12. My Profile Styles
+
+*********************************************************************************************/
+
+.tab-style{
+min-height: 300px;
+}
+
+.tab-style h3{
+font-weight: bold;
+}
+
+.my-profile-style{
+border: 1px solid #4C4C4C;
+border-radius: 3px;
+margin-bottom: 10px;
+min-height: 70px;
+width: 600px;
+cursor: pointer;
+display: inline-block;
+}
+
+.my-profile-style img{
+margin: 5px 7px 5px 7px;
+height: 50px;
+width: 60px;
+}
+
+#my-actors .item-option img{
+height: 70px;
+}
+
+#my-actors .item-option caption{
+display: none;
+}
+
+#my-directors .item-option img{
+height: 70px;
+}
+
+.options-style img{
+margin: 5px 7px 5px 7px;
+height: 50px;
+width: 60px;
+}
+
+.options-style{
+border: 1px solid #4C4C4C;
+border-radius: 3px;
+width: 600px;
+display: inline-block;
+min-height: 70px;
+cursor: pointer;
+}
+
+.item-option{
+float:left;
+width:74px;
+background: #4C4C4C;
+margin: 6px;
+text-align:center;
+font-weight: bold;
+display: inline-block;
+}
+
+#actors-options .item-option img{
+height:70px;
+}
+
+#directors-options .item-option img{
+height:70px;
+}
+
+
+.trash{
+height:50px;
+}
+
+.trash p{
+padding:10px 0 0 42px;
+}
+
+.trash img{
+float: left;
+width: 30px;
+height: 30px;
+margin: 5px 0 10px 5px;
+}
+
+/*********************************************************************************************
+
+13. Categories List Styles
+
+*********************************************************************************************/
+
+.tab-category-content{
+margin-bottom: 10px;
+min-height: 70px;
+width: 600px;
+cursor: pointer;
+display: inline-block;
+}
+
+.tab-category-content img{
+margin: 5px 7px 5px 7px;
+height: 80px;
+width: 80px;
+}
+
+.item-category-list{
+float:left;
+width:94px;
+background: #4C4C4C;
+margin: 13px;
+text-align:center;
+font-weight: bold;
+display: inline-block;
+border-radius: 2px;
+}
 
 /********************************************************************************************* 
 
