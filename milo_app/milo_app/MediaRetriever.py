@@ -8,7 +8,10 @@ class MediaRetriever(object):
 	def get_image(self):
 		movie_title = self.movie_title
 		page_search_list = parse(urllib.urlopen('http://moviepicturedb.com/browse/search?'+urllib.urlencode({'title': movie_title})))
-		page_movie_gallery = page_search_list.xpath('//table/tr/td/strong/a')[0].attrib.get('href')
+		try:
+			page_movie_gallery = page_search_list.xpath('//table/tr/td/strong/a')[0].attrib.get('href')
+		except IndexError:
+			return "not found"
 		page_movie_gallery_wallpapers = parse(urllib.urlopen(page_movie_gallery+'?cat_id=3'))
 		try:
 			page_movie_wallpaper = page_movie_gallery_wallpapers.xpath('//td/div/div/a')[0].attrib.get('href')
@@ -41,6 +44,11 @@ if __name__ == '__main__':
 	class Test_MediaRetriever(unittest.TestCase):
 		def test_image(self):
 			m = MediaRetriever('matrix')
+			self.assertNotEqual(m.get_image(), None)
+			
+		def test_image_caimano(self):
+			m = MediaRetriever('il caimano')
+			#it does not exists in db
 			self.assertNotEqual(m.get_image(), None)
 	
 	unittest.main()

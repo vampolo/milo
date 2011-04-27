@@ -111,9 +111,11 @@
     <div class="navigation-inside navigation-video">
       <ul class="menu">
         
+        <li tal:condition="logged">
+			<a href="${request.resource_url(request.root)}" title="Show a recommendation">Recommended</a>
+        </li>
         <li>
-			<a tal:condition="not logged" href="${request.resource_url(request.root)}" title="List recently updated movies">Latest</a>
-			<a tal:condition="logged" href="${request.resource_url(request.root)}" title="Show a recommendation">Recommended</a>
+			<a href="${request.resource_url(request.root)}" title="List recently updated movies">Latest</a>
         </li>
 
         <li><a href="${request.resource_url(request.root)}" title="Show popular movies">Popular</a></li>
