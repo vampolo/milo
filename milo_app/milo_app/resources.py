@@ -12,8 +12,7 @@ class Root(object):
 			return Movie()
 		if key == "User":
 			return User()
-		else:
-			return KeyError
+		raise KeyError
 
 class User(Document):
 	email = StringField(required=True)
