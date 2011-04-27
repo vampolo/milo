@@ -2,11 +2,16 @@ from pyramid.view import view_config
 from resources import *
 from MediaRetriever import MediaRetriever
 
-@view_config(name='get_info', context='milo_app:resources.Movie',
+@view_config(name='getTrailer', context='milo_app:resources.Movie',
+             renderer='json')
+@view_config(name='getPoster', context='milo_app:resources.Movie',
+             renderer='json')
+@view_config(name='getImage', context='milo_app:resources.Movie',
              renderer='json')
 def get_info(request):
 	movie_name = request.GET.get('title')
 	if not movie_name:
 		return dict()
 	m = MediaRetriever(movie_name)
-	return dict(image=m.get_image(), poster=m.get_poster(), trailer=m.get_trailer())
+	d = dict(getImage = m.get_image, getPoster = m.get_poster, getTrailer= m.get_trailer)
+	return dict(result=d.get(request.view_name)())
