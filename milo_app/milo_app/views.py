@@ -2,7 +2,6 @@ from pyramid.view import view_config
 from pyramid.renderers import get_renderer
 from resources import *
 from datetime import datetime
-from pyramid.security import authenticated_userid
 
 
 @view_config(context='milo_app:resources.Root',

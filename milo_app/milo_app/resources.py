@@ -2,17 +2,18 @@ from mongoengine import *
 from suds.client import Client
 from pyramid.threadlocal import get_current_registry
 
-class Ws(object):
-	def __init__(self):
-		wsdl = "http://intapps.moviri.com:8085/ws/RecoServerBean?wsdl"
-		location = url = "http://intapps.moviri.com:8085/ws/RecoServerBean"
-		self.client = Client(wsdl, location = url, username='demo', password='demo')
-
 class Root(object):
     __name__= None
     __parent__= None
     def __init__(self, request):
         self.request = request
+    def __getitem__(self, key):
+		if key == "Movie":
+			return Movie()
+		if key == "User":
+			return User()
+		else:
+			return KeyError
 
 class User(Document):
 	email = StringField(required=True)
