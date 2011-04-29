@@ -45,21 +45,39 @@ class MediaRetriever(object):
 		trailer_source = 'http://www.youtube.com/embed/'+trailer_id
 		return dict(trailer=trailer_source)
 		
-	def get_infos(self):
+	def get_info(self):
 		movie = self.movie_title
 		first_page = parse(self.__create_request('http://www.imdb.com/find?', urllib.urlencode({'s':'tt', 'q':movie})))
 		second_page_url = first_page.xpath('//tr/td[3]/a')[0].attrib.get('href')
-		second_page = parse(self.__create_request('http://www.imdb.com'+second_page_url))
-		description = second_page.xpath("//div[@id='main']//table[@id='title-overview-widget-layout']//td[@id='overview-top']/p")[1].text.replace('\n', '')
-		year = second_page.xpath("//div[@id='main']//table[@id='title-overview-widget-layout']//td[@id='overview-top']/h1[@class='header']/span/a")[0].text
-		title = second_page.xpath("//div[@id='main']//table[@id='title-overview-widget-layout']//td[@id='overview-top']/h1[@class='header']")[0].text.replace('\n', '')
-		poster_page_url = second_page.xpath("//div[@id='main']//table[@id='title-overview-widget-layout']//td[@id='img_primary']/a")[0].attrib.get('href')
-		poster_page = parse(self.__create_request('http://www.imdb.com'+poster_page_url))
-		poster_url = poster_page.xpath("//div[@id='photo-container']/div[@id='canvas']//img[@id='primary-img']")[0].attrib.get('src')
+		if second_page_url[0] != 'h':
+			second_page = parse(self.__create_request('http://www.imdb.com'+second_page_url))
+		else:
+			#we are already in the ending page of the movie
+			second_page = first_page
+			
+		try:
+			description = second_page.xpath("//div[@id='main']//table[@id='title-overview-widget-layout']//td[@id='overview-top']/p")[1].text.replace('\n', '')
+		except IndexError:
+			description = None
+		try:
+			year = second_page.xpath("//div[@id='main']//table[@id='title-overview-widget-layout']//td[@id='overview-top']/h1[@class='header']/span/a")[0].text
+		except IndexError:
+			year = None
+		try:
+			title = second_page.xpath("//div[@id='main']//table[@id='title-overview-widget-layout']//td[@id='overview-top']/h1[@class='header']")[0].text.replace('\n', '')
+		except IndexError:
+			title = None
+		try:
+			poster_page_url = second_page.xpath("//div[@id='main']//table[@id='title-overview-widget-layout']//td[@id='img_primary']/a")[0].attrib.get('href')
+		except IndexError:
+			poster_page_url = None
+			poster_url = None
+		if poster_page_url is not None:
+			poster_page = parse(self.__create_request('http://www.imdb.com'+poster_page_url))
+			poster_url = poster_page.xpath("//div[@id='photo-container']/div[@id='canvas']//img[@id='primary-img']")[0].attrib.get('src')
 		return dict(title=title, year=year, description=description, poster=poster_url)
 
 if __name__ == '__main__':
-	
 	import unittest
 	
 	class Test_MediaRetriever(unittest.TestCase):
@@ -75,7 +93,8 @@ if __name__ == '__main__':
 		def test_get_infos(self):
 			for movie in ['rio', 'matrix', 'matrix reloaded', 'il caimano']:
 				m = MediaRetriever(movie)
-				for i in m.get_infos():
+				for i in m.get_info():
 					self.assertNotEqual(i, None)
 		
 	unittest.main()
+	

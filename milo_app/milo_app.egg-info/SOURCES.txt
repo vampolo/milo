@@ -7,6 +7,7 @@ setup.cfg
 setup.py
 milo_app/CWwrapper.py
 milo_app/MediaRetriever.py
+milo_app/MovieManager.py
 milo_app/__init__.py
 milo_app/helpers.py
 milo_app/login.py
