@@ -18,7 +18,7 @@ class MediaRetriever(object):
 		try:
 			page_movie_gallery = page_search_list.xpath('//table/tr/td/strong/a')[0].attrib.get('href')
 		except IndexError:
-			return "not found"
+			return dict(image=None)
 		page_movie_gallery_wallpapers = parse(urllib2.urlopen(page_movie_gallery+'?cat_id=3'))
 		try:
 			page_movie_wallpaper = page_movie_gallery_wallpapers.xpath('//td/div/div/a')[0].attrib.get('href')
@@ -50,12 +50,13 @@ class MediaRetriever(object):
 		first_page = parse(self.__create_request('http://www.imdb.com/find?', urllib.urlencode({'s':'tt', 'q':movie})))
 		second_page_url = first_page.xpath('//tr/td[3]/a')[0].attrib.get('href')
 		second_page = parse(self.__create_request('http://www.imdb.com'+second_page_url))
-		description = second_page.xpath("//div[@id='main']//table[@id='title-overview-widget-layout']//td[@id='overview-top']/p")[1].text
+		description = second_page.xpath("//div[@id='main']//table[@id='title-overview-widget-layout']//td[@id='overview-top']/p")[1].text.replace('\n', '')
 		year = second_page.xpath("//div[@id='main']//table[@id='title-overview-widget-layout']//td[@id='overview-top']/h1[@class='header']/span/a")[0].text
+		title = second_page.xpath("//div[@id='main']//table[@id='title-overview-widget-layout']//td[@id='overview-top']/h1[@class='header']")[0].text.replace('\n', '')
 		poster_page_url = second_page.xpath("//div[@id='main']//table[@id='title-overview-widget-layout']//td[@id='img_primary']/a")[0].attrib.get('href')
 		poster_page = parse(self.__create_request('http://www.imdb.com'+poster_page_url))
 		poster_url = poster_page.xpath("//div[@id='photo-container']/div[@id='canvas']//img[@id='primary-img']")[0].attrib.get('src')
-		return dict(year=year, description=description, poster=poster_url)
+		return dict(title=title, year=year, description=description, poster=poster_url)
 
 if __name__ == '__main__':
 	

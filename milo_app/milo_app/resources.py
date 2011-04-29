@@ -29,6 +29,9 @@ class Movie(Document):
 	date = DateTimeField()
 	description = StringField()
 	trailer = URLField()
-	poster = URLField()
-	image = URLField()
+	poster = StringField()
+	image = StringField()
 	comments = ListField(EmbeddedDocumentField(Comment))
+	
+	def __str__(self):
+		return 'Movie(%s, %s, %s, %s, %s)' % (self.title, self.date, self.poster, self.image, self.trailer)
