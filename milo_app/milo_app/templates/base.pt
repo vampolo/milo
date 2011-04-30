@@ -191,14 +191,45 @@
               <div class="panel">
                 <div class="slider-post">
                  
-                  <img src="http://www.moviepicturedb.com/pictures/08_12/2003/266543/l_266543_daa6ecb8.jpg" 
+                  <img src="images/Slider_Images/Harry_Potter_half_blood_prince.jpg" 
                   class="slider-image" alt="Movie-title-#1" title="Movie-title-#1" />
                   
                   <div class="slider-movie-description">
-                    <h2><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">TESTING Top Video #1</a></h2>
-                    <p>Here we must give a brief description of the top 1 film</p>
-                    <a class="continue" href="video_page/index.html" title="Continue Reading"></a>
+					  
+						<tal:not_logged condition="not logged">
+						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Top Video #1</a></h3>
+						</tal:not_logged>
+					  
+						<tal:logged condition="logged">
+						<h2><a href="../recommended_list/index.html" title="List recommended films for you">Recommended for you!</a></h2>
+						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Recommended Top Video #1</a></h3>
+						</tal:logged>
+						
+						<p>Here we must give a brief description of the top 1 film</p>
+						
+						<a class="continue" href="../video_page/index.html" title="Continue Reading"></a>
+						
+					<tal:logged condition="logged">
+					<div class="recommend-hearts-slider">
+						<span>Rate this movie:</span>
+						<a href="javascript:recommendFilm()" title="Like this movie"><img width="20" height="20" src="images/icons/heart_add.png"></a>
+						<a href="javascript:recommendFilm()" title="Dislike this movie"><img width="20" height="20" src="images/icons/heart_delete.png"></a>
+					</div>
+					</tal:logged>	
+                    
+                    <div class="slider-movie-details">
+					<ul> 
+						<li class="date-slider">Posted on 03.29.10</li>
+
+						<li class="info-slider"><img src="images/icons/play.png" style="width: 12px; height:10px;" /> 2.000 
+						<img src="images/icons/heart.png" style="width: 12px; height:10px;" /> 542 </li>
+				
+						<li class="genre-slider">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
+						
+					</ul>
+					</div><!-- slider-movie-details-->
                   </div><!-- slider-movie-description-->
+
 
                 </div><!-- slider-post -->
               </div><!-- panel -->
@@ -206,13 +237,43 @@
               <div class="panel">
                 <div class="slider-post">
                  
-                  <img src="http://www.moviepicturedb.com/pictures/10_02/2009/1119646/l_1119646_f45d348f.jpg" 
-                  class="slider-image" alt="Movie-title-#2" title="Movie-title-#2" />
+                  <img src="images/Slider_Images/Harry_Potter_half_blood_prince.jpg" 
+                  class="slider-image" alt="Movie-title-#1" title="Movie-title-#1" />
                   
                   <div class="slider-movie-description">
-                    <h2><a href="video_page/index.html" title="Movie-title-#2">Title Top Video #2</a></h2>
-                    <p>Here we must give a brief description of the top 2 film</p>
-                    <a class="continue" href="video_page/index.html" title="Continue Reading"></a>
+					  
+						<tal:not_logged condition="not logged">
+						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Top Video #1</a></h3>
+						</tal:not_logged>
+					  
+						<tal:logged condition="logged">
+						<h2><a href="../recommended_list/index.html" title="List recommended films for you">Recommended for you!</a></h2>
+						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Recommended Top Video #1</a></h3>
+						</tal:logged>
+						
+						<p>Here we must give a brief description of the top 1 film</p>
+						
+						<a class="continue" href="../video_page/index.html" title="Continue Reading"></a>
+						
+					<tal:logged condition="logged">
+					<div class="recommend-hearts-slider">
+						<span>Rate this movie:</span>
+						<a href="javascript:recommendFilm()" title="Like this movie"><img width="20" height="20" src="images/icons/heart_add.png"></a>
+						<a href="javascript:recommendFilm()" title="Dislike this movie"><img width="20" height="20" src="images/icons/heart_delete.png"></a>
+					</div>
+					</tal:logged>	
+                    
+                    <div class="slider-movie-details">
+					<ul> 
+						<li class="date-slider">Posted on 03.29.10</li>
+
+						<li class="info-slider"><img src="images/icons/play.png" style="width: 12px; height:10px;" /> 2.000 
+						<img src="images/icons/heart.png" style="width: 12px; height:10px;" /> 542 </li>
+				
+						<li class="genre-slider">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
+						
+					</ul>
+					</div><!-- slider-movie-details-->
                   </div><!-- slider-movie-description-->
 
                 </div><!-- slider-post -->
@@ -224,10 +285,40 @@
                   <img src="http://www.moviepicturedb.com/pictures/08_12/2007/413300/l_413300_d9648a88.jpg" 
                   class="slider-image" alt="Movie-title-#3" title="Movie-title-#3" />
                   
-                  <div class="slider-movie-description">
-                    <h2><a href="video_page/index.html" title="Movie-title-#1">Title Top Video #3</a></h2>
-                    <p>Here we must give a brief description of the top 3 film</p>
-                    <a class="continue" href="video_page/index.html" title="Continue Reading"></a>
+					<div class="slider-movie-description">
+					  
+						<tal:not_logged condition="not logged">
+						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Top Video #1</a></h3>
+						</tal:not_logged>
+					  
+						<tal:logged condition="logged">
+						<h2><a href="../recommended_list/index.html" title="List recommended films for you">Recommended for you!</a></h2>
+						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Recommended Top Video #1</a></h3>
+						</tal:logged>
+						
+						<p>Here we must give a brief description of the top 1 film</p>
+						
+						<a class="continue" href="../video_page/index.html" title="Continue Reading"></a>
+						
+					<tal:logged condition="logged">
+					<div class="recommend-hearts-slider">
+						<span>Rate this movie:</span>
+						<a href="javascript:recommendFilm()" title="Like this movie"><img width="20" height="20" src="images/icons/heart_add.png"></a>
+						<a href="javascript:recommendFilm()" title="Dislike this movie"><img width="20" height="20" src="images/icons/heart_delete.png"></a>
+					</div>
+					</tal:logged>	
+                    
+                    <div class="slider-movie-details">
+					<ul> 
+						<li class="date-slider">Posted on 03.29.10</li>
+
+						<li class="info-slider"><img src="images/icons/play.png" style="width: 12px; height:10px;" /> 2.000 
+						<img src="images/icons/heart.png" style="width: 12px; height:10px;" /> 542 </li>
+				
+						<li class="genre-slider">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
+						
+					</ul>
+					</div><!-- slider-movie-details-->
                   </div><!-- slider-movie-description-->
 
                 </div><!-- slider-post -->
@@ -239,10 +330,40 @@
                   <img src="http://www.moviepicturedb.com/pictures/09_09/2009/458525/l_458525_ca22fc35.jpg" 
                   class="slider-image" alt="Movie-title-#4" title="Movie-title-#4" />
                   
-                  <div class="slider-movie-description">
-                    <h2><a href="video_page/index.html" title="Movie-title-#1">Title Top Video #4</a></h2>
-                    <p>Here we must give a brief description of the top 4 film</p>
-                    <a class="continue" href="video_page/index.html" title="Continue Reading"></a>
+					<div class="slider-movie-description">
+					  
+						<tal:not_logged condition="not logged">
+						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Top Video #1</a></h3>
+						</tal:not_logged>
+					  
+						<tal:logged condition="logged">
+						<h2><a href="../recommended_list/index.html" title="List recommended films for you">Recommended for you!</a></h2>
+						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Recommended Top Video #1</a></h3>
+						</tal:logged>
+						
+						<p>Here we must give a brief description of the top 1 film</p>
+						
+						<a class="continue" href="../video_page/index.html" title="Continue Reading"></a>
+						
+					<tal:logged condition="logged">
+					<div class="recommend-hearts-slider">
+						<span>Rate this movie:</span>
+						<a href="javascript:recommendFilm()" title="Like this movie"><img width="20" height="20" src="images/icons/heart_add.png"></a>
+						<a href="javascript:recommendFilm()" title="Dislike this movie"><img width="20" height="20" src="images/icons/heart_delete.png"></a>
+					</div>
+					</tal:logged>	
+                    
+                    <div class="slider-movie-details">
+					<ul> 
+						<li class="date-slider">Posted on 03.29.10</li>
+
+						<li class="info-slider"><img src="images/icons/play.png" style="width: 12px; height:10px;" /> 2.000 
+						<img src="images/icons/heart.png" style="width: 12px; height:10px;" /> 542 </li>
+				
+						<li class="genre-slider">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
+						
+					</ul>
+					</div><!-- slider-movie-details-->
                   </div><!-- slider-movie-description-->
 
                 </div><!-- slider-post -->
@@ -255,9 +376,39 @@
                   class="slider-image" alt="Movie-title-#5" title="Movie-title-#5" />
                   
                   <div class="slider-movie-description">
-                    <h2><a href="video_page/index.html" title="Movie-title-#1">Title Top Video #5</a></h2>
-                    <p>Here we must give a brief description of the top 5 film</p>
-                    <a class="continue" href="video_page/index.html" title="Continue Reading"></a>
+					  
+						<tal:not_logged condition="not logged">
+						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Top Video #1</a></h3>
+						</tal:not_logged>
+					  
+						<tal:logged condition="logged">
+						<h2><a href="../recommended_list/index.html" title="List recommended films for you">Recommended for you!</a></h2>
+						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Recommended Top Video #1</a></h3>
+						</tal:logged>
+						
+						<p>Here we must give a brief description of the top 1 film</p>
+						
+						<a class="continue" href="../video_page/index.html" title="Continue Reading"></a>
+						
+					<tal:logged condition="logged">
+					<div class="recommend-hearts-slider">
+						<span>Rate this movie:</span>
+						<a href="javascript:recommendFilm()" title="Like this movie"><img width="20" height="20" src="images/icons/heart_add.png"></a>
+						<a href="javascript:recommendFilm()" title="Dislike this movie"><img width="20" height="20" src="images/icons/heart_delete.png"></a>
+					</div>
+					</tal:logged>	
+                    
+                    <div class="slider-movie-details">
+					<ul> 
+						<li class="date-slider">Posted on 03.29.10</li>
+
+						<li class="info-slider"><img src="images/icons/play.png" style="width: 12px; height:10px;" /> 2.000 
+						<img src="images/icons/heart.png" style="width: 12px; height:10px;" /> 542 </li>
+				
+						<li class="genre-slider">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
+						
+					</ul>
+					</div><!-- slider-movie-details-->
                   </div><!-- slider-movie-description-->
 
                 </div><!-- slider-post -->

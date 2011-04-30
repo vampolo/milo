@@ -613,6 +613,10 @@ margin: 30px 0 0 70px;
 float: left;
 width: 500px;
 height: 315px;
+border-width: 3px;
+border-color: lightgrey;
+border-style: solid;
+border-radius: 5px;
 }
 
 .slider-movie-description  h2{
@@ -629,7 +633,7 @@ color: #A9C3CC;
 .slider-movie-description {
 width: 230px;
 float: left;
-margin: 0 0 0 30px;
+margin: 10px 0 0 30px;
 }
 
 .continue {
@@ -657,7 +661,6 @@ width: 100%;
 
 .date-slider {
 color: #A9C3CC;
-font-weight: bold;
 font-size: 13px;
 padding: 0 0 2px 5px;
 }
@@ -1370,6 +1373,26 @@ display: inline;
 margin: 3px;
 float: right;
 }
+
+.recommend-hearts-slider {
+float: left;
+width: 100%;
+margin-bottom: 15px;
+}
+
+.recommend-hearts-slider a{
+margin: 5px 0 0 10px;
+}
+
+.recommend-hearts-slider img{
+margin-bottom: -7px;
+}
+
+.recommend-hearts-slider span{
+font-weight:bold;
+font-size: 13px;
+}
+
 /********************************************************************************************* 
 
 Not used yet
