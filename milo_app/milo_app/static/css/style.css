@@ -1352,6 +1352,24 @@ display: inline-block;
 border-radius: 2px;
 }
 
+/*********************************************************************************************
+
+14. Recommendation Style
+
+*********************************************************************************************/
+.recommend-hearts {
+float: right;
+width: 190px;
+margin-top: 10px;
+position: absolute;
+z-index: 100;
+display: inline;
+}
+
+.recommend-hearts a{
+margin: 3px;
+float: right;
+}
 /********************************************************************************************* 
 
 Not used yet

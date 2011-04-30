@@ -56,7 +56,19 @@
   </script>
   <script type='text/javascript' src='js/fancybox/jquery.fancybox.js_ver=3.1'>
   </script>
-  
+  <script language="JavaScript">
+	
+	function recommendFilm()
+	{
+		  $('#communication-panel').slideDown('slow');	  
+	}
+	
+	function deny()
+	{
+		$('#communication-panel').slideUp('slow');
+	}
+	
+  </script>
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="xmlrpc.php_rsd" />
 
   <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="js/wlwmanifest.xml" />
@@ -65,15 +77,13 @@
 
 <body>
   <div id="header">
-	  <div id="communication-panel">
+		<div id="communication-panel">
 		  <div>
 			  <span>A new recommendation is available. Do you want to load it?</span>
-			  <img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/>
-			  <img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/>
+			  <a href="${request.resource_url(request.root)}" title="Sure!"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/></a>
+			  <a href="javascript:deny()" title="No, thanks."><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/></a>
 		  </div>
-		  <!-- $('#communication-panel').slideUp('slow'); -->
-		  <!-- $('#communication-panel').slideDown('slow'); -->
-	  </div>
+		</div>
     <div id="header-inside">      
       
       <div id="header-left">
@@ -279,7 +289,16 @@
             	<div class="post-thumbnail">
             	<a class="thumbnail-frame" href="video_page/index.html" title="See the trailer and details">
             	<img width="180" height="250" src="images/Covers_Sizetest/fnemo.jpg" class="recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
-					<span><img width="180" height="260" src="images/Covers_Sizetest/fnemo.jpg" /></span></a>            
+					<span><img width="180" height="260" src="images/Covers_Sizetest/fnemo.jpg" /></span>				
+				</a>            
+				
+				<tal:logged condition="logged">
+					<div class="recommend-hearts">
+						<a href="javascript:recommendFilm()" title="Dislike this movie"><img width="18" height="18" src="images/icons/heart_delete.png"></a>
+						<a href="javascript:recommendFilm()" title="Like this movie"><img width="18" height="18" src="images/icons/heart_add.png"></a>
+					</div>
+				</tal:logged>	
+				
             	</div>
 
               	<h2><a href="video_page/index.html" title="Go to this movie page"> TITLE Video 1</a></h2>
@@ -298,11 +317,11 @@
               
             </div><!-- gallery-item -->
 
-            <div class="gallery-item">
+			<div class="gallery-item">
             	<div class="post-thumbnail">
             	<a class="thumbnail-frame" href="video_page/index.html" title="See the trailer and details">
             	<img width="180" height="250" src="images/Covers_Sizetest/up.jpg" class=
-            	"recommended-post-thumbnail" alt="UP" title="UP" />
+            	"recommended-post-thumbnail" alt="Up" title="Up" />
 					<span><img width="180" height="260" src="images/Covers_Sizetest/up.jpg" /></span></a>            
             	</div>
 
@@ -321,8 +340,9 @@
                 	<li class="comments"><a href="#comments" title="View comments about this movie">6 Comments</a></li>
               </ul>
             </div><!-- gallery-item -->
-				
-				<div class="gallery-item">
+
+
+			<div class="gallery-item">
             	<div class="post-thumbnail">
             	<a class="thumbnail-frame" href="video_page/index.html" title="See the trailer and details">
             	<img width="180" height="250" src="images/Covers_Sizetest/troy.jpg" class=
