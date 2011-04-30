@@ -18,8 +18,8 @@
   <meta name="keywords" content="movie, film, recommendation, recommended, cinema" />
 
   <!-- import required theme styles -->
-  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="css/style.css3.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="${request.static_url('milo_app:static/css/style.css')}" type="text/css" media="screen" />
+  <link rel="stylesheet" href="${request.static_url('milo_app:static/css/style.css3.css')}" type="text/css" media="screen" />
   <link rel="stylesheet" href="${request.static_url('milo_app:static/css/smoothness/jquery-ui.css')}" type="text/css" media="screen" />
 
   <!--[if IE 7]>
@@ -33,8 +33,7 @@
   <!-- custom theme styles -->
  
   
-  <link rel='stylesheet' id='fancybox-css' href='js/fancybox/style.css_ver=3.1' type=
-  'text/css' media='all' />
+  <link rel='stylesheet' id='fancybox-css' href="${request.static_url('milo_app:static/js/fancybox/style.css_ver=3.1')}" type='text/css' media='all' />
 
   <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.js')}">
   </script>
@@ -42,37 +41,20 @@
   </script>
   <script type='text/javascript' src="${request.static_url('milo_app:static/js/ui.js')}">
   </script>
-  <script type='text/javascript' src='js/l10n.js_ver=20101110'>
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/l10n.js_ver=20101110')}">
   </script>
-  <script type='text/javascript' src='js/jquery.superfish.js_ver=3.1'>
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.superfish.js_ver=3.1')}">
+  </script> 
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.easing.js_ver=3.1')}">
   </script>
-  <script type='text/javascript' src='js/jquery.easing.js_ver=3.1'>
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.coda.js_ver=3.1')}">
   </script>
-  <script type='text/javascript' src='js/jquery.coda.js_ver=3.1'>
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.float.js_ver=3.1')}">
   </script>
-  <script type='text/javascript' src='js/jquery.float.js_ver=3.1'>
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.equal.js_ver=3.1')}">
   </script>
-  <script type='text/javascript' src='js/jquery.equal.js_ver=3.1'>
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/fancybox/jquery.fancybox.js_ver=3.1')}">
   </script>
-  <script type='text/javascript' src='js/fancybox/jquery.fancybox.js_ver=3.1'>
-  </script>
-  <script language="JavaScript">
-	
-	function recommendFilm()
-	{
-		  $('#communication-panel').slideDown('slow');	  
-	}
-	
-	function deny()
-	{
-		$('#communication-panel').slideUp('slow');
-	}
-	
-  </script>
-  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="xmlrpc.php_rsd" />
-
-  <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="js/wlwmanifest.xml" />
-
 </head>
 
 <body>
@@ -81,7 +63,7 @@
 		  <div>
 			  <span>A new recommendation is available. Do you want to load it?</span>
 			  <a href="${request.resource_url(request.root)}" title="Sure!"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/></a>
-			  <a href="javascript:deny()" title="No, thanks."><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/></a>
+			  <a href="javascript:$('#communication-panel').slideUp('slow');" title="No, thanks."><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/></a>
 		  </div>
 		</div>
     <div id="header-inside">      
@@ -294,8 +276,8 @@
 				
 				<tal:logged condition="logged">
 					<div class="recommend-hearts">
-						<a href="javascript:recommendFilm()" title="Dislike this movie"><img width="18" height="18" src="images/icons/heart_delete.png"></a>
-						<a href="javascript:recommendFilm()" title="Like this movie"><img width="18" height="18" src="images/icons/heart_add.png"></a>
+						<a href="javascript:$('#communication-panel').slideDown('slow');" title="Dislike this movie"><img width="18" height="18" src="images/icons/heart_delete.png"></a>
+						<a href="javascript:$('#communication-panel').slideDown('slow');" title="Like this movie"><img width="18" height="18" src="images/icons/heart_add.png"></a>
 					</div>
 				</tal:logged>	
 				

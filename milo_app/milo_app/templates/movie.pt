@@ -5,7 +5,7 @@
       <div id="video-container">
         <div class='video-embedded-and-related'>
         
-			<iframe id="player" type="text/html" src="http://www.youtube.com/embed/gfgeIZyrIM0?enablejsapi=1&rel=0&autohide=1"></iframe> 
+			<iframe id="player" type="text/html" src="${movie.trailer}?enablejsapi=1&rel=0&autohide=1"></iframe> 
               
 			<div class='related-films'>
 			
@@ -76,7 +76,7 @@
          <div id="posts">
          
 			<div id="film-description-header">
-				<h2>The title of the movie!! ( <a href="#" title="Check the list of films released on this year">Year</a> )<h2> 
+				<h2>${movie.title} ( <a href="#" title="Check the list of films released on this year">Year</a> )<h2> 
 				<ul class="post-meta post-meta-post">
 					<li class="date">Posted on 10.24.09</li>
 					<li class="comments"><a href="#comments" title="Check other users reviews">1 Comment</a></li>
@@ -86,25 +86,12 @@
 			<div id="film-description" class="post-content">
               
               <div id="film-cover-container">
-                <img src="../images/Covers_Sizetest/fnemo.jpg" alt="Finding Nemo" title="Finding Nemo" width="180" height="250" class="size-medium wp-image-378" />
+                <img src="${request.static_url('milo_app:static/movie_data/'+movie.poster)}" alt="Finding Nemo" title="Finding Nemo" width="180" height="250" class="size-medium wp-image-378" />
                 <p class="image-caption">Image Caption</p>
               </div><!-- film-cover-container -->
 			  
 			  <div id="movie-description-text" class="div-movie-details">
-			  <p>
-			  The complete description of the movie must be here!
-              Phasellus suscipit enim eget metus lobortis vitae egestas purus tempus.
-              Duis feugiat risus libero. In ultrices lectus vel magna auctor condimentum.
-              </p>
-			  <p>
-              Curabitur vestibulum nisi bibendum tortor consectetur tempus. Donec velit
-              neque, ultricies vitae semper quis, pellentesque ac lectus. Donec pulvinar
-              est in magna dignissim gravida. Aliquam erat volutpat. Proin scelerisque
-              libero quis quam tristique euismod. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Nunc at magna eget ante tincidunt accumsan at in neque.
-              Nam gravida libero urna, aliquet lacinia nibh. Cras luctus vestibulum arcu,
-              sit amet hendrerit nulla placerat molestie.
-              </p>
+			  <p tal:content="movie.description"></p>
               </div><!-- movie-description-text -->
               
               <div id="list-main-actors" class="div-movie-details">

@@ -21,8 +21,9 @@ def categories(request):
 	basept = get_renderer('templates/base.pt').implementation()
 	return dict(base_pt=basept)
 
-@view_config(name='movie', context='milo_app:resources.Root',
+@view_config(context='milo_app:resources.Movie',
 				 renderer='templates/movie.pt')
-def movie(request):
+def movie(context, request):
 	basept = get_renderer('templates/base.pt').implementation()
-	return dict(base_pt=basept)
+	movie = Movie.objects(title = context.title).first()
+	return dict(base_pt=basept, movie=movie)
