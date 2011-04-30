@@ -3,11 +3,15 @@ from mongoengine import *
 class Root(object):
     __name__= None
     __parent__= None
+    
     def __init__(self, request):
         self.request = request
+        
     def __getitem__(self, key):
 		if key == "Movie":
-			return Movie()
+			movie = Movie()
+			movie.__parent__= self
+			return movie
 		if key == "User":
 			return User()
 		raise KeyError
@@ -23,10 +27,16 @@ class Comment(EmbeddedDocument):
 	autor = ReferenceField(User)
 	content = StringField()
 
+class Genre(EmbeddedDocument):
+	name = StringField()
+
 class Movie(Document):
+	__name__ = 'Movie'
+	__parent__ = Root
 	
 	def __getitem__(self, key):
-		return Movie(title=key) 
+		movie = Movie.objects(title = key).first()
+		return movie
 		
 	#movie is identified by tile and year
 	title = StringField(required=True)
@@ -35,6 +45,7 @@ class Movie(Document):
 	trailer = URLField()
 	poster = StringField()
 	image = StringField()
+	genre = ListField(EmbeddedDocumentField(Genre))
 	comments = ListField(EmbeddedDocumentField(Comment))
 	
 	def __str__(self):

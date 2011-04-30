@@ -18,8 +18,8 @@
   <meta name="keywords" content="movie, film, recommendation, recommended, cinema" />
 
   <!-- import required theme styles -->
-  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="css/style.css3.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="${request.static_url('milo_app:static/css/style.css')}" type="text/css" media="screen" />
+  <link rel="stylesheet" href="${request.static_url('milo_app:static/css/style.css3.css')}" type="text/css" media="screen" />
   <link rel="stylesheet" href="${request.static_url('milo_app:static/css/smoothness/jquery-ui.css')}" type="text/css" media="screen" />
 
   <!--[if IE 7]>
@@ -33,7 +33,7 @@
   <!-- custom theme styles -->
  
   
-  <link rel='stylesheet' id='fancybox-css' href='js/fancybox/style.css_ver=3.1' type=
+  <link rel='stylesheet' id='fancybox-css' href="${request.static_url('milo_app:static/js/fancybox/style.css_ver=3.1')}" type=
   'text/css' media='all' />
 
   <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.js')}">
@@ -42,49 +42,22 @@
   </script>
   <script type='text/javascript' src="${request.static_url('milo_app:static/js/ui.js')}">
   </script>
-  <script type='text/javascript' src='js/l10n.js_ver=20101110'>
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/l10n.js_ver=20101110')}">
   </script>
-  <script type='text/javascript' src='js/jquery.superfish.js_ver=3.1'>
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.superfish.js_ver=3.1')}">
   </script>
-  <script type='text/javascript' src='js/jquery.easing.js_ver=3.1'>
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.easing.js_ver=3.1')}">
   </script>
-  <script type='text/javascript' src='js/jquery.coda.js_ver=3.1'>
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.coda.js_ver=3.1')}">
   </script>
-  <script type='text/javascript' src='js/jquery.float.js_ver=3.1'>
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.float.js_ver=3.1')}">
   </script>
-  <script type='text/javascript' src='js/jquery.equal.js_ver=3.1'>
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.equal.js_ver=3.1')}">
   </script>
-  <script type='text/javascript' src='js/fancybox/jquery.fancybox.js_ver=3.1'>
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/fancybox/jquery.fancybox.js_ver=3.1')}">
   </script>
   <script src="http://connect.facebook.net/en_US/all.js#appId=113902308692268&amp;xfbml=1">
   </script>	
-  <script language="JavaScript">
-	$(document).ready(function(){
-	
-	function recommendFilm()
-	{
-		  $('#communication-panel').slideDown('slow');	  
-	}
-	
-	function deny()
-	{
-		$('#communication-panel').slideUp('slow');
-	}
-	
-	$("input[type='text']").bind('focus', function() {
-	$(this).css('background-color', '#3E4852');
-	});
-	
-	$("input[type='password']").bind('focus', function() {
-	$(this).css('background-color', '#3E4852');
-	});
-	
-	});
-  </script>
-  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="xmlrpc.php_rsd" />
-
-  <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="js/wlwmanifest.xml" />
-
 </head>
 
 <body>
@@ -92,8 +65,8 @@
 		<div id="communication-panel">
 		  <div>
 			  <span>A new recommendation is available. Do you want to load it?</span>
-			  <a href="${request.resource_url(request.root)}" title="Sure!"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/></a>
-			  <a href="javascript:deny()" title="No, thanks."><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/></a>
+			  <a href="${request.resource_url(request.root, query=dict(rec='new'))}" title="Sure!"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/></a>
+			  <a href="javascript:$('#communication-panel').slideUp('slow');" title="No, thanks."><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/></a>
 		  </div>
 		</div>
     <div id="header-inside">      
@@ -200,224 +173,32 @@
       <div id="coda-nav">
             <div class="coda-slider" id="slider">
               
-              <div class="panel">
+              <div class="panel" tal:repeat="movie slider_movies">
                 <div class="slider-post">
-                 
-                  <img src="images/Slider_Images/Harry_Potter_half_blood_prince.jpg" 
+                  <img tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.image)" 
                   class="slider-image" alt="Movie-title-#1" title="Movie-title-#1" />
                   
                   <div class="slider-movie-description">
-					  
-						<tal:not_logged condition="not logged">
-						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Top Video #1</a></h3>
-						</tal:not_logged>
-					  
-						<tal:logged condition="logged">
-						<h2><a href="../recommended_list/index.html" title="List recommended films for you">Recommended for you!</a></h2>
-						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Recommended Top Video #1</a></h3>
-						</tal:logged>
-						
-						<p>Here we must give a brief description of the top 1 film</p>
-						
-						<a class="continue" href="../video_page/index.html" title="Continue Reading"></a>
-						
+					<h2 tal:condition="logged"><a href="../recommended_list/index.html" title="List recommended films for you">Recommended for you!</a></h2>
+                    <h3><a tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)" title="Movie-title-#1">${movie.title}</a></h3>
+                    <p>${movie.description}</p>
+                    <a class="continue" tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)" title="More"></a>
 					<tal:logged condition="logged">
 					<div class="recommend-hearts-slider">
 						<span>Rate this movie:</span>
-						<a href="javascript:recommendFilm()" title="Like this movie"><img width="20" height="20" src="images/icons/heart_add.png"></a>
-						<a href="javascript:recommendFilm()" title="Dislike this movie"><img width="20" height="20" src="images/icons/heart_delete.png"></a>
+						<a href="javascript:$('#communication-panel').slideDown('slow');" title="Like this movie"><img width="20" height="20" src="images/icons/heart_add.png"></a>
+						<a href="javascript:$('#communication-panel').slideDown('slow');" title="Dislike this movie"><img width="20" height="20" src="images/icons/heart_delete.png"></a>
 					</div>
 					</tal:logged>	
                     
                     <div class="slider-movie-details">
 					<ul> 
-						<li class="date-slider">Posted on 03.29.10</li>
+						<li class="date-slider">Release date: ${movie.date.strftime('%Y')}</li>
 
 						<li class="info-slider"><img src="images/icons/play.png" style="width: 12px; height:10px;" /> 2.000 
 						<img src="images/icons/heart.png" style="width: 12px; height:10px;" /> 542 </li>
 				
-						<li class="genre-slider">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
-						
-					</ul>
-					</div><!-- slider-movie-details-->
-                  </div><!-- slider-movie-description-->
-
-
-                </div><!-- slider-post -->
-              </div><!-- panel -->
-
-              <div class="panel">
-                <div class="slider-post">
-                 
-                  <img src="images/Slider_Images/Harry_Potter_half_blood_prince.jpg" 
-                  class="slider-image" alt="Movie-title-#1" title="Movie-title-#1" />
-                  
-                  <div class="slider-movie-description">
-					  
-						<tal:not_logged condition="not logged">
-						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Top Video #1</a></h3>
-						</tal:not_logged>
-					  
-						<tal:logged condition="logged">
-						<h2><a href="../recommended_list/index.html" title="List recommended films for you">Recommended for you!</a></h2>
-						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Recommended Top Video #1</a></h3>
-						</tal:logged>
-						
-						<p>Here we must give a brief description of the top 1 film</p>
-						
-						<a class="continue" href="../video_page/index.html" title="Continue Reading"></a>
-						
-					<tal:logged condition="logged">
-					<div class="recommend-hearts-slider">
-						<span>Rate this movie:</span>
-						<a href="javascript:recommendFilm()" title="Like this movie"><img width="20" height="20" src="images/icons/heart_add.png"></a>
-						<a href="javascript:recommendFilm()" title="Dislike this movie"><img width="20" height="20" src="images/icons/heart_delete.png"></a>
-					</div>
-					</tal:logged>	
-                    
-                    <div class="slider-movie-details">
-					<ul> 
-						<li class="date-slider">Posted on 03.29.10</li>
-
-						<li class="info-slider"><img src="images/icons/play.png" style="width: 12px; height:10px;" /> 2.000 
-						<img src="images/icons/heart.png" style="width: 12px; height:10px;" /> 542 </li>
-				
-						<li class="genre-slider">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
-						
-					</ul>
-					</div><!-- slider-movie-details-->
-                  </div><!-- slider-movie-description-->
-
-                </div><!-- slider-post -->
-              </div><!-- panel -->
-
-              <div class="panel">
-                <div class="slider-post">
-                 
-                  <img src="http://www.moviepicturedb.com/pictures/08_12/2007/413300/l_413300_d9648a88.jpg" 
-                  class="slider-image" alt="Movie-title-#3" title="Movie-title-#3" />
-                  
-					<div class="slider-movie-description">
-					  
-						<tal:not_logged condition="not logged">
-						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Top Video #1</a></h3>
-						</tal:not_logged>
-					  
-						<tal:logged condition="logged">
-						<h2><a href="../recommended_list/index.html" title="List recommended films for you">Recommended for you!</a></h2>
-						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Recommended Top Video #1</a></h3>
-						</tal:logged>
-						
-						<p>Here we must give a brief description of the top 1 film</p>
-						
-						<a class="continue" href="../video_page/index.html" title="Continue Reading"></a>
-						
-					<tal:logged condition="logged">
-					<div class="recommend-hearts-slider">
-						<span>Rate this movie:</span>
-						<a href="javascript:recommendFilm()" title="Like this movie"><img width="20" height="20" src="images/icons/heart_add.png"></a>
-						<a href="javascript:recommendFilm()" title="Dislike this movie"><img width="20" height="20" src="images/icons/heart_delete.png"></a>
-					</div>
-					</tal:logged>	
-                    
-                    <div class="slider-movie-details">
-					<ul> 
-						<li class="date-slider">Posted on 03.29.10</li>
-
-						<li class="info-slider"><img src="images/icons/play.png" style="width: 12px; height:10px;" /> 2.000 
-						<img src="images/icons/heart.png" style="width: 12px; height:10px;" /> 542 </li>
-				
-						<li class="genre-slider">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
-						
-					</ul>
-					</div><!-- slider-movie-details-->
-                  </div><!-- slider-movie-description-->
-
-                </div><!-- slider-post -->
-              </div><!-- panel -->
-
-              <div class="panel">
-                <div class="slider-post">
-                 
-                  <img src="http://www.moviepicturedb.com/pictures/09_09/2009/458525/l_458525_ca22fc35.jpg" 
-                  class="slider-image" alt="Movie-title-#4" title="Movie-title-#4" />
-                  
-					<div class="slider-movie-description">
-					  
-						<tal:not_logged condition="not logged">
-						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Top Video #1</a></h3>
-						</tal:not_logged>
-					  
-						<tal:logged condition="logged">
-						<h2><a href="../recommended_list/index.html" title="List recommended films for you">Recommended for you!</a></h2>
-						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Recommended Top Video #1</a></h3>
-						</tal:logged>
-						
-						<p>Here we must give a brief description of the top 1 film</p>
-						
-						<a class="continue" href="../video_page/index.html" title="Continue Reading"></a>
-						
-					<tal:logged condition="logged">
-					<div class="recommend-hearts-slider">
-						<span>Rate this movie:</span>
-						<a href="javascript:recommendFilm()" title="Like this movie"><img width="20" height="20" src="images/icons/heart_add.png"></a>
-						<a href="javascript:recommendFilm()" title="Dislike this movie"><img width="20" height="20" src="images/icons/heart_delete.png"></a>
-					</div>
-					</tal:logged>	
-                    
-                    <div class="slider-movie-details">
-					<ul> 
-						<li class="date-slider">Posted on 03.29.10</li>
-
-						<li class="info-slider"><img src="images/icons/play.png" style="width: 12px; height:10px;" /> 2.000 
-						<img src="images/icons/heart.png" style="width: 12px; height:10px;" /> 542 </li>
-				
-						<li class="genre-slider">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
-						
-					</ul>
-					</div><!-- slider-movie-details-->
-                  </div><!-- slider-movie-description-->
-
-                </div><!-- slider-post -->
-              </div><!-- panel -->
-
-              <div class="panel">
-                <div class="slider-post">
-                 
-                  <img src="http://www.moviepicturedb.com/pictures/10_10/2010/1231583/l_1231583_2ab44e7e.jpg" 
-                  class="slider-image" alt="Movie-title-#5" title="Movie-title-#5" />
-                  
-                  <div class="slider-movie-description">
-					  
-						<tal:not_logged condition="not logged">
-						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Top Video #1</a></h3>
-						</tal:not_logged>
-					  
-						<tal:logged condition="logged">
-						<h2><a href="../recommended_list/index.html" title="List recommended films for you">Recommended for you!</a></h2>
-						<h3><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">Title Recommended Top Video #1</a></h3>
-						</tal:logged>
-						
-						<p>Here we must give a brief description of the top 1 film</p>
-						
-						<a class="continue" href="../video_page/index.html" title="Continue Reading"></a>
-						
-					<tal:logged condition="logged">
-					<div class="recommend-hearts-slider">
-						<span>Rate this movie:</span>
-						<a href="javascript:recommendFilm()" title="Like this movie"><img width="20" height="20" src="images/icons/heart_add.png"></a>
-						<a href="javascript:recommendFilm()" title="Dislike this movie"><img width="20" height="20" src="images/icons/heart_delete.png"></a>
-					</div>
-					</tal:logged>	
-                    
-                    <div class="slider-movie-details">
-					<ul> 
-						<li class="date-slider">Posted on 03.29.10</li>
-
-						<li class="info-slider"><img src="images/icons/play.png" style="width: 12px; height:10px;" /> 2.000 
-						<img src="images/icons/heart.png" style="width: 12px; height:10px;" /> 542 </li>
-				
-						<li class="genre-slider">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
+						<li class="genre-slider">Genre: <a href="#" title="Search films of this genre" tal:repeat="g movie.genre">${g}</a></li>
 						
 					</ul>
 					</div><!-- slider-movie-details-->
@@ -448,246 +229,55 @@
 				
 				<h2 title="Orientation here">Latest Updates</h2>
             
-            <div class="gallery-item">
+            <div class="gallery-item" tal:repeat="movie movies">
             	<div class="post-thumbnail">
-            	<a class="thumbnail-frame" href="video_page/index.html" title="See the trailer and details">
-            	<img width="180" height="250" src="images/Covers_Sizetest/fnemo.jpg" class="recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
-					<span><img width="180" height="260" src="images/Covers_Sizetest/fnemo.jpg" /></span>				
+            	<a class="thumbnail-frame" tal:attributes="href request.resource_url(context, 'Movie', movie.title)" title="See the trailer and details">
+            	<img width="180" height="250" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)" class="recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
+					<span><img width="180" height="260" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)"/></span>				
 				</a>            
 				
 				<tal:logged condition="logged">
 					<div class="recommend-hearts">
-						<a href="javascript:recommendFilm()" title="Dislike this movie"><img width="18" height="18" src="images/icons/heart_delete.png"></a>
-						<a href="javascript:recommendFilm()" title="Like this movie"><img width="18" height="18" src="images/icons/heart_add.png"></a>
+						<a href="javascript:$('#communication-panel').slideDown('slow');" title="Dislike this movie"><img width="18" height="18" src="images/icons/heart_delete.png"></a>
+						<a href="javascript:$('#communication-panel').slideDown('slow');" title="Like this movie"><img width="18" height="18" src="images/icons/heart_add.png"></a>
 					</div>
 				</tal:logged>	
 				
             	</div>
 
-              	<h2><a href="video_page/index.html" title="Go to this movie page"> TITLE Video 1</a></h2>
+              	<h2><a tal:attributes="href request.resource_url(context, 'Movie', movie.title)" title="Go to this movie page">${movie.title}</a></h2>
 
               	<ul class="post-meta">
-               	 <li class="date">Posted on 03.29.10</li>
+               	 <li class="date">Release date: ${movie.date.strftime('%Y')}</li>
 
                 	<li class="info"><img src="${request.static_url('milo_app:static/images/icons/play.png')}" style=
                 	"width: 12px; height:10px;" /> 2.000 <img src="${request.static_url('milo_app:static/images/icons/heart.png')}" style=
                 	"width: 12px; height:10px;" /> 542 </li>
 				
-						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
+						<li class="genre">Genre: <tal:genres repeat="g movie.genre"><a href="#" title="Search films of this genre">${g}</a></tal:genres></li>
 
-                	<li class="comments"><a href="#comments" title="View comments about this movie">6 Comments</a></li>
+                	<li class="comments"><a href="#comments" title="View comments about this movie">${len(movie.comments)} Comments</a></li>
               </ul>
               
-            </div><!-- gallery-item -->
+            </div>
+            <!-- movie-item -->
 
-			<div class="gallery-item">
-            	<div class="post-thumbnail">
-            	<a class="thumbnail-frame" href="video_page/index.html" title="See the trailer and details">
-            	<img width="180" height="250" src="images/Covers_Sizetest/up.jpg" class=
-            	"recommended-post-thumbnail" alt="Up" title="Up" />
-					<span><img width="180" height="260" src="images/Covers_Sizetest/up.jpg" /></span></a>            
-            	</div>
-
-              	<h2><a href="video_page/index.html" title=
-              	"Go to this movie page"> TITLE Video 2</a></h2>
-
-              	<ul class="post-meta">
-               	 <li class="date">Posted on 03.29.10</li>
-
-                	<li class="info"><img src="icons/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="icons/heart.png" style=
-                	"width: 12px; height:10px;" /> 542 </li>
-				
-						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
-
-                	<li class="comments"><a href="#comments" title="View comments about this movie">6 Comments</a></li>
-              </ul>
-            </div><!-- gallery-item -->
-
-
-			<div class="gallery-item">
-            	<div class="post-thumbnail">
-            	<a class="thumbnail-frame" href="video_page/index.html" title="See the trailer and details">
-            	<img width="180" height="250" src="images/Covers_Sizetest/troy.jpg" class=
-            	"recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
-					<span><img width="180" height="260" src="images/Covers_Sizetest/troy.jpg" /></span></a>            
-            	</div>
-
-              	<h2><a href="video_page/index.html" title=
-              	"Go to this movie page"> TITLE Video 3</a></h2>
-
-              	<ul class="post-meta">
-               	 <li class="date">Posted on 03.29.10</li>
-
-                	<li class="info"><img src="icons/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="icons/heart.png" style=
-                	"width: 12px; height:10px;" /> 542 </li>
-				
-						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
-
-                	<li class="comments"><a href="#comments" title="View comments about this movie">6 Comments</a></li>
-              </ul>
-            </div><!-- gallery-item -->
-				
-				<div class="gallery-item">
-            	<div class="post-thumbnail">
-            	<a class="thumbnail-frame" href="video_page/index.html" title="See the trailer and details">
-            	<img width="180" height="250" src="images/Covers_Sizetest/nessuno_mi_puo_giudicare.jpg" class=
-            	"recommended-post-thumbnail" alt="Nessuno Mi Puo Giudicare" title="Nessuno Mi Puo Giudicare" />
-					<span><img width="180" height="260" src="images/Covers_Sizetest/nessuno_mi_puo_giudicare.jpg" /></span></a>            
-            	</div>
-
-              	<h2><a href="video_page/index.html" title=
-              	"Go to this movie page"> TITLE Video 4</a></h2>
-
-              	<ul class="post-meta">
-               	 <li class="date">Posted on 03.29.10</li>
-
-                	<li class="info"><img src="icons/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="icons/heart.png" style=
-                	"width: 12px; height:10px;" /> 542 </li>
-				
-						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
-
-                	<li class="comments"><a href="#comments" title="View comments about this movie">6 Comments</a></li>
-              </ul>
-            </div><!-- gallery-item -->
-
-				<div class="gallery-item">
-            	<div class="post-thumbnail">
-            	<a class="thumbnail-frame" href="video_page/index.html" title="See the trailer and details">
-            	<img width="180" height="250" src="images/Covers_Sizetest/batman2.jpg" class=
-            	"recommended-post-thumbnail" alt="Batman 2" title="Batman 2" />
-					<span><img width="180" height="260" src="images/Covers_Sizetest/batman2.jpg" /></span></a>            
-            	</div>
-
-              	<h2><a href="video_page/index.html" title=
-              	"Go to this movie page"> TITLE Video 5</a></h2>
-
-              	<ul class="post-meta">
-               	 <li class="date">Posted on 03.29.10</li>
-
-                	<li class="info"><img src="icons/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="icons/heart.png" style=
-                	"width: 12px; height:10px;" /> 542 </li>
-				
-						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
-
-                	<li class="comments"><a href="#comments" title="View comments about this movie">6 Comments</a></li>
-              </ul>
-            </div><!-- gallery-item -->
-				
-				<div class="gallery-item">
-            	<div class="post-thumbnail">
-            	<a class="thumbnail-frame" href="video_page/index.html" title="See the trailer and details">
-            	<img width="180" height="250" src="images/Covers_Sizetest/batman-begins.jpg" class=
-            	"recommended-post-thumbnail" alt="Batman Begins" title="Batman Begins" />
-					<span><img width="180" height="260" src="images/Covers_Sizetest/batman-begins.jpg" /></span></a>            
-            	</div>
-
-              	<h2><a href="video_page/index.html" title=
-              	"Go to this movie page"> TITLE Video 6</a></h2>
-
-              	<ul class="post-meta">
-               	 <li class="date">Posted on 03.29.10</li>
-
-                	<li class="info"><img src="icons/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="icons/heart.png" style=
-                	"width: 12px; height:10px;" /> 542 </li>
-				
-						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
-
-                	<li class="comments"><a href="#comments" title="View comments about this movie">6 Comments</a></li>
-              </ul>
-            </div><!-- gallery-item -->
-									
-				<div class="gallery-item">
-            	<div class="post-thumbnail">
-            	<a class="thumbnail-frame" href="video_page/index.html" title="See the trailer and details">
-            	<img width="180" height="250" src="images/Covers_Sizetest/saw2.jpg" class=
-            	"recommended-post-thumbnail" alt="Saw II" title="Saw II" />
-					<span><img width="180" height="260" src="images/Covers_Sizetest/saw2.jpg" /></span></a>            
-            	</div>
-
-              	<h2><a href="video_page/index.html" title=
-              	"Go to this movie page"> TITLE Video 7</a></h2>
-
-              	<ul class="post-meta">
-               	 <li class="date">Posted on 03.29.10</li>
-
-                	<li class="info"><img src="icons/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="icons/heart.png" style=
-                	"width: 12px; height:10px;" /> 542 </li>
-				
-						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
-
-                	<li class="comments"><a href="#comments" title="View comments about this movie">6 Comments</a></li>
-              </ul>
-            </div><!-- gallery-item -->
-				
-				<div class="gallery-item">
-            	<div class="post-thumbnail">
-            	<a class="thumbnail-frame" href="video_page/index.html" title="See the trailer and details">
-            	<img width="180" height="250" src="images/Covers_Sizetest/wotwp2.jpg" class=
-            	"recommended-post-thumbnail" alt="War of Two Worlds II" title="War of Two Worlds II" />
-					<span><img width="180" height="260" src="images/Covers_Sizetest/wotwp2.jpg" /></span></a>            
-            	</div>
-
-              	<h2><a href="video_page/index.html" title=
-              	"Go to this movie page"> TITLE Video 8</a></h2>
-
-              	<ul class="post-meta">
-               	 <li class="date">Posted on 03.29.10</li>
-
-                	<li class="info"><img src="icons/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="icons/heart.png" style=
-                	"width: 12px; height:10px;" /> 542 </li>
-				
-						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
-
-                	<li class="comments"><a href="#comments" title="View comments about this movie">6 Comments</a></li>
-              </ul>
-            </div><!-- gallery-item -->
-              	
-				<div class="gallery-item">
-            	<div class="post-thumbnail">
-            	<a class="thumbnail-frame" href="video_page/index.html" title="See the trailer and details">
-            	<img width="180" height="250" src="images/Covers_Sizetest/tron_legacy.jpg" class=
-            	"recommended-post-thumbnail" alt="Tron" title="Tron" />
-					<span><img width="180" height="260" src="images/Covers_Sizetest/tron_legacy.jpg" /></span></a>            
-            	</div>
-
-              	<h2><a href="video_page/index.html" title=
-              	"Go to this movie page"> TITLE Video 9</a></h2>
-
-              	<ul class="post-meta">
-               	 <li class="date">Posted on 03.29.10</li>
-
-                	<li class="info"><img src="icons/play.png" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="icons/heart.png" style=
-                	"width: 12px; height:10px;" /> 542 </li>
-				
-						<li class="genre">Genre: <a href="#" title="Search films of this genre">Romance</a></li>
-
-                	<li class="comments"><a href="#comments" title="View comments about this movie">6 Comments</a></li>
-              </ul>
-            </div><!-- gallery-item -->
           </div><!-- posts -->
 				
 			<div id="sidebar">
            <div id="top-movies-sidebar" class="widget">
-              <h2>Top Films</h2>
+              <h2>${right_movies.get('title')}</h2>
 
-              <div class="sidebar-item">
+              <div class="sidebar-item" tal:repeat="movie right_movies.get('movies')">
                 <div class="post-thumbnail-side"><a class="thumbnail-frame-side" href="#"
                 title="Movie-Title#6"><!-- nothing to see here --></a>
-                <img width="80" height="80" src="images/2009/10/can-80x80.jpg" alt="Can" title="can" />
+                <img width="80" height="80" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)" alt="Can" title="can" />
                 </div>
 
                 <div class="sidebar-item-content">
-                  <h3><a href="#" rel="bookmark" title="Movie-Title#6">Top Video #6</a></h3>
+                  <h3><a tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)" rel="bookmark" title="Movie-Title#6">${movie.title}</a></h3>
 
-                  <p>Brief description</p>
+                  <p>${movie.description[0:80]+'...'}</p>
                 </div>
               </div>
             </div><!-- top-movies-sidebar -->  
