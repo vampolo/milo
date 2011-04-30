@@ -1,4 +1,4 @@
-<metal:html use-macro="base_pt.macros['main']">
+<metal:html use-macro="base.macros['main']">
      <metal:content fill-slot="content">
 
 	<div id="content-inside">
