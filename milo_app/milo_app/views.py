@@ -12,17 +12,15 @@ def main(request):
 @view_config(name='about', context='milo_app:resources.Root',
 				 renderer='templates/about.pt')
 def about(request):
-	basept = get_renderer('templates/base.pt').implementation()
-	return dict(base_pt=basept)
+	return dict()
 
 @view_config(name='categories', context='milo_app:resources.Root',
 				 renderer='templates/categories.pt')
 def categories(request):
-	basept = get_renderer('templates/base.pt').implementation()
-	return dict(base_pt=basept)
+	return dict()
 
-@view_config(name='movie', context='milo_app:resources.Root',
+@view_config(context='milo_app:resources.Movie',
 				 renderer='templates/movie.pt')
-def movie(request):
-	basept = get_renderer('templates/base.pt').implementation()
-	return dict(base_pt=basept)
+def movie(context, request):
+	movie = Movie.objects(title = context.title).first()
+	return dict(movie=movie)

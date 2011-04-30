@@ -24,7 +24,7 @@ class MovieManager(object):
 			fp = open(os.path.join(basepath, title+'_poster.jpg'), 'w')
 			fp.write(urllib.urlopen(poster).read())
 		if len(Movie.objects(title=title, date=datetime.datetime(year=int(year), month=1, day=1))) == 0:
-			movie = Movie(title=title, date=datetime.datetime(year=int(year), month=1, day=1), description=description, image=name+'_image.jpg', poster=name+'_poster.jpg', trailer=trailer)
+			movie = Movie(title=title, date=datetime.datetime(year=int(year), month=1, day=1), description=description, image=title+'_image.jpg', poster=title+'_poster.jpg', trailer=trailer)
 			movie.save()
 			return movie
 		return None
@@ -33,6 +33,7 @@ class MovieManager(object):
 		m = MediaRetriever(name)
 		d = m.get_info()
 		for movie in Movie.objects(title=d.get('title')):
+			print movie
 			for f_ile in [movie.poster, movie.image]:
 				path = os.path.join(basepath, f_ile)
 				if os.path.exists(path):

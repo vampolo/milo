@@ -1,6 +1,7 @@
 from pyramid.config import Configurator
 from pyramid.events import subscriber
 from pyramid.events import BeforeRender
+from pyramid.renderers import get_renderer
 from milo_app.resources import Root
 from milo_app import helpers
 
@@ -22,9 +23,12 @@ def main(global_config, **settings):
     config.add_static_view('css', 'milo_app:static/css')
     config.add_static_view('js', 'milo_app:static/js')
     config.add_static_view('images', 'milo_app:static/images')
+    config.add_static_view('icons', 'milo_app:static/images/icons')
     config.scan()
     connect(settings['db_name'])
     return config.make_wsgi_app()
 
 def add_renderer_globals(event):
-	event['h'] = helpers 
+	event.update({'base': get_renderer('templates/base.pt').implementation()})
+	event.update({'h': helpers})
+	

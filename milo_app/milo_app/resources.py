@@ -24,6 +24,10 @@ class Comment(EmbeddedDocument):
 	content = StringField()
 
 class Movie(Document):
+	
+	def __getitem__(self, key):
+		return Movie(title=key) 
+		
 	#movie is identified by tile and year
 	title = StringField(required=True)
 	date = DateTimeField()

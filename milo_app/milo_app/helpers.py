@@ -1,1 +1,1 @@
-import pyramid.security
+from pyramid.security import authenticated_userid
