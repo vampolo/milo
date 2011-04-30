@@ -1,6 +1,4 @@
 from mongoengine import *
-from suds.client import Client
-from pyramid.threadlocal import get_current_registry
 
 class Root(object):
     __name__= None
@@ -28,8 +26,12 @@ class Comment(EmbeddedDocument):
 class Movie(Document):
 	#movie is identified by tile and year
 	title = StringField(required=True)
-	date = DateTimeField(required=True)
+	date = DateTimeField()
 	description = StringField()
 	trailer = URLField()
-	cover = URLField()
+	poster = StringField()
+	image = StringField()
 	comments = ListField(EmbeddedDocumentField(Comment))
+	
+	def __str__(self):
+		return 'Movie(%s, %s, %s, %s, %s)' % (self.title, self.date, self.poster, self.image, self.trailer)

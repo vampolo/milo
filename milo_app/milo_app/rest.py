@@ -8,10 +8,12 @@ from MediaRetriever import MediaRetriever
              renderer='json')
 @view_config(name='getImage', context='milo_app:resources.Movie',
              renderer='json')
+@view_config(name='getInfo', context='milo_app:resources.Movie',
+             renderer='json')            
 def get_info(request):
 	movie_name = request.GET.get('title')
 	if not movie_name:
 		return dict()
 	m = MediaRetriever(movie_name)
-	d = dict(getImage = m.get_image, getPoster = m.get_poster, getTrailer= m.get_trailer)
-	return dict(result=d.get(request.view_name)())
+	d = dict(getImage = m.get_image, getPoster = m.get_poster, getTrailer= m.get_trailer, getInfo = m.get_info)
+	return d.get(request.view_name)()

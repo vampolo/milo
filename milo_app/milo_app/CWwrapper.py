@@ -25,3 +25,11 @@ class CWwrapper(object):
 		#what to do next ?
 
 
+if __name__ == '__main__':
+	import unittest
+	
+	class Test_CWwrapper(unittest.TestCase):
+		def test_get_rec(self):
+			pass
+	
+	unittest.main()
