@@ -7,7 +7,7 @@
 				
 			<h2>Register</h2>
               <div id="register_input" class="form-input">
-				<form id="register_form" name="input" action="${url}" method="POST">
+				<form id="register_form" name="input" action="${url}" method="POST" autocomplete="off">
 				<input type="hidden" name="came_from" value="${came_from}"/>
 				<label for="register_first_name">Name:</label><input id="register_first_name" type="text" name="name"/>
 				<label for="register_surname">Surname:</label><input id="register_surname" type="text" name="surname"/>
@@ -25,7 +25,7 @@
               <h2>Login</h2>
               
               <div id="login_input" class="form-input">
-				<form id="login_form" name="input" action="${url}" method="POST">
+				<form id="login_form" name="input" action="${url}" method="POST" autocomplete="off">
 				<input type="hidden" name="came_from" value="${came_from}"/>
 				<label for="login_field_1">Email:</label>
 				<input id="login_field_1" type="text" name="login" value="${login}"/>
