@@ -20,3 +20,9 @@ def about(request):
 def categories(request):
 	basept = get_renderer('templates/base.pt').implementation()
 	return dict(base_pt=basept)
+
+@view_config(name='movie', context='milo_app:resources.Root',
+				 renderer='templates/movie.pt')
+def movie(request):
+	basept = get_renderer('templates/base.pt').implementation()
+	return dict(base_pt=basept)

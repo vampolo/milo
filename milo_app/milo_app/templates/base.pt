@@ -185,7 +185,7 @@
                   class="slider-image" alt="Movie-title-#1" title="Movie-title-#1" />
                   
                   <div class="slider-movie-description">
-                    <h2><a href="video_page/index.html" title="Movie-title-#1">Title Top Video #1</a></h2>
+                    <h2><a href="${request.resource_url(request.root, 'movie')}" title="Movie-title-#1">TESTING Top Video #1</a></h2>
                     <p>Here we must give a brief description of the top 1 film</p>
                     <a class="continue" href="video_page/index.html" title="Continue Reading"></a>
                   </div><!-- slider-movie-description-->
