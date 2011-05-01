@@ -232,7 +232,9 @@
 				
 				<h2 title="Orientation">${movies.get('title')}</h2>
             
-            <div class="gallery-item" tal:repeat="movie movies.get('movies')">
+            <tal:r repeat="movie movies.get('movies')">
+            <div class="gallery-item clearboth" tal:omit-tag="repeat.movie.index % 3">
+			<div class="gallery-item" tal:omit-tag="not repeat.movie.index % 3">
             	<div class="post-thumbnail">
             	<a class="thumbnail-frame" tal:attributes="href request.resource_url(context, 'Movie', movie.title)" title="See the trailer and details">
             	<img width="180" height="250" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)" class="recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
@@ -263,7 +265,9 @@
               </ul>
               
             </div>
+            </div>
             <!-- movie-item -->
+            </tal:r>
 
           </div><!-- posts -->
 				
