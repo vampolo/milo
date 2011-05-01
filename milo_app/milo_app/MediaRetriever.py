@@ -60,13 +60,11 @@ class MediaRetriever(object):
 			description = second_page.xpath("//div[@id='main']//table[@id='title-overview-widget-layout']//td[@id='overview-top']/p")[1].text.replace('\n', '')
 		except IndexError:
 			description = None
-		
 		try:		
 			for i in second_page.xpath("//div[@id='main']//table[@id='title-overview-widget-layout']//td[@id='overview-top']//div[@class='infobar']/a"):
 				genre.append(i.text)
 		except IndexError:
-			genre = None
-			
+			genre = None	
 		try:
 			year = second_page.xpath("//div[@id='main']//table[@id='title-overview-widget-layout']//td[@id='overview-top']/h1[@class='header']/span/a")[0].text
 		except IndexError:

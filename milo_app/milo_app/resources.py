@@ -45,7 +45,7 @@ class Movie(Document):
 	trailer = URLField()
 	poster = StringField()
 	image = StringField()
-	genre = ListField(EmbeddedDocumentField(Genre))
+	genre = ListField(StringField())
 	comments = ListField(EmbeddedDocumentField(Comment))
 	
 	def __str__(self):

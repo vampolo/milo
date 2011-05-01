@@ -179,9 +179,9 @@
                   class="slider-image" alt="Movie-title-#1" title="Movie-title-#1" />
                   
                   <div class="slider-movie-description">
-					<h2 tal:condition="logged"><a href="../recommended_list/index.html" title="List recommended films for you">Recommended for you!</a></h2>
-                    <h3><a tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)" title="Movie-title-#1">${movie.title}</a></h3>
-                    <p>${movie.description}</p>
+					<h2 tal:condition="logged"><a href="#" title="List recommended films for you">Recommended for you!</a></h2>
+                    <h3 tal:omit-tag="not logged"><h2 tal:omit-tag="logged"><a tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)" title="Movie-title-#1">${movie.title}</a></h2></h3>
+                    <p>${movie.description[:120]+'...'}</p>
                     <a class="continue" tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)" title="More"></a>
 					<tal:logged condition="logged">
 					<div class="recommend-hearts-slider">
@@ -212,7 +212,7 @@
 
         <div id="slider-foot">
 			<div id="filter">
-			Browsing by
+			Browsing ${category} by
 			<select>
               <option>
                 Last Updated
@@ -227,9 +227,9 @@
 		<div id="post-container">
          <div id="posts">
 				
-				<h2 title="Orientation here">Latest Updates</h2>
+				<h2 title="Orientation">${movies.get('title')}</h2>
             
-            <div class="gallery-item" tal:repeat="movie movies">
+            <div class="gallery-item" tal:repeat="movie movies.get('movies')">
             	<div class="post-thumbnail">
             	<a class="thumbnail-frame" tal:attributes="href request.resource_url(context, 'Movie', movie.title)" title="See the trailer and details">
             	<img width="180" height="250" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)" class="recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
@@ -254,7 +254,7 @@
                 	"width: 12px; height:10px;" /> 2.000 <img src="${request.static_url('milo_app:static/images/icons/heart.png')}" style=
                 	"width: 12px; height:10px;" /> 542 </li>
 				
-						<li class="genre">Genre: <tal:genres repeat="g movie.genre"><a href="#" title="Search films of this genre">${g}</a></tal:genres></li>
+						<li class="genre">Genre: <tal:genres repeat="g movie.genre"><a href="#" title="Search films of this genre">${g}</a>,</tal:genres></li>
 
                 	<li class="comments"><a href="#comments" title="View comments about this movie">${len(movie.comments)} Comments</a></li>
               </ul>
