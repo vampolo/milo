@@ -11,14 +11,13 @@
 			
 			<h2 title="List of films with similar content">${slider_movies.get('title')}</h2>
             
-            <div class="related-item" tal:repeat="movie slider_movies.get('movies')">
+            <div class="related-item" tal:repeat="movie slider_movies.get('movies')" tal:repeat="movie slider_movies.get('movies')">
               <div class="post-thumbnail-side"><a class="thumbnail-frame-side" href="#" title="Movie-Title#1"></a> 
-              <img width="80" height="80" src="../images/2009/09/car-80x80.jpg" alt="Car" title="car" />
+              <img width="80" height="80" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)"  alt="Car" title="car" />
               </div><!-- post-thumbnail-side -->
               <div class="related-content">
-                <h3><a href="#" rel="bookmark" title="Movie-Title#1">Related Movie #1 Title</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec
-                facilisis elit. &hellip;</p>
+                <h3><a href="#" rel="bookmark" title="Movie-Title#1">${movie.title}</a></h3>
+                <p>${movie.description[:70]}&hellip;</p>
               </div><!-- related-content -->            
             </div><!-- related-item -->
 			
@@ -58,7 +57,7 @@
 			<div id="film-description-header">
 				<h2>${movie.title} ( <a href="#FIXME" title="Check the list of films released on this year">${movie.date.strftime('%Y')}</a> )<h2> 
 				<ul class="post-meta post-meta-post">
-					<li class="date">Posted on 10.24.09</li>
+					<li class="date">Released on ${movie.date.strftime('%D')}</li>
 					<li class="comments"><a href="#comments" title="Check other users reviews">1 Comment</a></li>
 				</ul>
 			</div><!-- film-description-header -->	
@@ -148,48 +147,20 @@
 				
 		<div id="sidebar">
 			<div id="friends-also-liked-sidebar" class="widget">
-              <h2 title="Friends who like this also like...">Recommended by Friends</h2>
+              <h2 title="Friends who like this also like...">${right_movies.get('title')}</h2>
 					
-              <div class="sidebar-item">
+              <div class="sidebar-item" tal:repeat="movie right_movies.get('movies')">
                 <div class="post-thumbnail-side">
                 <a class="thumbnail-frame-side" href="#" title="Movie-Title#1"></a>
-                <img width="80" height="80" src="/images/2009/10/can-80x80.jpg" alt="Can" title="can"></img>
+                <img width="80" height="80" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)"  alt="Can" title="can"></img>
                 </div>
                 <div class="sidebar-item-content">
-                  <h3><a href="#" rel="bookmark" title="Movie-Title#1">Also liked by friends Title #1</a></h3>
-                  <p>Brief description</p>
+                  <h3><a href="#" rel="bookmark" title="Movie-Title#1">${movie.title}</a></h3>
+                  <p>${movie.description[:70]}&hellip;</p>
                 </div>
               </div><!-- sidebar-item -->
-              
-             <div class="sidebar-item">
-                <div class="post-thumbnail-side">
-                <a class="thumbnail-frame-side" href="#" title="Movie-Title#1"></a>
-                <img width="80" height="80" src="/images/2009/10/can-80x80.jpg" alt="Can" title="can"></img>
-                </div>
-                <div class="sidebar-item-content">
-                  <h3><a href="#" rel="bookmark" title="Movie-Title#1">Also liked by friends Title #1</a></h3>
-                  <p>Brief description</p>
-                </div>
-              </div><!-- sidebar-item -->
-              
-             <div class="sidebar-item">
-                <div class="post-thumbnail-side">
-                <a class="thumbnail-frame-side" href="#" title="Movie-Title#1"></a>
-                <img width="80" height="80" src="/images/2009/10/can-80x80.jpg" alt="Can" title="can"></img>
-                </div>
-                <div class="sidebar-item-content">
-                  <h3><a href="#" rel="bookmark" title="Movie-Title#1">Also liked by friends Title #1</a></h3>
-                  <p>Brief description</p>
-                </div>
-              </div><!-- sidebar-item -->
-              
-				
+              		
             </div><!-- friends-also-liked-sidebar -->
-					
-            <div id="sidebar-profile" class="widget">
-              <h2>My Profile</h2>
-                <p>Preferences will be here<a href="" target="_blank" title=""></a></p>
-            </div><!-- sidebar-profile -->
           
         </div><!-- sidebar -->
        </div><!-- post-container -->

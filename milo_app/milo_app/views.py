@@ -21,7 +21,7 @@ def main(request):
 		movies = dict(movies=Movie.objects()[18:27].order_by('-date'), title='Last updates')
 		category = 'Recommended Movies'
 		#put right_movies here
-	rand = random.uniform(0, Movie.objects().count())
+	rand = random.randint(0, Movie.objects().count()-10)
 	slider_movies = Movie.objects()[rand:rand+5]
 	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title="Top Movies")
 	return dict(movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category)
@@ -44,6 +44,7 @@ def profile(request):
 @view_config(context='milo_app:resources.Movie',
 				 renderer='templates/movie.pt')
 def movie(context, request):
-	rand = random.uniform(0, Movie.objects().count())
+	rand = random.randint(0, Movie.objects().count()-5)
 	slider_movies = dict(movies=Movie.objects()[rand:rand+3], title='Related Movies')
-	return dict(movie=context, slider_movies=slider_movies)
+	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title='Recommended by Friends')
+	return dict(movie=context, slider_movies=slider_movies, right_movies=right_movies)
