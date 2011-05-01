@@ -38,4 +38,6 @@ def categories(request):
 @view_config(context='milo_app:resources.Movie',
 				 renderer='templates/movie.pt')
 def movie(context, request):
-	return dict(movie=context)
+	rand = random.uniform(0, Movie.objects().count())
+	slider_movies = dict(movies=Movie.objects()[rand:rand+3], title='Related Movies')
+	return dict(movie=context, slider_movies=slider_movies)

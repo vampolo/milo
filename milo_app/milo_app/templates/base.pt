@@ -158,7 +158,8 @@
         <li id="feed"><a href="#" title="Feed RSS">Feed</a></li>
 		-->
 		<tal:logged condition="logged">
-			<li id="signin"><a href="${request.resource_url(request.root, 'logout')}" title="Logout">Logout</a></li>
+			<li id="signout"><a href="${request.resource_url(request.root, 'logout')}" title="Logout">Logout</a></li>
+			<li id="username"><a href="${request.resource_url(request.root, 'profile')}" title="Voew Profile">My Profile</a></li>
 		</tal:logged>
 		<tal:not_logged condition="not logged">
 			<li id="signin"><a href="${request.resource_url(request.root, 'login')}" title="Login">Sign In or Register</a></li>
