@@ -1,5 +1,20 @@
+
+	function panel_down(url, text){
+	var content = text;
+	var url_address = url;
+	$('#communication-panel-content span').replaceWith('<span>'+content+'</span>');
+	$('#agree_button').attr('href', url_address);
+	$('#communication-panel').slideDown('slow');
+	}
+		
+	function panel_up(){
+	$('#communication-panel').slideUp('slow');
+	}
+	
+
 $(document).ready(function() 
-{
+{	
+	
 	$( "#tabs" ).tabs();
 	
 	//fix for chrome

@@ -63,12 +63,13 @@
 <body>
   <div id="header">
 		<div id="communication-panel">
-		  <div>
-			  <span>A new recommendation is available. Do you want to load it?</span>
-			  <a href="${request.resource_url(request.root, query=dict(rec='new'))}" title="Sure!"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/></a>
-			  <a href="javascript:$('#communication-panel').slideUp('slow');" title="No, thanks."><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/></a>
+			<div id='communication-panel-content'>
+			  <span></span>
+			  <a id="agree_button" href="${request.resource_url(request.root, query=dict(rec='new'))}" title="Sure!"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/></a>
+			  <a href="javascript:panel_up();" title="No, thanks."><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/></a>
 		  </div>
 		</div>
+		
     <div id="header-inside">      
       
       <div id="header-left">
@@ -187,8 +188,8 @@
 					<tal:logged condition="logged">
 					<div class="recommend-hearts-slider">
 						<span>Rate this movie:</span>
-						<a href="javascript:$('#communication-panel').slideDown('slow');" title="Like this movie"><img width="20" height="20" src="images/icons/heart_add.png"></a>
-						<a href="javascript:$('#communication-panel').slideDown('slow');" title="Dislike this movie"><img width="20" height="20" src="images/icons/heart_delete.png"></a>
+						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Like this movie"><img width="20" height="20" src="images/icons/heart_add.png"></a>
+						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Dislike this movie"><img width="20" height="20" src="images/icons/heart_delete.png"></a>
 					</div>
 					</tal:logged>	
                     
@@ -239,8 +240,8 @@
 				
 				<tal:logged condition="logged">
 					<div class="recommend-hearts">
-						<a href="javascript:$('#communication-panel').slideDown('slow');" title="Dislike this movie"><img width="18" height="18" src="images/icons/heart_delete.png"></a>
-						<a href="javascript:$('#communication-panel').slideDown('slow');" title="Like this movie"><img width="18" height="18" src="images/icons/heart_add.png"></a>
+						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Dislike this movie"><img width="18" height="18" src="images/icons/heart_delete.png"></a>
+						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Like this movie"><img width="18" height="18" src="images/icons/heart_add.png"></a>
 					</div>
 				</tal:logged>	
 				
