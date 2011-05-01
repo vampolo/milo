@@ -1,6 +1,5 @@
 <metal:html use-macro="base.macros['main']">
      <metal:content fill-slot="content">
-
 	
     <div id="content-inside">
       
@@ -16,6 +15,7 @@
 				<li><a href="#tab-genre">Genre</a></li>
 				<li><a href="#tab-actors">Actors</a></li>
 				<li><a href="#tab-directors">Directors</a></li>
+				<li><a href="#tab-movies">Rated Movies</a></li>
 			</ul>
 			
 			<div id="tab-genre" class="tab-style">
@@ -23,10 +23,10 @@
 				<div id="my-genres" class="my-profile-style">
 				</div>
 				<div class="trash">
-					<img src="../icons/delete.png"></img>
+					<img src="images/icons/delete.png"></img>
 					<p>Regret choosing this genre? Just throw it here!</p>
 				</div>
-				<h3 title="Drag & Drop the genres you like!">All Genres Options</h3>
+				<h3 title="Drag & Drop the genres you like!">All Genres Options - <spam>Drag and Drop to My Genres!</spam></h3>
 				
 				<div id="genre-options" class="options-style">
 					<div id="genre#1" class="item-option">
@@ -55,7 +55,7 @@
 					<p>Regret choosing this actor? Just throw it here!</p>
 				</div>
 				
-				<h3 title="Drag & Drop the actors you like!">All Actors Options</h3>
+				<h3 title="Drag & Drop the actors you like!">All Actors Options - <spam>Drag and Drop to My Actors!</h3>
 				
 				<div id="actors-options" class="options-style">
 					
@@ -85,7 +85,7 @@
 					<img src="../icons/delete.png"></img>
 					<p>Regret choosing this director? Just throw it here!</p>
 				</div>
-				<h3 title="Drag & Drop the directors you like!">All Directors Options</h3>
+				<h3 title="Drag & Drop the directors you like!">All Directors Options - <spam>Drag and Drop to My Directors!</spam></h3>
 				<div id="directors-options" class="options-style">
 					
 					<div id="director#1" class="item-option">
@@ -105,6 +105,30 @@
 					
 				</div><!--options-style-->
 			</div><!-- tab-directors -->
+			
+			<div id="tab-movies" class="tab-style">
+				
+				<h3 title="Movies you rated 'liked' ">Liked Movies</h3>
+				<div id="liked-movies" class="my-profile-style">
+					<div id="movie#1" class="rated-movie-item" title="Movie Title#1">
+						<img src="images/Covers_Sizetest/fnemo.jpg"></img>
+					</div><!--rated-movie-item-->
+				</div>
+		
+				<div class="trash">
+					<img src="../icons/delete.png"></img>
+					<p>Want to cancel the rating? Just throw the film here!</p>
+				</div>
+				
+				<h3 title="Movies you rated 'disliked' ">Disliked Movies</h3>
+				<div id="disliked-movies" class="my-profile-style">
+					<div id="movie#2" class="rated-movie-item" title="Movie Title#2">
+						<img src="images/Covers_Sizetest/lord_rings.jpg"></img>
+					</div><!--rated-movie-item-->
+				</div>
+				
+			</div><!-- tab-movies -->
+			
 		  </div><!-- tabs -->		
 					
 					

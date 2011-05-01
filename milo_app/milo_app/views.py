@@ -9,6 +9,7 @@ import random
 @view_config(context='milo_app:resources.Root',
              renderer='templates/base.pt')
 def main(request):
+
 	#use 0-20 for not logged in and 20: for logged in
 	if request.GET.get('rec') == 'new':
 		movies = dict(movies=Movie.objects()[9:18].order_by('-date'), title='Last updates')
@@ -33,6 +34,11 @@ def about(request):
 @view_config(name='categories', context='milo_app:resources.Root',
 				 renderer='templates/categories.pt')
 def categories(request):
+	return dict()
+
+@view_config(name='profile', context='milo_app:resources.Root',
+				 renderer='templates/profile.pt')
+def profile(request):
 	return dict()
 
 @view_config(context='milo_app:resources.Movie',

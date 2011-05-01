@@ -1248,13 +1248,17 @@ min-height: 300px;
 font-weight: bold;
 }
 
+.tab-style spam{
+font-weight: none;
+font-size: 10px;
+}
+
 .my-profile-style{
 border: 1px solid #4C4C4C;
 border-radius: 3px;
 margin-bottom: 10px;
 min-height: 70px;
 width: 600px;
-cursor: pointer;
 display: inline-block;
 }
 
@@ -1262,6 +1266,7 @@ display: inline-block;
 margin: 5px 7px 5px 7px;
 height: 50px;
 width: 60px;
+cursor: pointer;
 }
 
 #my-actors .item-option img{
@@ -1280,6 +1285,7 @@ height: 70px;
 margin: 5px 7px 5px 7px;
 height: 50px;
 width: 60px;
+cursor: pointer;
 }
 
 .options-style{
@@ -1288,7 +1294,6 @@ border-radius: 3px;
 width: 600px;
 display: inline-block;
 min-height: 70px;
-cursor: pointer;
 }
 
 .item-option{
@@ -1301,6 +1306,73 @@ font-weight: bold;
 display: inline-block;
 }
 
+.rated-movie-item{
+float:left;
+width:136px;
+height:166px;
+background: #4C4C4C;
+margin: 6px;
+text-align:center;
+font-weight: bold;
+display: inline-block;
+}
+
+.rated-movie-item img{
+margin: 8px 8px 8px 8px;
+height: 150px;
+width: 120px;
+cursor: pointer;
+}
+
+#liked-movies .ui-draggable-dragging{
+float: left;
+width:70px;
+height:85px;
+background: #4C4C4C;
+margin: 6px;
+text-align:center;
+font-weight: bold;
+position: absolute;
+display: inline-block;
+}
+
+
+#liked-movies .ui-draggable-dragging caption{
+display: hidden;
+}
+
+#liked-movies .ui-draggable-dragging img{
+margin: 5px 5px 5px 5px;
+height:75px;
+width: 60px;
+cursor: pointer;
+}
+
+#disliked-movies .ui-draggable-dragging{
+float: left;
+width:70px;
+height:85px;
+background: #4C4C4C;
+margin: 6px;
+text-align:center;
+font-weight: bold;
+position: relative;
+display: inline-block;
+}
+
+
+#disliked-movies .ui-draggable-dragging caption{
+display: hidden;
+}
+
+#disliked-movies .ui-draggable-dragging img{
+margin: 5px 5px 5px 5px;
+height:75px;
+width: 60px;
+cursor: pointer;
+}
+
+
 #actors-options .item-option img{
 height:70px;
 }
@@ -1312,17 +1384,19 @@ height:70px;
 
 .trash{
 height:50px;
+margin: 10px 0 10px 0;
+padding: 10px;
 }
 
 .trash p{
-padding:10px 0 0 42px;
+margin-top:5px;
 }
 
 .trash img{
 float: left;
-width: 30px;
-height: 30px;
-margin: 5px 0 10px 5px;
+width: 35px;
+height: 35px;
+margin: 0 3px 10px 5px;
 }
 
 /*********************************************************************************************
