@@ -10,6 +10,7 @@ import random
              renderer='templates/base.pt')
 def main(request):
 	rand = random.randint(0, Movie.objects().count()-10)
+	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title="Top Movies")
 	if request.GET.get('rec') == 'new':
 		movies = dict(movies=Movie.objects()[9:18].order_by('-date'), title='Last updates')
 		category = 'Recommended Movies'
@@ -19,7 +20,7 @@ def main(request):
 	else:
 		movies = dict(movies=Movie.objects()[18:27].order_by('-date'), title='Last updates')
 		category = 'Recommended Movies'
-		right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title="More Recommendations")
+		right_movies['title']="More Recommendations"
 	slider_movies = Movie.objects()[rand:rand+5]
 	return dict(movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category)
 
