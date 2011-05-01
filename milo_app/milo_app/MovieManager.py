@@ -42,6 +42,7 @@ class MovieManager(object):
 			
 		
 if __name__ == '__main__':
+	
 	import unittest
 	
 	class Test_MovieManager(unittest.TestCase):

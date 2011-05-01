@@ -40,6 +40,7 @@ milo_app/static/css/smoothness/images/ui-icons_2e83ff_256x240.png
 milo_app/static/css/smoothness/images/ui-icons_454545_256x240.png
 milo_app/static/css/smoothness/images/ui-icons_888888_256x240.png
 milo_app/static/css/smoothness/images/ui-icons_cd0a0a_256x240.png
+milo_app/static/images/ajax-loader.gif
 milo_app/static/images/bullet.jpg
 milo_app/static/images/button1.png
 milo_app/static/images/buttoncontinue.png
@@ -186,6 +187,8 @@ milo_app/static/images/Slider_Images/Harry_Potter_half_blood_prince.jpg
 milo_app/static/images/icons/broken_heart.png
 milo_app/static/images/icons/exit.png
 milo_app/static/images/icons/heart.png
+milo_app/static/images/icons/heart_add.png
+milo_app/static/images/icons/heart_delete.png
 milo_app/static/images/icons/milo_logo.png
 milo_app/static/images/icons/play.png
 milo_app/static/images/icons/plus.png
@@ -3169,8 +3172,6 @@ milo_app/static/images/icons/fatcow/32x32/headphone.png
 milo_app/static/images/icons/fatcow/32x32/headphone_mic.png
 milo_app/static/images/icons/fatcow/32x32/health.png
 milo_app/static/images/icons/fatcow/32x32/heart.png
-milo_app/static/images/icons/fatcow/32x32/heart_add.png
-milo_app/static/images/icons/fatcow/32x32/heart_delete.png
 milo_app/static/images/icons/fatcow/32x32/helmet.png
 milo_app/static/images/icons/fatcow/32x32/help.png
 milo_app/static/images/icons/fatcow/32x32/hlocchart.png
@@ -4207,3 +4208,5 @@ milo_app/templates/login.pt
 milo_app/templates/login_milo.pt
 milo_app/templates/movie.pt
 milo_app/templates/mytemplate.pt
+milo_app/templates/test.pt
+milo_app/templates/profile.pt

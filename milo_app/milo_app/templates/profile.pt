@@ -1,0 +1,179 @@
+<metal:html use-macro="base.macros['main']">
+     <metal:content fill-slot="content">
+
+	
+    <div id="content-inside">
+      
+		<div id="post-container">
+         <div id="posts">
+				
+			<h2 id="my-profile" title="Define your preferences to receive better recommendations!">
+			My Profile
+			</h2>
+		  
+		  <div id="tabs">
+			<ul>
+				<li><a href="#tab-genre">Genre</a></li>
+				<li><a href="#tab-actors">Actors</a></li>
+				<li><a href="#tab-directors">Directors</a></li>
+			</ul>
+			
+			<div id="tab-genre" class="tab-style">
+				<h3 title="Current genres present on your profile">My Genres</h3>
+				<div id="my-genres" class="my-profile-style">
+				</div>
+				<div class="trash">
+					<img src="../icons/delete.png"></img>
+					<p>Regret choosing this genre? Just throw it here!</p>
+				</div>
+				<h3 title="Drag & Drop the genres you like!">All Genres Options</h3>
+				
+				<div id="genre-options" class="options-style">
+					<div id="genre#1" class="item-option">
+						<img src="../images/Drag_Drop_test/genres/kiss.jpg"></img>
+						<caption>Romance</caption>
+					</div><!--item-option-->
+					
+					<div id="genre#2" class="item-option">
+						<img src="../images/Drag_Drop_test/genres/animation.jpg"></img>
+						<caption>Animation</caption>
+					</div><!--item-option-->
+					
+					<div id="genre#3" class="item-option">
+						<img src="../images/Drag_Drop_test/genres/terror.png"></img>
+						<caption>Horror</caption>
+					</div><!--item-option-->
+				</div><!--options-style-->
+			</div><!-- tab-genre -->
+			
+			<div id="tab-actors" class="tab-style">
+				<h3 title="Current actors present on your profile">My Actors</h3>
+				<div id="my-actors" class="my-profile-style">
+				</div>
+				<div class="trash">
+					<img src="../icons/delete.png"></img>
+					<p>Regret choosing this actor? Just throw it here!</p>
+				</div>
+				
+				<h3 title="Drag & Drop the actors you like!">All Actors Options</h3>
+				
+				<div id="actors-options" class="options-style">
+					
+					<div id="actor#1" class="item-option">
+						<img src="../images/Drag_Drop_test/actors/brad_pitt.jpg"></img>
+						<caption>Brad Pitt</caption>
+					</div><!--item-option-->
+					
+					<div id="actor#2" class="item-option">
+						<img src="../images/Drag_Drop_test/actors/cameron_diaz.jpg"></img>
+						<caption>Cameron Diaz</caption>
+					</div><!--item-option-->
+					
+					<div id="actor#3" class="item-option">
+						<img src="../images/Drag_Drop_test/actors/renee_zellweger.jpg"></img>
+						<caption>Renee Zellweger</caption>
+					</div><!--item-option-->
+					
+				</div><!--options-style-->
+			</div><!-- tab-actors -->
+			
+			<div id="tab-directors" class="tab-style">
+				<h3 title="Current directors present on your profile">My Directors</h3>
+				<div id="my-directors" class="my-profile-style">
+				</div>
+				<div class="trash">
+					<img src="../icons/delete.png"></img>
+					<p>Regret choosing this director? Just throw it here!</p>
+				</div>
+				<h3 title="Drag & Drop the directors you like!">All Directors Options</h3>
+				<div id="directors-options" class="options-style">
+					
+					<div id="director#1" class="item-option">
+						<img src="../images/Drag_Drop_test/directors/quentin_tarantino.jpg"></img>
+						<caption>Quentin Tarantino</caption>
+					</div><!--item-option-->
+					
+					<div id="director#2" class="item-option">
+						<img src="../images/Drag_Drop_test/directors/woody_allen.jpg"></img>
+						<caption>Woody Allen</caption>
+					</div><!--item-option-->
+					
+					<div id="director#3" class="item-option">
+						<img src="../images/Drag_Drop_test/directors/tim_burton.jpg"></img>
+						<caption>Tim Burton</caption>
+					</div><!--item-option-->
+					
+				</div><!--options-style-->
+			</div><!-- tab-directors -->
+		  </div><!-- tabs -->		
+					
+					
+		</div><!-- posts -->
+				
+			<div id="sidebar">
+           <div id="most-popular-recommendations" class="widget">
+              <h2 title="Videos recommended by Milo sorted by number of 'likes'">Most Popular Recommendations</h2>
+
+            <div class="sidebar-item">
+                <div class="post-thumbnail-side"><a class="thumbnail-frame-side" href="#"
+                title="Movie-Title#1"><!-- nothing to see here --></a>
+                <img width="80" height="80" src="../images/2009/10/can-80x80.jpg" alt="Can" title="can" />
+				</div>
+
+                <div class="sidebar-item-content">
+                  <h3><a href="#" rel="bookmark" title="Movie-Title#1">New Recommended Video #1</a></h3>
+
+                  <p>Brief description</p>
+                </div>
+              </div><!-- sidebar-item -->
+             
+             <div class="sidebar-item">
+                <div class="post-thumbnail-side"><a class="thumbnail-frame-side" href="#"
+                title="Movie-Title#2"><!-- nothing to see here --></a>
+                <img width="80" height="80" src="../images/2009/10/can-80x80.jpg" alt="Can" title="can" />
+				</div>
+
+                <div class="sidebar-item-content">
+                  <h3><a href="#" rel="bookmark" title="Movie-Title#2">New Recommended Video #2</a></h3>
+
+                  <p>Brief description</p>
+                </div>
+              </div><!-- sidebar-item -->
+              
+              <div class="sidebar-item">
+                <div class="post-thumbnail-side"><a class="thumbnail-frame-side" href="#"
+                title="Movie-Title#3"><!-- nothing to see here --></a>
+                <img width="80" height="80" src="../images/2009/10/can-80x80.jpg" alt="Can" title="can" />
+				</div>
+
+                <div class="sidebar-item-content">
+                  <h3><a href="#" rel="bookmark" title="Movie-Title#3">New Recommended Video #3</a></h3>
+
+                  <p>Brief description</p>
+                </div>
+              </div><!-- sidebar-item -->
+              
+              <div class="sidebar-item">
+                <div class="post-thumbnail-side"><a class="thumbnail-frame-side" href="#"
+                title="Movie-Title#4"><!-- nothing to see here --></a>
+                <img width="80" height="80" src="../images/2009/10/can-80x80.jpg" alt="Can" title="can" />
+				</div>
+
+                <div class="sidebar-item-content">
+                  <h3><a href="#" rel="bookmark" title="Movie-Title#4">New Recommended Video #4</a></h3>
+
+                  <p>Brief description</p>
+                </div>
+              </div><!-- sidebar-item -->
+              
+            </div><!-- top-movies-sidebar -->  
+					
+            <div id="sidebar-profile" class="widget">
+              <h2></h2>
+                <p><a href="" target="_blank" title=""></a></p>
+            </div><!-- sidebar-profile -->
+          
+         </div><!-- sidebar -->
+        </div><!-- post-container -->
+      </div><!-- content-inside --></metal:content>
+</metal:html>
