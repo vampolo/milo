@@ -176,9 +176,10 @@
               
               <div class="panel" tal:repeat="movie slider_movies">
                 <div class="slider-post">
+				 <a tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)">
                   <img tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.image)" 
-                  class="slider-image" alt="Movie-title-#1" title="Movie-title-#1" />
-                  
+                  class="slider-image" alt="${movie.title}" title="${movie.title}" />
+                  </a>
                   <div class="slider-movie-description">
 					<h2 tal:condition="logged"><a href="#" title="List recommended films for you">Recommended for you!</a></h2>
                     <h3 tal:omit-tag="not logged"><h2 tal:omit-tag="logged"><a tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)" title="Movie-title-#1">${movie.title}</a></h2></h3>
@@ -270,7 +271,7 @@
               <h2>${right_movies.get('title')}</h2>
 
               <div class="sidebar-item" tal:repeat="movie right_movies.get('movies')">
-                <div class="post-thumbnail-side"><a class="thumbnail-frame-side" href="#"
+                <div class="post-thumbnail-side"><a class="thumbnail-frame-side" tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)"
                 title="Movie-Title#6"><!-- nothing to see here --></a>
                 <img width="80" height="80" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)" alt="Can" title="can" />
                 </div>

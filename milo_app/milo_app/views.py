@@ -9,8 +9,7 @@ import random
 @view_config(context='milo_app:resources.Root',
              renderer='templates/base.pt')
 def main(request):
-
-	#use 0-20 for not logged in and 20: for logged in
+	rand = random.randint(0, Movie.objects().count()-10)
 	if request.GET.get('rec') == 'new':
 		movies = dict(movies=Movie.objects()[9:18].order_by('-date'), title='Last updates')
 		category = 'Recommended Movies'
@@ -20,10 +19,8 @@ def main(request):
 	else:
 		movies = dict(movies=Movie.objects()[18:27].order_by('-date'), title='Last updates')
 		category = 'Recommended Movies'
-		#put right_movies here
-	rand = random.randint(0, Movie.objects().count()-10)
+		right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title="More Recommendations")
 	slider_movies = Movie.objects()[rand:rand+5]
-	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title="Top Movies")
 	return dict(movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category)
 
 @view_config(name='about', context='milo_app:resources.Root',
