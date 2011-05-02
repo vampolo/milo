@@ -22,7 +22,8 @@ def main(request):
 		page = int(page)
 	
 	if request.GET.get('rec') == 'new':
-		main_movies = Movie.objects()[9:18].order_by('-date')
+		main_movies = Movie.objects().order_by('-date')
+		slider_movies = main_movies[:5]
 		category = 'Recommended Movies'	
 		new_rec=True
 		
@@ -31,14 +32,14 @@ def main(request):
 		category = 'All Movies'
 	else:
 		main_movies = Movie.objects().order_by('date')
+		slider_movies = main_movies[:5]
 		category = 'Recommended Movies'
 		right_movies['title']="More Recommendations"
 	
 	main_movies_title = 'Last updates'
-	movies = dict(movies=main_movies[page*9:page*9+9], title=main_movies_title)
-	slider_movies = slider_movies[:5] if slider_movies else Movie.objects()[rand:rand+5]
-	results = dict(movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category, page=page, new_rec=new_rec)
-	return results
+	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9], title=main_movies_title)
+	slider_movies = slider_movies if slider_movies else Movie.objects()[rand:rand+5]
+	return dict(movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category, page=page, new_rec=new_rec)
 
 @view_config(name='about', context='milo_app:resources.Root',
 				 renderer='templates/about.pt')
