@@ -22,14 +22,16 @@ class MediaRetriever(object):
 			#we are already in the ending page of the movie
 			second_page = first_page
 		try:
-			image_page_url = second_page.xpath("//div[@id='main']//div[@class='mediastrip_container']//div[@class='mediastrip_container']//div[@class='see-more']/a")[0].attrib.get('href')
+			image_page_url = second_page.xpath("//div[@id='main']//div[@class='mediastrip_container']/div[@class='mediastrip']/a")[0].attrib.get('href')
 		except IndexError:
 			image_page_url = None
 			image_url = None
 		if image_page_url is not None:
-			image_page_list = parse(self.__create_request('http://www.imdb.com'+image_page_url))
-			image_page = image_page_list.xpath("//div[@id='main']/div[@class='thumb_list']//a")[0].attrib.get('href') 
-			image_url = image_page.xpath("//div[@id='main']/div[@class='thumb_list']//img")[0].attrib.get('src')
+			image_page = parse(self.__create_request('http://www.imdb.com'+image_page_url))
+			try:
+				image_url = image_page.xpath("//div[@id='main']//div[@id='canvas']//img[@id='primary-img']")[0].attrib.get('src') 
+			except IndexError:
+				image_url = None
 		return dict(image=image_url)
 		
 	def get_poster(self):
@@ -91,7 +93,7 @@ if __name__ == '__main__':
 	
 	class Test_MediaRetriever(unittest.TestCase):
 		def test_image(self):
-			m = MediaRetriever('the king speach')
+			m = MediaRetriever('avatar')
 			self.assertNotEqual(m.get_image(), None)
 		
 		def test_image_caimano(self):
