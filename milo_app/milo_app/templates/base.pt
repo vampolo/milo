@@ -42,19 +42,19 @@
   </script>
   <script type='text/javascript' src="${request.static_url('milo_app:static/js/ui.js')}">
   </script>
-  <script type='text/javascript' src="${request.static_url('milo_app:static/js/l10n.js_ver=20101110')}">
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/l10n.js')}">
   </script>
-  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.superfish.js_ver=3.1')}">
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.superfish.js')}">
   </script>
-  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.easing.js_ver=3.1')}">
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.easing.js')}">
   </script>
-  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.coda.js_ver=3.1')}">
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.coda.js')}">
   </script>
-  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.float.js_ver=3.1')}">
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.float.js')}">
   </script>
-  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.equal.js_ver=3.1')}">
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.equal.js')}">
   </script>
-  <script type='text/javascript' src="${request.static_url('milo_app:static/js/fancybox/jquery.fancybox.js_ver=3.1')}">
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/fancybox/jquery.fancybox.js')}">
   </script>
   <script tal:condition="new_rec" type='text/javascript' src="${request.static_url('milo_app:static/js/undo.js')}">
   </script>
