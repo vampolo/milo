@@ -14,7 +14,6 @@
 
 $(document).ready(function() 
 {	
-	
 	$( "#tabs" ).tabs();
 	
 	//fix for chrome

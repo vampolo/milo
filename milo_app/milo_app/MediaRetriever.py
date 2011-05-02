@@ -13,21 +13,24 @@ class MediaRetriever(object):
 		return urllib2.urlopen(req)
 		
 	def get_image(self):
-		movie_title = self.movie_title
-		page_search_list = parse(urllib2.urlopen('http://moviepicturedb.com/browse/search?'+urllib.urlencode({'title': movie_title})))
+		movie = self.movie_title
+		first_page = parse(self.__create_request('http://www.imdb.com/find?', urllib.urlencode({'s':'tt', 'q':movie})))
+		second_page_url = first_page.xpath('//tr/td[3]/a')[0].attrib.get('href')
+		if second_page_url[0] != 'h':
+			second_page = parse(self.__create_request('http://www.imdb.com'+second_page_url))
+		else:
+			#we are already in the ending page of the movie
+			second_page = first_page
 		try:
-			page_movie_gallery = page_search_list.xpath('//table/tr/td/strong/a')[0].attrib.get('href')
+			image_page_url = second_page.xpath("//div[@id='main']//div[@class='mediastrip_container']//div[@class='mediastrip_container']//div[@class='see-more']/a")[0].attrib.get('href')
 		except IndexError:
-			return dict(image=None)
-		page_movie_gallery_wallpapers = parse(urllib2.urlopen(page_movie_gallery+'?cat_id=3'))
-		try:
-			page_movie_wallpaper = page_movie_gallery_wallpapers.xpath('//td/div/div/a')[0].attrib.get('href')
-		except IndexError:
-			#there are no pics in cat_id=3 for this movie
-			page_movie_gallery_wallpapers = parse(urllib2.urlopen(page_movie_gallery))
-			page_movie_wallpaper = page_movie_gallery_wallpapers.xpath('//td/div/div/a')[0].attrib.get('href')
-		image_533x400 = parse(urllib2.urlopen(page_movie_wallpaper)).xpath('//body/div/div/div/div/img')[0].attrib.get('src')
-		return dict(image=image_533x400)
+			image_page_url = None
+			image_url = None
+		if image_page_url is not None:
+			image_page_list = parse(self.__create_request('http://www.imdb.com'+image_page_url))
+			image_page = image_page_list.xpath("//div[@id='main']/div[@class='thumb_list']//a")[0].attrib.get('href') 
+			image_url = image_page.xpath("//div[@id='main']/div[@class='thumb_list']//img")[0].attrib.get('src')
+		return dict(image=image_url)
 		
 	def get_poster(self):
 		movie_title = self.movie_title
@@ -40,7 +43,7 @@ class MediaRetriever(object):
 	def get_trailer(self):
 		movie_title = self.movie_title
 		page_search_list = parse(urllib2.urlopen('http://www.youtube.com/results?'+urllib.urlencode({'search_query': movie_title+' trailer'})))
-		page_movie_trailer = page_search_list.xpath('//body/div/div/div/div/div/div/div/div/h3/a')[0].attrib.get('href')
+		page_movie_trailer = page_search_list.xpath("//div[@id='search-results']//h3/a")[0].attrib.get('href')
 		trailer_id = page_movie_trailer[9:]
 		trailer_source = 'http://www.youtube.com/embed/'+trailer_id
 		return dict(trailer=trailer_source)
@@ -88,20 +91,21 @@ if __name__ == '__main__':
 	
 	class Test_MediaRetriever(unittest.TestCase):
 		def test_image(self):
-			m = MediaRetriever('matrix')
+			m = MediaRetriever('the king speach')
 			self.assertNotEqual(m.get_image(), None)
-			
+		
 		def test_image_caimano(self):
 			m = MediaRetriever('il caimano')
 			#it does not exists in db
 			self.assertNotEqual(m.get_image(), None)
 		
 		def test_get_infos(self):
-			for movie in ['toy story 3']:
+			for movie in ['the king speach']:
 				m = MediaRetriever(movie)
 				for i in m.get_info():
+					print m.get_info()
 					self.assertNotEqual(i, None)
-					
+	
 	unittest.main()
 	
 	

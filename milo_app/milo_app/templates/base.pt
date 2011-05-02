@@ -106,10 +106,11 @@
   <div id="navigation">
     <div class="navigation-inside navigation-video">
       <ul class="menu">
-        
-        <li tal:condition="logged">
+        <tal:logged condition="logged">
+        <li>
 			<a href="${request.resource_url(request.root)}" title="Show a recommendation">Recommended</a>
         </li>
+        </tal:logged>
         <li>
 			<a href="${request.resource_url(request.root)}" title="List recently updated movies">Latest</a>
         </li>
@@ -266,9 +267,17 @@
               
             </div>
             </div>
-            <!-- movie-item -->
+            <!-- movie-item , first_page='false')-->
             </tal:r>
-
+			
+			<!--Testing Next/Previous buttons-->
+			<div id="posts-footer">
+				<a id="next-bottom-button" href="${request.resource_url(request.root, query=dict(page=page_number), args=dict(page_number = page_number + 1))}">Next<img src="images/icons/fatcow/32x32/resultset_next.png"></img></a>
+				<tal:previous condition="not first_page">
+				<a id="previous-bottom-button" href="${request.resource_url(request.root, args=dict(page_number = page_number - 1))}"><img src="images/icons/fatcow/32x32/resultset_previous.png"></img>Previous</a>
+				</tal:previous>
+			</div><!-- posts-footer-->
+			
           </div><!-- posts -->
 				
 			<div id="sidebar">

@@ -11,9 +11,21 @@ import random
 def main(request):
 	rand = random.randint(0, Movie.objects().count()-10)
 	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title="Top Movies")
+	
+	#Testing Next/Previous buttons 
+	if request.GET.get('page_number') is None:
+		page_number = 1
+		first_page = 'true'
+		movies = dict(movies=Movie.objects()[0:9].order_by('-date'), title='Last updates')
+	if request.GET.get('next') == page_number:
+		movies = dict(movies=Movie.objects()[(page_number)*9:(page_number)*9].order_by('-date'), title='Last updates')
+		first_page = 'false'
+	print first_page
+	
 	if request.GET.get('rec') == 'new':
 		movies = dict(movies=Movie.objects()[9:18].order_by('-date'), title='Last updates')
-		category = 'Recommended Movies'
+		category = 'Recommended Movies'	
+		
 	elif not authenticated_userid(request):
 		movies = dict(movies=Movie.objects()[0:9].order_by('-date'), title='Last updates')
 		category = 'All Movies'
@@ -22,7 +34,8 @@ def main(request):
 		category = 'Recommended Movies'
 		right_movies['title']="More Recommendations"
 	slider_movies = Movie.objects()[rand:rand+5]
-	return dict(movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category)
+	results = dict(movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category, page_number=page_number, first_page=first_page)
+	return results
 
 @view_config(name='about', context='milo_app:resources.Root',
 				 renderer='templates/about.pt')

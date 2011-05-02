@@ -38,7 +38,7 @@ class Movie(Document):
 		movie = Movie.objects(title = key).first()
 		return movie
 		
-	#movie is identified by tile and year
+	#movie is identified by title and year
 	title = StringField(required=True)
 	date = DateTimeField()
 	description = StringField()

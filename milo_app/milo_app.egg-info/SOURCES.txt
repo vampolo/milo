@@ -185,6 +185,7 @@ milo_app/static/images/Drag_Drop_test/genres/romance.png
 milo_app/static/images/Drag_Drop_test/genres/terror.png
 milo_app/static/images/Slider_Images/Harry_Potter_half_blood_prince.jpg
 milo_app/static/images/icons/broken_heart.png
+milo_app/static/images/icons/delete.png
 milo_app/static/images/icons/exit.png
 milo_app/static/images/icons/heart.png
 milo_app/static/images/icons/heart_add.png
@@ -4201,6 +4202,72 @@ milo_app/static/js/fancybox/images/fancy_title_over.png
 milo_app/static/js/fancybox/images/fancybox-x.png
 milo_app/static/js/fancybox/images/fancybox-y.png
 milo_app/static/js/fancybox/images/fancybox.png
+milo_app/static/movie_data/...E alla fine arriva Polly_image.jpg
+milo_app/static/movie_data/...E alla fine arriva Polly_poster.jpg
+milo_app/static/movie_data/Alla ricerca di Nemo_image.jpg
+milo_app/static/movie_data/Alla ricerca di Nemo_poster.jpg
+milo_app/static/movie_data/Amores perros_image.jpg
+milo_app/static/movie_data/Amores perros_poster.jpg
+milo_app/static/movie_data/Avatar_image.jpg
+milo_app/static/movie_data/Avatar_poster.jpg
+milo_app/static/movie_data/Batman Begins_image.jpg
+milo_app/static/movie_data/Batman Begins_poster.jpg
+milo_app/static/movie_data/City of God_image.jpg
+milo_app/static/movie_data/City of God_poster.jpg
+milo_app/static/movie_data/Dragon Trainer_image.jpg
+milo_app/static/movie_data/Dragon Trainer_poster.jpg
+milo_app/static/movie_data/Forrest Gump_image.jpg
+milo_app/static/movie_data/Forrest Gump_poster.jpg
+milo_app/static/movie_data/Il caimano_poster.jpg
+milo_app/static/movie_data/Il discorso del re_image.jpg
+milo_app/static/movie_data/Il discorso del re_poster.jpg
+milo_app/static/movie_data/Il gladiatore_image.jpg
+milo_app/static/movie_data/Il gladiatore_poster.jpg
+milo_app/static/movie_data/Il padrino_image.jpg
+milo_app/static/movie_data/Il padrino_poster.jpg
+milo_app/static/movie_data/Inception_poster.jpg
+milo_app/static/movie_data/Kill Bill: volume 1_image.jpg
+milo_app/static/movie_data/Kill Bill: volume 1_poster.jpg
+milo_app/static/movie_data/Le pagine della nostra vita_image.jpg
+milo_app/static/movie_data/Le pagine della nostra vita_poster.jpg
+milo_app/static/movie_data/Lettere da Iwo Jima_image.jpg
+milo_app/static/movie_data/Lettere da Iwo Jima_poster.jpg
+milo_app/static/movie_data/Matrix Reloaded_image.jpg
+milo_app/static/movie_data/Matrix Reloaded_poster.jpg
+milo_app/static/movie_data/Matrix Revolutions_image.jpg
+milo_app/static/movie_data/Matrix Revolutions_poster.jpg
+milo_app/static/movie_data/Matrix_image.jpg
+milo_app/static/movie_data/Matrix_poster.jpg
+milo_app/static/movie_data/Monsters & Co._image.jpg
+milo_app/static/movie_data/Monsters & Co._poster.jpg
+milo_app/static/movie_data/Ratatouille_image.jpg
+milo_app/static/movie_data/Ratatouille_poster.jpg
+milo_app/static/movie_data/Rio_image.jpg
+milo_app/static/movie_data/Rio_poster.jpg
+milo_app/static/movie_data/Ritorno al futuro_image.jpg
+milo_app/static/movie_data/Ritorno al futuro_poster.jpg
+milo_app/static/movie_data/Rocky_image.jpg
+milo_app/static/movie_data/Rocky_poster.jpg
+milo_app/static/movie_data/Shutter Island_image.jpg
+milo_app/static/movie_data/Shutter Island_poster.jpg
+milo_app/static/movie_data/TRON: Legacy_image.jpg
+milo_app/static/movie_data/TRON: Legacy_poster.jpg
+milo_app/static/movie_data/The Butterfly Effect_image.jpg
+milo_app/static/movie_data/The Butterfly Effect_poster.jpg
+milo_app/static/movie_data/The Millionaire_image.jpg
+milo_app/static/movie_data/The Millionaire_poster.jpg
+milo_app/static/movie_data/The Social Network_image.jpg
+milo_app/static/movie_data/The Social Network_poster.jpg
+milo_app/static/movie_data/Toy story - Il mondo dei giocattoli_image.jpg
+milo_app/static/movie_data/Toy story - Il mondo dei giocattoli_poster.jpg
+milo_app/static/movie_data/Toy story 2 - Woody e Buzz alla riscossa_image.jpg
+milo_app/static/movie_data/Toy story 2 - Woody e Buzz alla riscossa_poster.jpg
+milo_app/static/movie_data/Toy story 3 - La grande fuga_image.jpg
+milo_app/static/movie_data/Toy story 3 - La grande fuga_poster.jpg
+milo_app/static/movie_data/V per vendetta_image.jpg
+milo_app/static/movie_data/V per vendetta_poster.jpg
+milo_app/static/movie_data/Vanilla Sky_image.jpg
+milo_app/static/movie_data/Vanilla Sky_poster.jpg
 milo_app/templates/about.pt
 milo_app/templates/base.pt
 milo_app/templates/categories.pt
@@ -4208,5 +4275,5 @@ milo_app/templates/login.pt
 milo_app/templates/login_milo.pt
 milo_app/templates/movie.pt
 milo_app/templates/mytemplate.pt
-milo_app/templates/test.pt
 milo_app/templates/profile.pt
+milo_app/templates/test.pt
