@@ -10,31 +10,34 @@ import random
              renderer='templates/base.pt')
 def main(request):
 	rand = random.randint(0, Movie.objects().count()-10)
+	new_rec = None
+	slider_movies = None
 	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title="Top Movies")
 	
-	#Testing Next/Previous buttons 
-	if request.GET.get('page_number') is None:
-		page_number = 1
-		first_page = 'true'
-		movies = dict(movies=Movie.objects()[0:9].order_by('-date'), title='Last updates')
-	if request.GET.get('next') == page_number:
-		movies = dict(movies=Movie.objects()[(page_number)*9:(page_number)*9].order_by('-date'), title='Last updates')
-		first_page = 'false'
-	print first_page
+	#Testing Next/Previous buttons
+	page = request.GET.get('page')
+	if page is None:
+		page = 1
+	else:
+		page = int(page)
 	
 	if request.GET.get('rec') == 'new':
-		movies = dict(movies=Movie.objects()[9:18].order_by('-date'), title='Last updates')
+		main_movies = Movie.objects()[9:18].order_by('-date')
 		category = 'Recommended Movies'	
+		new_rec=True
 		
 	elif not authenticated_userid(request):
-		movies = dict(movies=Movie.objects()[0:9].order_by('-date'), title='Last updates')
+		main_movies = Movie.objects().order_by('-date')
 		category = 'All Movies'
 	else:
-		movies = dict(movies=Movie.objects()[18:27].order_by('-date'), title='Last updates')
+		main_movies = Movie.objects().order_by('date')
 		category = 'Recommended Movies'
 		right_movies['title']="More Recommendations"
-	slider_movies = Movie.objects()[rand:rand+5]
-	results = dict(movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category, page_number=page_number, first_page=first_page)
+	
+	main_movies_title = 'Last updates'
+	movies = dict(movies=main_movies[page*9:page*9+9], title=main_movies_title)
+	slider_movies = slider_movies[:5] if slider_movies else Movie.objects()[rand:rand+5]
+	results = dict(movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category, page=page, new_rec=new_rec)
 	return results
 
 @view_config(name='about', context='milo_app:resources.Root',

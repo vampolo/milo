@@ -4,7 +4,7 @@
 	xmlns:tal="http://xml.zope.org/namespaces/tal" 
 	xmlns:metal="http://xml.zope.org/namespaces/metal" 
 	dir="ltr" lang="en-US" xml:lang="en-US">
-<metal:html define-macro="main" tal:define="logged h.authenticated_userid(request)">
+<metal:html define-macro="main" tal:define="logged h.authenticated_userid(request); new_rec new_rec|None">
 <head profile="http://gmpg.org/xfn/11">
   
   <!-- page titles -->
@@ -55,6 +55,8 @@
   <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.equal.js_ver=3.1')}">
   </script>
   <script type='text/javascript' src="${request.static_url('milo_app:static/js/fancybox/jquery.fancybox.js_ver=3.1')}">
+  </script>
+  <script tal:condition="new_rec" type='text/javascript' src="${request.static_url('milo_app:static/js/undo.js')}">
   </script>
   <script src="http://connect.facebook.net/en_US/all.js#appId=113902308692268&amp;xfbml=1">
   </script>	
@@ -234,8 +236,7 @@
 				<h2 title="Orientation">${movies.get('title')}</h2>
             
             <tal:r repeat="movie movies.get('movies')">
-            <div class="gallery-item clearboth" tal:omit-tag="repeat.movie.index % 3">
-			<div class="gallery-item" tal:omit-tag="not repeat.movie.index % 3">
+            <div class="gallery-item ${'clearboth' if not repeat.movie.index % 3 else ''}">
             	<div class="post-thumbnail">
             	<a class="thumbnail-frame" tal:attributes="href request.resource_url(context, 'Movie', movie.title)" title="See the trailer and details">
             	<img width="180" height="250" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)" class="recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
@@ -264,18 +265,14 @@
 
                 	<li class="comments"><a href="#comments" title="View comments about this movie">${len(movie.comments)} Comments</a></li>
               </ul>
-              
-            </div>
             </div>
             <!-- movie-item , first_page='false')-->
             </tal:r>
 			
-			<!--Testing Next/Previous buttons-->
+			<!--Next/Previous buttons-->
 			<div id="posts-footer">
-				<a id="next-bottom-button" href="${request.resource_url(request.root, query=dict(page=page_number), args=dict(page_number = page_number + 1))}">Next<img src="images/icons/fatcow/32x32/resultset_next.png"></img></a>
-				<tal:previous condition="not first_page">
-				<a id="previous-bottom-button" href="${request.resource_url(request.root, args=dict(page_number = page_number - 1))}"><img src="images/icons/fatcow/32x32/resultset_previous.png"></img>Previous</a>
-				</tal:previous>
+				<a id="next-bottom-button" href="${request.resource_url(request.root, query=dict(page=page+1))}">Next<img src="images/icons/fatcow/32x32/resultset_next.png"></img></a>
+				<a tal:condition="not page==1" id="previous-bottom-button" href="${request.resource_url(request.root, query=dict(page=page-1))}"><img src="images/icons/fatcow/32x32/resultset_previous.png"></img>Previous</a>
 			</div><!-- posts-footer-->
 			
           </div><!-- posts -->
