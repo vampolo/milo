@@ -6,6 +6,7 @@
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
 margin: 0;
 padding: 0;
+cursor: default;
 }
 
 table {
@@ -41,7 +42,7 @@ background: #1A1D1F;
 width: auto;
 height: auto;
 font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
-font-size: 12px;
+font-size: 13px;
 line-height: 18px;
 color: #A9C3CC;
 }
@@ -254,6 +255,7 @@ z-index: 99;
 float: left;
 width: 965px;
 padding: 6px 0 0 15px;
+font-size: 13px;
 }
 
 .menu a {
@@ -360,15 +362,30 @@ padding: 0 20px 0 30px;
 float: right;
 }
 
+#signin img{
+margin-bottom: -5px;
+padding-right: 5px;
+}
+
 #username {
-padding: 0 20px 0 30px;
+padding: 0 0 0 30px;
 float: right;
 }
 
+#username img{
+margin-bottom: -5px;
+padding-right: 2px;
+}
+
 #signout {
-background: url(../icons/exit.png) top left no-repeat;
-padding: 0 20px 0 30px;
+padding: 0 20px 0 20px;
 float: right;
+}
+
+
+#signout img{
+margin-bottom: -5px;
+padding-right: 5px;
 }
 
 /*********************************************************************************************
@@ -615,8 +632,9 @@ margin: 30px 0 0 70px;
 
 .slider-image {
 float: left;
-width: 500px;
+width: 430px;
 height: 315px;
+margin: 0 30px 0 20px;
 border-width: 3px;
 border-color: lightgrey;
 border-style: solid;
@@ -626,18 +644,17 @@ border-radius: 5px;
 .slider-movie-description  h2{
 font-weight:bold;
 color: #FFFFFF;
-margin: 0 0 20px -2px;
+margin: 0 0 15px -2px;
 }
-
 
 .slider-movie-description h2 a:hover {
 color: #A9C3CC;
 }
 
 .slider-movie-description {
-width: 230px;
+width: 300px;
 float: left;
-margin: 10px 0 0 30px;
+margin: 0 0 0 20px;
 }
 
 .continue {
@@ -645,22 +662,14 @@ background: url(../images/button1.png) 0 0;
 width: 146px;
 height: 28px;
 float: left;
-margin: 0 0 20px -2px;
-padding: 7px 0 0 0;
-}
-
-.continue:hover {
-background: url(../images/buttoncontinue.png) 0 0;
-width: 146px;
-height: 28px;
-float: left;
-margin: 0 0 20px -2px;
+margin: 0 0 15px -2px;
 padding: 7px 0 0 0;
 }
 
 .slider-movie-details{
 float: left;
 width: 100%;
+margin-top: 5px;
 }
 
 .date-slider {
@@ -676,6 +685,11 @@ font-size: 12px;
 padding: 5px 0 2px 5px;
 }
 
+.info-slider span{
+font-size: 14px;
+color: #B7C9D0;
+}
+
 .info-slider a:link, li.info a:visited {
 color: #E6F5F7;
 font-size: 12px;
@@ -686,6 +700,12 @@ font-weight: bold;
 color: #A9C3CC;
 }
 
+.info-slider img{
+margin-right: 2px;
+margin-bottom: -3px;
+width: 15px; 
+height:13px;
+}
 
 .genre-slider{
 color: #A9C3CC;
@@ -794,6 +814,11 @@ margin: 0 20px 20px 0;
 font-size: 16px;
 }
 
+.gallery-item span{
+font-size: 14px;
+padding-left: 3px;
+}
+
 .post-thumbnail {
 width: 200px;
 height: 150px;
@@ -876,6 +901,29 @@ border-bottom: 1px solid #4C4C4C;
 color: #A9C3CC;
 font-size: 12px;
 padding: 5px 0 2px 5px;
+}
+
+.info img{
+width: 13px; 
+height:11px;
+padding-right: 2px;
+}
+
+.info span{
+font-weight: bold;
+}
+
+.info-logged img{
+width: 18px; 
+height:18px;
+padding: 0 0 0 3px;
+margin-bottom: -3px;
+}
+
+.info-logged span{
+font-weight: bold;
+font-size: 13px;
+padding-right: -2px;
 }
 
 li.info a:link, li.info a:visited {
@@ -1256,7 +1304,29 @@ font-weight: none;
 font-size: 10px;
 }
 
+#rated-movies{
+float: right;
+}
+
 .my-profile-style{
+border: 1px solid #4C4C4C;
+border-radius: 3px;
+margin-bottom: 10px;
+min-height: 70px;
+width: 600px;
+display: inline-block;
+}
+
+.my-profile-liked-style{
+border: 1px solid #4C4C4C;
+border-radius: 3px;
+margin-bottom: 10px;
+min-height: 70px;
+width: 600px;
+display: inline-block;
+}
+
+.my-profile-disliked-style{
 border: 1px solid #4C4C4C;
 border-radius: 3px;
 margin-bottom: 10px;
@@ -1311,70 +1381,16 @@ display: inline-block;
 
 .rated-movie-item{
 float:left;
-width:136px;
-height:166px;
 background: #4C4C4C;
 margin: 6px;
+padding: 2px;
+border: 1px solid #4C4C4C;
+border-radius: 3px;
 text-align:center;
 font-weight: bold;
 display: inline-block;
-}
-
-.rated-movie-item img{
-margin: 8px 8px 8px 8px;
-height: 150px;
-width: 120px;
 cursor: pointer;
 }
-
-#liked-movies .ui-draggable-dragging{
-float: left;
-width:70px;
-height:85px;
-background: #4C4C4C;
-margin: 6px;
-text-align:center;
-font-weight: bold;
-position: absolute;
-display: inline-block;
-}
-
-
-#liked-movies .ui-draggable-dragging caption{
-display: hidden;
-}
-
-#liked-movies .ui-draggable-dragging img{
-margin: 5px 5px 5px 5px;
-height:75px;
-width: 60px;
-cursor: pointer;
-}
-
-#disliked-movies .ui-draggable-dragging{
-float: left;
-width:70px;
-height:85px;
-background: #4C4C4C;
-margin: 6px;
-text-align:center;
-font-weight: bold;
-position: relative;
-display: inline-block;
-}
-
-
-#disliked-movies .ui-draggable-dragging caption{
-display: hidden;
-}
-
-#disliked-movies .ui-draggable-dragging img{
-margin: 5px 5px 5px 5px;
-height:75px;
-width: 60px;
-cursor: pointer;
-}
-
 
 #actors-options .item-option img{
 height:70px;
@@ -1387,8 +1403,8 @@ height:70px;
 
 .trash{
 height:50px;
-margin: 10px 0 10px 0;
-padding: 10px;
+margin-top: 10px;
+padding: 10px 10px 5px 10px;
 }
 
 .trash p{
@@ -1399,7 +1415,8 @@ margin-top:5px;
 float: left;
 width: 35px;
 height: 35px;
-margin: 0 3px 10px 5px;
+padding-bottom: 5px;
+margin: -5px 3px 0 5px;
 }
 
 /*********************************************************************************************
@@ -1409,10 +1426,9 @@ margin: 0 3px 10px 5px;
 *********************************************************************************************/
 
 .tab-category-content{
-margin-bottom: 10px;
+margin: 30px;
 min-height: 70px;
-width: 600px;
-cursor: pointer;
+width: 900px;
 display: inline-block;
 }
 
@@ -1420,6 +1436,7 @@ display: inline-block;
 margin: 5px 7px 5px 7px;
 height: 80px;
 width: 80px;
+cursor: pointer;
 }
 
 .item-category-list{
@@ -1431,6 +1448,22 @@ text-align:center;
 font-weight: bold;
 display: inline-block;
 border-radius: 2px;
+}
+
+#category-posts {
+width: 980px;
+float: left;
+padding: 22px 0 0 0;
+margin-bottom: 20px;
+}
+
+#category-posts h2{
+padding: 0 0 3px 0;
+}
+
+#category-posts p{
+padding: 15px 0 5px 8px;
+font-size: 14px;
 }
 
 /*********************************************************************************************
@@ -1452,23 +1485,26 @@ margin: 3px;
 float: right;
 }
 
-.recommend-hearts-slider {
+.recommend-thumbs-slider {
 float: left;
 width: 100%;
-margin-bottom: 15px;
+margin: 6px 0 6px 0;
 }
 
-.recommend-hearts-slider a{
-margin: 5px 0 0 10px;
+.recommend-thumbs-slider a{
+border: 1px solid #A9C3CC;
+border-radius: 3px;
+padding: 3px;
 }
 
-.recommend-hearts-slider img{
-margin-bottom: -7px;
+.recommend-thumbs-slider img{
+margin-bottom: -6px;
+border-left: 1px solid #A9C3CC;
 }
 
-.recommend-hearts-slider span{
+.recommend-thumbs-slider span{
 font-weight:bold;
-font-size: 13px;
+font-size: 14px;
 }
 
 /********************************************************************************************* 

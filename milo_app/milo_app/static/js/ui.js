@@ -53,10 +53,39 @@ $(document).ready(function()
 	helper:'clone'
 	});
 	
+	$(".my-profile-liked-style div").draggable({
+	helper:'clone'
+	});
+	
+	$(".my-profile-liked-style").droppable(
+		{
+		accept: '.my-profile-disliked-style div',
+		drop: function(ev,ui){
+			var droppedItem = $(ui.draggable);
+			$(this).append(droppedItem);		
+			}
+			
+		}
+	);
+	
+	$(".my-profile-disliked-style div").draggable({
+	helper:'clone'
+	});
+	
+	$(".my-profile-disliked-style").droppable(
+		{
+		accept: '.my-profile-liked-style div',
+		drop: function(ev,ui){
+			var droppedItem = $(ui.draggable);
+			$(this).append(droppedItem);		
+			}
+			
+		}
+	);
 	
 	$(".trash").droppable(
 		{
-		accept: '.my-profile-style div',
+		accept: '.my-profile-style div, .my-profile-disliked-style div, .my-profile-liked-style div',
 		drop: function(ev,ui){
 				var removedItem = $(ui.draggable);
 				if(removedItem.parent().attr('id') == 'my-genres')			

@@ -4191,11 +4191,19 @@ milo_app/static/images/icons/fatcow/32x32/zoom_layer.png
 milo_app/static/images/icons/fatcow/32x32/zoom_out.png
 milo_app/static/images/icons/fatcow/32x32/zoom_refresh.png
 milo_app/static/images/icons/fatcow/32x32/zoom_selection.png
+milo_app/static/js/comment-reply.js
 milo_app/static/js/jquery-1.5.2.min.js
 milo_app/static/js/jquery-ui-1.8.12.custom.min.js
+milo_app/static/js/jquery.coda.js
+milo_app/static/js/jquery.easing.js
+milo_app/static/js/jquery.equal.js
+milo_app/static/js/jquery.float.js
 milo_app/static/js/jquery.js
+milo_app/static/js/jquery.superfish.js
 milo_app/static/js/jqueryui.js
+milo_app/static/js/l10n.js
 milo_app/static/js/ui.js
+milo_app/static/js/undo.js
 milo_app/static/js/wlwmanifest.xml
 milo_app/static/js/fancybox/images/blank.gif
 milo_app/static/js/fancybox/images/fancy_title_over.png
@@ -4206,7 +4214,6 @@ milo_app/static/movie_data/...E alla fine arriva Polly_image.jpg
 milo_app/static/movie_data/...E alla fine arriva Polly_poster.jpg
 milo_app/static/movie_data/Alla ricerca di Nemo_image.jpg
 milo_app/static/movie_data/Alla ricerca di Nemo_poster.jpg
-milo_app/static/movie_data/Amores perros_image.jpg
 milo_app/static/movie_data/Amores perros_poster.jpg
 milo_app/static/movie_data/Avatar_image.jpg
 milo_app/static/movie_data/Avatar_poster.jpg
@@ -4225,6 +4232,7 @@ milo_app/static/movie_data/Il gladiatore_image.jpg
 milo_app/static/movie_data/Il gladiatore_poster.jpg
 milo_app/static/movie_data/Il padrino_image.jpg
 milo_app/static/movie_data/Il padrino_poster.jpg
+milo_app/static/movie_data/Inception_image.jpg
 milo_app/static/movie_data/Inception_poster.jpg
 milo_app/static/movie_data/Kill Bill: volume 1_image.jpg
 milo_app/static/movie_data/Kill Bill: volume 1_poster.jpg

@@ -15,7 +15,7 @@
 				<li><a href="#tab-genre">Genre</a></li>
 				<li><a href="#tab-actors">Actors</a></li>
 				<li><a href="#tab-directors">Directors</a></li>
-				<li><a href="#tab-movies">Rated Movies</a></li>
+				<li id="rated-movies"><a href="#tab-movies">Rated Movies</a></li>
 			</ul>
 			
 			<div id="tab-genre" class="tab-style">
@@ -23,7 +23,7 @@
 				<div id="my-genres" class="my-profile-style">
 				</div>
 				<div class="trash">
-					<img src="images/icons/delete.png"></img>
+					<img src="${request.static_url('milo_app:static/images/icons/delete.png')}"></img>
 					<p>Regret choosing this genre? Just throw it here!</p>
 				</div>
 				<h3 title="Drag & Drop the genres you like!">All Genres Options - <spam>Drag and Drop to My Genres!</spam></h3>
@@ -51,7 +51,7 @@
 				<div id="my-actors" class="my-profile-style">
 				</div>
 				<div class="trash">
-					<img src="../icons/delete.png"></img>
+					<img src="${request.static_url('milo_app:static/images/icons/delete.png')}"></img>
 					<p>Regret choosing this actor? Just throw it here!</p>
 				</div>
 				
@@ -82,7 +82,7 @@
 				<div id="my-directors" class="my-profile-style">
 				</div>
 				<div class="trash">
-					<img src="../icons/delete.png"></img>
+					<img src="${request.static_url('milo_app:static/images/icons/delete.png')}"></img>
 					<p>Regret choosing this director? Just throw it here!</p>
 				</div>
 				<h3 title="Drag & Drop the directors you like!">All Directors Options - <spam>Drag and Drop to My Directors!</spam></h3>
@@ -109,21 +109,33 @@
 			<div id="tab-movies" class="tab-style">
 				
 				<h3 title="Movies you rated 'liked' ">Liked Movies</h3>
-				<div id="liked-movies" class="my-profile-style">
+				<div id="liked-movies" class="my-profile-liked-style">
 					<div id="movie#1" class="rated-movie-item" title="Movie Title#1">
-						<img src="images/Covers_Sizetest/fnemo.jpg"></img>
+						Movie Title #1
+					</div><!--rated-movie-item-->
+					<div id="movie#2" class="rated-movie-item" title="Movie Title#1">
+						Movie Title #2
+					</div><!--rated-movie-item-->
+					<div id="movie#3" class="rated-movie-item" title="Movie Title#1">
+						Movie Title #3
 					</div><!--rated-movie-item-->
 				</div>
 		
 				<div class="trash">
-					<img src="../icons/delete.png"></img>
+					<img src="${request.static_url('milo_app:static/images/icons/delete.png')}"></img>
 					<p>Want to cancel the rating? Just throw the film here!</p>
 				</div>
 				
 				<h3 title="Movies you rated 'disliked' ">Disliked Movies</h3>
-				<div id="disliked-movies" class="my-profile-style">
-					<div id="movie#2" class="rated-movie-item" title="Movie Title#2">
-						<img src="images/Covers_Sizetest/lord_rings.jpg"></img>
+				<div id="disliked-movies" class="my-profile-disliked-style">
+					<div id="movie#4" class="rated-movie-item" title="Movie Title#2">
+						Movie Title #4
+					</div><!--rated-movie-item-->
+					<div id="movie#5" class="rated-movie-item" title="Movie Title#2">
+						Movie Title #5
+					</div><!--rated-movie-item-->
+					<div id="movie#6" class="rated-movie-item" title="Movie Title#2">
+						Movie Title #6
 					</div><!--rated-movie-item-->
 				</div>
 				

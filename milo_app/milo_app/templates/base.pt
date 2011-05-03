@@ -122,14 +122,17 @@
         <li>
           <a href="${request.resource_url(request.root, 'categories')}" title="Show all movies by category">Categories</a>
 
+<!--
           <ul>    
             <li>
               <a href="#" title="Films by Genre">by Genre</a>
+
               <ul>
                 <li><a href="#" title="">Action</a></li>
                 <li><a href="#" title="">Adventure</a></li>
                 <li><a href="#" title="">Sci-Fi</a></li>
               </ul>
+
           	</li>
 
             <li><a href="#" title="Films by Date of Release">by Release Date</a></li>
@@ -153,6 +156,7 @@
 				
             <li><a href="#" title="Films by Name (Alphabetically)">by Title</a></li>
           </ul>
+-->
         
         </li>
 
@@ -162,11 +166,11 @@
         <li id="feed"><a href="#" title="Feed RSS">Feed</a></li>
 		-->
 		<tal:logged condition="logged">
-			<li id="signout"><a href="${request.resource_url(request.root, 'logout')}" title="Logout">Logout</a></li>
-			<li id="username"><a href="${request.resource_url(request.root, 'profile')}" title="Voew Profile">My Profile</a></li>
+			<li id="signout"><a href="${request.resource_url(request.root, 'logout')}" title="Logout"><img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/door_out.png')}">Logout</a></li>
+			<li id="username"><a href="${request.resource_url(request.root, 'profile')}" title="View Profile"><img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/user_gray.png')}">My Profile</a></li>
 		</tal:logged>
 		<tal:not_logged condition="not logged">
-			<li id="signin"><a href="${request.resource_url(request.root, 'login')}" title="Login">Sign In or Register</a></li>
+			<li id="signin"><a href="${request.resource_url(request.root, 'login')}" title="Login"><img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/door_in.png')}">Sign In or Register</a></li>
 		</tal:not_logged>
       </ul>
     </div><!-- navigation-inside -->
@@ -186,24 +190,23 @@
                   </a>
                   <div class="slider-movie-description">
 					<h2 tal:condition="logged"><a href="#" title="List recommended films for you">Recommended for you!</a></h2>
-                    <h3 tal:omit-tag="not logged"><h2 tal:omit-tag="logged"><a tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)" title="Movie-title-#1">${movie.title}</a></h2></h3>
+                    <h2 tal:condition="not logged"><a href="#" title="The most liked films in Milo">Top 5 Movies</a></h2>
+                    <h3><a tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)" >${movie.title}</a></h3>
                     <p>${movie.description[:120]+'...'}</p>
                     <a class="continue" tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)" title="More"></a>
+                    
 					<tal:logged condition="logged">
-					<div class="recommend-hearts-slider">
-						<span>Rate this movie:</span>
-						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Like this movie"><img width="20" height="20" src="images/icons/heart_add.png"></a>
-						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Dislike this movie"><img width="20" height="20" src="images/icons/heart_delete.png"></a>
-					</div>
+					<div class="recommend-thumbs-slider">
+						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Like this movie">Like <img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
+						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Dislike this movie">Dislike <img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
+					</div><!--Recommended-thumbs-slider-->
 					</tal:logged>	
                     
                     <div class="slider-movie-details">
 					<ul> 
-						<li class="date-slider">Release date: ${movie.date.strftime('%Y')}</li>
-
-						<li class="info-slider"><img src="images/icons/play.png" style="width: 12px; height:10px;" /> 2.000 
-						<img src="images/icons/heart.png" style="width: 12px; height:10px;" /> 542 </li>
-				
+						<!--<li class="date-slider">Release date: ${movie.date.strftime('%Y')}</li>-->
+						<li class="info-slider"><img src="${request.static_url('milo_app:static/images/icons/play.png')}"/>Views: <span>2.000</span> </li>
+						<li class="info-slider"><img src="${request.static_url('milo_app:static/images/icons/heart.png')}"/><span>70%</span> of raters liked</li>
 						<li class="genre-slider">Genre: <a href="#" title="Search films of this genre" tal:repeat="g movie.genre">${g}</a></li>
 						
 					</ul>
@@ -242,26 +245,23 @@
             	<img width="180" height="250" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)" class="recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
 					<span><img width="180" height="260" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)"/></span>				
 				</a>            
-				
-				<tal:logged condition="logged">
-					<div class="recommend-hearts">
-						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Dislike this movie"><img width="18" height="18" src="images/icons/heart_delete.png"></a>
-						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Like this movie"><img width="18" height="18" src="images/icons/heart_add.png"></a>
-					</div>
-				</tal:logged>	
-				
-            	</div>
+            	</div><!--post-thumbnail-->
 
-              	<h2><a tal:attributes="href request.resource_url(context, 'Movie', movie.title)" title="Go to this movie page">${movie.title}</a></h2>
+              	<h2><a tal:attributes="href request.resource_url(context, 'Movie', movie.title)" title="Go to this movie page">${movie.title}</a><span title="Release Date">(${movie.date.strftime('%Y')})</span></h2>
 
               	<ul class="post-meta">
-               	 <li class="date">Release date: ${movie.date.strftime('%Y')}</li>
-
-                	<li class="info"><img src="${request.static_url('milo_app:static/images/icons/play.png')}" style=
-                	"width: 12px; height:10px;" /> 2.000 <img src="${request.static_url('milo_app:static/images/icons/heart.png')}" style=
-                	"width: 12px; height:10px;" /> 542 </li>
-				
-						<li class="genre">Genre: <tal:genres repeat="g movie.genre"><a href="#" title="Search films of this genre">${g}</a>,</tal:genres></li>
+<!--               	 <li class="date">Release date: ${movie.date.strftime('%Y')}</li>
+-->
+					<tal:logged condition="logged">
+					<li class="info info-logged">
+						<span>Rated it: </span>
+						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Like this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
+						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Dislike this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
+					</li>
+					</tal:logged>
+					<li class="info"><img src="${request.static_url('milo_app:static/images/icons/play.png')}"/>Views: <span>2.000</span> </li>
+					<li class="info"><img src="${request.static_url('milo_app:static/images/icons/heart.png')}"/><span>70%</span> of raters liked</li>
+					<li class="genre">Genre: <tal:genres repeat="g movie.genre"><a href="#" title="Search films of this genre">${g}</a>,</tal:genres></li>
 
                 	<li class="comments"><a href="#comments" title="View comments about this movie">${len(movie.comments)} Comments</a></li>
               </ul>

@@ -36,13 +36,15 @@
 						<img src="../icons/heart.png" style="width: 14px; height:12px;" /> 542 likes </p>
 				</div><!-- info-film -->
 				
-				<div id='like-film'>						
-						<p class='infoandlike-film'>
-						<a href="#" title="Enjoyed what you saw?"><img src="../icons/heart_add.png" style="width: 14px; height:12px;" /> Like</a>
-						<a href="#" title="Didn't enjoy?"><img src="../icons/heart_delete.png" style="width: 14px; height:12px;" /> Dislike</a>
-						</p>		
-				</div><!-- like-film -->				
-				
+				<tal:logged condition="logged">
+					<div id='like-film'>
+						<li class="recommend-thumbs-slider">
+						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Like this movie">Like <img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
+						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Dislike this movie">Dislike <img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
+						</li>	
+					</div><!--like-film-->
+				</tal:logged>	
+							
 		</div><!-- embedded-video-footer-->
     	
    	</div><!-- video-container -->

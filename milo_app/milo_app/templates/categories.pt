@@ -3,13 +3,13 @@
 <div id="content-inside">
       
 		<div id="post-container">
-         <div id="posts">
+         <div id="category-posts">
 				
 			<h2 id="category-selection" title="Filter the films present on Milo database for a better research">
 			Categories Filter
 			</h2>
 			<p>
-			Select the list of films that composed the category chosen!
+			Choose one of these categories to filter all Milo movies by the chosen criteria 
 			</p>
 		  
 		  <div id="tabs">
@@ -339,74 +339,8 @@
 				</div><!--tab-title-content-->
 			</div><!-- tab-title -->
 		  </div><!-- tabs -->		
-					
-					
+
 		</div><!-- posts -->
-				
-			<div id="sidebar">
-           <div id="most-popular-recommendations" class="widget">
-              <h2 title="Videos recommended by Milo sorted by number of 'likes'">Most Popular Recommendations</h2>
-
-            <div class="sidebar-item">
-                <div class="post-thumbnail-side"><a class="thumbnail-frame-side" href="#"
-                title="Movie-Title#1"><!-- nothing to see here --></a>
-                <img width="80" height="80" src="../images/2009/10/can-80x80.jpg" alt="Can" title="can" />
-				</div>
-
-                <div class="sidebar-item-content">
-                  <h3><a href="#" rel="bookmark" title="Movie-Title#1">New Recommended Video #1</a></h3>
-
-                  <p>Brief description</p>
-                </div>
-              </div><!-- sidebar-item -->
-             
-             <div class="sidebar-item">
-                <div class="post-thumbnail-side"><a class="thumbnail-frame-side" href="#"
-                title="Movie-Title#2"><!-- nothing to see here --></a>
-                <img width="80" height="80" src="../images/2009/10/can-80x80.jpg" alt="Can" title="can" />
-				</div>
-
-                <div class="sidebar-item-content">
-                  <h3><a href="#" rel="bookmark" title="Movie-Title#2">New Recommended Video #2</a></h3>
-
-                  <p>Brief description</p>
-                </div>
-              </div><!-- sidebar-item -->
-              
-              <div class="sidebar-item">
-                <div class="post-thumbnail-side"><a class="thumbnail-frame-side" href="#"
-                title="Movie-Title#3"><!-- nothing to see here --></a>
-                <img width="80" height="80" src="../images/2009/10/can-80x80.jpg" alt="Can" title="can" />
-				</div>
-
-                <div class="sidebar-item-content">
-                  <h3><a href="#" rel="bookmark" title="Movie-Title#3">New Recommended Video #3</a></h3>
-
-                  <p>Brief description</p>
-                </div>
-              </div><!-- sidebar-item -->
-              
-              <div class="sidebar-item">
-                <div class="post-thumbnail-side"><a class="thumbnail-frame-side" href="#"
-                title="Movie-Title#4"><!-- nothing to see here --></a>
-                <img width="80" height="80" src="../images/2009/10/can-80x80.jpg" alt="Can" title="can" />
-				</div>
-
-                <div class="sidebar-item-content">
-                  <h3><a href="#" rel="bookmark" title="Movie-Title#4">New Recommended Video #4</a></h3>
-
-                  <p>Brief description</p>
-                </div>
-              </div><!-- sidebar-item -->
-              
-            </div><!-- top-movies-sidebar -->  
-					
-            <div id="sidebar-profile" class="widget">
-              <h2></h2>
-                <p><a href="" target="_blank" title=""></a></p>
-            </div><!-- sidebar-profile -->
-          
-         </div><!-- sidebar -->
         </div><!-- post-container -->
       </div><!-- content-inside -->
 	</metal:content>

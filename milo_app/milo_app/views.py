@@ -12,7 +12,7 @@ def main(request):
 	rand = random.randint(0, Movie.objects().count()-10)
 	new_rec = None
 	slider_movies = None
-	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title="Top Movies")
+	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title="More Top Movies")
 	
 	#Testing Next/Previous buttons
 	page = request.GET.get('page')
