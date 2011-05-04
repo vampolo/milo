@@ -599,10 +599,9 @@ float: left;
 }
 
 #filter {
-margin: 17px 17px 30px 0px;
+margin: 17px 17px 19px 0px;
 font-size: 15px;	
 text-shadow: 0 -1px 0 #333;
-float:right;
 }
 
 #filter select{
