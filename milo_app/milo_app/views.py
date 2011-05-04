@@ -42,9 +42,12 @@ def main(request):
 		right_movies['title']="More Recommendations"
 	
 	main_movies_title = 'Last updates'
+	#compute and show pages
+	last_page = True if len(main_movies) <= (page-1)*9+9 else False
 	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9], title=main_movies_title)
+	# the upper two lines are magic
 	slider_movies = slider_movies if slider_movies else Movie.objects()[rand:rand+5]
-	return dict(movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category, page=page, new_rec=new_rec)
+	return dict(movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category, page=page, last_page=last_page, new_rec=new_rec)
 
 @view_config(name='about', context='milo_app:resources.Root',
 				 renderer='templates/about.pt')

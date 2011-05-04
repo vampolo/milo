@@ -191,7 +191,7 @@
                   </a>
                   <div class="slider-movie-description">
 					<h2 tal:condition="logged"><a href="#" title="List recommended films for you">Recommended for you!</a></h2>
-                    <h2 tal:condition="not logged"><a href="#" title="The most liked films in Milo">Top 5 Movies</a></h2>
+                    <h2 tal:condition="not logged"><a href="#" title="The most liked films in Milo">Top ${repeat.movie.number} Movie</a></h2>
                     <h3><a tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)" >${movie.title}</a></h3>
                     <p>${movie.description[:120]+'...'}</p>
                     <a class="continue" tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)" title="More"></a>
@@ -275,7 +275,7 @@
 			
 			<!--Next/Previous buttons-->
 			<div id="posts-footer">
-				<a id="next-bottom-button" href="${request.resource_url(request.root, query=dict(page=page+1))}">Next<img src="images/icons/fatcow/32x32/resultset_next.png"></img></a>
+				<a tal:condition="not last_page" id="next-bottom-button" href="${request.resource_url(request.root, query=dict(page=page+1))}">Next<img src="images/icons/fatcow/32x32/resultset_next.png"></img></a>
 				<a tal:condition="not page==1" id="previous-bottom-button" href="${request.resource_url(request.root, query=dict(page=page-1))}"><img src="images/icons/fatcow/32x32/resultset_previous.png"></img>Previous</a>
 			</div><!-- posts-footer-->
 			
