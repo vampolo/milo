@@ -123,7 +123,28 @@
 					</div>
 				</div><!--rated-movies-help-->
 				
-				<h3 title="Movies you rated 'liked' ">Liked Movies</h3>
+				<div id="liked-movies-orientation">
+					<h3 title="Movies you rated 'liked' ">Liked Movies
+					<div id="filter-rated" class="alignright">
+						Sort My Rated Movies:
+						<select value="Alphabetically">
+							<option value="Last updates">
+							Last Updates
+							</option>
+							<option value="Release Date">
+							by Release Date
+							</option>
+							<option value="Release Date">
+							by Rated Date
+							</option>
+							<option value="Popularity">
+							by Popularity
+							</option>
+						</select>		
+					</div><!-- filter -->
+					</h3>
+				</div><!--liked-movies-orientation-->
+					
 				<div id="liked-movies" class="my-profile-liked-style">
 					<div id="movie#1" class="rated-movie-item" title="Movie Title#1">
 						Movie Title #1

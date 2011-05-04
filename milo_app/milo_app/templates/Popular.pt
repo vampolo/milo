@@ -1,9 +1,0 @@
-<metal:html use-macro="base.macros['main']">
-     <metal:slider fill-slot="slider">
-	 <!--Remove Slider-->
-     </metal:slider>
-     <metal:filter fill-slot="filter">
-     Popular Movies
-	<!--Remove Filter-->
-	</metal:filter>
-</metal:html>

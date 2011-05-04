@@ -600,7 +600,7 @@ float: left;
 
 #filter {
 margin: 17px 17px 19px 0px;
-font-size: 15px;	
+font-size: 15px;
 text-shadow: 0 -1px 0 #333;
 }
 
@@ -612,6 +612,28 @@ font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
 font-size: 13px;
 font-color: #1A1D1F;
 }
+
+#liked-movies-orientation{
+display: inline;
+float: left;
+width: 600px;
+
+}
+
+#filter-rated {
+font-size: 14px;
+text-shadow: 0 -1px 0 #333;
+}
+
+#filter-rated select{
+background: #A9C3CC;
+padding: 3px 3px 3px 3px;
+border-radius: 4px;
+font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
+font-size: 13px;
+font-color: #1A1D1F;
+}
+
 
 /*********************************************************************************************
 
