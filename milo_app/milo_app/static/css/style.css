@@ -1085,7 +1085,7 @@ float: left;
 
 .form-input input{
 margin-bottom: 10px;
-padding-bottom: 6px;
+padding: 3px 0 3px 0;
 font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
 background:#3E4852;
 font-size: 12px;
@@ -1304,6 +1304,20 @@ font-weight: none;
 font-size: 10px;
 }
 
+.tab-style p{
+padding: 15px 0 0 8px;
+font-size: 14px;
+margin-bottom: -5px;
+}
+
+#tab-movies.ui-widget-content a{
+color: #A9C3CC !important; 
+}
+
+#rated-movies-help{
+display: none;
+}
+
 #rated-movies{
 float: right;
 }
@@ -1408,7 +1422,7 @@ padding: 10px 10px 5px 10px;
 }
 
 .trash p{
-margin-top:5px;
+margin-top:-7px;
 }
 
 .trash img{
@@ -1417,6 +1431,42 @@ width: 35px;
 height: 35px;
 padding-bottom: 5px;
 margin: -5px 3px 0 5px;
+}
+
+
+.help_button{
+height:20px;
+margin-top: 3px;
+padding: 1px;
+}
+
+.help_button img{
+float: right;
+width: 20px;
+height: 20px;
+padding-bottom: 1px;
+margin: -5px 3px 0 5px;
+cursor: pointer;
+}
+
+.hide_button{
+height:20px;
+padding: 1px;
+}
+
+.hide_button a{
+margin-top:-3px;
+cursor: pointer;
+float: right;
+}
+
+.hide_button img{
+float: right;
+width: 20px;
+height: 20px;
+padding-bottom: 1px;
+margin: -5px 3px 0 5px;
+cursor: pointer;
 }
 
 /*********************************************************************************************

@@ -186,6 +186,8 @@ milo_app/static/images/Drag_Drop_test/genres/terror.png
 milo_app/static/images/Slider_Images/Harry_Potter_half_blood_prince.jpg
 milo_app/static/images/icons/broken_heart.png
 milo_app/static/images/icons/delete.png
+milo_app/static/images/icons/door_in.png
+milo_app/static/images/icons/door_out.png
 milo_app/static/images/icons/exit.png
 milo_app/static/images/icons/heart.png
 milo_app/static/images/icons/heart_add.png

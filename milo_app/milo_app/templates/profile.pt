@@ -108,6 +108,21 @@
 			
 			<div id="tab-movies" class="tab-style">
 				
+				<div class="help_button">
+					<img title="Need help?" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/help.png')}"></img>
+				</div>
+				
+				<div id="rated-movies-help">
+					<p>
+					Here you find the films you have rated until now.<br/>
+					If you changed your mind about a movie, and now instead of liking it you dislike, for example, simply drag and drop it on the other box.<br />
+					Otherwise, if you want simply to remove the rating, just drag and drop the title in the trash can.<br/><br/>
+					</p>
+					<div class="hide_button">
+					<img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/bullet_arrow_up.png')}"><a style="color: #E6F5F7 !important;"><b>Hide text</b><a></img>
+					</div>
+				</div><!--rated-movies-help-->
+				
 				<h3 title="Movies you rated 'liked' ">Liked Movies</h3>
 				<div id="liked-movies" class="my-profile-liked-style">
 					<div id="movie#1" class="rated-movie-item" title="Movie Title#1">

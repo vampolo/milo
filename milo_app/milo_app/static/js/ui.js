@@ -11,10 +11,21 @@
 		$('#communication-panel').slideUp('slow');
 	}
 	
+	function help(){
+		$().slideDown('fast');
+	}
 
 $(document).ready(function() 
 {	
 	$( "#tabs" ).tabs();
+	
+	$('.help_button').click(function() {
+		$('#rated-movies-help').slideDown('slow');
+	});
+	
+	$('.hide_button').click(function() {
+		$('#rated-movies-help').slideUp('slow');
+	});
 	
 	//fix for chrome
 	$("input[type='text']").bind('focus', function() {
