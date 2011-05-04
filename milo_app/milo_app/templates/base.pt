@@ -110,14 +110,14 @@
       <ul class="menu">
         <tal:logged condition="logged">
         <li>
-			<a href="${request.resource_url(request.root)}" title="Show a recommendation">Recommended</a>
+			<a href="${request.resource_url(request.root, 'Recommended')}" title="Show a recommendation">Recommended</a>
         </li>
         </tal:logged>
         <li>
-			<a href="${request.resource_url(request.root)}" title="List recently updated movies">Latest</a>
+			<a href="${request.resource_url(request.root, 'Latest')}" title="List recently updated movies">Latest</a>
         </li>
 
-        <li><a href="${request.resource_url(request.root)}" title="Show popular movies">Popular</a></li>
+        <li><a href="${request.resource_url(request.root, 'Popular')}" title="Show popular movies">Popular</a></li>
 
         <li>
           <a href="${request.resource_url(request.root, 'categories')}" title="Show all movies by category">Categories</a>
@@ -179,6 +179,7 @@
   <div id="content">
 	<metal:content metal:define-slot="content">
     <div id="content-inside">
+     <metal:slider metal:define-slot="slider">
       <div id="coda-nav">
             <div class="coda-slider" id="slider">
               
@@ -216,17 +217,19 @@
                 </div><!-- slider-post -->
               </div><!-- panel -->
               
-    			</div><!-- coda-slider -->
+    		</div><!-- coda-slider -->
    	</div><!-- coda-nav -->
 
-        <div id="slider-foot">
-        </div><!-- slider-foot-->
-
+	<div id="slider-foot">
+    </div><!-- slider-foot-->
+	</metal:slider>
+	
 		<div id="post-container">
          <div id="posts">
 				
 				<h2 title="Orientation">
 				<div id="filter">
+				<metal:filter metal:define-slot="filter">
 					Browsing ${category} by
 					<select value="${movies.get('title')}">
 					  <option value="Last updates">
@@ -235,7 +238,8 @@
 					  <option value="Popularity">
 						Popularity
 					  </option>
-					</select>			
+					</select>		
+				</metal:filter>	
 				</div><!-- filter -->
 				</h2>
             <tal:r repeat="movie movies.get('movies')">

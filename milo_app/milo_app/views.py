@@ -5,9 +5,14 @@ from datetime import datetime
 from pyramid.security import authenticated_userid
 import random
 
-
 @view_config(context='milo_app:resources.Root',
              renderer='templates/base.pt')
+@view_config(name='Latest', context='milo_app:resources.Root',
+             renderer='templates/movie_list.pt')
+@view_config(name='Recommended', context='milo_app:resources.Root',
+             renderer='templates/movie_list.pt')
+@view_config(name='Popular', context='milo_app:resources.Root',
+             renderer='templates/movie_list.pt')                      
 def main(request):
 	rand = random.randint(0, Movie.objects().count()-10)
 	new_rec = None

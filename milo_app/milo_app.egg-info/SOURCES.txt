@@ -4287,3 +4287,5 @@ milo_app/templates/movie.pt
 milo_app/templates/mytemplate.pt
 milo_app/templates/profile.pt
 milo_app/templates/test.pt
+milo_app/templates/movie_list.pt
+

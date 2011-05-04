@@ -2,7 +2,12 @@
      <metal:content fill-slot="content">
      <div id="content-inside">
 		<div id='post-container'>
-     	Here you can put the about informations
+			<div id='about-us'>
+				<h2>About Us</h2>
+				<p>Milo is a web application with the purpose of elaborating the best film recommendations for you!</p>
+				<p>Personalize your profile after registering on Milo to a better and more refined recommendation.</p>
+				<p>Typically, a recommender system compares a user profile to some reference characteristics, and seeks to predict the 'rating' that a user would give to an item they had not yet considered. These characteristics may be from the information item (the content-based approach) or the user's social environment (the collaborative filtering approach).</p>
+			</div><!--about-us-->
      	</div>
      </div>
      </metal:content>
