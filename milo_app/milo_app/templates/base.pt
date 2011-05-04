@@ -220,24 +220,24 @@
    	</div><!-- coda-nav -->
 
         <div id="slider-foot">
-			<div id="filter">
-			Browsing ${category} by
-			<select>
-              <option>
-                Last Updated
-              </option>
-              <option>
-                Popularity
-              </option>
-         </select>			
-			</div><!-- filter -->
         </div><!-- slider-foot-->
 
 		<div id="post-container">
          <div id="posts">
 				
-				<h2 title="Orientation">${movies.get('title')}</h2>
-            
+				<h2 title="Orientation">
+				<div id="filter">
+					Browsing ${category} by
+					<select value="${movies.get('title')}">
+					  <option value="Last updates">
+						Last updates
+					  </option>
+					  <option value="Popularity">
+						Popularity
+					  </option>
+					</select>			
+				</div><!-- filter -->
+				</h2>
             <tal:r repeat="movie movies.get('movies')">
             <div class="gallery-item ${'clearboth' if not repeat.movie.index % 3 else ''}">
             	<div class="post-thumbnail">
@@ -278,8 +278,8 @@
           </div><!-- posts -->
 				
 			<div id="sidebar">
+				<h2 id="sidebar-title">${right_movies.get('title')}</h2>
            <div id="top-movies-sidebar" class="widget">
-              <h2>${right_movies.get('title')}</h2>
 
               <div class="sidebar-item" tal:repeat="movie right_movies.get('movies')">
                 <div class="post-thumbnail-side"><a class="thumbnail-frame-side" tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)"

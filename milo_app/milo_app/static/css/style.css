@@ -412,7 +412,6 @@ float: left;
 border-right: 1px solid #4C4C4C;
 width: 660px;
 float: left;
-padding: 22px 0 0 0;
 }
 
 #posts h2{
@@ -600,11 +599,10 @@ float: left;
 }
 
 #filter {
-margin: 5px 15px 0 20px;
-font-size: 13px;	
-font-weight: bold;
-color:#E6F5F7;
+margin: 17px 17px 30px 0px;
+font-size: 15px;	
 text-shadow: 0 -1px 0 #333;
+float:right;
 }
 
 #filter select{
@@ -973,6 +971,10 @@ float: left;
 margin: 0 0 0 -1px;
 }
 
+#sidebar-title {
+	margin: 24px 0 12px 24px;
+}
+
 #sidebar h3 {
 font-size:14px;
 color: #E6F5F7;
@@ -994,6 +996,10 @@ padding: 22px 0 14px 19px;
 width: 300px;
 float: left;
 margin: 10px 0 0 0;
+}
+
+.sidebar-item:first-child {
+	margin: 0 0 0 0;
 }
 
 .post-thumbnail-side {

@@ -51,4 +51,3 @@ subdomain = 'CW.VIDEO.NETFLIX'
 #do the call and print result on the screen :P yeeeeeeeeey
 print(client.service.getRec(caller, subdomain, user))
 
-print('\n\nI DESERVE A KISS! :) ahahhaahahha yeeeeeeeeah')
