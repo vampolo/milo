@@ -1102,6 +1102,39 @@ input#register_button:hover {
 background: url(../images/register2.png);
 }
 
+input#key_button {
+background: url(../images/survey1.png) 0 0;
+border: none;
+color: #3E4852;
+width: 144px;
+height: 32px;
+margin: 5px 0 5px 5px;
+padding: 0 0 2px 0;
+cursor: pointer;
+}
+
+input#key_button:hover{
+background: url(../images/survey2.png);
+}
+
+input#cont_button {
+background: url(../images/cont1.png) 0 0;
+border: none;
+color: #3E4852;
+width: 144px;
+height: 32px;
+margin: 5px 0 5px 5px;
+padding: 0 0 2px 0;
+cursor: pointer;
+}
+
+input#cont_button:hover{
+background: url(../images/cont2.png);
+}
+
+#key_form{
+padding-left: 10px;
+}
 
 .form-names p{
 padding-top: 8px;
@@ -1126,6 +1159,7 @@ color:#FFFFFF;
 width: 200px;
 border: 1px solid #4C4C4C;
 border-radius: 5px;
+cursor: text;
 }
 
 
@@ -1315,6 +1349,60 @@ cursor: pointer;
 
 input#submit:hover {
 background: url(../images/submitcomment2.png);
+}
+
+#info_input{
+display: inline;
+width: 980px;
+}
+
+#info_form_left {
+width: 450px;
+float: left;
+}
+
+#info_form_right {
+width: 450px;
+float: left;
+}
+
+.info_field{
+padding: 5px;
+margin-bottom:5px;
+}
+
+.info_field input{
+width: 80px;
+}
+
+.info_field label{
+font-weight: bold;
+padding-right: 10px;
+color: white;
+}
+
+.select input{
+width: 40px;
+cursor: pointer;
+}
+
+.drop {
+margin: 17px 17px 19px 0px;
+font-size: 15px;
+text-shadow: 0 -1px 0 #333;
+}
+
+.option select{
+background: #A9C3CC;
+padding: 3px 3px 3px 3px;
+border-radius: 4px;
+font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
+font-size: 13px;
+font-color: #1A1D1F;
+}
+
+.option option{
+background: #A9C3CC;
 }
 
 /*********************************************************************************************

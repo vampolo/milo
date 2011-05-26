@@ -63,3 +63,7 @@ def logout(request):
     return HTTPFound(location = resource_url(request.context, request),
                      headers = headers)
     
+@view_config(context='milo_app:resources.Root', name='exit')
+def exit(request):
+    return HTTPFound(location = resource_url(request.context, request))
+    

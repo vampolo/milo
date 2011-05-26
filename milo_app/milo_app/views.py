@@ -12,7 +12,9 @@ import random
 @view_config(name='Recommended', context='milo_app:resources.Root',
              renderer='templates/movie_list.pt')
 @view_config(name='Popular', context='milo_app:resources.Root',
-             renderer='templates/movie_list.pt')                      
+             renderer='templates/movie_list.pt')
+@view_config(name='1', context='milo_app:resources.Root',
+				 renderer='templates/step1.pt')                      
 def main(request):
 	rand = random.randint(0, Movie.objects().count()-10)
 	new_rec = None
@@ -53,6 +55,20 @@ def main(request):
 				 renderer='templates/about.pt')
 def about(request):
 	return dict()
+
+@view_config(name='wizard', context='milo_app:resources.Root',
+				 renderer='templates/wizard.pt')
+def wizard(request):
+	return dict()
+
+#How do i append the view in the /wizard, instead of the root? to be /wizard/step1
+#@view_config(name='1', context='milo_app:resources.Root',
+#				 renderer='templates/step1.pt')
+#@view_config(name='2', context='milo_app:resources.Root',
+#				 renderer='templates/step2.pt')
+#def step(request):
+#	return dict()
+
 
 @view_config(name='categories', context='milo_app:resources.Root',
 				 renderer='templates/categories.pt')

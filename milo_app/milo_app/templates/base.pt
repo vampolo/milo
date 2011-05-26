@@ -5,6 +5,7 @@
 	xmlns:metal="http://xml.zope.org/namespaces/metal" 
 	dir="ltr" lang="en-US" xml:lang="en-US">
 <metal:html define-macro="main" tal:define="logged h.authenticated_userid(request); new_rec new_rec|None">
+
 <head profile="http://gmpg.org/xfn/11">
   
   <!-- page titles -->
@@ -79,6 +80,7 @@
       </div><!-- header-left -->
 
       <div id="header-right">
+		<metal:search metal:define-slot="search">
         <div id="site-search">
 
           <script type="text/javascript">
@@ -90,7 +92,6 @@
           }
           //]]>
           </script>
-
           <div id="search">
             <form method="get" id="search-form" action="index.html" name="search-form">
               <input type="text" name="s" id="s" value="Find Something" onfocus=
@@ -98,15 +99,16 @@
               <input type="submit" id="search-submit" value="" />
             </form>
           </div><!-- search -->
-        
         </div><!-- site-search-->
+        </metal:search>
       </div><!-- header-right -->
-    
+		
     </div><!-- header-inside -->
   </div><!-- header -->
 
   <div id="navigation">
     <div class="navigation-inside navigation-video">
+	<metal:landmarks metal:define-slot="landmarks">  
       <ul class="menu">
         <tal:logged condition="logged">
         <li>
@@ -159,7 +161,9 @@
 -->
         
         </li>
-
+		
+		<li><a href="${request.resource_url(request.root, 'wizard')}" title="Survey Section">Survey</a></li>
+		
         <li><a href="${request.resource_url(request.root, 'about')}" title="Find out more about this web application">About Us</a></li>
 
 		<!--
@@ -173,6 +177,7 @@
 			<li id="signin"><a href="${request.resource_url(request.root, 'login')}" title="Login"><img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/door_in.png')}">Sign In or Register</a></li>
 		</tal:not_logged>
       </ul>
+      </metal:landmarks>
     </div><!-- navigation-inside -->
   </div><!-- navigation -->
 
