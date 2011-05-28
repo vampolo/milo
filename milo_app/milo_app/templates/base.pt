@@ -65,6 +65,7 @@
 
 <body>
   <div id="header">
+		<metal:panel metal:define-slot="panel">
 		<div id="communication-panel">
 			<div id='communication-panel-content'>
 			  <span></span>
@@ -72,7 +73,7 @@
 			  <a href="javascript:panel_up();" title="No, thanks."><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/></a>
 		  </div>
 		</div>
-		
+		</metal:panel>
     <div id="header-inside">      
       
       <div id="header-left">
@@ -279,11 +280,12 @@
             </tal:r>
 			
 			<!--Next/Previous buttons-->
+			<metal:prev_next metal:define-slot="prev_next">
 			<div id="posts-footer">
-				<a tal:condition="not last_page" id="next-bottom-button" href="${request.resource_url(request.root, query=dict(page=page+1))}">Next<img src="images/icons/fatcow/32x32/resultset_next.png"></img></a>
-				<a tal:condition="not page==1" id="previous-bottom-button" href="${request.resource_url(request.root, query=dict(page=page-1))}"><img src="images/icons/fatcow/32x32/resultset_previous.png"></img>Previous</a>
-			</div><!-- posts-footer-->
-			
+				<a tal:condition="not last_page" id="next-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page+1))}">Next<img src="images/icons/fatcow/32x32/resultset_next.png"></img></a>
+				<a tal:condition="not page==1" id="previous-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page-1))}"><img src="images/icons/fatcow/32x32/resultset_previous.png"></img>Previous</a>
+			</div><!-- posts-footer-->			
+			</metal:prev_next>
           </div><!-- posts -->
 				
 			<div id="sidebar">

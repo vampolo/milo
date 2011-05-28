@@ -6,6 +6,14 @@
 		$('#agree_button').attr('href', url_address);
 		$('#communication-panel').slideDown('slow');
 	}
+	
+	function panel_down_wizard(url, text){
+		var content = text;
+		var url_address = url;
+		$('#communication-panel-content span').replaceWith('<span>'+content+'</span>');
+		$('#agree_button').attr('href', url_address);
+		$('#communication-panel').slideDown('slow');
+	}
 		
 	function panel_up(){
 		$('#communication-panel').slideUp('slow');
@@ -17,6 +25,15 @@
 
 $(document).ready(function() 
 {	
+	
+	$('#filters_step2').accordion({ 
+    header: 'div.title', 
+    active: false, 
+    clearStyle: true,
+    collapsible: true
+	});
+	
+	
 	$( "#tabs" ).tabs();
 	
 	$('.help_button').click(function() {

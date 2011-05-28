@@ -130,7 +130,6 @@ float: left;
 float: right;
 }
 
-
 /*********************************************************************************************
 
 2. Header Styles
@@ -397,6 +396,14 @@ padding-right: -15px;
 color: white;
 }
 
+.title{
+width: 200px;
+
+}
+
+#filter-content{
+border-top: 1px solid #4C4C4C !important;
+}
 /*********************************************************************************************
 
 4. Main Content Containers
@@ -438,6 +445,12 @@ height: 30px;
 float: left;
 width: 660px;
 border-right: 1px solid #4C4C4C;
+}
+
+#step2-list-footer{
+height: 30px;
+float: left;
+width: 840px;
 }
 
 #list-view{
@@ -543,6 +556,22 @@ padding: 2px 20px 0 0;
 font-size: 14px;
 }
 
+.step2_description{
+margin: 20px;
+}
+
+#step2_list{
+float: left;
+margin: 10px 0 -40px 60px;
+}
+
+#step2_item{
+margin: 0 80px 35px 0;
+}
+
+#step2-list-footer{
+padding-left:30px;
+}
 
 /*********************************************************************************************
 
@@ -1682,6 +1711,10 @@ cursor: pointer;
 
 *********************************************************************************************/
 
+.step2{
+display: none;
+}
+
 .tab-category-content{
 margin: 30px;
 min-height: 70px;
@@ -1849,4 +1882,3 @@ width: 22px;
 height: 22px;
 margin-bottom: -6px;
 }
-

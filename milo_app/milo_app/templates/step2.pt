@@ -1,4 +1,14 @@
 <metal:html use-macro="base.macros['main']">
+	
+		<metal:panel metal:fill-slot="panel">
+		<div id="communication-panel">
+			<div id='communication-panel-content'>
+			  <span></span>
+			  <a id="agree_button" href="javascript:panel_up();${request.resource_url(context, request.view_name, query=dict(rating='rated'))}" title="Ok!"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/></a>
+			  <a id="disagree_button" href="javascript:panel_up();" title="Undo rating."><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/></a>
+		  </div>
+		</div>
+		</metal:panel>
 
 	 <metal:search fill-slot="search">
 	 <!--Hide search engine-->
@@ -13,25 +23,401 @@
 	 <li class="steps" title="Catalogue Questions">>&nbsp&nbsp&nbspStep 3 &nbsp&nbsp&nbsp></li>
 	 <li class="steps" title="Interface Questions"> Step 4 &nbsp&nbsp&nbsp></li>
 	 <li class="steps" title="Recommendations & Rating"> Step 5 &nbsp&nbsp&nbsp></li>
-	 <li class="steps" title="End of survey">Finish!</li>
-	 
-	 
+	 <li class="steps" title="End of survey">Finish!</li>	 
 	 <li id="signout"><a href="${request.resource_url(request.root, 'exit')}" title="Exit"><img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/door_out.png')}">Exit Wizard</a></li>
 	 </ul>
 	 </metal:landmarks>
           
      <metal:content fill-slot="content">
      <div id="content-inside">
-		<div id='post-container'>
-			<div id='category-posts'>
-				<h2>Wizard - Step 2</h2>
-				
-		  </div>
-     	</div>
-     </div>
-     </metal:content>
+		<div id="post-container">
+         <div id="category-posts">
+			
+			<h2>Wizard - Step 2</h2>	
+			
+			<div id="step2_description">
+				<p>
+				Please, rate <b>5</b> movies from the movie list.<br/><br/> 
+				The movies are organized by the release date, from most recent to the oldest films.<br/>
+				Moreover, you can apply one of the next available filters to facilitate your research if necessary.		
+				</p>
+			</div>
+		  	
+		
+		<div id="filters_step2">				
+			
+			<div>
+				<div class="title">Filter by Title</div> 
+					<div id="filter-content" class="tab-category-content">
+					
+					<div id="item-a-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/a.jpg"></img>
+						<caption>A</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-b-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/b.jpg"></img>
+						<caption>B</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-c-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/c.jpg"></img>
+						<caption>C</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-D-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/d.jpg"></img>
+						<caption>D</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-E-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/e.jpg"></img>
+						<caption>E</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-f-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/f.jpg"></img>
+						<caption>F</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-g-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/g.jpg"></img>
+						<caption>G</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-h-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/h.jpg"></img>
+						<caption>H</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-i-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/i.jpg"></img>
+						<caption>I</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-j-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/j.jpg"></img>
+						<caption>J</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-k-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/k.jpg"></img>
+						<caption>K</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-l-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/l.jpg"></img>
+						<caption>L</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-o-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/m.jpg"></img>
+						<caption>M</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-n-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/n.jpg"></img>
+						<caption>N</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-o-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/o.jpg"></img>
+						<caption>O</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-p-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/p.jpg"></img>
+						<caption>P</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-q-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/q.jpg"></img>
+						<caption>Q</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-r-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/r.jpg"></img>
+						<caption>R</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-s-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/s.jpg"></img>
+						<caption>S</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-t-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/t.jpg"></img>
+						<caption>T</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-u-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/u.jpg"></img>
+						<caption>U</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-v-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/v.jpg"></img>
+						<caption>V</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-w-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/w.jpg"></img>
+						<caption>W</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-x-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/x.jpg"></img>
+						<caption>X</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-w-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/y.jpg"></img>
+						<caption>Y</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-z-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<img src="../images/Categories/Alpha/z.jpg"></img>
+						<caption>Z</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+				</div><!--tab-title-content--> 
+				</div> 
+				<div> 
+					<div class="title">Filter by Genre</div> 
+					<div id="filter-content" class="step2 tab-category-content"> 
+					<div id="item-genre#1-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this genre">
+						<img src="../images/Drag_Drop_test/genres/kiss.jpg"></img>
+						<caption>Romance</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-genre#2-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this genre">
+						<img src="../images/Drag_Drop_test/genres/animation.jpg"></img>
+						<caption>Animation</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-genre#3-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this genre">
+						<img src="../images/Drag_Drop_test/genres/terror.png"></img>
+						<caption>Horror</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					</div> 
+					</div> 
+			<div> 
+				<div class="title">Filter by Release date</div> 
+				<div id="filter-content" class="tab-category-content">
+					
+					<div id="item-2011-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<img src="../images/Categories/Years/2011.jpg"></img>
+						<caption>2011</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-2010-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<img src="../images/Categories/Years/2010.jpg"></img>
+						<caption>2010</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-2009-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<img src="../images/Categories/Years/2009.jpg"></img>
+						<caption>2009</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-2008-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<img src="../images/Categories/Years/2008.jpg"></img>
+						<caption>2008</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-2007-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<img src="../images/Categories/Years/2007.jpg"></img>
+						<caption>2007</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-2006-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<img src="../images/Categories/Years/2006.jpg"></img>
+						<caption>2006</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-2005-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<img src="../images/Categories/Years/2005.jpg"></img>
+						<caption>2005</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-2004-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<img src="../images/Categories/Years/2004.jpg"></img>
+						<caption>2004</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-2003-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<img src="../images/Categories/Years/2003.jpg"></img>
+						<caption>2003</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-2002-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<img src="../images/Categories/Years/2002.jpg"></img>
+						<caption>2002</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-2001-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<img src="../images/Categories/Years/2001.jpg"></img>
+						<caption>2001</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-2000-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<img src="../images/Categories/Years/2000.jpg"></img>
+						<caption>2000</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-90-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<img src="../images/Categories/Years/90.jpg"></img>
+						<caption>90'</caption>
+						</a>
+					</div><!--item-category-list-->
+					
+					<div id="item-80-category" class="item-category-list">
+						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<img src="../images/Categories/Years/80.jpg"></img>
+						<caption>80'</caption>
+						</a>
+					</div><!--item-category-list-->
+			
+				</div><!--tab-date-content-->
+			</div> 
+		</div><!--filters-step2-->
+		
+		
+		<div class="step2_description">
+		</div>
+	
+	<div id="step2_list">	
+		
+     <tal:r repeat="movie movies.get('movies')">
+            <div id="step2_item" class="gallery-item ${'clearboth' if not repeat.movie.index % 3 else ''}">
+            	<div class="post-thumbnail">
+            	<a class="thumbnail-frame" tal:attributes="href request.resource_url(context, 'Movie', movie.title)" title="See the trailer and details">
+            	<img width="180" height="250" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)" class="recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
+					<span><img width="180" height="260" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)"/></span>				
+				</a>            
+            	</div><!--post-thumbnail-->
+
+              	<h2><a tal:attributes="href request.resource_url(context, 'Movie', movie.title)" title="Go to this movie page">${movie.title}</a><span title="Release Date">(${movie.date.strftime('%Y')})</span></h2>
+
+              	<ul class="post-meta">
+  
+
+					<li class="info info-logged">
+						<span>Rated it: </span>
+						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(rating='rated'))}','${movie.title} rated as liked! Submit?');" title="Like this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
+						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(rating='rated'))}','${movie.title} rated as disliked... Submit?');" title="Dislike this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
+					</li>
+					<li class="genre">Genre: <tal:genres repeat="g movie.genre"><a href="#" title="Search films of this genre">${g}</a>,</tal:genres></li>
+					<li class="genre">Director: <tal:genres repeat="g movie.genre"><a href="#" title="Search films of this director">${'Director Name'}</a></li>
+					<li class="genre">Cast: <tal:actor><a href="#" title="Search films of this actor">${'Actor Name'}</a>,</tal:actor></li>
+              </ul>
+            </div>
+            <!-- movie-item , first_page='false')-->
+         </tal:r>
+		</div><!--step2_list-->
+        </div><!--category-post-->
+     </div><!-- post-container -->
+     
+     
+     
+     		
+			<!--Next/Previous buttons-->
+			<metal:prev_next metal:define-slot="prev_next">
+			<div id="step2-list-footer">
+				<a tal:condition="not last_page" id="next-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page+1))}">Next films<img src="images/icons/fatcow/32x32/resultset_next.png"></img></a>
+				<a tal:condition="not page==1" id="previous-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page-1))}"><img src="images/icons/fatcow/32x32/resultset_previous.png"></img>Previous films</a>
+			</div><!-- posts-footer-->			
+			</metal:prev_next>
+    </div><!-- content-inside -->
+    </metal:content> 
+     
+     
      <metal:footer fill-slot="foot-content"> 
-		<a href="${request.resource_url(request.root, '1')}"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
+		<a href="${request.resource_url(request.root, '1')}" target="_new"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
 		<a href="${request.resource_url(request.root, '3')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a>
 	 </metal:footer>
 </metal:html>
