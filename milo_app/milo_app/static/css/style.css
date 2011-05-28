@@ -1451,6 +1451,34 @@ padding-left:5px;
 color: #A9C3CC;
 }
 
+#other_select1{
+width: 30px; 
+}
+
+#other_select2{
+width: 30px; 
+}
+
+.other_input{
+padding-top: 0;
+}
+
+.other_input input{
+width: 200px;
+cursor: text;
+border-left:50px;
+padding-left:5px;
+color: #A9C3CC;
+}
+
+#place_survey input{
+width: 400px;
+cursor: text;
+border-left:50px;
+padding-left:5px;
+color: #A9C3CC;
+}
+
 .option select{
 background: #A9C3CC;
 padding: 3px 3px 3px 3px;

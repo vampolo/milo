@@ -60,7 +60,7 @@
 							<input type="radio" name="complete" value="Low" /><b>Incomplete</b>. There were some missing titles, even if really known 
 						</div><!--field-->
 						
-					</form><!--info_form_left-->	
+					</form><!--catalogue-questions-->
 					
 					</div><!--info_input-->
 					

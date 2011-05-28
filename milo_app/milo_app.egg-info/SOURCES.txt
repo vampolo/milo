@@ -4297,6 +4297,7 @@ milo_app/static/movie_data/Vanilla Sky_poster.jpg
 milo_app/templates/about.pt
 milo_app/templates/base.pt
 milo_app/templates/categories.pt
+milo_app/templates/finish.pt
 milo_app/templates/login.pt
 milo_app/templates/login_milo.pt
 milo_app/templates/movie.pt
@@ -4304,7 +4305,9 @@ milo_app/templates/movie_list.pt
 milo_app/templates/mytemplate.pt
 milo_app/templates/profile.pt
 milo_app/templates/step1.pt
+milo_app/templates/step2.pt
+milo_app/templates/step3.pt
+milo_app/templates/step4.pt
+milo_app/templates/step5.pt
 milo_app/templates/test.pt
 milo_app/templates/wizard.pt
-milo_app/templates/step1.pt
-milo_app/templates/step2.pt

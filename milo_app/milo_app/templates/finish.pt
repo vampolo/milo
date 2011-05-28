@@ -26,6 +26,42 @@
 			<div id='category-posts'>
 				<h2>Wizard - Final Step</h2>
 				
+				<p>The questionnaire is about to get finished! Just answer these last questions:</p>
+				
+				<div id="info_input" class="form-input">
+					
+					<form id="catalogue-questions" name="input" action="" method="POST" autocomplete="off">
+					
+						<div class="select info_field">
+							<label for="conclusion_place"> Where did this survey take place?</label><br/><br/>
+							<input type="radio" name="place" value="Uni" /><b>University</b><br/>
+							<input type="radio" name="place" value="Home" /><b>Home</b><br/>
+							<input type="radio" name="place" value="Public" /><b>Public place</b><br/>
+							
+							<div class="other_input info_field">
+								<input id="other_select1" type="radio" name="place" value="Other" />
+								<b>Other:</b>&nbsp;&nbsp;<input id="other_place" type="text" name="place" value=""/><br/>
+							</div>
+						</div><!--field-->
+						
+						<div class="select info_field">
+							<label for="conclusion_reason"> Why did you accepted to take part to the survey?</label><br/><br/>
+							<input type="radio" name="reason" value="Friend" /><b>Do a friend a favor</b><br/>
+							<input type="radio" name="reason" value="Interest" /><b>Interest in movies/cinema</b><br/>
+							<input type="radio" name="reason" value="Relative" /><b>Help a relative</b><br/>
+							<div class="other_input info_field">
+								<input id="other_select2" type="radio" name="reason" value="Other" />
+								<b>Other:</b>&nbsp;&nbsp;<input id="other_reason" type="text" name="reason" value=""/><br/>
+							</div>
+						</div><!--field-->
+						
+					</form><!--catalogue-questions-->	
+					
+					<p>The survey has been completed! <b>Thank you!</b></p>
+					
+				</div><!--info_input-->
+					
+				
 		  </div>
      	</div>
      </div>
