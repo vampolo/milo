@@ -388,6 +388,15 @@ margin-bottom: -5px;
 padding-right: 5px;
 }
 
+.steps{
+font-weight: bold;
+padding-right: -15px;
+}
+
+#current-step{
+color: white;
+}
+
 /*********************************************************************************************
 
 4. Main Content Containers
@@ -1132,6 +1141,54 @@ input#cont_button:hover{
 background: url(../images/cont2.png);
 }
 
+input#next_button {
+background: url(../images/next1.png) 0 0;
+border: none;
+float:right;
+color: #3E4852;
+width: 144px;
+height: 32px;
+margin: 5px 0 5px 5px;
+padding: 0 0 2px 0;
+cursor: pointer;
+}
+
+input#next_button:hover{
+background: url(../images/next2.png);
+}
+
+input#prev_button {
+background: url(../images/prev1.png) 0 0;
+border: none;
+color: #3E4852;
+width: 144px;
+height: 32px;
+margin: 5px 0 5px 5px;
+padding: 0 0 2px 0;
+cursor: pointer;
+}
+
+input#prev_button:hover{
+background: url(../images/prev2.png);
+}
+
+input#finish_button {
+background: url(../images/finish1.png) 0 0;
+border: none;
+color: #3E4852;
+width: 144px;
+float: right;
+height: 32px;
+margin: 5px 0 5px 5px;
+padding: 0 0 2px 0;
+cursor: pointer;
+}
+
+input#finish_button:hover{
+background: url(../images/finish2.png);
+}
+
+
 #key_form{
 padding-left: 10px;
 }
@@ -1386,10 +1443,12 @@ width: 40px;
 cursor: pointer;
 }
 
-.drop {
-margin: 17px 17px 19px 0px;
-font-size: 15px;
-text-shadow: 0 -1px 0 #333;
+.missing_movie input{
+width: 400px;
+cursor: text;
+border-left:50px;
+padding-left:5px;
+color: #A9C3CC;
 }
 
 .option select{
@@ -1398,7 +1457,7 @@ padding: 3px 3px 3px 3px;
 border-radius: 4px;
 font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
 font-size: 13px;
-font-color: #1A1D1F;
+color: #1A1D1F;
 }
 
 .option option{

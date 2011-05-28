@@ -1,0 +1,37 @@
+<metal:html use-macro="base.macros['main']">
+
+	 <metal:search fill-slot="search">
+	 <!--Hide search engine-->
+	 </metal:search>
+     
+	 <metal:landmarks fill-slot="landmarks">
+	 <!--Hide landmarks-->
+	 <ul class="menu">
+	 <li class="steps" title="Begin of survey">Start Wizard &nbsp&nbsp&nbsp></li>
+	 <li class="steps" title="Information Form"> Step 1 &nbsp&nbsp&nbsp></li>
+	 <li class="steps" title="Browsing & Rating"> Step 2 &nbsp&nbsp&nbsp></li>
+	 <li class="steps" title="Catalogue Questions"> Step 3 </li>
+	 <li class="steps" title="Interface Questions">>&nbsp&nbsp&nbsp Step 4 &nbsp&nbsp&nbsp></li>
+	 <li id="current-step" class="steps" title="Recommendations & Rating"> Step 5 </li>
+	 <li class="steps" title="End of survey">>&nbsp&nbsp&nbspFinish!</li>
+	 
+	 
+	 <li id="signout"><a href="${request.resource_url(request.root, 'exit')}" title="Exit"><img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/door_out.png')}">Exit Wizard</a></li>
+	 </ul>
+	 </metal:landmarks>
+          
+     <metal:content fill-slot="content">
+     <div id="content-inside">
+		<div id='post-container'>
+			<div id='category-posts'>
+				<h2>Wizard - Step 5</h2>
+				
+		  </div>
+     	</div>
+     </div>
+     </metal:content>
+     <metal:footer fill-slot="foot-content"> 
+		<a href="${request.resource_url(request.root, '4')}"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
+		<a href="${request.resource_url(request.root, 'finish')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a>
+	 </metal:footer>
+</metal:html>

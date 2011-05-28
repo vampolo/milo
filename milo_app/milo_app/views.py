@@ -14,7 +14,17 @@ import random
 @view_config(name='Popular', context='milo_app:resources.Root',
              renderer='templates/movie_list.pt')
 @view_config(name='1', context='milo_app:resources.Root',
-				 renderer='templates/step1.pt')                      
+				 renderer='templates/step1.pt')
+@view_config(name='2', context='milo_app:resources.Root',
+				 renderer='templates/step2.pt')
+@view_config(name='3', context='milo_app:resources.Root',
+				 renderer='templates/step3.pt')
+@view_config(name='4', context='milo_app:resources.Root',
+				 renderer='templates/step4.pt')
+@view_config(name='5', context='milo_app:resources.Root',
+				 renderer='templates/step5.pt')
+@view_config(name='finish', context='milo_app:resources.Root',
+				 renderer='templates/finish.pt')                                                          
 def main(request):
 	rand = random.randint(0, Movie.objects().count()-10)
 	new_rec = None

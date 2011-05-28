@@ -1,0 +1,24 @@
+<metal:html use-macro="base.macros['main']">
+     <metal:content fill-slot="content">
+     <div id="content-inside">
+		<div id='post-container'>
+			<div id='category-posts'>
+				<h2>Survey</h2>
+				<p>
+				Milo elaborated a brief questionnaire to gather information and improve its web service!<br/>
+				If you received an email with a key to access this restrict area, please submit the form:
+				</p>
+				
+				<div id="key_input" class="form-input">
+					<form id="key_form" name="input" action="" method="POST" autocomplete="off">
+						<label for="key_email">Email:</label><input id="key_email" type="text" name="key_email"/>
+						<label for="key_password">Key:</label><input id="key_password" type="password" name="key_password"/>
+						<a href="${request.resource_url(request.root, '1')}"><input id="key_button" name="form.key.submitted" type="submit" value=""/></a>
+					</form><!-- key-form -->
+				</div><!-- key-input--> 
+
+			</div>
+     	</div>
+     </div>
+     </metal:content>
+</metal:html>

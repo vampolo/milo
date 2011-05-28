@@ -317,6 +317,8 @@
     <div id="footer">
       <div id="footer-inside">
         <div id="footer-content">
+		<metal:footer metal:define-slot="foot-content">
+		</metal:footer>	
         </div><!-- footer-content-->
       </div><!-- footer-inside -->
     </div><!-- footer -->

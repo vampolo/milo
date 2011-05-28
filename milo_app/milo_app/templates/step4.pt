@@ -1,0 +1,75 @@
+<metal:html use-macro="base.macros['main']">
+
+	 <metal:search fill-slot="search">
+	 <!--Hide search engine-->
+	 </metal:search>
+     
+	 <metal:landmarks fill-slot="landmarks">
+	 <!--Hide landmarks-->
+	 <ul class="menu">
+	 <li class="steps" title="Begin of survey">Start Wizard &nbsp&nbsp&nbsp></li>
+	 <li class="steps" title="Information Form"> Step 1 &nbsp&nbsp&nbsp></li>
+	 <li class="steps" title="Browsing & Rating"> Step 2 &nbsp&nbsp&nbsp></li>
+	 <li class="steps" title="Catalogue Questions"> Step 3 &nbsp&nbsp&nbsp></li>
+	 <li id="current-step" class="steps" title="Interface Questions"> Step 4 </li>
+	 <li class="steps" title="Recommendations & Rating">>&nbsp&nbsp&nbsp Step 5 &nbsp&nbsp&nbsp></li>
+	 <li class="steps" title="End of survey">Finish!</li>
+	 
+	 
+	 <li id="signout"><a href="${request.resource_url(request.root, 'exit')}" title="Exit"><img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/door_out.png')}">Exit Wizard</a></li>
+	 </ul>
+	 </metal:landmarks>
+          
+     <metal:content fill-slot="content">
+     <div id="content-inside">
+		<div id='post-container'>
+			<div id='category-posts'>
+				<h2>Wizard - Step 4</h2>
+				
+				<p>Please, answer the next questions related to the current graphical interface used:</p>
+				
+				<div id="info_input" class="form-input">
+					
+					<form id="catalogue-questions" name="input" action="" method="POST" autocomplete="off">
+					
+						<div class="select info_field">
+							<label for="interface_like">4.1) Check the boxes which better represent the features you LIKED in this graphical interface (more than one option can be chosen):</label><br/><br/>
+							<input type="checkbox" name="color" value="liked" /><b>Color Palette</b><br/>
+							<input type="checkbox" name="animations" value="liked" /><b>Animations</b><br/>
+							<input type="checkbox" name="readability" value="liked" /><b>Text readability</b><br/>
+							<input type="checkbox" name="position" value="liked" /><b>Positioning of elements</b> (Organization of info)<br/>
+							<input type="checkbox" name="links" value="liked" /><b>Links highlighting</b><br/>
+							<input type="checkbox" name="orientation" value="liked" /><b>Orientation guidelines</b> (Was it always clear where were you and where to go?)<br/>
+						</div><!--field-->
+						
+						
+						<div class="select info_field">
+							<label for="interface_like">4.2) Check the boxes which better represent the features you DISLIKED in this graphical interface (more than one option can be chosen):</label><br/><br/>
+							<input type="checkbox" name="color" value="disliked" /><b>Color Palette</b><br/>
+							<input type="checkbox" name="animations" value="disliked" /><b>Animations</b><br/>
+							<input type="checkbox" name="readability" value="disliked" /><b>Text readability</b><br/>
+							<input type="checkbox" name="position" value="disliked" /><b>Positioning of elements</b> (Organization of info)<br/>
+							<input type="checkbox" name="links" value="disliked" /><b>Links highlighting</b><br/>
+							<input type="checkbox" name="orientation" value="disliked" /><b>Orientation guidelines</b> (Was it always clear where were you and where to go?)<br/>
+						</div><!--field-->
+						
+						<div class="select info_field">
+							<label for="confusing">4.3) Did you find confusing the browsing experience through the catalogue?</label><br/><br/>
+							<input type="radio" name="confuse" value="No" /><b>No</b>, it was easy to browse and find items<br/>
+							<input type="radio" name="confuse" value="Partial" /><b>Partially</b>, as in the beginning I found some difficulty to find items I wished, but later I got used to it<br/>
+							<input type="radio" name="confuse" value="Yes" /><b>Yes</b>, it was difficult to reach items I wanted to rate
+						</div><!--field-->
+						
+					</form><!--info_form_left-->	
+					
+					</div><!--info_input-->
+				
+		  </div>
+     	</div>
+     </div>
+     </metal:content>
+     <metal:footer fill-slot="foot-content"> 
+		<a href="${request.resource_url(request.root, '3')}"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
+		<a href="${request.resource_url(request.root, '5')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a>
+	 </metal:footer>
+</metal:html>
