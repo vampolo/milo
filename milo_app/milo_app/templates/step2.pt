@@ -1,11 +1,12 @@
 <metal:html use-macro="base.macros['main']">
-	
+
 		<metal:panel metal:fill-slot="panel">
 		<div id="communication-panel">
 			<div id='communication-panel-content'>
 			  <span></span>
-			  <a id="agree_button" href="javascript:panel_up();${request.resource_url(context, request.view_name, query=dict(rating='rated'))}" title="Ok!"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/></a>
-			  <a id="disagree_button" href="javascript:panel_up();" title="Undo rating."><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/></a>
+			  <!--ADDITIONALLY this link should refresh the page taking of that film rated!-->
+			  <a tal:condition="not rating_finished" id="agree_button" href="javascript:panel_up();${request.resource_url(context, request.view_name, query=dict(rating='rated'))}" title="Ok!"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/></a>
+			  <a tal:condition="not rating_finished" id="disagree_button" href="javascript:panel_up();" title="Undo rating"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/></a>
 		  </div>
 		</div>
 		</metal:panel>
@@ -385,11 +386,12 @@
 
               	<ul class="post-meta">
   
-
 					<li class="info info-logged">
+						<tal:rating_finished condition="not rating_finished">
 						<span>Rated it: </span>
-						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(rating='rated'))}','${movie.title} rated as liked! Submit?');" title="Like this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
-						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(rating='rated'))}','${movie.title} rated as disliked... Submit?');" title="Dislike this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
+						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(num_ratings = num_ratings+1))}','${movie.title} rated as liked! Submit?');" title="Like this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
+						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(num_ratings = num_ratings+1))}','${movie.title} rated as disliked... Submit?');" title="Dislike this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
+						</tal:rating_finished>
 					</li>
 					<li class="genre">Genre: <tal:genres repeat="g movie.genre"><a href="#" title="Search films of this genre">${g}</a>,</tal:genres></li>
 					<li class="genre">Director: <tal:genres repeat="g movie.genre"><a href="#" title="Search films of this director">${'Director Name'}</a></li>
@@ -418,7 +420,9 @@
      
      <metal:footer fill-slot="foot-content"> 
 		<a href="${request.resource_url(request.root, '1')}" target="_new"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
+		<tal:next condition="rating_finished">
 		<a href="${request.resource_url(request.root, '3')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a>
+		</tal:next>
 	 </metal:footer>
 </metal:html>
 

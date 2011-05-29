@@ -4220,6 +4220,7 @@ milo_app/static/js/jquery.js
 milo_app/static/js/jquery.superfish.js
 milo_app/static/js/jqueryui.js
 milo_app/static/js/l10n.js
+milo_app/static/js/rating_done.js
 milo_app/static/js/ui.js
 milo_app/static/js/undo.js
 milo_app/static/js/wlwmanifest.xml

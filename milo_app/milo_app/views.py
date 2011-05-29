@@ -28,9 +28,7 @@ import random
 def main(request):
 	rand = random.randint(0, Movie.objects().count()-10)
 	new_rec = None
-	rating_accepted = None
-	num_ratings = 0
-	undo = None
+	rating_finished = None
 	slider_movies = None
 	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title="More Top Movies")
 	
@@ -41,19 +39,21 @@ def main(request):
 	else:
 		page = int(page)
 	
-	if request.GET.get('rating') == 'rated':
-		num_ratings = num_ratings+1
-		rating_accepted=True
+	num_ratings = request.GET.get('num_ratings')
 	
-	if request.GET.get('undo') == 'yes':
-		num_ratings = num_ratings-1
-		rating_accepted=False
+	if num_ratings is None:
+		num_ratings = 1
+	else:
+		num_ratings = int(num_ratings)
+		
+	if num_ratings == 6:
+		rating_finished=True
 	
 	if request.GET.get('rec') == 'new':
 		main_movies = Movie.objects().order_by('-date')
 		slider_movies = main_movies[:5]
 		category = 'Recommended Movies'	
-		new_rec=True
+		new_rec=True		
 		
 	elif not authenticated_userid(request):
 		main_movies = Movie.objects().order_by('-date')
@@ -70,7 +70,7 @@ def main(request):
 	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9], title=main_movies_title)
 	# the upper two lines are magic
 	slider_movies = slider_movies if slider_movies else Movie.objects()[rand:rand+5]
-	return dict(undo=undo, rating_accepted=rating_accepted, movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category, page=page, last_page=last_page, new_rec=new_rec)
+	return dict(num_ratings = num_ratings, rating_finished=rating_finished, movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category, page=page, last_page=last_page, new_rec=new_rec)
 
 @view_config(name='about', context='milo_app:resources.Root',
 				 renderer='templates/about.pt')
