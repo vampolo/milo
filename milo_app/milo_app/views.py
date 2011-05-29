@@ -31,6 +31,10 @@ def main(request):
 	rating_finished = None
 	slider_movies = None
 	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title="More Top Movies")
+	wizard_movie = False
+	
+	if request.GET.get('wizard_movie') == 'details':
+		wizard_movie == True
 	
 	#Testing Next/Previous buttons
 	page = request.GET.get('page')
@@ -70,7 +74,7 @@ def main(request):
 	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9], title=main_movies_title)
 	# the upper two lines are magic
 	slider_movies = slider_movies if slider_movies else Movie.objects()[rand:rand+5]
-	return dict(num_ratings = num_ratings, rating_finished=rating_finished, movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category, page=page, last_page=last_page, new_rec=new_rec)
+	return dict(wizard_movie = wizard_movie, num_ratings = num_ratings, rating_finished=rating_finished, movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category, page=page, last_page=last_page, new_rec=new_rec)
 
 @view_config(name='about', context='milo_app:resources.Root',
 				 renderer='templates/about.pt')
@@ -104,14 +108,6 @@ def profile(request):
 @view_config(context='milo_app:resources.Movie',
 				 renderer='templates/movie.pt')
 def movie(context, request):
-	rand = random.randint(0, Movie.objects().count()-5)
-	slider_movies = dict(movies=Movie.objects()[rand:rand+3], title='Related Movies')
-	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title='Recommended by Friends')
-	return dict(movie=context, slider_movies=slider_movies, right_movies=right_movies)
-
-@view_config(name="wizard", context='milo_app:resources.Movie',
-				 renderer='templates/wizard_movie.pt')
-def wizard_movie(context, request):
 	rand = random.randint(0, Movie.objects().count()-5)
 	slider_movies = dict(movies=Movie.objects()[rand:rand+3], title='Related Movies')
 	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title='Recommended by Friends')

@@ -7,7 +7,7 @@
 		<div id="communication-panel">
 			<div id='communication-panel-content'>
 			  <span></span>
-			  <!--ADDITIONALLY this link should refresh the page taking of that film rated!-->
+<!--ADDITIONALLY this link should refresh the page taking of that film rated!-->
 			  <a tal:condition="not rating_finished" id="agree_button" href="javascript:panel_up();${request.resource_url(context, request.view_name, query=dict(rating='rated'))}" title="Ok!"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/></a>
 			  <a tal:condition="not rating_finished" id="disagree_button" href="javascript:panel_up();" title="Undo rating"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/></a>
 		  </div>
@@ -379,13 +379,13 @@
      <tal:r repeat="movie movies.get('movies')">
             <div id="step2_item" class="gallery-item ${'clearboth' if not repeat.movie.index % 3 else ''}">
             	<div class="post-thumbnail">
-            	<a target="_new" class="thumbnail-frame" tal:attributes="href request.resource_url(context, 'Movie/wizard' , movie.title)" title="See the trailer and details">
+            	<a target="_new" class="thumbnail-frame" tal:attributes="href request.resource_url( context ,  'Movie', movie.title, query=dict(wizard_movie='details') )" title="See the trailer and details">
             	<img width="180" height="250" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)" class="recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
 					<span><img width="180" height="260" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)"/></span>				
 				</a>            
             	</div><!--post-thumbnail-->
 
-              	<h2><a target="_new" tal:attributes="href request.resource_url(context, 'Movie', movie.title)" title="Go to this movie page">${movie.title}</a><span title="Release Date">(${movie.date.strftime('%Y')})</span></h2>
+              	<h2><a target="_new" tal:attributes="href request.resource_url(context, 'Movie', movie.title, query=dict(wizard_movie='details'))" title="Go to this movie page">${movie.title}</a><span title="Release Date">(${movie.date.strftime('%Y')})</span></h2>
 
               	<ul class="post-meta">
   

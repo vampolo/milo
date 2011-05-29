@@ -430,6 +430,13 @@ width: 660px;
 float: left;
 }
 
+
+#posts-wizard {
+width: 980px;
+float: left;
+margin-left: 190px;
+}
+
 #posts h2{
 padding: 0 0 3px 0;
 }
@@ -503,7 +510,7 @@ font-size: 15px;
 }
 
 .div-movie-details a{
-font-size: 13px;
+font-size: 15px;
 }
 
 .div-movie-details p{
@@ -790,6 +797,15 @@ padding: 30px 0 0 30px;
 border-radius: 3px;
 }
 
+#video-container-wizard{
+background: #3E4852;
+width: 950px;
+float: left;
+text-align: center;
+padding: 30px 0 0 30px;
+border-radius: 3px;
+}
+
 #player{
 border-width: 5px;
 border-color: lightgrey;
@@ -828,7 +844,7 @@ p.infoandlike-film {
 color: #A9C3CC;
 font-weight: bold;
 font-size: 14px;
-padding: 5px 0 0 0;
+padding: 5px 0 0 4px;
 }
 
 p.infoandlike-film a:link, li.info a:visited {
