@@ -1,0 +1,170 @@
+<metal:html use-macro="base.macros['main']">
+     <metal:content fill-slot="content">
+
+	<div id="content-inside">
+      <div id="video-container">
+        <div class='video-embedded-and-related'>
+        
+			<iframe id="player" type="text/html" src="${movie.trailer}?enablejsapi=1&rel=0&autohide=1"></iframe> 
+              
+			<div class='related-films'>
+			
+			<h2 title="List of films with similar content">${slider_movies.get('title')}</h2>
+            
+            <div class="related-item" tal:repeat="movie slider_movies.get('movies')" tal:repeat="movie slider_movies.get('movies')">
+              <div class="post-thumbnail-side"><a class="thumbnail-frame-side" tal:attributes="href request.resource_url(request.root, 'Movie', movie.title); title movie.title"></a> 
+              <img width="80" height="80" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)"  alt="Car" title="car" />
+              </div><!-- post-thumbnail-side -->
+              <div class="related-content">
+                <h3><a tal:attributes="href request.resource_url(request.root, 'Movie', movie.title); title movie.title" rel="bookmark" title="Movie-Title#1">${movie.title}</a></h3>
+                <p>${movie.description[:70]}&hellip;</p>
+              </div><!-- related-content -->            
+            </div><!-- related-item -->
+			
+			
+			
+           </div><!--related-films-->			
+    	</div><!-- video-embedded-and-related -->
+    	
+    	
+		<div id='embedded-video-footer'>			 
+		
+				<div id='info-film'>
+						<p class='infoandlike-film'>Genre: <a href="#" title="Search films of this genre">Romance</a></p>
+						<p class='infoandlike-film'><img src="../icons/play.png" style=
+						"width: 14px; height:12px;" /> 2.000  views              
+						<img src="../icons/heart.png" style="width: 14px; height:12px;" /> 542 likes </p>
+				</div><!-- info-film -->
+				
+				<tal:logged condition="logged">
+					<div id='like-film'>
+						<li class="recommend-thumbs-slider">
+						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Like this movie">Like <img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
+						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Dislike this movie">Dislike <img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
+						</li>	
+					</div><!--like-film-->
+				</tal:logged>	
+							
+		</div><!-- embedded-video-footer-->
+    	
+   	</div><!-- video-container -->
+    
+    
+		<div id="post-container">
+         <div id="posts">
+         
+			<div id="film-description-header">
+				<h2>${movie.title} ( <a href="#FIXME" title="Check the list of films released on this year">${movie.date.strftime('%Y')}</a> )<h2> 
+				<ul class="post-meta post-meta-post">
+					<li class="date">Released on ${movie.date.strftime('%D')}</li>
+					<li class="comments"><a href="#comments" title="Check other users reviews">${len(movie.comments)} Comment</a></li>
+				</ul>
+			</div><!-- film-description-header -->	
+
+			<div id="film-description" class="post-content">
+              
+              <div id="film-cover-container">
+                <img src="${request.static_url('milo_app:static/movie_data/'+movie.poster)}" alt="Finding Nemo" title="Finding Nemo" width="180" height="250" class="size-medium wp-image-378" />
+                <p class="image-caption">Image Caption</p>
+              </div><!-- film-cover-container -->
+			  
+			  <div id="movie-description-text" class="div-movie-details">
+			  <p tal:content="movie.description"></p>
+              </div><!-- movie-description-text -->
+              
+              <div id="list-main-actors" class="div-movie-details">
+			  <h3>Stars:</h3>
+			  <p>
+			  <a href="../actor_list_login/index.html" title="Check other films of this star!"> Actor #1 </a>, 
+			  <a href="../actor_list_login/index.html" title="Check other films of this star!"> Actor #2 </a>and
+			  <a href="../actor_list_login/index.html" title="Check other films of this star!"> Actor #3 </a>
+			  </p>
+			  <li>
+			  <a href="../cast_list_login/index.html" title="See the full list of actors of this film">See all cast</a>
+			  </li>
+			  </div><!-- list-main-actors -->
+              
+              <div id="director-info" class="div-movie-details">
+			  <h3>Director:</h3>
+			  <a href="../director_list_login/index.html" title="Check other films of this director!"> Director name </a>
+			  </div><!-- director-info -->
+             
+            </div><!-- film-description -->
+			<div id="comments-meta">
+            <h3>One Response to &ldquo;Film name here&rdquo;</h3>
+        </div><!-- comments-meta -->
+
+        <div id="comments">
+            <ol class="commentlist">
+            
+              <li class="comment"> 
+                <div class="comment-body">
+                    <div class="comment-author">
+                    <img alt='' src='http://1.gravatar.com/avatar/7cc3a594575d2a9e0cd55feba7a1d420?s=48&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D48&amp;r=G' class='avatar' height='48' width='48'/> 
+					<a href="#" title="Ask for friendship" style="color:black">Jason Schuller</a>
+					</div><!-- comment-author -->
+
+					<div class="comment-meta">
+                    March 30, 2010 at 5:37 pm
+					</div><!-- comment-meta -->
+
+					<p>Quisque tincidunt lobortis ligula interdum ullamcorper. Nam bibendum
+					tristique vulputate. In ligula tellus, ultricies quis consequat
+					ultrices, aliquam vel lorem. Nunc dapibus ultricies tortor id gravida.
+					Sed cursus mi in dolor tempor venenatis. Duis imperdiet porttitor
+					lectus quis congue.</p>
+
+					<p>Sed pulvinar pulvinar ipsum, quis vestibulum urna adipiscing at.
+					Suspendisse a hendrerit mauris. Aliquam erat volutpat. Aenean dignissim
+					pellentesque libero, a volutpat urna iaculis pellentesque. Suspendisse
+					scelerisque erat quis magna consectetur a consequat neque vehicula.</p>
+
+					<div class="reply">
+					<a class="reply" href="#" name="reply-comment-link"></a>
+					</div><!-- reply -->
+                  </div><!-- comment-body -->
+				</li><!-- comment -->
+				
+            </ol><!-- commentlist -->
+                
+        <div id="respond">
+            <form action="#" method="post" id="commentform" name="commentform">
+              
+              <p>
+              <textarea name="newcomment" id="newcomment" cols="80%" rows="10" tabindex="4"></textarea>
+              </p>
+
+              <p><input name="submit" type="submit" id="submit" tabindex="5" value=""/>
+              <input type='hidden' name='comment_post_ID' id='comment_post_ID' value=''/> 
+              <input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+              </p>
+            
+            </form><!-- commentform-->
+          </div><!-- respond -->
+        </div><!-- comments -->
+       </div><!-- posts -->
+				
+		<div id="sidebar">
+			<div id="friends-also-liked-sidebar" class="widget">
+              <h2 title="Friends who like this also like...">${right_movies.get('title')}</h2>
+					
+              <div class="sidebar-item" tal:repeat="movie right_movies.get('movies')">
+                <div class="post-thumbnail-side">
+                <a class="thumbnail-frame-side" tal:attributes="href request.resource_url(request.root, 'Movie', movie.title); title movie.title"></a>
+                <img width="80" height="80" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)"  alt="Can" title="can"></img>
+                </div>
+                <div class="sidebar-item-content">
+                  <h3><a tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)" rel="bookmark" title="Movie-Title#1">${movie.title}</a></h3>
+                  <p>${movie.description[:70]}&hellip;</p>
+                </div>
+              </div><!-- sidebar-item -->
+              		
+            </div><!-- friends-also-liked-sidebar -->
+          
+        </div><!-- sidebar -->
+       </div><!-- post-container -->
+    
+    
+    </div><!-- content-inside -->
+	</metal:content>
+</metal:html>

@@ -58,11 +58,10 @@
   <script type='text/javascript' src="${request.static_url('milo_app:static/js/fancybox/jquery.fancybox.js')}">
   </script>
   <script tal:condition="new_rec" type='text/javascript' src="${request.static_url('milo_app:static/js/undo.js')}">
-  </script>
-  <script tal:condition="rating_finished" type='text/javascript' src="${request.static_url('milo_app:static/js/rating_done.js')}">
   </script>	
   <script src="http://connect.facebook.net/en_US/all.js#appId=113902308692268&amp;xfbml=1">
-  </script>	
+  </script>
+  <metal:add_js metal:define-slot="add_js"></metal:add_js>	
 </head>
 
 <body>

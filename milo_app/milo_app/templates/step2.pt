@@ -1,5 +1,8 @@
 <metal:html use-macro="base.macros['main']">
-
+  <metal:add_js metal:fill-slot="add_js">
+  <script tal:condition="rating_finished" type='text/javascript' src="${request.static_url('milo_app:static/js/rating_done.js')}">
+  </script>
+  </metal:add_js>
 		<metal:panel metal:fill-slot="panel">
 		<div id="communication-panel">
 			<div id='communication-panel-content'>
@@ -376,13 +379,13 @@
      <tal:r repeat="movie movies.get('movies')">
             <div id="step2_item" class="gallery-item ${'clearboth' if not repeat.movie.index % 3 else ''}">
             	<div class="post-thumbnail">
-            	<a class="thumbnail-frame" tal:attributes="href request.resource_url(context, 'Movie', movie.title)" title="See the trailer and details">
+            	<a target="_new" class="thumbnail-frame" tal:attributes="href request.resource_url(context, 'Movie/wizard' , movie.title)" title="See the trailer and details">
             	<img width="180" height="250" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)" class="recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
 					<span><img width="180" height="260" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)"/></span>				
 				</a>            
             	</div><!--post-thumbnail-->
 
-              	<h2><a tal:attributes="href request.resource_url(context, 'Movie', movie.title)" title="Go to this movie page">${movie.title}</a><span title="Release Date">(${movie.date.strftime('%Y')})</span></h2>
+              	<h2><a target="_new" tal:attributes="href request.resource_url(context, 'Movie', movie.title)" title="Go to this movie page">${movie.title}</a><span title="Release Date">(${movie.date.strftime('%Y')})</span></h2>
 
               	<ul class="post-meta">
   
@@ -410,7 +413,7 @@
 			<!--Next/Previous buttons-->
 			<metal:prev_next metal:define-slot="prev_next">
 			<div id="step2-list-footer">
-				<a tal:condition="not last_page" id="next-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page+1))}">Next films<img src="images/icons/fatcow/32x32/resultset_next.png"></img></a>
+				<a tal:condition="not last_page" id="next-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page+1))}">More films<img src="images/icons/fatcow/32x32/resultset_next.png"></img></a>
 				<a tal:condition="not page==1" id="previous-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page-1))}"><img src="images/icons/fatcow/32x32/resultset_previous.png"></img>Previous films</a>
 			</div><!-- posts-footer-->			
 			</metal:prev_next>
