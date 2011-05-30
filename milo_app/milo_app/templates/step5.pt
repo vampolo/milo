@@ -1,5 +1,11 @@
 <metal:html use-macro="base.macros['main']">
 
+	  <metal:home metal:fill-slot="Milo-logo">
+      <div id="header-left">
+        <img class="fade" src="${request.static_url('milo_app:static/images/milo_logo.png')}" alt="Milo" />
+      </div><!-- header-left -->
+	  </metal:home>
+
 	 <metal:search fill-slot="search">
 	 <!--Hide search engine-->
 	 </metal:search>
@@ -24,14 +30,111 @@
      <div id="content-inside">
 		<div id='post-container'>
 			<div id='category-posts'>
-				<h2>Wizard - Step 5</h2>
-				
+				<h2>Wizard - Step 5  <i>(Movie #1  example)</i></h2><br/>
+				<p>Answer the next questions related to the information about this movie:</p>
+			<div id="step5-movie-description" class="step5-question">
+				<div id="film-description-header">
+				<!--<h2>${movie.title} ( <a href="#FIXME" title="Check the list of films released on this year">${movie.date.strftime('%Y')}</a> )<h2> 
+				<ul class="post-meta post-meta-post">
+					<li class="date">Released on ${movie.date.strftime('%D')}</li>
+				</ul>-->
+				<h2>Dragon Trainer ( <a href="#FIXME" title="Check the list of films released on this year">2010</a> )<h2> 
+				<ul class="post-meta post-meta-post"> 
+					<li class="date">Released on 01/01/10</li> 
+				</ul> 
+			</div><!-- film-description-header -->	
+
+			<div id="film-description" class="post-content">
+              
+              <div id="film-cover-container">
+				<!--<img src="${request.static_url('milo_app:static/movie_data/'+movie.poster)}" alt="Dragon Trainer" title="Dragon Trainer" width="180" height="250" class="size-medium wp-image-378" />-->  
+                <img src="${request.static_url('milo_app:static/movie_data/Dragon Trainer_poster.jpg')}" alt="Dragon Trainer" title="Dragon Trainer" width="180" height="250" class="size-medium wp-image-378" />
+                <p class="image-caption">Image Caption</p>
+              </div><!-- film-cover-container -->
+			  
+			  <div id="movie-description-text" class="div-movie-details">
+			  <!--<p tal:content="movie.description"></p>-->
+			  <p>A hapless young Viking who aspires to hunt dragons becomes the unlikely friend of a young dragon himself, and learns there may be more to the creatures than he assumed.</p> 
+              </div><!-- movie-description-text -->
+              <div id='info-film'>
+				    <div id="genre-info" class="div-movie-details">
+						<h3>Genre:</h3>
+						<p>
+						Animation Adventure Comedy 
+						</p>
+					</div><!--genre-info-->
+					<!--<p class='infoandlike-film'>Genre: <a href="#" title="Search films of this genre" tal:repeat="g movie.genre">${g}</a><br/>-->
+					<!--<a href="#" title="Search films of this genre" tal:repeat="g movie.genre">${g}</a></p>-->
+					
+					<div id="list-main-actors" class="div-movie-details">
+						<h3>Stars:</h3>
+						<p>
+						Actor #1, Actor #2 and Actor #3
+						</p>
+					</div><!-- list-main-actors -->
+
+					<div id="director-info" class="div-movie-details">
+						<h3>Director:</h3> 
+						<p>
+						Director name
+						</p>
+					</div><!-- director-info -->
+			 </div><!-- info-film -->
+            </div><!-- film-description -->				
+		  </div> <!--step5-movie-description-->
+		  
+		  <div id="step5-question1" class="step5-question">
+			<div class="select info_field">
+							<label for="step5_Q1">5.1) Have you ever seen this movie?</label><br/><br/>
+							<div id="Q1_no" class="step5-input"><input type="radio" name="seen" value="No" /><b>No</b><br/></div>
+							<div id="Q1_yes" class="step5-input"><input type="radio" name="seen" value="Yes" /><b>Yes</b><br/></div>
+			</div><!--field-->
 		  </div>
+		  
+<!--CHANGE BACKGROUND WHEN SELECTED-->
+		  <div id="step5-rate1" class="step5-question hidden-question">
+			<div class="select info_field">
+						<label for="step5_rate1"> Rate this movie!</label><br/><br/>
+							<div id="rate1-like" class="step5-input rate-step5"><input type="radio" name="rating1" value="Like" /><b>Like</b><br/></div>
+							<div id="rate1-dislike" class="step5-input rate-step5"><input type="radio" name="rating1" value="Dilike" /><b>Dislike</b><br/></div>
+			</div><!--field-->
+		  </div>
+		  
+		  <div id="step5-question2" class="step5-question hidden-question">
+			<div class="select info_field">
+							<label for="step5_Q2">5.2) Have you ever heard about this movie? (Friends comments, TV, commercials, internet, reviews,...)</label><br/><br/>
+							<div id="Q2_no" class="step5-input"><input type="radio" name="heard" value="No" /><b>No</b><br/></div>
+							<div id="Q2_yes" class="step5-input"><input type="radio" name="heard" value="Yes" /><b>Yes</b><br/></div>
+			</div><!--field-->
+		  </div>
+		  
+		  <div id="step5-rate2" class="step5-question hidden-question">
+			<div class="select info_field">
+						<label for="step5_rate2"> Rate this movie!</label><br/><br/>
+							<div id="rate2-like" class="step5-input"><input type="radio" name="rating2" value="Like" /><b>Like</b><br/></div>
+							<div id="rate2-dislike" class="step5-input"><input type="radio" name="rating2" value="Dilike" /><b>Dislike</b><br/></div>
+			</div><!--field-->
+		  </div>
+		  
+		  <div id="video-container-wizard" class="step5-question hidden-question">
+			
+			<div class='video-embedded-and-related'>
+			<iframe id="player" type="text/html" src="http://www.youtube.com/embed/qHUhygdAZIw?enablejsapi=1&amp;rel=0&amp;autohide=1"></iframe> 
+			</div><!-- video-embedded-and-related -->  	
+			<div id='embedded-video-footer'>			 
+				<div id="step5-rate3" class="select info_field">
+						<label for="step5_rate3"> Based on the trailer seen, rate this movie!</label><br/><br/>
+							<div id="rate3-like" class="step5-input rate-step5"><input type="radio" name="rating3" value="Like" /><b>Like</b><br/></div>
+							<div id="rate3-dislike" class="step5-input rate-step5"><input type="radio" name="rating3" value="Dilike" /><b>Dislike</b><br/></div>
+				</div><!--field-->
+			</div><!-- embedded-video-footer-->
+		 </div><!-- video-container-wizard -->
+		  </div><!--category-posts-->	  
      	</div>
      </div>
      </metal:content>
      <metal:footer fill-slot="foot-content"> 
-		<a href="${request.resource_url(request.root, '4')}"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
-		<a href="${request.resource_url(request.root, 'finish')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a>
+     	<a href="${request.resource_url(request.root, '4')}"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
+		<div id="next-final-step" class="hidden-question"><a href="${request.resource_url(request.root, 'finish')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a></div>
 	 </metal:footer>
 </metal:html>

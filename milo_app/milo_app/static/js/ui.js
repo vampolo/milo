@@ -33,6 +33,58 @@ $(document).ready(function()
     collapsible: true
 	});
 	
+	$("#Q1_yes").click(function () {
+		$("#step5-rate1").show("fast", function () {
+		/* use callee so don't have to name the function */
+		$(this).next("#step5-rate1").show("fast", arguments.callee);
+		$("#step5-question2").hide("fast");
+		$("#step5-rate2").hide("fast");
+		$("#video-container-wizard").hide("fast");
+	});
+	});
+
+	$("#Q1_no").click(function () {
+		$("#step5-rate1").hide("fast");
+		$("#next-final-step").hide("fast");
+		$("#step5-question2").show("fast", function () {
+		/* use callee so don't have to name the function */
+		$(this).next("#step5-question2").show("fast", arguments.callee);
+	});
+	});
+	
+	$(".rate-step5").click(function () {
+		$("#next-final-step").show("fast", function () {
+		/* use callee so don't have to name the function */
+		$(this).next("#next-final-step").show("fast", arguments.callee);
+	});
+	});
+	
+	
+	$("#Q2_no").click(function () {
+		$("#next-final-step").hide("fast");
+		$("#step5-rate2").hide("fast");
+		$("#video-container-wizard").show("fast", function () {
+		/* use callee so don't have to name the function */
+		$(this).next("#video-container-wizard").show("fast", arguments.callee);
+	});
+	});
+	
+	$("#Q2_yes").click(function () {
+		$("#step5-rate2").show("fast", function () {
+		/* use callee so don't have to name the function */
+		$(this).next("#step5-rate2").show("fast", arguments.callee);
+		$("#video-container-wizard").hide("fast");
+		$("#next-final-step").hide("fast");
+	});
+	});
+	
+	$("#step5-rate2").click(function () {
+		$("#next-final-step").hide("fast");
+		$("#video-container-wizard").show("fast", function () {
+		/* use callee so don't have to name the function */
+		$(this).next("#video-container-wizard").show("fast", arguments.callee);
+	});
+	});
 	
 	$( "#tabs" ).tabs();
 	

@@ -13,7 +13,13 @@
 		  </div>
 		</div>
 		</metal:panel>
-
+	
+	 <metal:home metal:fill-slot="Milo-logo">
+      <div id="header-left">
+        <img class="fade" src="${request.static_url('milo_app:static/images/milo_logo.png')}" alt="Milo" />
+      </div><!-- header-left -->
+	  </metal:home>
+	
 	 <metal:search fill-slot="search">
 	 <!--Hide search engine-->
 	 </metal:search>
@@ -28,7 +34,7 @@
 	 <li class="steps" title="Interface Questions"> Step 4 &nbsp&nbsp&nbsp></li>
 	 <li class="steps" title="Recommendations & Rating"> Step 5 &nbsp&nbsp&nbsp></li>
 	 <li class="steps" title="End of survey">Finish!</li>	 
-	 <li id="signout"><a href="${request.resource_url(request.root, 'exit')}" title="Exit"><img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/door_out.png')}">Exit Wizard</a></li>
+	 <li id="signout"><a href="${request.resource_url(request.root, 'exit', query=dict(wizard_movie='exit'))}" title="Exit"><img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/door_out.png')}">Exit Wizard</a></li>
 	 </ul>
 	 </metal:landmarks>
           
@@ -379,7 +385,7 @@
      <tal:r repeat="movie movies.get('movies')">
             <div id="step2_item" class="gallery-item ${'clearboth' if not repeat.movie.index % 3 else ''}">
             	<div class="post-thumbnail">
-            	<a target="_new" class="thumbnail-frame" tal:attributes="href request.resource_url( context ,  'Movie', movie.title, query=dict(wizard_movie='details') )" title="See the trailer and details">
+            	<a target="_new" class="thumbnail-frame" tal:attributes="href request.resource_url( context ,'Movie',movie.title )" title="See the trailer and details">
             	<img width="180" height="250" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)" class="recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
 					<span><img width="180" height="260" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)"/></span>				
 				</a>            

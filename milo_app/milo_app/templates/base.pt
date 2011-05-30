@@ -77,10 +77,12 @@
 		</metal:panel>
     <div id="header-inside">      
       
+      <metal:home metal:define-slot="Milo-logo">
       <div id="header-left">
         <a title="Home" href="${request.resource_url(request.root)}"><img class="fade" src="${request.static_url('milo_app:static/images/milo_logo.png')}" alt="Milo" /></a>
       </div><!-- header-left -->
-
+	  </metal:home>
+	  
       <div id="header-right">
 		<metal:search metal:define-slot="search">
         <div id="site-search">
@@ -252,7 +254,7 @@
             <tal:r repeat="movie movies.get('movies')">
             <div class="gallery-item ${'clearboth' if not repeat.movie.index % 3 else ''}">
             	<div class="post-thumbnail">
-            	<a class="thumbnail-frame" tal:attributes="href request.resource_url(context, 'Movie', movie.title)" title="See the trailer and details">
+            	<a class="thumbnail-frame" tal:attributes="href request.resource_url(context, 'Movie', movie.title )" title="See the trailer and details">
             	<img width="180" height="250" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)" class="recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
 					<span><img width="180" height="260" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)"/></span>				
 				</a>            

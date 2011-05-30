@@ -4303,7 +4303,6 @@ milo_app/templates/login.pt
 milo_app/templates/login_milo.pt
 milo_app/templates/movie.pt
 milo_app/templates/movie_list.pt
-milo_app/templates/movie_wizard.pt
 milo_app/templates/mytemplate.pt
 milo_app/templates/profile.pt
 milo_app/templates/step1.pt
@@ -4313,3 +4312,4 @@ milo_app/templates/step4.pt
 milo_app/templates/step5.pt
 milo_app/templates/test.pt
 milo_app/templates/wizard.pt
+milo_app/templates/wizard_movie.pt

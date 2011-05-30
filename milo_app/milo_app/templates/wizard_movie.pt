@@ -1,0 +1,95 @@
+<!--other option is trying to use the movie.pt with tal:condition wizard, but I dunno yet.... this part is just the code that works, not attached to any view yet...-->
+
+<metal:html use-macro="base.macros['main']">
+	
+	<tal:wizard condition="wizard_movie">
+	 <metal:search fill-slot="search">
+	 <!--Hide search engine-->
+	 </metal:search>
+     
+	 <metal:landmarks fill-slot="landmarks">
+	 <ul class="menu">
+	 <li class="steps" title="Begin of survey">Start Wizard &nbsp&nbsp&nbsp></li>
+	 <li class="steps" title="Information Form"> Step 1 &nbsp&nbsp&nbsp></li>
+	 <li id="current-step" class="steps" title="Browsing & Rating"> Step 2 </li>
+	 <li class="steps" title="Catalogue Questions">>&nbsp&nbsp&nbspStep 3 &nbsp&nbsp&nbsp></li>
+	 <li class="steps" title="Interface Questions"> Step 4 &nbsp&nbsp&nbsp></li>
+	 <li class="steps" title="Recommendations & Rating"> Step 5 &nbsp&nbsp&nbsp></li>
+	 <li class="steps" title="End of survey">Finish!</li>	 
+	 <li id="signout"><a href="${request.resource_url(request.root, 'exit', query=dict(wizard_movie='exit'))}" title="Exit"><img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/door_out.png')}">Exit Wizard</a></li>
+	 </ul>
+	 </metal:landmarks>
+	</tal:wizard>
+	
+   <metal:content fill-slot="content">
+
+	<div id="content-inside">
+      <div id="video-container-wizard">
+        <div class='video-embedded-and-related'>
+        
+			<iframe id="player" type="text/html" src="${movie.trailer}?enablejsapi=1&rel=0&autohide=1"></iframe> 
+          
+    	</div><!-- video-embedded-and-related -->
+    	
+    	
+		<div id='embedded-video-footer'>			 
+		
+				<div id='info-film'>
+					
+				</div>
+				
+				
+							
+		</div><!-- embedded-video-footer-->
+    	
+   	</div><!-- video-container -->
+    
+    
+		<div id="post-container">
+         <div id="posts-wizard">
+         
+			<div id="film-description-header">
+				<h2>${movie.title} ( <a href="#FIXME" title="Check the list of films released on this year">${movie.date.strftime('%Y')}</a> )<h2> 
+				<ul class="post-meta post-meta-post">
+					<li class="date">Released on ${movie.date.strftime('%D')}</li>
+				</ul>
+			</div><!-- film-description-header -->	
+
+			<div id="film-description" class="post-content">
+              
+              <div id="film-cover-container">
+                <img src="${request.static_url('milo_app:static/movie_data/'+movie.poster)}" alt="Finding Nemo" title="Finding Nemo" width="180" height="250" class="size-medium wp-image-378" />
+                <p class="image-caption">Image Caption</p>
+              </div><!-- film-cover-container -->
+			  
+			  <div id="movie-description-text" class="div-movie-details">
+			  <p tal:content="movie.description"></p>
+              </div><!-- movie-description-text -->
+              <div id='info-film'>
+					<p class='infoandlike-film'>Genre: <br/>
+					<a href="#" title="Search films of this genre" tal:repeat="g movie.genre">${g}</a></p>
+              <div id="list-main-actors" class="div-movie-details">
+			  <h3>Stars:</h3>
+			  <p>
+			  <a href="../actor_list_login/index.html" title="Check other films of this star!"> Actor #1 </a>, 
+			  <a href="../actor_list_login/index.html" title="Check other films of this star!"> Actor #2 </a>and
+			  <a href="../actor_list_login/index.html" title="Check other films of this star!"> Actor #3 </a>
+			  </p>
+			  <li>
+			  <a href="../cast_list_login/index.html" title="See the full list of actors of this film">See all cast</a>
+			  </li>
+			  </div><!-- list-main-actors -->
+
+              <div id="director-info" class="div-movie-details">
+			  <h3>Director:</h3>
+			  <a href="../director_list_login/index.html" title="Check other films of this director!"> Director name </a>
+			  </div><!-- director-info -->
+			  </div><!-- info-film -->
+            </div><!-- film-description -->
+		
+       </div><!-- posts -->
+       </div><!-- post-container -->   
+    </div><!-- content-inside -->
+	</metal:content>
+		
+</metal:html>

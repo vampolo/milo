@@ -105,10 +105,14 @@ def categories(request):
 def profile(request):
 	return dict()
 
+
+@view_config(name='wizard_movie',context='milo_app:resources.Movie',
+				 renderer='templates/wizard_movie.pt')
 @view_config(context='milo_app:resources.Movie',
 				 renderer='templates/movie.pt')
 def movie(context, request):
 	rand = random.randint(0, Movie.objects().count()-5)
 	slider_movies = dict(movies=Movie.objects()[rand:rand+3], title='Related Movies')
 	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title='Recommended by Friends')
+	
 	return dict(movie=context, slider_movies=slider_movies, right_movies=right_movies)

@@ -8,6 +8,7 @@ class Root(object):
         self.request = request
         
     def __getitem__(self, key):
+		
 		if key == "Movie":
 			movie = Movie()
 			movie.__parent__= self
@@ -35,6 +36,10 @@ class Movie(Document):
 	__parent__ = Root
 	
 	def __getitem__(self, key):
+		if key == 'wizard_movie':
+			def __getitem__(self, key):
+				movie = Movie.objects(title = key).first()
+				return movie
 		movie = Movie.objects(title = key).first()
 		return movie
 		
@@ -50,3 +55,4 @@ class Movie(Document):
 	
 	def __str__(self):
 		return 'Movie(%s, %s, %s, %s, %s)' % (self.title, self.date, self.poster, self.image, self.trailer)
+

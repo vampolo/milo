@@ -1,5 +1,11 @@
 <metal:html use-macro="base.macros['main']">
 
+	<metal:home metal:fill-slot="Milo-logo">
+      <div id="header-left">
+        <img class="fade" src="${request.static_url('milo_app:static/images/milo_logo.png')}" alt="Milo" />
+      </div><!-- header-left -->
+	  </metal:home>
+
 	 <metal:search fill-slot="search">
 	 <!--Hide search engine-->
 	 </metal:search>
