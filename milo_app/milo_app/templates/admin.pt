@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:tal="http://xml.zope.org/namespaces/tal" 
+	xmlns:metal="http://xml.zope.org/namespaces/metal" 
+	dir="ltr" lang="en-US" xml:lang="en-US">
+<metal:html define-macro="main_admin">
+<head>
+	<title>eManager 1.0</title>
+	<meta http-equiv="content-language" content="en" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="${request.static_url('milo_app:static/images/admin/favicon.ico')}" type="image/x-icon"/>
+    <link href="${request.static_url('milo_app:static/css/style_admin.css')}" rel="stylesheet" type="text/css" media="screen" />
+	<!--[if lte IE 7]>
+	<link href="css/styles_ie.css" rel="stylesheet" type="text/css" media="screen" />
+	<![endif]-->
+	<!--[if lte IE 6]>
+	<link href="css/styles_ie6.css" rel="stylesheet" type="text/css" media="screen" />
+	<![endif]-->
+    <script type="text/javascript" src="${request.static_url('milo_app:static/js/jquery-1.2.6.min.js')}"></script>
+    <script type="text/javascript" src="${request.static_url('milo_app:static/js/ui_admin.js')}"></script>
+</head>
+
+<body>
+
+<div id="wrap">
+	<div id="header">
+		<h1><a class="bg" href="${request.resource_url(request.root, 'admin')}" title="Home"></a>Manager 1.0</h1>
+		<p id="status">Logged is as admin, <a href="${request.resource_url(request.root)}" title="Sign Out?">Sign Out?</a></p>
+		<metal:description define-slot="description">
+		<h2><span>Hello, this is the MiloAdmin</span></h2>
+		<p id="description">This is the management page of Milo web application.
+		Here the administrator is able to set the algorithm that generates recommendations to a user and also change the survey's specification.		
+		</p>
+		</metal:description>
+	</div>
+    <div id="sidebar">
+		<ul class="items">
+            <li id='milo_admin' class="active">
+            	<a href="#" title="MiloAdmin">MiloAdmin</a>
+            </li>
+			<li id='survey_mng'><a href="${request.resource_url(request.root, 'add_survey')}" title="Surveys Management">Surveys Management</a></li>
+			<li id='algorithms' class="subitems">
+				<a href="#" title="Set Algorithms">Set Algorithms</a>
+				<ul>
+                    <li><a href="${request.resource_url(request.root, 'add_algorithm')}" title="Algorithm #1">Algorithm #1</a></li>
+                    <li><a href="${request.resource_url(request.root, 'add_algorithm')}" title="Algorithm #2">Algorithm #2</a></li>
+                    <li><a href="${request.resource_url(request.root, 'add_algorithm')}" title="Algorithm #3">Algorithm #3</a></li>
+                    <li><a href="${request.resource_url(request.root, 'add_algorithm')}" title="Algorithm #4">Algorithm #4</a></li>
+				</ul>
+			</li>
+		</ul>
+		<span class="clear"></span>	
+	</div>
+	
+	<metal:content define-slot="content">
+	<div id="content">
+		
+	</div>
+	</metal:content>
+	
+	<div id="footer">
+	</div>
+</div>
+
+</body>
+</metal:html>
+</html>

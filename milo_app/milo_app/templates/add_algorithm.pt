@@ -1,0 +1,32 @@
+<metal:html use-macro="admin_base.macros['main_admin']">
+
+	<metal:description fill-slot="description">
+		<h2><span>MiloAdmin</span></h2>
+	</metal:description>
+		
+	<metal:content fill-slot="content">	
+	<div id="content">
+		<h2>Recommendation algorithm's name</h2>
+		<form method="post" action="">
+		<fieldset>
+			<label>To create this algorithm's model, click here:</label>
+			<div id="create_all">
+			<a href="#" class="button" title="Submit"><span>Create model</span></a>
+			</div>
+		</fieldset>
+		</form>
+		<p id="alert" class="alert">
+			<span class="txt"><span class="icon"></span><strong>Alert:</strong> This action will create the algorithm's model, it might take long.</span>
+			<a href="#" class="close" title="Close"><span class="bg"></span>Close</a>
+		</p>
+		<p id="tip" class="alert">
+			<span class="txt"><span class="icon"></span><strong>Tip:</strong> If you want to create ALL models at once, return to the initial page, clicking on "WhispererAdmin" in the sidebar.</span>
+			<a href="#" class="close" title="Close"><span class="bg"></span>Close</a>
+		</p>
+		<p id="congrats" class="alert">
+			<span class="txt"><span class="icon"></span><strong>Congrats:</strong> Model created successfully!</span>
+			<a href="#" class="close" title="Close"><span class="bg"></span>Close</a>
+		</p>
+	</div>
+	</metal:content>
+</metal:html>

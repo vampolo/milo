@@ -105,6 +105,14 @@ def categories(request):
 def profile(request):
 	return dict()
 
+@view_config(name='add_algorithm', context='milo_app:resources.Root',
+				 renderer='templates/add_survey.pt')
+@view_config(name='add_survey', context='milo_app:resources.Root',
+				 renderer='templates/add_survey.pt')
+@view_config(name='admin', context='milo_app:resources.Root',
+				 renderer='templates/admin.pt')
+def profile(request):
+	return dict()
 
 @view_config(name='wizard_movie',context='milo_app:resources.Movie',
 				 renderer='templates/wizard_movie.pt')

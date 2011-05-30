@@ -41,7 +41,7 @@
 						
 						<div class="option info_field">
 						<label for="info_age">Age:</label>
-						<select name="country" size="1">
+						<select name="age" size="1">
 								<option value="  " selected>(select age range)
 								<option value="10s">10-19
 								<option value="20s">20-30 

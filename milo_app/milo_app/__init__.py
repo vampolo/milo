@@ -30,5 +30,6 @@ def main(global_config, **settings):
 
 def add_renderer_globals(event):
 	event.update({'base': get_renderer('templates/base.pt').implementation()})
+	event.update({'admin_base': get_renderer('templates/admin.pt').implementation()})
 	event.update({'h': helpers})
 	
