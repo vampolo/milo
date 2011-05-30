@@ -3,9 +3,17 @@
 	<metal:description fill-slot="description">
 		<h2><span>MiloAdmin</span></h2>
 	</metal:description>
+	
+	
 		
 	<metal:content fill-slot="content">	
 	<div id="content">
+		
+		<p id="congrats" class="alert">
+			<span class="txt"><span class="icon"></span><strong>Congrats:</strong> New survey created successfully!</span>
+			<a href="#" class="close" title="Close"><span class="bg"></span>Close</a>
+		</p>
+		
 		<h2>Surveys management</h2>
 		<ul class="tabs">
 			<li id="tab1" class="active"><a href="#" title="Add"><span>Add survey</span></a></li>
@@ -72,7 +80,7 @@
 					<td>5</td>
 					<td class="action">
 						<ul>
-							<li><a class="edit" href="#" title="edit"></a></li>
+							<li><a class="edit" href="#" title="Edit the set of users included in this survey"></a></li>
 						</ul>
 					</td>
 				</tr>
@@ -92,12 +100,10 @@
 			</p>
 		</div>
 		</div><!--tab2_content-->
-		
-		
-		<p id="congrats" class="alert">
-			<span class="txt"><span class="icon"></span><strong>Congrats:</strong> New survey created successfully!</span>
-			<a href="#" class="close" title="Close"><span class="bg"></span>Close</a>
-		</p>
+	
 	</div>
+	
+	
+	
 	</metal:content>
 </metal:html>

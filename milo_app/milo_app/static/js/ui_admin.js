@@ -97,7 +97,7 @@ $(document).ready(function() {
 		
 	});
 	
-	$('#add_survey').click(function(){
+	$('.button').click(function(){
 		$('#congrats').show('slow');
 	});
 	

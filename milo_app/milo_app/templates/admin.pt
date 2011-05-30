@@ -38,7 +38,7 @@
     <div id="sidebar">
 		<ul class="items">
             <li id='milo_admin' class="active">
-            	<a href="#" title="MiloAdmin">MiloAdmin</a>
+            	<a href="${request.resource_url(request.root, 'admin')}" title="MiloAdmin">MiloAdmin</a>
             </li>
 			<li id='survey_mng'><a href="${request.resource_url(request.root, 'add_survey')}" title="Surveys Management">Surveys Management</a></li>
 			<li id='algorithms' class="subitems">
