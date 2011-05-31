@@ -111,7 +111,7 @@ def profile(request):
 				 renderer='templates/add_survey.pt')
 @view_config(name='admin', context='milo_app:resources.Root',
 				 renderer='templates/admin.pt')
-def profile(request):
+def admin(request):
 	return dict()
 
 @view_config(name='wizard_movie',context='milo_app:resources.Movie',

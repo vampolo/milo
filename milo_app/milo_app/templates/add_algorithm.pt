@@ -3,15 +3,8 @@
 	<metal:description fill-slot="description">
 		<h2><span>MiloAdmin</span></h2>
 	</metal:description>
-		
-	<metal:content fill-slot="content">	
+<!--		
 	<div id="content">
-		
-		<p id="congrats" class="alert">
-			<span class="txt"><span class="icon"></span><strong>Congrats:</strong> User algorithm's set successfully!</span>
-			<a href="#" class="close" title="Close"><span class="bg"></span>Close</a>
-		</p>
-		
 		<h2>Recommendation algorithm's name</h2>
 		<form method="post" action="">
 		<fieldset>
@@ -23,7 +16,90 @@
 			</div>
 		</fieldset>
 		</form>
+	</div>
+-->	
+	<metal:content fill-slot="content">	
+	<div id="content">
 		
+		<p id="congrats" class="alert">
+			<span class="txt"><span class="icon"></span><strong>Congrats:</strong> User added successfully!</span>
+			<a href="#" class="close" title="Close"><span class="bg"></span>Close</a>
+		</p>
+		
+		<h2>Users Management</h2>
+		<ul class="tabs">
+			<li id="tab1" class="active"><a href="#" title="Add"><span>Add user</span></a></li>
+			<li id="tab2"><a href="#" title="View All"><span>Browse users</span></a></li>
+		</ul>
+		
+		<div id="tab1_content" class="tab_content">
+		<form method="post" action="">
+		<fieldset>
+			<label>To add a new user, fill the information and submit:</label><br/><br/>
+			
+			<label>First Name:</label><br/>
+			<span class="small_input"><input class="small" name="" type="text" value="" /></span><br class="hid" />
+			
+			<label>Last Name:</label><br/>
+			<span class="small_input"><input class="small" name="" type="text" value="" /></span><br class="hid" />
+			
+			<label>Email:</label><br/>
+			<span class="small_input"><input class="small" name="" type="text" value="" /></span><br class="hid" />
+			
+			<div class="option">
+						<label for="survey_alg">Recommendation algorithm type:</label><br/>
+						<select name="algorithm" size="1">
+								<option value="  " selected>(select the survey's algorithm)
+								<option value="alg1">Algorithm #1
+								<option value="alg2">Algorithm #2 
+								<option value="alg3">Algorithm #3
+								<option value="alg4">Algorithm #4 
+						</select>
+			</div><!--field-->
+			
+			<div id="add_user">
+			<a href="#" class="button" title="Submit"><span>Add user</span></a>
+			<span class="clear"></span>
+			</div>
+			
+		</fieldset>
+		</form>
+		</div><!--tab1_content-->
+		
+		<div id="tab2_content" class="tab_content">
+		<div class="box">
+			<table>
+				<tr>
+					<th class="col1">Last Name</th>
+					<th class="col2">First Name</th>
+					<th class="col3">Email</th>
+					<th class="col4">Algorithm</th>
+					<th class="col5">Edit</th>
+				</tr>
+				<tr class="highlight">
+					<td>Ampolo</td>
+					<td>Vincenzo</td>
+					<td>vincenzo_ampolo@uol.com.br</td>
+					<td>algorithm #1</td>
+					<td>
+						<ul>
+							<li><a class="edit" href="#" title="Edit field(s) of this user"></a></li>
+							<li><a class="delete" href="#" title="Delete this user"></a></li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+			<p id="pagin">
+				&laquo; <a href="#" title="">previous</a> &ndash;
+				<a href="#" title="">1</a>
+				<a href="#" title="">2</a>
+				<a href="#" title="">3</a>
+				&ndash; <a href="#" title="">next</a> &raquo;
+			</p>
+		</div>
+		</div><!--tab2_content-->
+	
 	</div>
 	</metal:content>
+	
 </metal:html>

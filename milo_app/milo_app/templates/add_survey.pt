@@ -24,6 +24,7 @@
 		<form method="post" action="">
 		<fieldset>
 			<label>To add a new survey, fill the information and submit:</label><br/><br/>
+			
 			<label>Survey Name:</label><br/>
 			<span class="small_input"><input class="small" name="" type="text" value="" /></span><br class="hid" />
 			
@@ -42,6 +43,9 @@
 						<label for="survey_ratings">Number of ratings:</label><br/>
 						<select name="ratings" size="1">
 								<option value="  " selected>(select how many ratings the user perform)
+								<option value="1">1
+								<option value="2">2
+								<option value="3">3
 								<option value="4">4
 								<option value="5">5 
 								<option value="6">6
@@ -54,7 +58,10 @@
 						</select>
 			</div><!--field-->
 			
+			<div id="add_users">
+			<label>Set of users:</label><br/>
 			
+			</div>
 			
 			<div id="add_survey">
 			<a href="#" class="button" title="Submit"><span>Add survey</span></a>
@@ -90,12 +97,6 @@
 				<a href="#" title="">1</a>
 				<a href="#" title="">2</a>
 				<a href="#" title="">3</a>
-				<a href="#" title="">4</a>
-				<a href="#" title="">5</a>
-				<a href="#" title="">6</a>
-				<a href="#" title="">7</a>
-				<a href="#" title="">8</a>
-				<a href="#" title="">9</a>
 				&ndash; <a href="#" title="">next</a> &raquo;
 			</p>
 		</div>

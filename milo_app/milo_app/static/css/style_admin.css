@@ -43,6 +43,11 @@ body	{
 	margin-right: 20px;
 }
 
+#add_user {
+	float: right;
+	margin-right: 20px;
+}
+
 .option{
 	margin-bottom: 5px;
 }
