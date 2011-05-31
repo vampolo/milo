@@ -25,6 +25,7 @@ milo_app.egg-info/requires.txt
 milo_app.egg-info/top_level.txt
 milo_app/static/css/style.css
 milo_app/static/css/style.css3.css
+milo_app/static/css/style_admin.css
 milo_app/static/css/smoothness/jquery-ui-1.8.12.custom.css
 milo_app/static/css/smoothness/jquery-ui.css
 milo_app/static/css/smoothness/images/ui-bg_flat_0_aaaaaa_40x100.png
@@ -200,6 +201,38 @@ milo_app/static/images/Drag_Drop_test/genres/kiss.jpg
 milo_app/static/images/Drag_Drop_test/genres/romance.png
 milo_app/static/images/Drag_Drop_test/genres/terror.png
 milo_app/static/images/Slider_Images/Harry_Potter_half_blood_prince.jpg
+milo_app/static/images/admin/._favicon.ico
+milo_app/static/images/admin/bg_alert.png
+milo_app/static/images/admin/bg_button_a.png
+milo_app/static/images/admin/bg_button_span.png
+milo_app/static/images/admin/bg_close.png
+milo_app/static/images/admin/bg_content_fieldset.png
+milo_app/static/images/admin/bg_content_form.png
+milo_app/static/images/admin/bg_content_h2.png
+milo_app/static/images/admin/bg_h1.png
+milo_app/static/images/admin/bg_header_h2.png
+milo_app/static/images/admin/bg_input_large.png
+milo_app/static/images/admin/bg_input_medium.png
+milo_app/static/images/admin/bg_input_small.png
+milo_app/static/images/admin/bg_redbox.png
+milo_app/static/images/admin/bg_sidebar_a.png
+milo_app/static/images/admin/bg_sidebar_h2.png
+milo_app/static/images/admin/bg_tabs_a.png
+milo_app/static/images/admin/bg_tabs_span.png
+milo_app/static/images/admin/bg_td_highlight.png
+milo_app/static/images/admin/bg_textarea.png
+milo_app/static/images/admin/bg_wrap.png
+milo_app/static/images/admin/favicon.ico
+milo_app/static/images/admin/icon_add.png
+milo_app/static/images/admin/icon_alert.png
+milo_app/static/images/admin/icon_congrats.png
+milo_app/static/images/admin/icon_delete.png
+milo_app/static/images/admin/icon_edit.png
+milo_app/static/images/admin/icon_mark1.png
+milo_app/static/images/admin/icon_mark2.png
+milo_app/static/images/admin/icon_negative.png
+milo_app/static/images/admin/icon_positive.png
+milo_app/static/images/admin/icon_tip.png
 milo_app/static/images/icons/broken_heart.png
 milo_app/static/images/icons/delete.png
 milo_app/static/images/icons/door_in.png
@@ -4210,6 +4243,7 @@ milo_app/static/images/icons/fatcow/32x32/zoom_out.png
 milo_app/static/images/icons/fatcow/32x32/zoom_refresh.png
 milo_app/static/images/icons/fatcow/32x32/zoom_selection.png
 milo_app/static/js/comment-reply.js
+milo_app/static/js/jquery-1.2.6.min.js
 milo_app/static/js/jquery-1.5.2.min.js
 milo_app/static/js/jquery-ui-1.8.12.custom.min.js
 milo_app/static/js/jquery.coda.js
@@ -4222,6 +4256,7 @@ milo_app/static/js/jqueryui.js
 milo_app/static/js/l10n.js
 milo_app/static/js/rating_done.js
 milo_app/static/js/ui.js
+milo_app/static/js/ui_admin.js
 milo_app/static/js/undo.js
 milo_app/static/js/wlwmanifest.xml
 milo_app/static/js/fancybox/images/blank.gif
@@ -4296,6 +4331,9 @@ milo_app/static/movie_data/V per vendetta_poster.jpg
 milo_app/static/movie_data/Vanilla Sky_image.jpg
 milo_app/static/movie_data/Vanilla Sky_poster.jpg
 milo_app/templates/about.pt
+milo_app/templates/add_algorithm.pt
+milo_app/templates/add_survey.pt
+milo_app/templates/admin.pt
 milo_app/templates/base.pt
 milo_app/templates/categories.pt
 milo_app/templates/finish.pt

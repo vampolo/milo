@@ -96,6 +96,11 @@ $(document).ready(function()
 		$('#rated-movies-help').slideUp('slow');
 	});
 	
+	//Sorting Tables
+	
+	$("#surveys_table").tablesorter(); 
+    $("#users_table").tablesorter(); 
+    
 	//fix for chrome
 	$("input[type='text']").bind('focus', function() {
 	$(this).css('background-color', '#3E4852');

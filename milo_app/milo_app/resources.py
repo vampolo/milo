@@ -36,10 +36,6 @@ class Movie(Document):
 	__parent__ = Root
 	
 	def __getitem__(self, key):
-		if key == 'wizard_movie':
-			def __getitem__(self, key):
-				movie = Movie.objects(title = key).first()
-				return movie
 		movie = Movie.objects(title = key).first()
 		return movie
 		

@@ -49,6 +49,7 @@ def main(request):
 		num_ratings = 1
 	else:
 		num_ratings = int(num_ratings)
+		rating_finished=False
 		
 	if num_ratings == 6:
 		rating_finished=True
@@ -72,9 +73,10 @@ def main(request):
 	#compute and show pages
 	last_page = True if len(main_movies) <= (page-1)*9+9 else False
 	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9], title=main_movies_title)
+	rated_movies = Movie.objects()[:num_ratings]
 	# the upper two lines are magic
 	slider_movies = slider_movies if slider_movies else Movie.objects()[rand:rand+5]
-	return dict(wizard_movie = wizard_movie, num_ratings = num_ratings, rating_finished=rating_finished, movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category, page=page, last_page=last_page, new_rec=new_rec)
+	return dict(rated_movies = rated_movies, wizard_movie = wizard_movie, num_ratings = num_ratings, rating_finished=rating_finished, movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category, page=page, last_page=last_page, new_rec=new_rec)
 
 @view_config(name='about', context='milo_app:resources.Root',
 				 renderer='templates/about.pt')

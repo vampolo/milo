@@ -7,7 +7,6 @@
 		<div id="communication-panel">
 			<div id='communication-panel-content'>
 			  <span></span>
-<!--ADDITIONALLY this link should refresh the page taking of that film rated!-->
 			  <a tal:condition="not rating_finished" id="agree_button" href="javascript:panel_up();${request.resource_url(context, request.view_name, query=dict(rating='rated'))}" title="Ok!"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/></a>
 			  <a tal:condition="not rating_finished" id="disagree_button" href="javascript:panel_up();" title="Undo rating"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/></a>
 		  </div>
@@ -21,7 +20,25 @@
 	  </metal:home>
 	
 	 <metal:search fill-slot="search">
-	 <!--Hide search engine-->
+	 <div id="site-search">
+
+          <script type="text/javascript">
+			 //<![CDATA[
+          function doClear(theText) {
+                if (theText.value == theText.defaultValue) {
+                        theText.value = ""
+                }
+          }
+          //]]>
+          </script>
+          <div id="search">
+            <form method="get" id="search-form" action="index.html" name="search-form">
+              <input type="text" name="s" id="s" value="Find a movie by query" onfocus=
+              "doClear(this)" /> 
+              <input type="submit" id="search-submit" value="" />
+            </form>
+          </div><!-- search -->
+        </div><!-- site-search-->
 	 </metal:search>
      
 	 <metal:landmarks fill-slot="landmarks">
@@ -39,6 +56,7 @@
 	 </metal:landmarks>
           
      <metal:content fill-slot="content">
+	 <tal:rating_not_finished condition="not rating_finished">
      <div id="content-inside">
 		<div id="post-container">
          <div id="category-posts">
@@ -48,8 +66,14 @@
 			<div id="step2_description">
 				<p>
 				Please, rate <b>5</b> movies from the movie list.<br/><br/> 
+				
 				The movies are organized by the release date, from most recent to the oldest films.<br/>
-				Moreover, you can apply one of the next available filters to facilitate your research if necessary.		
+				Browse the movie catalogue by:
+				<ol style="padding-left:30px;">
+					<li>Using the "search panel" on the right upper side</li>
+					<li>Applying one of the next available filters</li>
+					<li>Simply scrolling around the pages of the current list</li>
+				</ol>
 				</p>
 			</div>
 		  	
@@ -396,11 +420,11 @@
               	<ul class="post-meta">
   
 					<li class="info info-logged">
-						<tal:rating_finished condition="not rating_finished">
+						
 						<span>Rated it: </span>
 						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(num_ratings = num_ratings+1))}','${movie.title} rated as liked! Submit?');" title="Like this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
 						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(num_ratings = num_ratings+1))}','${movie.title} rated as disliked... Submit?');" title="Dislike this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
-						</tal:rating_finished>
+						
 					</li>
 					<li class="genre">Genre: <tal:genres repeat="g movie.genre"><a href="#" title="Search films of this genre">${g}</a>,</tal:genres></li>
 					<li class="genre">Director: <tal:genres repeat="g movie.genre"><a href="#" title="Search films of this director">${'Director Name'}</a></li>
@@ -419,11 +443,66 @@
 			<!--Next/Previous buttons-->
 			<metal:prev_next metal:define-slot="prev_next">
 			<div id="step2-list-footer">
-				<a tal:condition="not last_page" id="next-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page+1))}">More films<img src="images/icons/fatcow/32x32/resultset_next.png"></img></a>
-				<a tal:condition="not page==1" id="previous-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page-1))}"><img src="images/icons/fatcow/32x32/resultset_previous.png"></img>Previous films</a>
+				<a tal:condition="not last_page" id="next-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page+1, num_ratings = num_ratings))}">More films<img src="images/icons/fatcow/32x32/resultset_next.png"></img></a>
+				<a tal:condition="not page==1" id="previous-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page-1, num_ratings = num_ratings))}"><img src="images/icons/fatcow/32x32/resultset_previous.png"></img>Previous films</a>
 			</div><!-- posts-footer-->			
 			</metal:prev_next>
     </div><!-- content-inside -->
+    </tal:rating_not_finished>
+    
+    <tal:rating_finished condition="rating_finished">
+     <div id="content-inside">
+		<div id="post-container">
+         <div id="category-posts">
+			
+			<h2>Wizard - Step 2</h2>	
+			
+			<div id="step2_description">
+				<p>
+				Rating finished! The rated movies are presented next:
+				</p>
+			</div>
+			
+			<div id="step2_list">	
+		
+			<tal:r repeat="movie rated_movies">
+            <div id="step2_item" class="gallery-item ${'clearboth' if not repeat.movie.index % 3 else ''}">
+            	<div class="post-thumbnail">
+            	<a target="_new" class="thumbnail-frame" tal:attributes="href request.resource_url( context ,'Movie',movie.title )" title="See the trailer and details">
+            	<img width="180" height="250" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)" class="recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
+					<span><img width="180" height="260" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)"/></span>				
+				</a>            
+            	</div><!--post-thumbnail-->
+
+              	<h2><a target="_new" tal:attributes="href request.resource_url(context, 'Movie', movie.title, query=dict(wizard_movie='details'))" title="Go to this movie page">${movie.title}</a><span title="Release Date">(${movie.date.strftime('%Y')})</span></h2>
+
+              	<ul class="post-meta">
+  
+					
+					<li class="genre">Rating given: <b>Like</b></li>
+					<!--hidden current div...-->
+					<div id="delete">
+					<li class="genre"><a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(num_ratings = num_ratings-1))}','${movie.title} about to be deleted from your rated list! Submit?');">Delete</a></li>
+					</div>
+              </ul>
+            </div>
+            <!-- movie-item , first_page='false')-->
+			</tal:r>
+			
+			<div id="after_list">
+				<p>
+				This list can be edited, but new ratings will be required.<br/> 
+				If you are satisfied with this list simply go to the next step.
+				</p>
+			</div>
+		
+	
+        </div><!--category-post-->
+     </div><!-- post-container -->
+    </div><!-- content-inside -->
+    </tal:rating_finished>
+    
+    
     </metal:content> 
      
      

@@ -60,7 +60,8 @@
 			
 			<div id="add_users">
 			<label>Set of users:</label><br/>
-			
+			<br class="hid" />
+			<span class="textarea"><textarea cols="" rows=""></textarea></span><br class="hid" />
 			</div>
 			
 			<div id="add_survey">
@@ -74,13 +75,17 @@
 		
 		<div id="tab2_content" class="tab_content">
 		<div class="box">
-			<table>
+			<table id="surveys_table">
+				<thead>
 				<tr>
 					<th class="col1">Survey's Name</th>
 					<th class="col2">Algorithm Used</th>
 					<th class="col3">Number of Ratings</th>
 					<th class="col4">User's List</th>
+					<th class="col5">Date Created</th>
 				</tr>
+				<thead>
+				<tbody>
 				<tr class="highlight">
 					<td><a href="#" title="survey_name1">Survey #1</a></td>
 					<td>Algorithm #1</td>
@@ -90,7 +95,20 @@
 							<li><a class="edit" href="#" title="Edit the set of users included in this survey"></a></li>
 						</ul>
 					</td>
+					<td> 31/05/2011 </td>
 				</tr>
+				<tr class="highlight">
+					<td><a href="#" title="survey_name1">Survey #2</a></td>
+					<td>Algorithm #1</td>
+					<td>8</td>
+					<td class="action">
+						<ul>
+							<li><a class="edit" href="#" title="Edit the set of users included in this survey"></a></li>
+						</ul>
+					</td>
+					<td> 31/05/2011 </td>
+				</tr>
+				</tbody>
 			</table>
 			<p id="pagin">
 				&laquo; <a href="#" title="">previous</a> &ndash;
