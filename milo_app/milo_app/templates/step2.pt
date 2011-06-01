@@ -409,13 +409,13 @@
      <tal:r repeat="movie movies.get('movies')">
             <div id="step2_item" class="gallery-item ${'clearboth' if not repeat.movie.index % 3 else ''}">
             	<div class="post-thumbnail">
-            	<a target="_new" class="thumbnail-frame" tal:attributes="href request.resource_url( context ,'Movie',movie.title )" title="See the trailer and details">
-            	<img width="180" height="250" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)" class="recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
+            	<a target="_new" class="thumbnail-frame" tal:attributes="href request.resource_url( context ,'Movie','wizard_movie',movie.title )" title="See the trailer and details">
+            	<img width="180" height="250" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)" class="recommended-post-thumbnail" alt="Finding Nemo" title="${movie.title}" />
 					<span><img width="180" height="260" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)"/></span>				
 				</a>            
             	</div><!--post-thumbnail-->
 
-              	<h2><a target="_new" tal:attributes="href request.resource_url(context, 'Movie', movie.title, query=dict(wizard_movie='details'))" title="Go to this movie page">${movie.title}</a><span title="Release Date">(${movie.date.strftime('%Y')})</span></h2>
+              	<h2><a target="_new" tal:attributes="href request.resource_url(context, 'Movie','wizard_movie', movie.title, query=dict(wizard_movie='details'))" title="Go to this movie page">${movie.title}</a><span title="Release Date">(${movie.date.strftime('%Y')})</span></h2>
 
               	<ul class="post-meta">
   

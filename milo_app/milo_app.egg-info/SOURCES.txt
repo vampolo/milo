@@ -4252,6 +4252,7 @@ milo_app/static/js/jquery.equal.js
 milo_app/static/js/jquery.float.js
 milo_app/static/js/jquery.js
 milo_app/static/js/jquery.superfish.js
+milo_app/static/js/jquery.tablesorter.js
 milo_app/static/js/jqueryui.js
 milo_app/static/js/l10n.js
 milo_app/static/js/rating_done.js
