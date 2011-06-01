@@ -13,7 +13,7 @@
 					<form id="key_form" name="input" action="" method="POST" autocomplete="off">
 						<label for="key_email">Email:</label><input id="key_email" type="text" name="key_email"/>
 						<label for="key_password">Key:</label><input id="key_password" type="password" name="key_password"/>
-						<a href="${request.resource_url(request.root, '1')}"><input id="key_button" name="form.key.submitted" type="submit" value=""/></a>
+						<a href="${request.resource_url(request.root, 'Survey','1')}"><input id="key_button" name="form.key.submitted" type="submit" value=""/></a>
 					</form><!-- key-form -->
 				</div><!-- key-input--> 
 

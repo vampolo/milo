@@ -1,5 +1,7 @@
 from pyramid.view import view_config
 from pyramid.renderers import get_renderer
+from pyramid.response import Response
+
 from resources import *
 from datetime import datetime
 from pyramid.security import authenticated_userid
@@ -12,19 +14,7 @@ import random
 @view_config(name='Recommended', context='milo_app:resources.Root',
              renderer='templates/movie_list.pt')
 @view_config(name='Popular', context='milo_app:resources.Root',
-             renderer='templates/movie_list.pt')
-@view_config(name='1', context='milo_app:resources.Root',
-				 renderer='templates/step1.pt')
-@view_config(name='2', context='milo_app:resources.Root',
-				 renderer='templates/step2.pt')
-@view_config(name='3', context='milo_app:resources.Root',
-				 renderer='templates/step3.pt')
-@view_config(name='4', context='milo_app:resources.Root',
-				 renderer='templates/step4.pt')
-@view_config(name='5', context='milo_app:resources.Root',
-				 renderer='templates/step5.pt')
-@view_config(name='finish', context='milo_app:resources.Root',
-				 renderer='templates/finish.pt')                                                          
+             renderer='templates/movie_list.pt')                                       
 def main(request):
 	rand = random.randint(0, Movie.objects().count()-10)
 	new_rec = None
@@ -32,16 +22,18 @@ def main(request):
 	slider_movies = None
 	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title="More Top Movies")
 	wizard_movie = False
+	session = request.session
 	
 	if request.GET.get('wizard_movie') == 'details':
 		wizard_movie == True
-	
+        	
 	#Testing Next/Previous buttons
 	page = request.GET.get('page')
 	if page is None:
 		page = 1
 	else:
 		page = int(page)
+	
 	
 	num_ratings = request.GET.get('num_ratings')
 	
@@ -127,3 +119,56 @@ def movie(context, request):
 	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title='Recommended by Friends')
 	
 	return dict(movie=context, slider_movies=slider_movies, right_movies=right_movies)
+
+@view_config(name='1', context='milo_app:resources.Survey',
+				 renderer='templates/step1.pt')
+@view_config(name='2', context='milo_app:resources.Survey',
+				 renderer='templates/step2.pt')
+@view_config(name='3', context='milo_app:resources.Survey',
+				 renderer='templates/step3.pt')
+@view_config(name='4', context='milo_app:resources.Survey',
+				 renderer='templates/step4.pt')
+@view_config(name='5', context='milo_app:resources.Survey',
+				 renderer='templates/step5.pt')
+@view_config(name='finish', context='milo_app:resources.Survey',
+				 renderer='templates/finish.pt')                                                          
+def survey(request):
+	
+	#Declare
+	rating_finished = None
+    
+	#Session: control current step
+	session = request.session
+	session['step'] = request.view_name
+	print session['step']
+	
+	#Testing Next/Previous buttons
+	page = request.GET.get('page')
+	if page is None:
+		page = 1
+	else:
+		page = int(page)
+	
+	#Set the number of ratings
+	max_ratings = 6	
+	#numero di ratings as a query now
+	num_ratings = request.GET.get('num_ratings')
+	if num_ratings is None:
+		num_ratings = 1
+	else:
+		num_ratings = int(num_ratings)
+		rating_finished=False
+	
+	if num_ratings == max_ratings:
+		rating_finished=True
+		
+	#Get objects of DB to retrieve the movie catalogue
+	main_movies = Movie.objects().order_by('-date')
+	
+	#compute and show pages
+	last_page = True if len(main_movies) <= (page-1)*9+9 else False
+	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9])
+	#Show the list of rated movies in step 2
+	rated_movies = Movie.objects()[:num_ratings]
+	
+	return dict(rated_movies = rated_movies, num_ratings = num_ratings, rating_finished=rating_finished, movies=movies, page=page, last_page=last_page)

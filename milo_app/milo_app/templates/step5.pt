@@ -134,7 +134,7 @@
      </div>
      </metal:content>
      <metal:footer fill-slot="foot-content"> 
-     	<a href="${request.resource_url(request.root, '4')}"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
-		<div id="next-final-step" class="hidden-question"><a href="${request.resource_url(request.root, 'finish')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a></div>
+     	<a href="${request.resource_url(request.root, 'Survey','4')}"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
+		<div id="next-final-step" class="hidden-question"><a href="${request.resource_url(request.root, 'Survey','finish')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a></div>
 	 </metal:footer>
 </metal:html>

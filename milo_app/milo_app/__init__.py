@@ -2,6 +2,7 @@ from pyramid.config import Configurator
 from pyramid.events import subscriber
 from pyramid.events import BeforeRender
 from pyramid.renderers import get_renderer
+from pyramid.session import UnencryptedCookieSessionFactoryConfig
 from milo_app.resources import Root
 from milo_app import helpers
 
@@ -15,9 +16,11 @@ def main(global_config, **settings):
     """
     authn_policy = AuthTktAuthenticationPolicy(secret='miloSecretMessageForAuthToken')
     authz_policy = ACLAuthorizationPolicy()
+    my_session_factory = UnencryptedCookieSessionFactoryConfig('miloSecretMessageToSignTheCookie')
     config = Configurator(root_factory=Root, settings=settings,
     								authentication_policy=authn_policy,
-    								authorization_policy=authz_policy)
+    								authorization_policy=authz_policy,
+    								session_factory = my_session_factory)
     config.add_subscriber(add_renderer_globals, BeforeRender)
     config.add_static_view('static', 'milo_app:static')
     config.add_static_view('css', 'milo_app:static/css')

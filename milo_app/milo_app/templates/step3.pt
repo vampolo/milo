@@ -75,7 +75,7 @@
      </div>
      </metal:content>
      <metal:footer fill-slot="foot-content"> 
-		<a href="${request.resource_url(request.root, '2')}"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
-		<a href="${request.resource_url(request.root, '4')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a>
+		<a href="${request.resource_url(request.root, 'Survey','2')}"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
+		<a href="${request.resource_url(request.root, 'Survey','4')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a>
 	 </metal:footer>
 </metal:html>

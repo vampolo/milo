@@ -415,7 +415,7 @@
 				</a>            
             	</div><!--post-thumbnail-->
 
-              	<h2><a target="_new" tal:attributes="href request.resource_url(context, 'Movie','wizard_movie', movie.title, query=dict(wizard_movie='details'))" title="Go to this movie page">${movie.title}</a><span title="Release Date">(${movie.date.strftime('%Y')})</span></h2>
+              	<h2><a target="_new" tal:attributes="href request.resource_url(context, 'Movie','wizard_movie', movie.title)" title="Go to this movie page">${movie.title}</a><span title="Release Date">(${movie.date.strftime('%Y')})</span></h2>
 
               	<ul class="post-meta">
   
@@ -443,13 +443,15 @@
 			<!--Next/Previous buttons-->
 			<metal:prev_next metal:define-slot="prev_next">
 			<div id="step2-list-footer">
-				<a tal:condition="not last_page" id="next-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page+1, num_ratings = num_ratings))}">More films<img src="images/icons/fatcow/32x32/resultset_next.png"></img></a>
-				<a tal:condition="not page==1" id="previous-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page-1, num_ratings = num_ratings))}"><img src="images/icons/fatcow/32x32/resultset_previous.png"></img>Previous films</a>
+				<a tal:condition="not last_page" id="next-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page+1, num_ratings = num_ratings))}">More films<img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/resultset_next.png')}"></img></a>
+				<a tal:condition="not page==1" id="previous-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page-1, num_ratings = num_ratings))}"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/resultset_previous.png')}"></img>Previous films</a>
 			</div><!-- posts-footer-->			
 			</metal:prev_next>
     </div><!-- content-inside -->
     </tal:rating_not_finished>
-    
+
+
+<!--SHOULD CORRECT THIS PART-->
     <tal:rating_finished condition="rating_finished">
      <div id="content-inside">
 		<div id="post-container">
@@ -468,31 +470,36 @@
 			<tal:r repeat="movie rated_movies">
             <div id="step2_item" class="gallery-item ${'clearboth' if not repeat.movie.index % 3 else ''}">
             	<div class="post-thumbnail">
-            	<a target="_new" class="thumbnail-frame" tal:attributes="href request.resource_url( context ,'Movie',movie.title )" title="See the trailer and details">
+            	<a target="_new" class="thumbnail-frame" tal:attributes="href request.resource_url( request.root, 'Movie', 'wizard_movie',movie.title )" title="See the trailer and details">
             	<img width="180" height="250" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)" class="recommended-post-thumbnail" alt="Finding Nemo" title="Finding Nemo" />
 					<span><img width="180" height="260" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)"/></span>				
 				</a>            
             	</div><!--post-thumbnail-->
 
-              	<h2><a target="_new" tal:attributes="href request.resource_url(context, 'Movie', movie.title, query=dict(wizard_movie='details'))" title="Go to this movie page">${movie.title}</a><span title="Release Date">(${movie.date.strftime('%Y')})</span></h2>
+
+              	<h2><a target="_new" tal:attributes="href request.resource_url(request.root, 'Movie','wizard_movie', movie.title)" title="Go to this movie page">${movie.title}</a><span title="Release Date">(${movie.date.strftime('%Y')})</span></h2>
 
               	<ul class="post-meta">
   
 					
 					<li class="genre">Rating given: <b>Like</b></li>
 					<!--hidden current div...-->
+
 					<div id="delete">
 					<li class="genre"><a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(num_ratings = num_ratings-1))}','${movie.title} about to be deleted from your rated list! Submit?');">Delete</a></li>
 					</div>
               </ul>
             </div>
             <!-- movie-item , first_page='false')-->
+
 			</tal:r>
 			
 			<div id="after_list">
 				<p>
 				This list can be edited, but new ratings will be required.<br/> 
 				If you are satisfied with this list simply go to the next step.
+				
+				TODO...
 				</p>
 			</div>
 		
@@ -501,15 +508,15 @@
      </div><!-- post-container -->
     </div><!-- content-inside -->
     </tal:rating_finished>
-    
+
     
     </metal:content> 
      
      
      <metal:footer fill-slot="foot-content"> 
-		<a href="${request.resource_url(request.root, '1')}" target="_new"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
+		<a href="${request.resource_url(request.root, 'Survey','1')}" target="_new"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
 		<tal:next condition="rating_finished">
-		<a href="${request.resource_url(request.root, '3')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a>
+		<a href="${request.resource_url(request.root, 'Survey','3')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a>
 		</tal:next>
 	 </metal:footer>
 </metal:html>

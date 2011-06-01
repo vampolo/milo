@@ -16,6 +16,11 @@ class Root(object):
 			return movie
 		if key == "User":
 			return User()
+		if key == "Survey":
+			survey = Survey()
+			survey.__parent__ = self
+			survey.__name__ = key
+			return survey
 		raise KeyError
 
 class User(Document):
@@ -24,6 +29,18 @@ class User(Document):
 	last_name = StringField()
 	password = StringField()
 	cwid = IntField()
+
+class Survey(Document):
+	__name__ = 'Survey'
+	__parent__ = Root
+	
+	def __getitem__(self,key):
+		if key == "Movie":
+			movie = Movie_wrap()
+			movie.__parent__= self
+			movie.__name__ = "Movie"
+			return movie
+		raise KeyError
 
 class Comment(EmbeddedDocument):
 	autor = ReferenceField(User)
@@ -46,15 +63,6 @@ class Movie_wrap(Document):
 		movie.__parent__= self
 		movie.__name__= "Movie"
 		return movie
-
-
-#class Survey(Document):
-	#__name__ = 'Survey'
-	#__parent__ = Movie_wrap
-	
-	#def __getitem__(self, key):			
-		#self.movie_name = key
-		#return KeyError
 		
 class Movie(Document):
 	__name__ = 'Movie'
