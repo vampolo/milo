@@ -446,6 +446,7 @@ float: left;
 width: 980px;
 float: left;
 margin-left: 190px;
+
 }
 
 #posts h2{
@@ -810,11 +811,10 @@ border-radius: 3px;
 
 #video-container-wizard{
 background: #3E4852;
-width: 950px;
+width: 965px;
 float: left;
 text-align: center;
 padding: 30px 0 30px 10px;
-margin: 0 0 0 10px;
 border-radius: 3px;
 }
 
