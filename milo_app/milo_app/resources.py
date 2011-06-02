@@ -30,18 +30,21 @@ class User(Document):
 	password = StringField()
 	cwid = IntField()
 
+class SurveyAnswer(EmbeddedDocument):
+	user = ReferenceField(User)
+	key = StringField()
+	value = StringField()
+
 class Survey(Document):
 	__name__ = 'Survey'
 	__parent__ = Root
 	
-	#Survey Login
-	email = StringField()
-	
-	#Survey receives the responses of the user
-	age = StringField()
-	gender = StringField()
-	nationality = StringField()
-	avg_movies = StringField()
+	#data of a survey
+	name = StringField(required=True)
+	algorithm = StringField()
+	number_of_ratings = IntField()
+	answers = ListField(EmbeddedDocumentField(SurveyAnswer))
+	users = ListField(ReferenceField(User))
 	
 	def __getitem__(self,key):
 		if key == "Movie":
@@ -50,6 +53,7 @@ class Survey(Document):
 			movie.__name__ = "Movie"
 			return movie
 		raise KeyError
+			
 
 class Comment(EmbeddedDocument):
 	autor = ReferenceField(User)
