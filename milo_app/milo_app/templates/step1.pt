@@ -36,9 +36,9 @@
 				</p>
 				
 				<div id="info_input" class="form-input">
-				
-					<form id="info_form_left" name="input" action="" method="POST" autocomplete="off">
-						
+					
+					<form action="${request.resource_url(request.root, 'Survey','1')}" method="POST" autocomplete="off">
+					<div id="info_form_left">	
 						<div class="option info_field">
 						<label for="info_age">Age:</label>
 						<select name="age" size="1">
@@ -59,11 +59,10 @@
 						<input type="radio" name="edu" value="phd" /> PhD
 						</div><!--field-->
 						
-						
-					</form><!-- info-form-left -->
+					</div>	
 					
-					<form id="info_form_right" name="input" action="" method="POST" autocomplete="off">
-						
+					
+					<div id="info_form_right">
 						<div class="select info_field">
 						<label for="info_gender">Gender:</label>
 						<input type="radio" name="sex" value="male" /> Male
@@ -330,6 +329,14 @@
 						</select>
 						</div><!--field-->	
 						
+					</div>
+					<div id="footer">
+						<div id="footer-inside">
+							<div id="footer-content">
+							<input id="next_button" name="form.info.submitted.1" type="submit" value=""/>
+							</div><!-- footer-content-->
+						</div><!-- footer-inside -->
+					</div><!-- footer -->
 					</form><!-- info-form-right -->
 					
 				</div><!-- info-input--> 	
@@ -338,7 +345,7 @@
      </div>
      </metal:content>
      <metal:footer fill-slot="foot-content"> 
-     <a href="${request.resource_url(request.root, 'Survey','2')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a>
+     <!--Hide footer-->
 	 </metal:footer>
 </metal:html>
 

@@ -47,7 +47,7 @@ def login(request):
 			headers = remember(request, login)
 			return HTTPFound(location = came_from, headers = headers)
 		message = 'User already exists' 
-
+	
     return dict(
         message = message,
         url = request.application_url + '/login',

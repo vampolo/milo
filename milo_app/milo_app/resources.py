@@ -34,6 +34,15 @@ class Survey(Document):
 	__name__ = 'Survey'
 	__parent__ = Root
 	
+	#Survey Login
+	email = StringField()
+	
+	#Survey receives the responses of the user
+	age = StringField()
+	gender = StringField()
+	nationality = StringField()
+	avg_movies = StringField()
+	
 	def __getitem__(self,key):
 		if key == "Movie":
 			movie = Movie_wrap()

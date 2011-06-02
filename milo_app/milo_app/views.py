@@ -1,7 +1,7 @@
 from pyramid.view import view_config
 from pyramid.renderers import get_renderer
 from pyramid.response import Response
-
+from pyramid.httpexceptions import HTTPFound
 from resources import *
 from datetime import datetime
 from pyramid.security import authenticated_userid
@@ -75,19 +75,6 @@ def main(request):
 def about(request):
 	return dict()
 
-@view_config(name='wizard', context='milo_app:resources.Root',
-				 renderer='templates/wizard.pt')
-def wizard(request):
-	return dict()
-
-#How do i append the view in the /wizard, instead of the root? to be /wizard/step1
-#@view_config(name='1', context='milo_app:resources.Root',
-#				 renderer='templates/step1.pt')
-#@view_config(name='2', context='milo_app:resources.Root',
-#				 renderer='templates/step2.pt')
-#def step(request):
-#	return dict()
-
 
 @view_config(name='categories', context='milo_app:resources.Root',
 				 renderer='templates/categories.pt')
@@ -120,6 +107,8 @@ def movie(context, request):
 	
 	return dict(movie=context, slider_movies=slider_movies, right_movies=right_movies)
 
+@view_config(name='wizard', context='milo_app:resources.Root',
+				 renderer='templates/wizard.pt')
 @view_config(name='1', context='milo_app:resources.Survey',
 				 renderer='templates/step1.pt')
 @view_config(name='2', context='milo_app:resources.Survey',
@@ -140,7 +129,18 @@ def survey(request):
 	#Session: control current step
 	session = request.session
 	session['step'] = request.view_name
-	print session['step']
+	
+	email = ''
+	#Login in wizard session -> for now im just testing with the registered user 'test', and will be also stored in the session
+	if 'form.key.submitted' in request.params:
+		email = request.params['key_email']
+		key = request.params['key_password']
+		user = User.objects.filter(email=email).first()
+		if user is not None and user.password == key:
+			survey = Survey(email=email)
+			survey.save()
+			session['user'] = email
+			return HTTPFound(location = request.resource_url(request.root, 'Survey','1'))
 	
 	#Testing Next/Previous buttons
 	page = request.GET.get('page')
@@ -171,4 +171,21 @@ def survey(request):
 	#Show the list of rated movies in step 2
 	rated_movies = Movie.objects()[:num_ratings]
 	
-	return dict(rated_movies = rated_movies, num_ratings = num_ratings, rating_finished=rating_finished, movies=movies, page=page, last_page=last_page)
+	survey_user = Survey.objects.filter(email=session['user']).first()
+	
+	#Initialize the Step 1 inputs
+	#Form submission step 1
+	
+	if 'form.info.submitted.1' in request.params:
+			age = request.params['age']
+			gender = request.params['sex']
+			nationality = request.params['country']
+			avg_movies = request.params['avg_movie']
+			survey_user.age = age
+			survey_user.gender = gender
+			survey_user.nationality = nationality
+			survey_user.avg_movies = avg_movies
+			survey_user.save()
+			return HTTPFound(location=request.resource_url(request.root, 'Survey','2'))
+			
+	return dict(rated_movies = rated_movies, num_ratings = num_ratings,rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)
