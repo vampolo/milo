@@ -173,7 +173,7 @@ def survey(request):
 	last_page = True if len(main_movies) <= (page-1)*9+9 else False
 	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9])
 	#Show the list of rated movies in step 2
-	rated_movies = Movie.objects()[:num_ratings]
+	rated_movies = Movie.objects()[:int(sur.number_of_ratings)]
 	
 	#Initialize the Step 1 inputs
 	#Form submission step 1
@@ -190,13 +190,18 @@ def survey(request):
 			sur.save()
 			return HTTPFound(location=request.resource_url(request.root, 'Survey','2'))
 	
-	#Form submission step 2 - deal with number of ratings... like now or put in the session?
-	if 'form.info.submitted.2' in request.params:
+	movie_title = request.GET.get('movie_title')
+	rating = request.GET.get('rating')
+	if movie_title is not None:
+		#Here we would accept just if the movie hasnt been rated
+		#if SurveyAnswer.objects.filter(key=movie_title).first() == None:
 			user = User.objects.filter(email=session['user']).first()
-			#confuse = SurveyAnswer(user = user, key='confuse', value=request.params['confuse'])
-			#sur.answers.append(confuse)
-			#sur.save()
-			return HTTPFound(location=request.resource_url(request.root, 'Survey','3'))
+			movie_rated = SurveyAnswer(user = user, key=movie_title, value=rating)
+			print movie_rated.key
+			print movie_rated.value
+			sur.answers.append(movie_rated)
+			print movie_rated
+			sur.save()
 	
 	#Questions in step 3 and 4 might not be useful actually.... Should I take the answers?
 

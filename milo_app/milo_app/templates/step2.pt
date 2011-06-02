@@ -7,7 +7,7 @@
 		<div id="communication-panel">
 			<div id='communication-panel-content'>
 			  <span></span>
-			  <a tal:condition="not rating_finished" id="agree_button" href="javascript:panel_up();${request.resource_url(context, request.view_name, query=dict(rating='rated'))}" title="Ok!"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/></a>
+			  <a tal:condition="not rating_finished" id="agree_button" href="" title="Ok!"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/></a>
 			  <a tal:condition="not rating_finished" id="disagree_button" href="javascript:panel_up();" title="Undo rating"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/></a>
 		  </div>
 		</div>
@@ -405,7 +405,7 @@
 		</div>
 	
 	<div id="step2_list">	
-		
+	<form action="${request.resource_url(request.root, 'Survey','2')}" method="POST" autocomplete="off">	
      <tal:r repeat="movie movies.get('movies')">
             <div id="step2_item" class="gallery-item ${'clearboth' if not repeat.movie.index % 3 else ''}">
             	<div class="post-thumbnail">
@@ -422,8 +422,8 @@
 					<li class="info info-logged">
 						
 						<span>Rated it: </span>
-						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(num_ratings = num_ratings+1))}','${movie.title} rated as liked! Submit?');" title="Like this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
-						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(num_ratings = num_ratings+1))}','${movie.title} rated as disliked... Submit?');" title="Dislike this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
+						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(num_ratings = num_ratings+1, rating='like', movie_title=movie.title))}','${movie.title} rated as liked! Submit?');" title="Like this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
+						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(num_ratings = num_ratings+1, rating='dislike', movie_title=movie.title))}','${movie.title} rated as disliked... Submit?');" title="Dislike this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
 						
 					</li>
 					<li class="genre">Genre: <tal:genres repeat="g movie.genre"><a href="#" title="Search films of this genre">${g}</a>,</tal:genres></li>
@@ -433,6 +433,8 @@
             </div>
             <!-- movie-item , first_page='false')-->
          </tal:r>
+      </form>
+      
 		</div><!--step2_list-->
         </div><!--category-post-->
      </div><!-- post-container -->
