@@ -83,6 +83,8 @@
             </div><!-- film-description -->				
 		  </div> <!--step5-movie-description-->
 		  
+		  <form action="${request.resource_url(request.root, 'Survey','5')}" method="POST" autocomplete="off">
+			  
 		  <div id="step5-question1" class="step5-question">
 			<div class="select info_field">
 							<label for="step5_Q1">5.1) Have you ever seen this movie?</label><br/><br/>
@@ -129,12 +131,22 @@
 				</div><!--field-->
 			</div><!-- embedded-video-footer-->
 		 </div><!-- video-container-wizard -->
+		 
+			<div id="footer">
+						<div id="footer-inside">
+							<div id="footer-content">
+							<a href="${request.resource_url(request.root, 'Survey','4')}"><input id="prev_button"/></a>
+							<div id="next-final-step" class="hidden-question"><a href="${request.resource_url(request.root, 'Survey','finish')}"><input id="next_button" name="form.info.submitted.5" type="submit" value=""/></a></div>
+							</div><!-- footer-content-->
+						</div><!-- footer-inside -->
+			</div><!-- footer -->
+		 </form>
+		 
 		  </div><!--category-posts-->	  
      	</div>
      </div>
      </metal:content>
      <metal:footer fill-slot="foot-content"> 
-     	<a href="${request.resource_url(request.root, 'Survey','4')}"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
-		<div id="next-final-step" class="hidden-question"><a href="${request.resource_url(request.root, 'Survey','finish')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a></div>
+     	
 	 </metal:footer>
 </metal:html>

@@ -123,6 +123,9 @@ def movie(context, request):
 				 renderer='templates/finish.pt')                                                          
 def survey(request):
 	
+	#Survey instance... Should be set in the admin
+	sur = Survey(name='test survey', algorithm='algorithm#1', number_of_ratings=5)
+	
 	#Declare
 	rating_finished = None
     
@@ -130,15 +133,16 @@ def survey(request):
 	session = request.session
 	session['step'] = request.view_name
 	
+	
 	email = ''
-	#Login in wizard session -> for now im just testing with the registered user 'test', and will be also stored in the session
+	#Login in wizard and put user_login inside the session and the users list of the survey
 	if 'form.key.submitted' in request.params:
 		email = request.params['key_email']
 		key = request.params['key_password']
 		user = User.objects.filter(email=email).first()
 		if user is not None and user.password == key:
-			survey = Survey(email=email)
-			survey.save()
+			sur.users.append(user)
+			sur.save()
 			session['user'] = email
 			return HTTPFound(location = request.resource_url(request.root, 'Survey','1'))
 	
@@ -150,7 +154,7 @@ def survey(request):
 		page = int(page)
 	
 	#Set the number of ratings
-	max_ratings = 6	
+	max_ratings = (int(sur.number_of_ratings) + 1)
 	#numero di ratings as a query now
 	num_ratings = request.GET.get('num_ratings')
 	if num_ratings is None:
@@ -171,21 +175,73 @@ def survey(request):
 	#Show the list of rated movies in step 2
 	rated_movies = Movie.objects()[:num_ratings]
 	
-	survey_user = Survey.objects.filter(email=session['user']).first()
-	
 	#Initialize the Step 1 inputs
 	#Form submission step 1
-	
 	if 'form.info.submitted.1' in request.params:
-			age = request.params['age']
-			gender = request.params['sex']
-			nationality = request.params['country']
-			avg_movies = request.params['avg_movie']
-			survey_user.age = age
-			survey_user.gender = gender
-			survey_user.nationality = nationality
-			survey_user.avg_movies = avg_movies
-			survey_user.save()
+			user = User.objects.filter(email=session['user']).first()
+			age = SurveyAnswer(user = user, key='age', value=request.params['age'])
+			gender = SurveyAnswer(user = user, key='gender', value=request.params['sex'])
+			nationality = SurveyAnswer(user = user, key='nationality', value=request.params['country'])
+			avg_movies = SurveyAnswer(user = user, key='avg_movies', value=request.params['avg_movie'])
+			sur.answers.append(age)
+			sur.answers.append(gender)
+			sur.answers.append(nationality)
+			sur.answers.append(avg_movies)
+			sur.save()
 			return HTTPFound(location=request.resource_url(request.root, 'Survey','2'))
-			
+	
+	#Form submission step 2 - deal with number of ratings... like now or put in the session?
+	if 'form.info.submitted.2' in request.params:
+			user = User.objects.filter(email=session['user']).first()
+			#confuse = SurveyAnswer(user = user, key='confuse', value=request.params['confuse'])
+			#sur.answers.append(confuse)
+			#sur.save()
+			return HTTPFound(location=request.resource_url(request.root, 'Survey','3'))
+	
+	#Questions in step 3 and 4 might not be useful actually.... Should I take the answers?
+
+	#Form submission step 3
+	if 'form.info.submitted.3' in request.params:
+			user = User.objects.filter(email=session['user']).first()
+			specific = SurveyAnswer(user = user, key='specific', value=request.params['specific'])
+			missing = SurveyAnswer(user = user, key='missing', value=request.params['missing'])
+			missing1 = SurveyAnswer(user = user, key='missing1', value=request.params['missing1'])
+			missing2 = SurveyAnswer(user = user, key='missing2', value=request.params['missing2'])
+			missing3 = SurveyAnswer(user = user, key='missing3', value=request.params['missing3'])
+			complete = SurveyAnswer(user = user, key='complete', value=request.params['complete'])
+			sur.answers.append(missing)
+			sur.answers.append(missing1)
+			sur.answers.append(missing2)
+			sur.answers.append(missing3)
+			sur.answers.append(complete)
+			sur.save()
+			return HTTPFound(location=request.resource_url(request.root, 'Survey','4'))
+	
+	#Form submission step 4 - I am not getting checklist information now because is actually "fake" questions... Should I?
+	if 'form.info.submitted.4' in request.params:
+			user = User.objects.filter(email=session['user']).first()
+			confuse = SurveyAnswer(user = user, key='confuse', value=request.params['confuse'])
+			sur.answers.append(confuse)
+			sur.save()
+			return HTTPFound(location=request.resource_url(request.root, 'Survey','5'))
+	
+	#Form submission step 5 - loop for all movie list retrieved...
+	if 'form.info.submitted.5' in request.params:
+			user = User.objects.filter(email=session['user']).first()
+			#confuse = SurveyAnswer(user = user, key='confuse', value=request.params['confuse'])
+			#sur.answers.append(confuse)
+			#sur.save()
+			return HTTPFound(location=request.resource_url(request.root, 'Survey','finish'))
+	
+	#Final form submission
+	if 'form.info.submitted.6' in request.params:
+			user = User.objects.filter(email=session['user']).first()
+			place = SurveyAnswer(user = user, key='place', value=request.params['place'])
+			reason = SurveyAnswer(user = user, key='reason', value=request.params['reason'])
+			sur.answers.append(place)
+			sur.answers.append(reason)
+			sur.save()
+			#Where I will go when i click "continue"
+			return HTTPFound(location=request.resource_url(request.root, ''))
+	
 	return dict(rated_movies = rated_movies, num_ratings = num_ratings,rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)

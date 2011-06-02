@@ -36,7 +36,7 @@
 					
 					<div id="info_input" class="form-input">
 					
-					<form id="catalogue-questions" name="input" action="" method="POST" autocomplete="off">
+					<form id="catalogue-questions" name="input" action="${request.resource_url(request.root, 'Survey','3')}" method="POST" autocomplete="off">
 					
 						<div class="select info_field">
 							<label for="browse_mode">3.1) While browsing the catalogue, where you looking for specific items?</label><br/><br/>
@@ -66,6 +66,15 @@
 							<input type="radio" name="complete" value="Low" /><b>Incomplete</b>. There were some missing titles, even if really known 
 						</div><!--field-->
 						
+						<div id="footer">
+						<div id="footer-inside">
+							<div id="footer-content">
+							<a href="${request.resource_url(request.root, 'Survey','2')}"><input id="prev_button"/></a>
+							<input id="next_button" name="form.info.submitted.3" type="submit" value=""/>
+							</div><!-- footer-content-->
+						</div><!-- footer-inside -->
+					</div><!-- footer -->
+						
 					</form><!--catalogue-questions-->
 					
 					</div><!--info_input-->
@@ -75,7 +84,6 @@
      </div>
      </metal:content>
      <metal:footer fill-slot="foot-content"> 
-		<a href="${request.resource_url(request.root, 'Survey','2')}"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
-		<a href="${request.resource_url(request.root, 'Survey','4')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a>
+     <!--Hide-->
 	 </metal:footer>
 </metal:html>

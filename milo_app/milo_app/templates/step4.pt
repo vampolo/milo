@@ -36,7 +36,7 @@
 				
 				<div id="info_input" class="form-input">
 					
-					<form id="catalogue-questions" name="input" action="" method="POST" autocomplete="off">
+					<form id="catalogue-questions" action="${request.resource_url(request.root, 'Survey','4')}" method="POST" autocomplete="off">
 					
 						<div class="select info_field">
 							<label for="interface_like">4.1) Check the boxes which better represent the features you LIKED in this graphical interface (more than one option can be chosen):</label><br/><br/>
@@ -51,12 +51,12 @@
 						
 						<div class="select info_field">
 							<label for="interface_like">4.2) Check the boxes which better represent the features you DISLIKED in this graphical interface (more than one option can be chosen):</label><br/><br/>
-							<input type="checkbox" name="color" value="disliked" /><b>Color Palette</b><br/>
-							<input type="checkbox" name="animations" value="disliked" /><b>Animations</b><br/>
-							<input type="checkbox" name="readability" value="disliked" /><b>Text readability</b><br/>
-							<input type="checkbox" name="position" value="disliked" /><b>Positioning of elements</b> (Organization of info)<br/>
-							<input type="checkbox" name="links" value="disliked" /><b>Links highlighting</b><br/>
-							<input type="checkbox" name="orientation" value="disliked" /><b>Orientation guidelines</b> (Was it always clear where were you and where to go?)<br/>
+							<input type="checkbox" name="dcolor" value="disliked" /><b>Color Palette</b><br/>
+							<input type="checkbox" name="danimations" value="disliked" /><b>Animations</b><br/>
+							<input type="checkbox" name="dreadability" value="disliked" /><b>Text readability</b><br/>
+							<input type="checkbox" name="dposition" value="disliked" /><b>Positioning of elements</b> (Organization of info)<br/>
+							<input type="checkbox" name="dlinks" value="disliked" /><b>Links highlighting</b><br/>
+							<input type="checkbox" name="dorientation" value="disliked" /><b>Orientation guidelines</b> (Was it always clear where were you and where to go?)<br/>
 						</div><!--field-->
 						
 						<div class="select info_field">
@@ -65,6 +65,15 @@
 							<input type="radio" name="confuse" value="Partial" /><b>Partially</b>, as in the beginning I found some difficulty to find items I wished, but later I got used to it<br/>
 							<input type="radio" name="confuse" value="Yes" /><b>Yes</b>, it was difficult to reach items I wanted to rate
 						</div><!--field-->
+						
+						<div id="footer">
+						<div id="footer-inside">
+							<div id="footer-content">
+							<a href="${request.resource_url(request.root, 'Survey','3')}"><input id="prev_button"/></a>
+							<input id="next_button" name="form.info.submitted.4" type="submit" value=""/>
+							</div><!-- footer-content-->
+						</div><!-- footer-inside -->
+					</div><!-- footer -->
 						
 					</form><!--info_form_left-->	
 					
@@ -75,7 +84,5 @@
      </div>
      </metal:content>
      <metal:footer fill-slot="foot-content"> 
-		<a href="${request.resource_url(request.root, 'Survey','3')}"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
-		<a href="${request.resource_url(request.root, 'Survey','5')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a>
 	 </metal:footer>
 </metal:html>

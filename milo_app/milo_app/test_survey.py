@@ -9,10 +9,10 @@ sur = Survey(name='test survey', algorithm='blabla', number_of_ratings=5)
 
 user = User.objects.filter(email='test')
 
-print user[0]
+#print user[0]
 #add an user to the survey
 sur.users.append(user[0])
-print sur.users
+#print sur.users
 
 #store a new answer from a user:
 a = SurveyAnswer(user = user[0], key='my question', value='my response')
