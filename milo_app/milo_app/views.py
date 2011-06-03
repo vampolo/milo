@@ -120,7 +120,6 @@ def survey(request):
 	#Session: control current step
 	session = request.session
 	session['step'] = request.view_name
-	session['user'] = None
 	user = None
 	email = ''
 	key = ''
@@ -144,26 +143,19 @@ def survey(request):
 						sur = Survey.objects.filter(name=item.name).first()						
 						if sur is not None:
 							session['survey']=sur.name
-							print session['survey']
-							#Determine the size of the list showed (to be changed...)
-							rated_movies = Movie.objects()[:int(sur.number_of_ratings)]
 							#Set the number of ratings
-							max_ratings = (int(sur.number_of_ratings) + 1)
+							session['max_ratings'] = (int(sur.number_of_ratings))
+							session['ratings_executed'] = 0
 							return HTTPFound(location = request.resource_url(request.root, 'Survey','1'))
-		message = 'User not registered in any survey'
+		message = 'User not registered in any survey or invalid password'
 		
-	
 	#numero di ratings as a query now
-	num_ratings = request.GET.get('num_ratings')
-	if num_ratings is None:
-		num_ratings = 1
-	else:
-		num_ratings = int(num_ratings)
-		rating_finished=False
 	
-	
-	if num_ratings == max_ratings:
-			rating_finished=True
+	if request.GET.get('rating') is not None:
+		session['ratings_executed'] = session['ratings_executed'] + 1
+		if session['ratings_executed'] == session['max_ratings']:
+				rating_finished=True
+		
 		
 	#Initialize the Step 1 inputs
 	#Form submission step 1
@@ -308,7 +300,13 @@ def survey(request):
 	last_page = True if len(main_movies) <= (page-1)*9+9 else False
 	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9])
 	
-	return dict(message = message, rated_movies = rated_movies, num_ratings = num_ratings,rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)
+	#Determine the size of the list showed (to be changed...)
+	rated_movies = Movie.objects()[:session['max_ratings']]
+	
+	#Pass to step2 the number of films to be rated
+	survey_n_ratings = session['max_ratings']
+	
+	return dict(survey_n_ratings=survey_n_ratings,message = message, rated_movies = rated_movies, rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)
 
 
 @view_config(name='add_algorithm', context='milo_app:resources.Root',

@@ -65,7 +65,7 @@
 			
 			<div id="step2_description">
 				<p>
-				Please, rate <b>5</b> movies from the movie list.<br/><br/> 
+				Please, rate <b>${survey_n_ratings}</b> movies from the movie list.<br/><br/> 
 				
 				The movies are organized by the release date, from most recent to the oldest films.<br/>
 				Browse the movie catalogue by:
@@ -422,8 +422,8 @@
 					<li class="info info-logged">
 						
 						<span>Rated it: </span>
-						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(num_ratings = num_ratings+1, rating='like', movie_title=movie.title))}','${movie.title} rated as liked! Submit?');" title="Like this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
-						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(num_ratings = num_ratings+1, rating='dislike', movie_title=movie.title))}','${movie.title} rated as disliked... Submit?');" title="Dislike this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
+						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(rating='like', movie_title=movie.title))}','${movie.title} rated as liked! Submit?');" title="Like this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
+						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(rating='dislike', movie_title=movie.title))}','${movie.title} rated as disliked... Submit?');" title="Dislike this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
 						
 					</li>
 					<li class="genre">Genre: <tal:genres repeat="g movie.genre"><a href="#" title="Search films of this genre">${g}</a>&nbsp</tal:genres></li>
@@ -445,8 +445,8 @@
 			<!--Next/Previous buttons-->
 			<metal:prev_next metal:define-slot="prev_next">
 			<div id="step2-list-footer">
-				<a tal:condition="not last_page" id="next-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page+1, num_ratings = num_ratings))}">More films<img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/resultset_next.png')}"></img></a>
-				<a tal:condition="not page==1" id="previous-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page-1, num_ratings = num_ratings))}"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/resultset_previous.png')}"></img>Previous films</a>
+				<a tal:condition="not last_page" id="next-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page+1))}">More films<img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/resultset_next.png')}"></img></a>
+				<a tal:condition="not page==1" id="previous-bottom-button" href="${request.resource_url(context, request.view_name, query=dict(page=page-1))}"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/resultset_previous.png')}"></img>Previous films</a>
 			</div><!-- posts-footer-->			
 			</metal:prev_next>
     </div><!-- content-inside -->
@@ -488,7 +488,8 @@
 					<!--hidden current div...-->
 
 					<div id="delete">
-					<li class="genre"><a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(num_ratings = num_ratings-1))}','${movie.title} about to be deleted from your rated list! Submit?');">Delete</a></li>
+<!--FIX CASE OF DELETING: SHOULD UPDATE THE SESSION['executed_ratings']-->
+					<li class="genre"><a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(delete=movie.title))}','${movie.title} about to be deleted from your rated list! Submit?');">Delete</a></li>
 					</div>
               </ul>
             </div>
