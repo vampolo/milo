@@ -306,91 +306,91 @@
 					</div><!--item-category-list-->
 					
 					<div id="item-2010-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(date='2010'))}" title="See the list of films of this year">
 						<img src="../images/Categories/Years/2010.jpg"></img>
 						<caption>2010</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-2009-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(date='2009'))}" title="See the list of films of this year">
 						<img src="../images/Categories/Years/2009.jpg"></img>
 						<caption>2009</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-2008-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(date='2008'))}" title="See the list of films of this year">
 						<img src="../images/Categories/Years/2008.jpg"></img>
 						<caption>2008</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-2007-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(date='2007'))}" title="See the list of films of this year">
 						<img src="../images/Categories/Years/2007.jpg"></img>
 						<caption>2007</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-2006-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(date='2006'))}" title="See the list of films of this year">
 						<img src="../images/Categories/Years/2006.jpg"></img>
 						<caption>2006</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-2005-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(date='2005'))}" title="See the list of films of this year">
 						<img src="../images/Categories/Years/2005.jpg"></img>
 						<caption>2005</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-2004-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(date='2004'))}" title="See the list of films of this year">
 						<img src="../images/Categories/Years/2004.jpg"></img>
 						<caption>2004</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-2003-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(date='2003'))}" title="See the list of films of this year">
 						<img src="../images/Categories/Years/2003.jpg"></img>
 						<caption>2003</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-2002-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(date='2002'))}" title="See the list of films of this year">
 						<img src="../images/Categories/Years/2002.jpg"></img>
 						<caption>2002</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-2001-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(date='2001'))}" title="See the list of films of this year">
 						<img src="../images/Categories/Years/2001.jpg"></img>
 						<caption>2001</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-2000-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(date='2000'))}" title="See the list of films of this year">
 						<img src="../images/Categories/Years/2000.jpg"></img>
 						<caption>2000</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-90-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(date='90'))}" title="See the list of films of this year">
 						<img src="../images/Categories/Years/90.jpg"></img>
 						<caption>90'</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-80-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(date='80'))}" title="See the list of films of this year">
 						<img src="../images/Categories/Years/80.jpg"></img>
 						<caption>80'</caption>
 						</a>

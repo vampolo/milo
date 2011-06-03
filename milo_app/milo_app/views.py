@@ -125,7 +125,8 @@ def survey(request):
 	email = ''
 	key = ''
 	message = ''
-	sur = None
+	rated_movies = None
+	max_ratings = 0
 	#Login in wizard and put user_login inside the session and the users list of the survey
 	if 'form.key.submitted' in request.params:
 		email = request.params['key_email']
@@ -140,30 +141,18 @@ def survey(request):
 				user_object_list = item.users
 				for item_user in user_object_list:
 					if item_user.email == session['user']:
-						sur = Survey.objects.filter(name=item.name).first()
+						sur = Survey.objects.filter(name=item.name).first()						
 						if sur is not None:
+							session['survey']=sur.name
+							print session['survey']
+							#Determine the size of the list showed (to be changed...)
+							rated_movies = Movie.objects()[:int(sur.number_of_ratings)]
+							#Set the number of ratings
+							max_ratings = (int(sur.number_of_ratings) + 1)
 							return HTTPFound(location = request.resource_url(request.root, 'Survey','1'))
 		message = 'User not registered in any survey'
+		
 	
-	#Use user in session to filter surveys and find the survey name, algorithm and ratings...
-	#user_object_list = []
-	#for item in Survey.objects.all():
-		#user_object_list = item.users
-		#for item_user in user_object_list:
-			#if session['user'] is not None:
-				#if item_user.email == session['user']:
-					#sur = Survey.objects.filter(name=item.name).first()	
-				
-	#Testing Next/Previous buttons
-	page = request.GET.get('page')
-	if page is None:
-		page = 1
-	else:
-		page = int(page)
-	
-	#Set the number of ratings
-	if sur is not None:
-		max_ratings = (int(sur.number_of_ratings) + 1)
 	#numero di ratings as a query now
 	num_ratings = request.GET.get('num_ratings')
 	if num_ratings is None:
@@ -172,18 +161,20 @@ def survey(request):
 		num_ratings = int(num_ratings)
 		rating_finished=False
 	
-	if sur is not None:
-		if num_ratings == max_ratings:
+	
+	if num_ratings == max_ratings:
 			rating_finished=True
 		
 	#Initialize the Step 1 inputs
 	#Form submission step 1
+	
 	if 'form.info.submitted.1' in request.params:
 			user = User.objects.filter(email=session['user']).first()
 			age = SurveyAnswer(user = user, key='age', value=request.params['age'])
 			gender = SurveyAnswer(user = user, key='gender', value=request.params['sex'])
 			nationality = SurveyAnswer(user = user, key='nationality', value=request.params['country'])
 			avg_movies = SurveyAnswer(user = user, key='avg_movies', value=request.params['avg_movie'])
+			sur = Survey.objects.filter(name=session['survey']).first()
 			sur.answers.append(age)
 			sur.answers.append(gender)
 			sur.answers.append(nationality)
@@ -198,15 +189,14 @@ def survey(request):
 		#if SurveyAnswer.objects.filter(key=movie_title).first() == None:
 			user = User.objects.filter(email=session['user']).first()
 			movie_rated = SurveyAnswer(user = user, key=movie_title, value=rating)
-			print movie_rated.key
-			print movie_rated.value
+			sur = Survey.objects.filter(name=session['survey']).first()
 			sur.answers.append(movie_rated)
-			print movie_rated
 			sur.save()
 	
 	#Questions in step 3 and 4 might not be useful actually.... Should I take the answers?
 
 	#Form submission step 3
+	
 	if 'form.info.submitted.3' in request.params:
 			user = User.objects.filter(email=session['user']).first()
 			specific = SurveyAnswer(user = user, key='specific', value=request.params['specific'])
@@ -215,6 +205,7 @@ def survey(request):
 			missing2 = SurveyAnswer(user = user, key='missing2', value=request.params['missing2'])
 			missing3 = SurveyAnswer(user = user, key='missing3', value=request.params['missing3'])
 			complete = SurveyAnswer(user = user, key='complete', value=request.params['complete'])
+			sur = Survey.objects.filter(name=session['survey']).first()
 			sur.answers.append(missing)
 			sur.answers.append(missing1)
 			sur.answers.append(missing2)
@@ -224,26 +215,32 @@ def survey(request):
 			return HTTPFound(location=request.resource_url(request.root, 'Survey','4'))
 	
 	#Form submission step 4 - I am not getting checklist information now because is actually "fake" questions... Should I?
+	
 	if 'form.info.submitted.4' in request.params:
 			user = User.objects.filter(email=session['user']).first()
 			confuse = SurveyAnswer(user = user, key='confuse', value=request.params['confuse'])
+			sur = Survey.objects.filter(name=session['survey']).first()
 			sur.answers.append(confuse)
 			sur.save()
 			return HTTPFound(location=request.resource_url(request.root, 'Survey','5'))
 	
 	#Form submission step 5 - loop for all movie list retrieved...
+	
 	if 'form.info.submitted.5' in request.params:
 			user = User.objects.filter(email=session['user']).first()
 			#confuse = SurveyAnswer(user = user, key='confuse', value=request.params['confuse'])
+			#sur = Survey.objects.filter(name=session['survey']).first()
 			#sur.answers.append(confuse)
 			#sur.save()
 			return HTTPFound(location=request.resource_url(request.root, 'Survey','finish'))
 	
 	#Final form submission
+	
 	if 'form.info.submitted.6' in request.params:
 			user = User.objects.filter(email=session['user']).first()
 			place = SurveyAnswer(user = user, key='place', value=request.params['place'])
 			reason = SurveyAnswer(user = user, key='reason', value=request.params['reason'])
+			sur = Survey.objects.filter(name=session['survey']).first()
 			sur.answers.append(place)
 			sur.answers.append(reason)
 			sur.save()
@@ -277,16 +274,33 @@ def survey(request):
 	date = request.GET.get('date')
 	if date is not None:
 			films_not_filtered = False
-			#But date = DateTimeField() get just the year comparison
-			#main_movies = Movie.objects.filter(date.strftime('%Y')=date).order_by('-date')
+			main_movies = []
+			if int(date) is not 90: 
+				if int(date) is not 80:
+					for movie in Movie.objects.all():
+						if movie.date.year == int(date):
+							main_movies.append(movie)
+			if int(date) is 90:
+				years = [1999,1998,1997,1996,1995,1994,1993,1992,1991,1990]
+				for movie in Movie.objects.all():
+					if movie.date.year in years[:]:
+						main_movies.append(movie)
+			if int(date) is 80:
+				years = [1989,1988,1987,1986,1985,1984,1983,1982,1981,1980]
+				for movie in Movie.objects.all():
+					if movie.date.year in years[:]:
+						main_movies.append(movie)
 	
+	#Testing Next/Previous buttons
+	page = request.GET.get('page')
+	if page is None:
+		page = 1
+	else:
+		page = int(page)
+					
 	#compute and show pages
 	last_page = True if len(main_movies) <= (page-1)*9+9 else False
 	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9])
-	#Show the list of rated movies in step 2
-	rated_movies = None
-	if sur is not None:
-		rated_movies = Movie.objects()[:int(sur.number_of_ratings)]
 	
 	return dict(message = message, rated_movies = rated_movies, num_ratings = num_ratings,rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)
 
