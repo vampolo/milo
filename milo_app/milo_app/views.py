@@ -120,31 +120,39 @@ def survey(request):
 	#Session: control current step
 	session = request.session
 	session['step'] = request.view_name
-	
-	
+	session['user'] = None
+	user = None
 	email = ''
+	key = ''
+	message = ''
+	sur = None
 	#Login in wizard and put user_login inside the session and the users list of the survey
 	if 'form.key.submitted' in request.params:
 		email = request.params['key_email']
 		key = request.params['key_password']
 		user = User.objects.filter(email=email).first()
-		#For now the key is simply the password
+		#For now the key is simply the password:
 		if user is not None and user.password == key:
 			session['user'] = email
-			return HTTPFound(location = request.resource_url(request.root, 'Survey','1'))
-	
-	sur = None
+			#Use user in session to filter surveys and find the survey name, algorithm and ratings...
+			user_object_list = []
+			for item in Survey.objects.all():
+				user_object_list = item.users
+				for item_user in user_object_list:
+					if item_user.email == session['user']:
+						sur = Survey.objects.filter(name=item.name).first()
+						if sur is not None:
+							return HTTPFound(location = request.resource_url(request.root, 'Survey','1'))
+		message = 'User not registered in any survey'
 	
 	#Use user in session to filter surveys and find the survey name, algorithm and ratings...
-	user_object_list = []
-	for item in Survey.objects.all():
-		user_object_list = item.users
-		for user in user_object_list:
-			if user.email == session['user']:
-				sur = Survey.objects.filter(name=item.name).first()	
-				print item.name
-				print item.algorithm
-				print item.number_of_ratings
+	#user_object_list = []
+	#for item in Survey.objects.all():
+		#user_object_list = item.users
+		#for item_user in user_object_list:
+			#if session['user'] is not None:
+				#if item_user.email == session['user']:
+					#sur = Survey.objects.filter(name=item.name).first()	
 				
 	#Testing Next/Previous buttons
 	page = request.GET.get('page')
@@ -164,8 +172,9 @@ def survey(request):
 		num_ratings = int(num_ratings)
 		rating_finished=False
 	
-	if num_ratings == max_ratings:
-		rating_finished=True
+	if sur is not None:
+		if num_ratings == max_ratings:
+			rating_finished=True
 		
 	#Initialize the Step 1 inputs
 	#Form submission step 1
@@ -275,9 +284,11 @@ def survey(request):
 	last_page = True if len(main_movies) <= (page-1)*9+9 else False
 	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9])
 	#Show the list of rated movies in step 2
-	rated_movies = Movie.objects()[:int(sur.number_of_ratings)]
+	rated_movies = None
+	if sur is not None:
+		rated_movies = Movie.objects()[:int(sur.number_of_ratings)]
 	
-	return dict(rated_movies = rated_movies, num_ratings = num_ratings,rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)
+	return dict(message = message, rated_movies = rated_movies, num_ratings = num_ratings,rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)
 
 
 @view_config(name='add_algorithm', context='milo_app:resources.Root',
@@ -291,6 +302,7 @@ def admin(request):
 	algorithm=''
 	ratings=''
 	users = ''
+	
 	print request.params
 	print request.view_name	
 	if 'submit.survey' in request.params:
