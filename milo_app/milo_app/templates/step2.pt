@@ -85,7 +85,7 @@
 					<div id="filter-content" class="tab-category-content">
 					
 					<div id="item-a-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='A'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/a.jpg"></img>
 						<caption>A</caption>
 						</a>
@@ -272,7 +272,7 @@
 					<div class="title">Filter by Genre</div> 
 					<div id="filter-content" class="step2 tab-category-content"> 
 					<div id="item-genre#1-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this genre">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(genre='Romance'))}" title="See the list of films of this genre">
 						<img src="../images/Drag_Drop_test/genres/kiss.jpg"></img>
 						<caption>Romance</caption>
 						</a>
@@ -299,7 +299,7 @@
 				<div id="filter-content" class="tab-category-content">
 					
 					<div id="item-2011-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this year">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(date='2011'))}" title="See the list of films of this year">
 						<img src="../images/Categories/Years/2011.jpg"></img>
 						<caption>2011</caption>
 						</a>

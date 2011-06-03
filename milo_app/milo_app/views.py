@@ -86,15 +86,6 @@ def categories(request):
 def profile(request):
 	return dict()
 
-@view_config(name='add_algorithm', context='milo_app:resources.Root',
-				 renderer='templates/add_algorithm.pt')
-@view_config(name='add_survey', context='milo_app:resources.Root',
-				 renderer='templates/add_survey.pt')
-@view_config(name='admin', context='milo_app:resources.Root',
-				 renderer='templates/admin.pt')
-def admin(request):
-	return dict()
-
 @view_config(context='milo_app:resources.Movie',
 				 renderer='templates/movie.pt')
 def movie(context, request):
@@ -166,15 +157,6 @@ def survey(request):
 	if num_ratings == max_ratings:
 		rating_finished=True
 		
-	#Get objects of DB to retrieve the movie catalogue
-	main_movies = Movie.objects().order_by('-date')
-	
-	#compute and show pages
-	last_page = True if len(main_movies) <= (page-1)*9+9 else False
-	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9])
-	#Show the list of rated movies in step 2
-	rated_movies = Movie.objects()[:int(sur.number_of_ratings)]
-	
 	#Initialize the Step 1 inputs
 	#Form submission step 1
 	if 'form.info.submitted.1' in request.params:
@@ -249,4 +231,68 @@ def survey(request):
 			#Where I will go when i click "continue"
 			return HTTPFound(location=request.resource_url(request.root, ''))
 	
+	#should be just inside the if...? or this flag is simply unuseful?
+	main_movies = Movie.objects().order_by('-date')
+	films_not_filtered = True
+	
+	if films_not_filtered == True:
+		#Get objects of DB to retrieve the movie catalogue
+		main_movies = Movie.objects().order_by('-date')
+	
+	#Filters in step 2
+	#Title filter
+	first_letter = request.GET.get('title')
+	if first_letter is not None:
+			films_not_filtered = False
+			#But title = StringField(required=True) -> get just first letter.... word[0]
+			#main_movies = Movie.objects.filter(title=first_letter).order_by('-date')
+		
+	#Genre filter
+	genre = request.GET.get('genre')
+	if genre is not None:
+			films_not_filtered = False
+			#But genre = ListField(StringField()) analyse all of the list
+			#main_movies = Movie.objects.filter(genre=genre).order_by('-date')
+	
+	#Date filter
+	date = request.GET.get('date')
+	if date is not None:
+			films_not_filtered = False
+			#But date = DateTimeField() get just the year comparison
+			#main_movies = Movie.objects.filter(date.strftime('%Y')=date).order_by('-date')
+	
+	#compute and show pages
+	last_page = True if len(main_movies) <= (page-1)*9+9 else False
+	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9])
+	#Show the list of rated movies in step 2
+	rated_movies = Movie.objects()[:int(sur.number_of_ratings)]
+	
 	return dict(rated_movies = rated_movies, num_ratings = num_ratings,rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)
+
+@view_config(name='add_algorithm', context='milo_app:resources.Root',
+				 renderer='templates/add_algorithm.pt')
+@view_config(name='add_survey', context='milo_app:resources.Root',
+				 renderer='templates/add_survey.pt')
+@view_config(name='admin', context='milo_app:resources.Root',
+				 renderer='templates/admin.pt')
+def admin(request):
+	#name=''
+	#algorithm=''
+	#ratings=0
+	#whaaaaaaaaat?
+	print request.params
+	print request.view_name
+	#if 'submit.survey' in request.params:
+		#name = request.params['survey_name']
+		#algorithm = request.params['survey_algorithm']
+		#ratings = int(request.params['survey_n_ratings'])
+		#Check if there is already this survey
+		#if Survey.objects.filter(name=name).first() is None:
+			#survey_added = Survey(name=name, algorithm=algorithm, number_of_ratings=ratings)
+			#necessary in here?
+			#survey_added.save()
+			#print name
+			#print algorithm
+			#print ratings
+			
+	return dict()

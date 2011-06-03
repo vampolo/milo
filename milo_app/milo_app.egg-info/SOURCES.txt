@@ -13,6 +13,7 @@ milo_app/helpers.py
 milo_app/login.py
 milo_app/resources.py
 milo_app/rest.py
+milo_app/test_survey.py
 milo_app/tests.py
 milo_app/views.py
 milo_app.egg-info/PKG-INFO

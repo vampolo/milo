@@ -377,16 +377,23 @@ strong	{
 #content textarea:focus	{
 	background: #eee url(../images/admin/bg_textarea.png) no-repeat left bottom;
 }
-#content a.button, #content a.button:visited	{
-	float: left;
+#content .button, #content .button:visited	{
+	
 	height: 25px;
 	display: block;
 	background: #aaa url(../images/admin/bg_button_a.png) no-repeat left top;
 }
-#content a.button:active	{
+#content .button:active	{
 	background: #eee url(../images/admin/bg_button_a.png) no-repeat left bottom;
 }
-#content a.button span, #content a.button:visited span	{
+
+.button input{
+display: none;
+width: 40px;
+z-index: -1;
+}
+
+#content .button span, #content .button:visited span	{
 	float: left;
 	height: 19px;
 	color: #343434;
@@ -397,10 +404,11 @@ strong	{
 	padding: 6px 18px 0 18px;
 	background: url(../images/admin/bg_button_span.png) no-repeat right top;
 }
-#content a.button:active span	{
+#content .button:active span	{
 	color: #aaa;
 	background: url(../images/admin/bg_button_span.png) no-repeat right bottom;
 }
+
 .alert	{
 	height: 28px;
 	text-align: right;

@@ -21,16 +21,16 @@
 		</ul>
 		
 		<div id="tab1_content" class="tab_content">
-		<form method="post" action="">
+		<form method="POST" autocomplete="off" action="${request.resource_url(request.root, 'add_survey')}">
 		<fieldset>
 			<label>To add a new survey, fill the information and submit:</label><br/><br/>
 			
 			<label>Survey Name:</label><br/>
-			<span class="small_input"><input class="small" name="" type="text" value="" /></span><br class="hid" />
+			<input class="small" name="SurveyName" type="text" value="" /><br class="hid" />
 			
 			<div class="option">
 						<label for="survey_alg">Algorithm type:</label><br/>
-						<select name="algorithm" size="1">
+						<select name="survey_algorithm" size="1">
 								<option value="  " selected>(select the survey's algorithm)
 								<option value="alg1">Algorithm #1
 								<option value="alg2">Algorithm #2 
@@ -40,8 +40,8 @@
 			</div><!--field-->
 			
 			<div class="option">
-						<label for="survey_ratings">Number of ratings:</label><br/>
-						<select name="ratings" size="1">
+						<label for="SurveyRatings">Number of ratings:</label><br/>
+						<select name="NumSurveyRatings" size="1">
 								<option value="  " selected>(select how many ratings the user perform)
 								<option value="1">1
 								<option value="2">2
@@ -64,9 +64,10 @@
 			<span class="textarea"><textarea cols="" rows=""></textarea></span><br class="hid" />
 			</div>
 			
-			<div id="add_survey">
-			<a href="#" class="button" title="Submit"><span>Add survey</span></a>
-			<span class="clear"></span>
+			<div id="add_survey" class="button">
+			<input name="submit.survey" type="submit" value="">	
+			<span>Add survey</span>
+			</input>
 			</div>
 			
 		</fieldset>
