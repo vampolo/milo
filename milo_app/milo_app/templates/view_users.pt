@@ -1,0 +1,42 @@
+<metal:html use-macro="admin_base.macros['main_admin']">
+
+	<metal:description fill-slot="description">
+		<h2><span>MiloAdmin</span></h2>
+	</metal:description>
+	
+	
+		
+	<metal:content fill-slot="content">	
+	<div id="content">
+		
+		<h2>${survey_name} User List</h2>
+		
+		<div class="box">
+			<table id="surveys_table">
+				<thead>
+				<tr>
+					<th class="col1">User email</th>
+				</tr>
+				<thead>
+				<tbody>
+				<tal:row repeat="user users.get('users')">
+					<tr class="highlight">
+					<td>${user.email}</td>
+					</tr>
+				</tal:row>
+				</tbody>
+			</table>
+<!--
+			<p id="pagin">
+				&laquo; <a href="#" title="">previous</a> &ndash;
+				<a href="#" title="">1</a>
+				<a href="#" title="">2</a>
+				<a href="#" title="">3</a>
+				&ndash; <a href="#" title="">next</a> &raquo;
+			</p>
+-->
+		</div>
+	
+	</div>
+	</metal:content>
+</metal:html>

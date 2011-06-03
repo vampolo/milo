@@ -387,13 +387,8 @@ strong	{
 	background: #eee url(../images/admin/bg_button_a.png) no-repeat left bottom;
 }
 
-.button input{
-display: none;
-width: 40px;
-z-index: -1;
-}
 
-#content .button span, #content .button:visited span	{
+#content .button input, #content .button:visited input	{
 	float: left;
 	height: 19px;
 	color: #343434;
@@ -404,7 +399,7 @@ z-index: -1;
 	padding: 6px 18px 0 18px;
 	background: url(../images/admin/bg_button_span.png) no-repeat right top;
 }
-#content .button:active span	{
+#content .button:active input	{
 	color: #aaa;
 	background: url(../images/admin/bg_button_span.png) no-repeat right bottom;
 }

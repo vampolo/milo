@@ -269,6 +269,7 @@ def survey(request):
 	
 	return dict(rated_movies = rated_movies, num_ratings = num_ratings,rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)
 
+
 @view_config(name='add_algorithm', context='milo_app:resources.Root',
 				 renderer='templates/add_algorithm.pt')
 @view_config(name='add_survey', context='milo_app:resources.Root',
@@ -276,23 +277,58 @@ def survey(request):
 @view_config(name='admin', context='milo_app:resources.Root',
 				 renderer='templates/admin.pt')
 def admin(request):
-	#name=''
-	#algorithm=''
-	#ratings=0
-	#whaaaaaaaaat?
+	name=''
+	algorithm=''
+	ratings=''
+	users = ''
 	print request.params
-	print request.view_name
-	#if 'submit.survey' in request.params:
-		#name = request.params['survey_name']
-		#algorithm = request.params['survey_algorithm']
-		#ratings = int(request.params['survey_n_ratings'])
-		#Check if there is already this survey
-		#if Survey.objects.filter(name=name).first() is None:
-			#survey_added = Survey(name=name, algorithm=algorithm, number_of_ratings=ratings)
-			#necessary in here?
-			#survey_added.save()
-			#print name
-			#print algorithm
-			#print ratings
-			
-	return dict()
+	print request.view_name	
+	if 'submit.survey' in request.params:
+		print request.params
+		print request.view_name
+		name = request.params['SurveyName']
+		algorithm = request.params['survey_algorithm']
+		ratings = request.params['NumSurveyRatings']
+		#Now users is just a bit string... I should separate them be the comma...
+		set_users = request.params['set_of_users'].split(',')
+		#Check if all inputs are filled
+		if name is not None and algorithm is not None and ratings is not None and users is not None:
+			#Check if there is already this survey
+			if Survey.objects.filter(name=name).first() is None:
+				#users = ListField(ReferenceField(User))
+				survey_added = Survey(name=name, algorithm=algorithm, number_of_ratings=int(ratings))
+				#Necessary?!
+				#survey_added.save()
+				#Append each item of users list above
+				for item in set_users:
+					user_added = User(email = item)
+					user_added.save()
+					survey_added.users.append(user_added)
+					survey_added.save()
+					print item
+					print user_added
+				print name
+				print algorithm
+				print ratings
+	
+	all_surveys = Survey.objects().order_by('name')
+	#surveys = dict(surveys=all_surveys[:], name= all_surveys_name)
+	surveys = dict(surveys=all_surveys[:])
+	
+	return dict(surveys=surveys)
+
+@view_config(name='view_users', context='milo_app:resources.Root',
+				 renderer='templates/view_users.pt')
+def survey_users(request):
+	
+	survey_name = request.GET.get('survey')
+	
+	current_survey = Survey.objects.filter(name=survey_name).first()
+	users_objects_list = current_survey.users
+	#email_list =[]
+	#for item in users_objects_list:
+	#	email_list.append(item.email)
+	users = dict(users=users_objects_list[:])
+	print users.get('users')
+	
+	return dict(survey_name=survey_name, users=users)

@@ -21,6 +21,7 @@
 		</ul>
 		
 		<div id="tab1_content" class="tab_content">
+			
 		<form method="POST" autocomplete="off" action="${request.resource_url(request.root, 'add_survey')}">
 		<fieldset>
 			<label>To add a new survey, fill the information and submit:</label><br/><br/>
@@ -59,15 +60,13 @@
 			</div><!--field-->
 			
 			<div id="add_users">
-			<label>Set of users:</label><br/>
+			<label>Set of users(emails comma-separated):</label><br/>
 			<br class="hid" />
-			<span class="textarea"><textarea cols="" rows=""></textarea></span><br class="hid" />
+			<span class="textarea"><textarea cols="40" rows="4" name="set_of_users"></textarea></span><br class="hid" />
 			</div>
 			
 			<div id="add_survey" class="button">
-			<input name="submit.survey" type="submit" value="">	
-			<span>Add survey</span>
-			</input>
+			<input class="button" name="submit.survey" type="submit" value="Add Survey"/>
 			</div>
 			
 		</fieldset>
@@ -87,30 +86,22 @@
 				</tr>
 				<thead>
 				<tbody>
-				<tr class="highlight">
-					<td><a href="#" title="survey_name1">Survey #1</a></td>
-					<td>Algorithm #1</td>
-					<td>5</td>
+				<tal:row repeat="survey surveys.get('surveys')">
+					<tr class="highlight">
+					<td><a href="#" title="survey_name1">${survey.name}</a></td>
+					<td>${survey.algorithm}</td>
+					<td>${survey.number_of_ratings}</td>
 					<td class="action">
 						<ul>
-							<li><a class="edit" href="#" title="Edit the set of users included in this survey"></a></li>
+							<li><a class="edit" tal:attributes="href request.resource_url(context, 'view_users', query=dict(survey=survey.name))" title="View included users in this survey"></a></li>
 						</ul>
 					</td>
-					<td> 31/05/2011 </td>
-				</tr>
-				<tr class="highlight">
-					<td><a href="#" title="survey_name1">Survey #2</a></td>
-					<td>Algorithm #1</td>
-					<td>8</td>
-					<td class="action">
-						<ul>
-							<li><a class="edit" href="#" title="Edit the set of users included in this survey"></a></li>
-						</ul>
-					</td>
-					<td> 31/05/2011 </td>
-				</tr>
+					<td> ADD? </td>
+					</tr>
+				</tal:row>
 				</tbody>
 			</table>
+<!--
 			<p id="pagin">
 				&laquo; <a href="#" title="">previous</a> &ndash;
 				<a href="#" title="">1</a>
@@ -118,6 +109,7 @@
 				<a href="#" title="">3</a>
 				&ndash; <a href="#" title="">next</a> &raquo;
 			</p>
+-->
 		</div>
 		</div><!--tab2_content-->
 	
