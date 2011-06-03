@@ -4351,5 +4351,6 @@ milo_app/templates/step3.pt
 milo_app/templates/step4.pt
 milo_app/templates/step5.pt
 milo_app/templates/test.pt
+milo_app/templates/view_users.pt
 milo_app/templates/wizard.pt
 milo_app/templates/wizard_movie.pt

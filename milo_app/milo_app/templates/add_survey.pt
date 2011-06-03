@@ -82,7 +82,7 @@
 					<th class="col2">Algorithm Used</th>
 					<th class="col3">Number of Ratings</th>
 					<th class="col4">User's List</th>
-					<th class="col5">Date Created</th>
+					<th class="col5">Delete this survey</th>
 				</tr>
 				<thead>
 				<tbody>
@@ -96,7 +96,11 @@
 							<li><a class="edit" tal:attributes="href request.resource_url(context, 'view_users', query=dict(survey=survey.name))" title="View included users in this survey"></a></li>
 						</ul>
 					</td>
-					<td> ADD? </td>
+					<td class="action">
+						<ul>
+							<li><a class="delete" tal:attributes="href request.resource_url(context, 'add_survey', query=dict(action='delete',survey=survey.name))" title="Delete this survey permanently"></a></li>
+						</ul>
+					</td>
 					</tr>
 				</tal:row>
 				</tbody>

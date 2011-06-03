@@ -315,6 +315,12 @@ def admin(request):
 	#surveys = dict(surveys=all_surveys[:], name= all_surveys_name)
 	surveys = dict(surveys=all_surveys[:])
 	
+	survey_name = request.GET.get('survey')
+	delete = request.GET.get('action')
+	if delete == 'delete':
+		Survey.objects.filter(name=survey_name).delete()
+		
+	
 	return dict(surveys=surveys)
 
 @view_config(name='view_users', context='milo_app:resources.Root',

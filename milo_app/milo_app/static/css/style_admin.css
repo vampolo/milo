@@ -473,6 +473,7 @@ strong	{
 	text-align: center;
 	font-weight: bold;
 	vertical-align: middle;
+	border-bottom: solid 1px #D5D5D5;
 }
 #content th.col1, #content th.col2, #content th.col3, #content th.col4	{
 	width: 146px;
@@ -484,7 +485,7 @@ strong	{
 	text-align: center;
 	vertical-align: middle;
 	border: solid 1px #d5d5d5;
-	border-left: 0;
+	border-left: solid 1px #D5D5D5;
 }
 #content td.action	{
 	border-right: 0;
@@ -519,6 +520,7 @@ strong	{
 }
 #content a.delete, #content a.delete:visited	{
 	background: url(../images/admin/icon_delete.png) no-repeat center center;
+	margin-left: 30px;
 }
 #content a.mark, #content a.mark:visited	{
 	background: url(../images/admin/icon_mark2.png) no-repeat center center;
