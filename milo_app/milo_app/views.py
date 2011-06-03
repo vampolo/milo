@@ -114,9 +114,6 @@ def movie(context, request):
 				 renderer='templates/finish.pt')                                                          
 def survey(request):
 	
-	#Survey instance... Should be set in the admin
-	sur = Survey(name='test survey', algorithm='algorithm#1', number_of_ratings=5)
-	
 	#Declare
 	rating_finished = None
     
@@ -131,12 +128,24 @@ def survey(request):
 		email = request.params['key_email']
 		key = request.params['key_password']
 		user = User.objects.filter(email=email).first()
+		#For now the key is simply the password
 		if user is not None and user.password == key:
-			sur.users.append(user)
-			sur.save()
 			session['user'] = email
 			return HTTPFound(location = request.resource_url(request.root, 'Survey','1'))
 	
+	sur = None
+	
+	#Use user in session to filter surveys and find the survey name, algorithm and ratings...
+	user_object_list = []
+	for item in Survey.objects.all():
+		user_object_list = item.users
+		for user in user_object_list:
+			if user.email == session['user']:
+				sur = Survey.objects.filter(name=item.name).first()	
+				print item.name
+				print item.algorithm
+				print item.number_of_ratings
+				
 	#Testing Next/Previous buttons
 	page = request.GET.get('page')
 	if page is None:
@@ -145,7 +154,8 @@ def survey(request):
 		page = int(page)
 	
 	#Set the number of ratings
-	max_ratings = (int(sur.number_of_ratings) + 1)
+	if sur is not None:
+		max_ratings = (int(sur.number_of_ratings) + 1)
 	#numero di ratings as a query now
 	num_ratings = request.GET.get('num_ratings')
 	if num_ratings is None:
