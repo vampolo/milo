@@ -260,15 +260,21 @@ def survey(request):
 	first_letter = request.GET.get('title')
 	if first_letter is not None:
 			films_not_filtered = False
-			#But title = StringField(required=True) -> get just first letter.... word[0]
-			#main_movies = Movie.objects.filter(title=first_letter).order_by('-date')
+			main_movies = []
+			for movie in Movie.objects.all():
+				first_char = movie.title[0]
+				if first_letter == first_char:
+					main_movies.append(movie)
 		
 	#Genre filter
 	genre = request.GET.get('genre')
 	if genre is not None:
 			films_not_filtered = False
-			#But genre = ListField(StringField()) analyse all of the list
-			#main_movies = Movie.objects.filter(genre=genre).order_by('-date')
+			main_movies = []
+			for movie in Movie.objects.all():
+				list_genre = movie.genre
+				if genre in list_genre[:]:
+					main_movies.append(movie)
 	
 	#Date filter
 	date = request.GET.get('date')

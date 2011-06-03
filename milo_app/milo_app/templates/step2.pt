@@ -92,175 +92,175 @@
 					</div><!--item-category-list-->
 					
 					<div id="item-b-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='B'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/b.jpg"></img>
 						<caption>B</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-c-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='C'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/c.jpg"></img>
 						<caption>C</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-D-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='D'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/d.jpg"></img>
 						<caption>D</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-E-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='E'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/e.jpg"></img>
 						<caption>E</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-f-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='F'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/f.jpg"></img>
 						<caption>F</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-g-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='G'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/g.jpg"></img>
 						<caption>G</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-h-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='H'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/h.jpg"></img>
 						<caption>H</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-i-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='I'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/i.jpg"></img>
 						<caption>I</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-j-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='J'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/j.jpg"></img>
 						<caption>J</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-k-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='K'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/k.jpg"></img>
 						<caption>K</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-l-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='L'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/l.jpg"></img>
 						<caption>L</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-o-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='M'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/m.jpg"></img>
 						<caption>M</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-n-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='N'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/n.jpg"></img>
 						<caption>N</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-o-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='O'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/o.jpg"></img>
 						<caption>O</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-p-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='P'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/p.jpg"></img>
 						<caption>P</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-q-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='Q'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/q.jpg"></img>
 						<caption>Q</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-r-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='R'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/r.jpg"></img>
 						<caption>R</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-s-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='S'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/s.jpg"></img>
 						<caption>S</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-t-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='T'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/t.jpg"></img>
 						<caption>T</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-u-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='U'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/u.jpg"></img>
 						<caption>U</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-v-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='V'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/v.jpg"></img>
 						<caption>V</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-w-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='W'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/w.jpg"></img>
 						<caption>W</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-x-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='X'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/x.jpg"></img>
 						<caption>X</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-w-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='Y'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/y.jpg"></img>
 						<caption>Y</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-z-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films that begin with this letter">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(title='Z'))}" title="See the list of films that begin with this letter">
 						<img src="../images/Categories/Alpha/z.jpg"></img>
 						<caption>Z</caption>
 						</a>
@@ -279,16 +279,16 @@
 					</div><!--item-category-list-->
 					
 					<div id="item-genre#2-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this genre">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(genre='Animation'))}" title="See the list of films of this genre">
 						<img src="../images/Drag_Drop_test/genres/animation.jpg"></img>
 						<caption>Animation</caption>
 						</a>
 					</div><!--item-category-list-->
 					
 					<div id="item-genre#3-category" class="item-category-list">
-						<a href="../chosen_category_login/index.html" title="See the list of films of this genre">
+						<a href="${request.resource_url(request.root,'Survey','2',query=dict(genre='Crime'))}" title="See the list of films of this genre">
 						<img src="../images/Drag_Drop_test/genres/terror.png"></img>
-						<caption>Horror</caption>
+						<caption>Crime</caption>
 						</a>
 					</div><!--item-category-list-->
 					
@@ -426,9 +426,9 @@
 						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(num_ratings = num_ratings+1, rating='dislike', movie_title=movie.title))}','${movie.title} rated as disliked... Submit?');" title="Dislike this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
 						
 					</li>
-					<li class="genre">Genre: <tal:genres repeat="g movie.genre"><a href="#" title="Search films of this genre">${g}</a>,</tal:genres></li>
+					<li class="genre">Genre: <tal:genres repeat="g movie.genre"><a href="#" title="Search films of this genre">${g}</a>&nbsp</tal:genres></li>
 					<li class="genre">Director: <tal:genres repeat="g movie.genre"><a href="#" title="Search films of this director">${'Director Name'}</a></li>
-					<li class="genre">Cast: <tal:actor><a href="#" title="Search films of this actor">${'Actor Name'}</a>,</tal:actor></li>
+					<li class="genre">Cast: <tal:actor><a href="#" title="Search films of this actor">${'Actor Name'}</a>&nbsp</tal:actor></li>
               </ul>
             </div>
             <!-- movie-item , first_page='false')-->
