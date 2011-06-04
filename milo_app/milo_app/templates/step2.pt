@@ -32,8 +32,8 @@
           //]]>
           </script>
           <div id="search">
-            <form method="get" id="search-form" action="index.html" name="search-form">
-              <input type="text" name="s" id="s" value="Find a movie by query" onfocus=
+            <form method="get" autocomplete="off" id="search-form" action="${request.resource_url(request.root,'Survey','2')}" name="search-form">
+              <input type="text" name="search_query" id="s" value="Find movies by query" onfocus=
               "doClear(this)" /> 
               <input type="submit" id="search-submit" value="" />
             </form>

@@ -120,12 +120,14 @@ def survey(request):
 	#Session: control current step
 	session = request.session
 	session['step'] = request.view_name
+	
 	user = None
 	email = ''
 	key = ''
 	message = ''
 	rated_movies = None
-	max_ratings = 0
+	#max_ratings = 0
+	#survey_n_ratings = 0
 	#Login in wizard and put user_login inside the session and the users list of the survey
 	if 'form.key.submitted' in request.params:
 		email = request.params['key_email']
@@ -148,13 +150,22 @@ def survey(request):
 							session['ratings_executed'] = 0
 							return HTTPFound(location = request.resource_url(request.root, 'Survey','1'))
 		message = 'User not registered in any survey or invalid password'
-		
+	
+	
+	#Control if session['max_ratings'] has been defined already (after login) or not
+	if request.view_name == 'wizard':
+		survey_n_ratings = 0
+	else:
+		survey_n_ratings = session['max_ratings']
+		#Determine the size of the list showed (to be changed...)
+		rated_movies = Movie.objects()[:session['max_ratings']]
+	
 	#numero di ratings as a query now
 	
 	if request.GET.get('rating') is not None:
 		session['ratings_executed'] = session['ratings_executed'] + 1
-		if session['ratings_executed'] == session['max_ratings']:
-				rating_finished=True
+		if session['ratings_executed'] == session['max_ratings']:		
+			rating_finished=True
 		
 		
 	#Initialize the Step 1 inputs
@@ -289,6 +300,29 @@ def survey(request):
 					if movie.date.year in years[:]:
 						main_movies.append(movie)
 	
+	#Query Filter
+	search_query = request.GET.get('search_query')
+	#Search inside title, description, genre
+	#in the future also for the actor...
+	if search_query is not None:
+			capitalized_query = search_query.capitalize()
+			films_not_filtered = False
+			main_movies = []
+			for movie in Movie.objects.all():
+				list_title_strings = movie.title.split()
+				list_description_strings = movie.description.split()
+				list_strings_movie = []
+				for item in list_title_strings:
+					list_strings_movie.append(item)
+				for item in list_description_strings:
+					list_strings_movie.append(item)
+				for item in movie.genre:
+					list_strings_movie.append(item)
+				if search_query in list_strings_movie:
+					main_movies.append(movie)
+				elif capitalized_query in list_strings_movie:
+					main_movies.append(movie)
+	
 	#Testing Next/Previous buttons
 	page = request.GET.get('page')
 	if page is None:
@@ -299,12 +333,6 @@ def survey(request):
 	#compute and show pages
 	last_page = True if len(main_movies) <= (page-1)*9+9 else False
 	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9])
-	
-	#Determine the size of the list showed (to be changed...)
-	rated_movies = Movie.objects()[:session['max_ratings']]
-	
-	#Pass to step2 the number of films to be rated
-	survey_n_ratings = session['max_ratings']
 	
 	return dict(survey_n_ratings=survey_n_ratings,message = message, rated_movies = rated_movies, rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)
 
