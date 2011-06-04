@@ -397,6 +397,9 @@
 					</div><!--item-category-list-->
 			
 				</div><!--tab-date-content-->
+				<div style="float:left;display:block;margin-bottom:3px">
+				<a href="${request.resource_url(request.root,'Survey','2')}"><input id="clean_button" type="submit" value=""/></a>
+				</div>
 			</div> 
 		</div><!--filters-step2-->
 		

@@ -26,6 +26,62 @@
 $(document).ready(function() 
 {	
 	
+	/*Validation*/
+	
+	$("#form_step1").validate(
+	{ 
+        rules: { 
+            age: "required", 
+            sex: "required",
+            edu: "required", 
+            country: "required", 
+            avg_movie: "required",
+        }, 
+        messages: { 
+            age: "Select your age range", 
+            sex: "Select your gender",
+            edu: "Select your educational level", 
+            country: "Select your country", 
+            avg_movie: "Select the average movies watched",
+        }
+     });
+	
+	$("#form_step3").validate(
+	{ 
+        rules: { 
+        specific: "required",
+        missing: "required",
+        complete: "required",   
+        }, 
+        messages: { 
+        specific: "Select a response",
+        missing: "Select a response",
+        complete: "Select a response",   
+        }
+     });
+     
+     $("#form_step4").validate(
+	{ 
+        rules: { 
+        confuse: "required",    
+        }, 
+        messages: { 
+        confuse:  "Select a response",   
+        }
+     });
+     
+     $("#form_finish").validate(
+	{ 
+        rules: { 
+        place: "required",
+        reason: "required",   
+        }, 
+        messages: { 
+        place: "Select a response",
+        reason: "Select a response",
+        }
+     });
+	
 	$('#filters_step2').accordion({ 
     header: 'div.title', 
     active: false, 

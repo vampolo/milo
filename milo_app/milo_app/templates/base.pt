@@ -57,6 +57,8 @@
   </script>
   <script type='text/javascript' src="${request.static_url('milo_app:static/js/fancybox/jquery.fancybox.js')}">
   </script>
+  <script type='text/javascript' src="${request.static_url('milo_app:static/js/jquery.validate.js')}">
+  </script>
   <script tal:condition="new_rec" type='text/javascript' src="${request.static_url('milo_app:static/js/undo.js')}">
   </script>	
   <script src="http://connect.facebook.net/en_US/all.js#appId=113902308692268&amp;xfbml=1">

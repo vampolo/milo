@@ -175,11 +175,13 @@ def survey(request):
 			user = User.objects.filter(email=session['user']).first()
 			age = SurveyAnswer(user = user, key='age', value=request.params['age'])
 			gender = SurveyAnswer(user = user, key='gender', value=request.params['sex'])
+			education = SurveyAnswer(user = user, key='education_lvl', value=request.params['edu'])
 			nationality = SurveyAnswer(user = user, key='nationality', value=request.params['country'])
 			avg_movies = SurveyAnswer(user = user, key='avg_movies', value=request.params['avg_movie'])
 			sur = Survey.objects.filter(name=session['survey']).first()
 			sur.answers.append(age)
 			sur.answers.append(gender)
+			sur.answers.append(education)
 			sur.answers.append(nationality)
 			sur.answers.append(avg_movies)
 			sur.save()
@@ -200,6 +202,11 @@ def survey(request):
 
 	#Form submission step 3
 	
+	specific = ''
+	missing = ''
+	missing1 = ''
+	missing2 = ''
+	complete = ''
 	if 'form.info.submitted.3' in request.params:
 			user = User.objects.filter(email=session['user']).first()
 			specific = SurveyAnswer(user = user, key='specific', value=request.params['specific'])
@@ -219,6 +226,7 @@ def survey(request):
 	
 	#Form submission step 4 - I am not getting checklist information now because is actually "fake" questions... Should I?
 	
+	confuse = ''
 	if 'form.info.submitted.4' in request.params:
 			user = User.objects.filter(email=session['user']).first()
 			confuse = SurveyAnswer(user = user, key='confuse', value=request.params['confuse'])

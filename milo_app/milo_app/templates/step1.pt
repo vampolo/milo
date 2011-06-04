@@ -37,12 +37,12 @@
 				
 				<div id="info_input" class="form-input">
 					
-					<form action="${request.resource_url(request.root, 'Survey','1')}" method="POST" autocomplete="off">
+					<form id="form_step1" action="${request.resource_url(request.root, 'Survey','1')}" method="POST" autocomplete="off">
 					<div id="info_form_left">	
 						<div class="option info_field">
 						<label for="info_age">Age:</label>
-						<select name="age" size="1">
-								<option value="  " selected>(select age range)
+						<select name="age" size="1" >
+								<option value="">(select age range)
 								<option value="10s">10-19
 								<option value="20s">20-30 
 								<option value="30s">31-40 
@@ -51,7 +51,7 @@
 						</div><!--field-->
 						
 						<div class="select info_field">
-						<label for="info_educ">Educational Level:</label><br/><br/>
+						<label for="edu">Educational Level:</label><br/><br/>
 						<input type="radio" name="edu" value="primary" /> Primary School<br/>
 						<input type="radio" name="edu" value="secondary" /> Middle/Secondary School<br/>
 						<input type="radio" name="edu" value="high" /> High School<br/>
@@ -64,15 +64,15 @@
 					
 					<div id="info_form_right">
 						<div class="select info_field">
-						<label for="info_gender">Gender:</label>
+						<label for="sex">Gender:</label>
 						<input type="radio" name="sex" value="male" /> Male
 						<input type="radio" name="sex" value="female" /> Female
 						</div><!--field-->
 						
 						<div class="option info_field">
 						<label for="info_nat">Nationality:</label><br/>
-							   <select name="country" size="1">
-								<option value="  " selected>(select a country)
+							   <select name="country" class="required" size="1">
+								<option value="">(select a country)
 								<option value="IT">Italy
 								<option value="AF">Afghanistan 
 								<option value="AL">Albania 
@@ -321,7 +321,7 @@
 						</label>
 						(Either in cinema, TV, streaming, dvd, ...)<br/>
 						<select name="avg_movie" size="1">
-								<option value="  " selected>(Select the range)
+								<option value="">(Select the range)
 								<option value="0-5">None to 5
 								<option value="6-10">6 to 10
 								<option value="11-15">11 to 15

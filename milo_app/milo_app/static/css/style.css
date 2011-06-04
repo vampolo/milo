@@ -1165,8 +1165,25 @@ padding: 0 0 2px 0;
 cursor: pointer;
 }
 
+
 input#register_button:hover {
 background: url(../images/register2.png);
+}
+
+
+input#clean_button:hover {
+background: url(../images/buttonclean2.png);
+}
+
+input#clean_button {
+background: url(../images/buttonclean.png) 0 0;
+border: none;
+color: #3E4852;
+width: 107px;
+height: 27px;
+margin: 5px 0 5px 5px;
+padding: 0 0 2px 0;
+cursor: pointer;
 }
 
 input#key_button {
@@ -1494,6 +1511,16 @@ width: 80px;
 font-weight: bold;
 padding-right: 10px;
 color: white;
+}
+
+label.error{
+color: red;
+float: right;
+}
+
+#info_form_right label.error{
+color: red;
+margin-top: 6px;
 }
 
 .select input{

@@ -36,7 +36,7 @@
 				
 				<div id="info_input" class="form-input">
 					
-					<form id="catalogue-questions" action="${request.resource_url(request.root, 'Survey','4')}" method="POST" autocomplete="off">
+					<form id="form_step4" action="${request.resource_url(request.root, 'Survey','4')}" method="POST" autocomplete="off">
 					
 						<div class="select info_field">
 							<label for="interface_like">4.1) Check the boxes which better represent the features you LIKED in this graphical interface (more than one option can be chosen):</label><br/><br/>

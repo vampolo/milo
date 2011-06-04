@@ -36,10 +36,10 @@
 					
 					<div id="info_input" class="form-input">
 					
-					<form id="catalogue-questions" name="input" action="${request.resource_url(request.root, 'Survey','3')}" method="POST" autocomplete="off">
+					<form id="form_step3" name="input" action="${request.resource_url(request.root, 'Survey','3')}" method="POST" autocomplete="off">
 					
 						<div class="select info_field">
-							<label for="browse_mode">3.1) While browsing the catalogue, where you looking for specific items?</label><br/><br/>
+							<label for="specific">3.1) While browsing the catalogue, where you looking for specific items?</label><br/><br/>
 							<input type="radio" name="specific" value="No" /><b>No</b>, I was just browsing randomly<br/>
 							<input type="radio" name="specific" value="Yes" /><b>Yes</b>, I was looking for specific known titles to rate<br/>
 							<input type="radio" name="specific" value="Partial" /><b>Partially</b>. While looking for a known item, I ended up rating others 
@@ -59,7 +59,7 @@
 						
 						
 						<div class="select info_field">
-							<label for="completeness">3.3) Overall, how complete did the catalogue appear to be?</label><br/><br/>
+							<label for="complete">3.3) Overall, how complete did the catalogue appear to be?</label><br/><br/>
 							<input type="radio" name="complete" value="High" /><b>Highly complete</b>, including not only famous items but also alternative ones<br/>
 							<input type="radio" name="complete" value="Standard" /><b>Complete</b> enough, all blockbuster movies were included, but not many alternatives<br/>
 							<input type="radio" name="complete" value="OK" /><b>Partially</b> complete. I noticed some missing titles during the browsing<br/> 
