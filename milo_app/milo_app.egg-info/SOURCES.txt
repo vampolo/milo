@@ -44,6 +44,8 @@ milo_app/static/css/smoothness/images/ui-icons_cd0a0a_256x240.png
 milo_app/static/images/ajax-loader.gif
 milo_app/static/images/bullet.jpg
 milo_app/static/images/button1.png
+milo_app/static/images/buttonclean.png
+milo_app/static/images/buttonclean2.png
 milo_app/static/images/buttoncontinue.png
 milo_app/static/images/categories.png
 milo_app/static/images/category.png
@@ -4253,6 +4255,7 @@ milo_app/static/js/jquery.float.js
 milo_app/static/js/jquery.js
 milo_app/static/js/jquery.superfish.js
 milo_app/static/js/jquery.tablesorter.js
+milo_app/static/js/jquery.validate.js
 milo_app/static/js/jqueryui.js
 milo_app/static/js/l10n.js
 milo_app/static/js/rating_done.js

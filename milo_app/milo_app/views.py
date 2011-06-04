@@ -115,41 +115,56 @@ def movie(context, request):
 def survey(request):
 	
 	#Declare
-	rating_finished = None
+	rating_finished = None	
     
 	#Session: control current step
 	session = request.session
-	session['step'] = request.view_name
-	
 	user = None
 	email = ''
 	key = ''
 	message = ''
 	rated_movies = None
+	
 	#max_ratings = 0
 	#survey_n_ratings = 0
 	#Login in wizard and put user_login inside the session and the users list of the survey
 	if 'form.key.submitted' in request.params:
 		email = request.params['key_email']
 		key = request.params['key_password']
-		user = User.objects.filter(email=email).first()
+		user = User.objects.filter(email=email).first()			
 		#For now the key is simply the password:
-		if user is not None and user.password == key:
-			session['user'] = email
-			#Use user in session to filter surveys and find the survey name, algorithm and ratings...
-			user_object_list = []
-			for item in Survey.objects.all():
-				user_object_list = item.users
-				for item_user in user_object_list:
-					if item_user.email == session['user']:
-						sur = Survey.objects.filter(name=item.name).first()						
-						if sur is not None:
-							session['survey']=sur.name
-							#Set the number of ratings
-							session['max_ratings'] = (int(sur.number_of_ratings))
-							session['ratings_executed'] = 0
-							return HTTPFound(location = request.resource_url(request.root, 'Survey','1'))
-		message = 'User not registered in any survey or invalid password'
+		if user is not None:
+			if user.survey_status == 'submitted':
+				message = 'User has already submit this survey'
+			else:
+				if user is not None and user.password == key:
+					#if session['user'] is None:
+						#session['concluded_until_step'] = None
+					session['user'] = email
+					#Use user in session to filter surveys and find the survey name, algorithm and ratings...
+					user_object_list = []
+					for item in Survey.objects.all():
+						user_object_list = item.users
+						for item_user in user_object_list:
+							if item_user.email == session['user']:
+								sur = Survey.objects.filter(name=item.name).first()
+								if sur is not None:
+									session['survey']=sur.name
+									#Set the number of ratings
+									session['max_ratings'] = (int(sur.number_of_ratings))
+									session['ratings_executed'] = 0
+									#Control until when the user finished the survey
+									try:
+										session['concluded_until_step']
+									except:
+										return HTTPFound(location = request.resource_url(request.root, 'Survey', '1'))
+									if session ['concluded_until_step'] is not None:
+										step_to_go = int(session['concluded_until_step'])+1
+										return HTTPFound(location = request.resource_url(request.root, 'Survey', str(step_to_go)))							
+									else:
+										return HTTPFound(location = request.resource_url(request.root, 'Survey', '1'))
+		if message is None:
+			message = 'User not registered in any survey or invalid password'
 	
 	
 	#Control if session['max_ratings'] has been defined already (after login) or not
@@ -166,12 +181,14 @@ def survey(request):
 		session['ratings_executed'] = session['ratings_executed'] + 1
 		if session['ratings_executed'] == session['max_ratings']:		
 			rating_finished=True
+			session['concluded_until_step'] = request.view_name
 		
 		
 	#Initialize the Step 1 inputs
 	#Form submission step 1
 	
 	if 'form.info.submitted.1' in request.params:
+			session['concluded_until_step'] = request.view_name
 			user = User.objects.filter(email=session['user']).first()
 			age = SurveyAnswer(user = user, key='age', value=request.params['age'])
 			gender = SurveyAnswer(user = user, key='gender', value=request.params['sex'])
@@ -208,6 +225,7 @@ def survey(request):
 	missing2 = ''
 	complete = ''
 	if 'form.info.submitted.3' in request.params:
+			session['concluded_until_step'] = request.view_name
 			user = User.objects.filter(email=session['user']).first()
 			specific = SurveyAnswer(user = user, key='specific', value=request.params['specific'])
 			missing = SurveyAnswer(user = user, key='missing', value=request.params['missing'])
@@ -228,6 +246,7 @@ def survey(request):
 	
 	confuse = ''
 	if 'form.info.submitted.4' in request.params:
+			session['concluded_until_step'] = request.view_name
 			user = User.objects.filter(email=session['user']).first()
 			confuse = SurveyAnswer(user = user, key='confuse', value=request.params['confuse'])
 			sur = Survey.objects.filter(name=session['survey']).first()
@@ -238,6 +257,7 @@ def survey(request):
 	#Form submission step 5 - loop for all movie list retrieved...
 	
 	if 'form.info.submitted.5' in request.params:
+			session['concluded_until_step'] = request.view_name
 			user = User.objects.filter(email=session['user']).first()
 			#confuse = SurveyAnswer(user = user, key='confuse', value=request.params['confuse'])
 			#sur = Survey.objects.filter(name=session['survey']).first()
@@ -249,6 +269,7 @@ def survey(request):
 	
 	if 'form.info.submitted.6' in request.params:
 			user = User.objects.filter(email=session['user']).first()
+			user.survey_status = 'submitted'
 			place = SurveyAnswer(user = user, key='place', value=request.params['place'])
 			reason = SurveyAnswer(user = user, key='reason', value=request.params['reason'])
 			sur = Survey.objects.filter(name=session['survey']).first()
@@ -256,6 +277,8 @@ def survey(request):
 			sur.answers.append(reason)
 			sur.save()
 			#Where I will go when i click "continue"
+			session['concluded_until_step'] = None
+			session['user'] = None
 			return HTTPFound(location=request.resource_url(request.root, ''))
 	
 	#should be just inside the if...? or this flag is simply unuseful?

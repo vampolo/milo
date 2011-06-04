@@ -29,6 +29,8 @@ class User(Document):
 	last_name = StringField()
 	password = StringField()
 	cwid = IntField()
+	#Can be subscribed, not subscribed, submitted
+	survey_status = StringField()
 
 class SurveyAnswer(EmbeddedDocument):
 	user = ReferenceField(User)

@@ -36,7 +36,7 @@
 				
 				<div id="info_input" class="form-input">
 					
-					<form id="form_finish" name="input" action="${request.resource_url(request.root)}" method="POST" autocomplete="off">
+					<form id="form_finish" name="input" action="${request.resource_url(request.root, 'Survey','finish')}" method="POST" autocomplete="off">
 					
 						<div class="select info_field">
 							<label for="conclusion_place"> Where did this survey take place?</label><br/><br/>
