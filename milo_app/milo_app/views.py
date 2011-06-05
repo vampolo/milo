@@ -131,13 +131,13 @@ def survey(request):
 	if 'form.key.submitted' in request.params:
 		email = request.params['key_email']
 		key = request.params['key_password']
-		user = User.objects.filter(email=email).first()			
+		user = User.objects.filter(email=email).first()
 		#For now the key is simply the password:
 		if user is not None:
 			if user.survey_status == 'submitted':
 				message = 'User has already submit this survey'
-			else:
-				if user is not None and user.password == key:
+			if user.survey_status is None:
+				if user.password == key:
 					#if session['user'] is None:
 						#session['concluded_until_step'] = None
 					session['user'] = email
@@ -146,6 +146,7 @@ def survey(request):
 					for item in Survey.objects.all():
 						user_object_list = item.users
 						for item_user in user_object_list:
+#AHHH! Soh funciona com utenti registrati... pq na hora che crio a survey list devo antes adicionar um object e key como user no DB
 							if item_user.email == session['user']:
 								sur = Survey.objects.filter(name=item.name).first()
 								if sur is not None:
@@ -163,7 +164,7 @@ def survey(request):
 										return HTTPFound(location = request.resource_url(request.root, 'Survey', str(step_to_go)))							
 									else:
 										return HTTPFound(location = request.resource_url(request.root, 'Survey', '1'))
-		if message is None:
+		if message == '':
 			message = 'User not registered in any survey or invalid password'
 	
 	
@@ -276,6 +277,9 @@ def survey(request):
 			sur.answers.append(place)
 			sur.answers.append(reason)
 			sur.save()
+			user.save()
+			print user.email
+			print user.survey_status
 			#Where I will go when i click "continue"
 			session['concluded_until_step'] = None
 			session['user'] = None
@@ -400,15 +404,16 @@ def admin(request):
 				#survey_added.save()
 				#Append each item of users list above
 				for item in set_users:
-					user_added = User(email = item)
-					user_added.save()
+					
+#IF THE USER IS ALREADY IN DB, we will simply add to the list... if it is not, we will add a default key
+#This is the current approach adopted in the case that the user will be registered only in one type of survey, never 2 surveys will be linked to a same email				
+					if User.objects.filter(email=item).first() is None:
+						user_added = User(email = item, password='defaultsurveykey')
+						user_added.save()
+					else:
+						user_added = User.objects.filter(email=item).first()
 					survey_added.users.append(user_added)
 					survey_added.save()
-					print item
-					print user_added
-				print name
-				print algorithm
-				print ratings
 	
 	all_surveys = Survey.objects().order_by('name')
 	#surveys = dict(surveys=all_surveys[:], name= all_surveys_name)
