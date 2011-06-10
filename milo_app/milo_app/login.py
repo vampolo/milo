@@ -5,6 +5,7 @@ from pyramid.security import forget
 from pyramid.view import view_config
 from pyramid.url import resource_url
 from pyramid.renderers import get_renderer
+import urllib, urllib2, time
 
 from resources import User
 
@@ -42,7 +43,16 @@ def login(request):
 		user = User.objects.filter(email=login).first()
 		if user is None:
 			user = User(email=login, first_name=name, last_name=surname, password=password)
-			#create a cwid here
+			
+			#create a Whisperer User here
+			whisperer_url = 'http://whisperer.vincenzo-ampolo.net/user/add'
+			data = urllib.urlencode({'name':login})          
+			req = urllib2.Request(whisperer_url, data)
+			#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
+			response = urllib2.urlopen(req)
+			whisperer_page = response.read() 
+			print whisperer_page
+			
 			user.save()
 			headers = remember(request, login)
 			return HTTPFound(location = came_from, headers = headers)

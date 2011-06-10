@@ -138,15 +138,21 @@ def survey(request):
 				message = 'User has already submit this survey'
 			if user.survey_status is None:
 				if user.password == key:
-					#if session['user'] is None:
-						#session['concluded_until_step'] = None
-					session['user'] = email
+#TESTAR SE ALGUEM TENTA "CORTAR SESSION"... DEVO ZERAR SESSION: ALERTA! DEPOIS O USER ANTES DEVE REFAZER
+#TUDO...#DEVO APAGAR OQ FOI ADICIONADO NO SURVEY? SOH PEGAR ULTIMOS RESULTADOS...
+					try:
+						session['user']
+						print session['concluded_until_step']	
+						if session['user'] != user.email:
+							session['concluded_until_step'] = None
+							session['user'] = email
+					except:	
+						session['user'] = email
 					#Use user in session to filter surveys and find the survey name, algorithm and ratings...
 					user_object_list = []
 					for item in Survey.objects.all():
 						user_object_list = item.users
 						for item_user in user_object_list:
-#AHHH! Soh funciona com utenti registrati... pq na hora che crio a survey list devo antes adicionar um object e key como user no DB
 							if item_user.email == session['user']:
 								sur = Survey.objects.filter(name=item.name).first()
 								if sur is not None:
@@ -185,8 +191,8 @@ def survey(request):
 			session['concluded_until_step'] = request.view_name
 		
 		
-	#Initialize the Step 1 inputs
-	#Form submission step 1
+	
+	#Form submission Step 1
 	
 	if 'form.info.submitted.1' in request.params:
 			session['concluded_until_step'] = request.view_name
@@ -410,6 +416,16 @@ def admin(request):
 					if User.objects.filter(email=item).first() is None:
 						user_added = User(email = item, password='defaultsurveykey')
 						user_added.save()
+						
+						#create a Whisperer User here
+						whisperer_url = 'http://whisperer.vincenzo-ampolo.net/user/add'
+						data = urllib.urlencode({'name':item})          
+						req = urllib2.Request(whisperer_url, data)
+						#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
+						response = urllib2.urlopen(req)
+						whisperer_page = response.read() 
+						print whisperer_page
+						
 					else:
 						user_added = User.objects.filter(email=item).first()
 					survey_added.users.append(user_added)

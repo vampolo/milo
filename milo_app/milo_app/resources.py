@@ -28,8 +28,9 @@ class User(Document):
 	first_name = StringField()
 	last_name = StringField()
 	password = StringField()
+	#Can I delete this?!
 	cwid = IntField()
-	#Can be subscribed, not subscribed, submitted: Approach handles only one survey per user...
+	#Can be subscribed, not subscribed, submitted: Approach handles only one survey per user
 	survey_status = StringField()
 	
 	
