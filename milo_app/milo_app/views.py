@@ -216,11 +216,22 @@ def survey(request):
 	if movie_title is not None:
 		#Here we would accept just if the movie hasnt been rated
 		#if SurveyAnswer.objects.filter(key=movie_title).first() == None:
+#the right is to eliminate the rated movies from the list!
 			user = User.objects.filter(email=session['user']).first()
 			movie_rated = SurveyAnswer(user = user, key=movie_title, value=rating)
 			sur = Survey.objects.filter(name=session['survey']).first()
 			sur.answers.append(movie_rated)
-			sur.save()
+			sur.save()			
+
+#Add RATING IN WHISPERER
+			whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/'+movie_title+'/addRating'
+			data = urllib.urlencode({'useremail':session['user'], 'rating':rating})          
+			req = urllib2.Request(whisperer_url, data)
+			#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
+			response = urllib2.urlopen(req)
+			whisperer_page = response.read() 
+			print whisperer_page
+			
 	
 	#Questions in step 3 and 4 might not be useful actually.... Should I take the answers?
 
@@ -259,6 +270,18 @@ def survey(request):
 			sur = Survey.objects.filter(name=session['survey']).first()
 			sur.answers.append(confuse)
 			sur.save()
+			
+#GENERATE THE RECOMMENDATION LIST
+			whisperer_url = 'http://whisperer.vincenzo-ampolo.net/user/'+session['user']+'/getRec'
+			data = urllib.urlencode({'alg':sur.algorithm})
+			req = urllib2.Request(whisperer_url, data)
+#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
+			response = urllib2.urlopen(req)
+			whisperer_page = response.read() 
+#OQ EU PEGO?!
+			print whisperer_page
+			
+			
 			return HTTPFound(location=request.resource_url(request.root, 'Survey','5'))
 	
 	#Form submission step 5 - loop for all movie list retrieved...
@@ -407,14 +430,18 @@ def admin(request):
 				#users = ListField(ReferenceField(User))
 				survey_added = Survey(name=name, algorithm=algorithm, number_of_ratings=int(ratings))
 				#Necessary?!
-				#survey_added.save()
+				survey_added.save()
 				#Append each item of users list above
 				for item in set_users:
 					
 #IF THE USER IS ALREADY IN DB, we will simply add to the list... if it is not, we will add a default key
 #This is the current approach adopted in the case that the user will be registered only in one type of survey, never 2 surveys will be linked to a same email				
+					print User.objects.filter(email=item).first()
+					
 					if User.objects.filter(email=item).first() is None:
 						user_added = User(email = item, password='defaultsurveykey')
+						print user_added.email
+						print user_added.password
 						user_added.save()
 						
 						#create a Whisperer User here

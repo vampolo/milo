@@ -39,16 +39,21 @@ class MovieManager(object):
 			whisperer_item_id = response_dict.get('id')
 			print whisperer_item_id 
 			print whisperer_page
-			
+
+#LOOP THROUGH ALL METADATA
+#ADD ALL STRINGS IN ONE ONLY LIST THE SPLIT! #DESCRIPTION #TITLE #GENRES #ACTORS #DIRECTORS #YEAR
+#DONT DO IT -> THERE IS THE "TYPE" -> better to do a for to each single list....
+
+#YEAR EXAMPLE
 			#Create metadata and add to item -> loop to all metadata! -> example of the release date
-			whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/'+whisperer_item_id+'/addMetadata'
+			whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/'+title+'/addMetadata'
 			data = urllib.urlencode({'name':year,'type':'year','lang':'eng'})          
 			req = urllib2.Request(whisperer_url, data)
 			#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
 			response = urllib2.urlopen(req)
 			whisperer_page = response.read() 
 			print whisperer_page
-			
+
 			
 			return movie
 		return None
