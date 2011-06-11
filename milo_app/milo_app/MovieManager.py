@@ -1,6 +1,7 @@
 from MediaRetriever import MediaRetriever
 from resources import *
 import urllib
+import urllib2
 import os
 import datetime
 from mongoengine import connect
@@ -28,6 +29,9 @@ class MovieManager(object):
 			movie = Movie(title=title, date=datetime.datetime(year=int(year), month=1, day=1), description=description, image=title+'_image.jpg', poster=title+'_poster.jpg', trailer=trailer, genre=genre)
 			movie.save()
 			
+			'''
+			COMMENTING FOR NOW
+			
 			#create a Whisperer Item here
 			whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/add'
 			data = urllib.urlencode({'name':title})
@@ -54,7 +58,7 @@ class MovieManager(object):
 			whisperer_page = response.read() 
 			print whisperer_page
 
-			
+			'''
 			return movie
 		return None
 		
