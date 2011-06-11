@@ -757,8 +757,8 @@ padding: 0 0 2px 5px;
 .info-slider {
 color: #A9C3CC;
 font-weight: bold;
-font-size: 12px;
-padding: 5px 0 2px 5px;
+font-size: 15px;
+padding: 5px 0 9px 5px;
 }
 
 .info-slider span{
@@ -785,7 +785,7 @@ height:13px;
 
 .genre-slider{
 color: #A9C3CC;
-font-size: 13px;
+font-size: 14px;
 font-weight: bold;
 padding: 5px 0 2px 5px;
 }

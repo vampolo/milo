@@ -45,13 +45,13 @@ def login(request):
 			user = User(email=login, first_name=name, last_name=surname, password=password)
 			
 			#create a Whisperer User here
-			whisperer_url = 'http://whisperer.vincenzo-ampolo.net/user/add'
-			data = urllib.urlencode({'name':login})          
-			req = urllib2.Request(whisperer_url, data)
+			#whisperer_url = 'http://whisperer.vincenzo-ampolo.net/user/add'
+			#data = urllib.urlencode({'name':login})          
+			#req = urllib2.Request(whisperer_url, data)
 			#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
-			response = urllib2.urlopen(req)
-			whisperer_page = response.read() 
-			print whisperer_page
+			#response = urllib2.urlopen(req)
+			#whisperer_page = response.read() 
+			#print whisperer_page
 			
 			user.save()
 			headers = remember(request, login)

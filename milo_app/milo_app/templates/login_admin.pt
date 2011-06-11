@@ -1,0 +1,42 @@
+<metal:html use-macro="admin_base.macros['main_admin']">
+
+	<metal:description fill-slot="description">
+		<h2><span>MiloAdmin</span></h2>
+	</metal:description>
+<!--		
+	<div id="content">
+		<h2>Recommendation algorithm's name</h2>
+		<form method="post" action="">
+		<fieldset>
+			<label>To set a user's algorithm as the current one, please enter the user ID and submit:</label>
+			<label>User ID:</label><br/>
+			<span class="small_input"><input class="small" name="" type="text" value="" /></span><br class="hid" />
+			<div id="set_algorithm">
+			<a href="#" class="button" title="Submit"><span>Set current Algorithm</span></a>
+			</div>
+		</fieldset>
+		</form>
+	</div>
+-->	
+	<metal:content fill-slot="content">	
+	<div id="content">
+		
+		<div id="login" class="widget">
+              <h2>Login</h2>
+              
+              <div id="login_input" class="form-input">
+				<form id="login_form" name="input" action="${url}" method="POST" autocomplete="off">
+				<input type="hidden" name="came_from" value="${came_from}"/>
+				<label for="login_field_1">Email:</label>
+				<input id="login_field_1" type="text" name="login" value="${login}"/>
+				<label for="password">Password:</label>
+				<input id="password" type="password" name="password" value="${password}"/>
+				<input id="login_button" type="submit" name="form.submitted" value=""/>	
+				</form><!-- login-form -->
+              </div><!-- form-input--> 
+              
+            </div><!-- login -->  
+    </div>
+	</metal:content>
+	
+</metal:html>

@@ -4,7 +4,7 @@
 	xmlns:tal="http://xml.zope.org/namespaces/tal" 
 	xmlns:metal="http://xml.zope.org/namespaces/metal" 
 	dir="ltr" lang="en-US" xml:lang="en-US">
-<metal:html define-macro="main_admin">
+<metal:html define-macro="main_admin" tal:define="admin_logged h.authenticated_userid(request)">
 <head>
 	<title>eManager 1.0</title>
 	<meta http-equiv="content-language" content="en" />

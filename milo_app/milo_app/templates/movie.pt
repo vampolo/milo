@@ -14,11 +14,11 @@
 			<h2 title="List of films with similar content">${slider_movies.get('title')}</h2>
             
             <div class="related-item" tal:repeat="movie slider_movies.get('movies')" tal:repeat="movie slider_movies.get('movies')">
-              <div class="post-thumbnail-side"><a class="thumbnail-frame-side" tal:attributes="href request.resource_url(request.root, 'Movie', movie.title); title movie.title"></a> 
+              <div class="post-thumbnail-side"><a class="thumbnail-frame-side" tal:attributes="href request.resource_url(request.root, 'Movie','details', movie.title); title movie.title"></a> 
               <img width="80" height="80" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)"  alt="Car" title="car" />
               </div><!-- post-thumbnail-side -->
               <div class="related-content">
-                <h3><a tal:attributes="href request.resource_url(request.root, 'Movie', movie.title); title movie.title" rel="bookmark" title="Movie-Title#1">${movie.title}</a></h3>
+                <h3><a tal:attributes="href request.resource_url(request.root, 'Movie','details', movie.title); title movie.title" rel="bookmark" title="Movie-Title#1">${movie.title}</a></h3>
                 <p>${movie.description[:70]}&hellip;</p>
               </div><!-- related-content -->            
             </div><!-- related-item -->
@@ -152,11 +152,11 @@
 					
               <div class="sidebar-item" tal:repeat="movie right_movies.get('movies')">
                 <div class="post-thumbnail-side">
-                <a class="thumbnail-frame-side" tal:attributes="href request.resource_url(request.root, 'Movie', movie.title); title movie.title"></a>
+                <a class="thumbnail-frame-side" tal:attributes="href request.resource_url(request.root, 'Movie','details', movie.title); title movie.title"></a>
                 <img width="80" height="80" tal:attributes="src request.static_url('milo_app:static/movie_data/'+movie.poster)"  alt="Can" title="can"></img>
                 </div>
                 <div class="sidebar-item-content">
-                  <h3><a tal:attributes="href request.resource_url(request.root, 'Movie', movie.title)" rel="bookmark" title="Movie-Title#1">${movie.title}</a></h3>
+                  <h3><a tal:attributes="href request.resource_url(request.root, 'Movie','details', movie.title)" rel="bookmark" title="Movie-Title#1">${movie.title}</a></h3>
                   <p>${movie.description[:70]}&hellip;</p>
                 </div>
               </div><!-- sidebar-item -->

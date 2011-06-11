@@ -3,6 +3,8 @@ from pyramid.renderers import get_renderer
 from pyramid.response import Response
 from pyramid.httpexceptions import HTTPFound
 from resources import *
+import urllib
+import urllib2
 from datetime import datetime
 from pyramid.security import authenticated_userid
 import random
@@ -14,7 +16,9 @@ import random
 @view_config(name='Recommended', context='milo_app:resources.Root',
              renderer='templates/movie_list.pt')
 @view_config(name='Popular', context='milo_app:resources.Root',
-             renderer='templates/movie_list.pt')                                       
+             renderer='templates/movie_list.pt')                  
+@view_config(name='categories', context='milo_app:resources.Root',
+				 renderer='templates/categories.pt')                     
 def main(request):
 	rand = random.randint(0, Movie.objects().count()-10)
 	new_rec = None
@@ -61,6 +65,69 @@ def main(request):
 		category = 'Recommended Movies'
 		right_movies['title']="More Recommendations"
 	
+	#Title filter
+	first_letter = request.GET.get('title')
+	if first_letter is not None:
+			films_not_filtered = False
+			main_movies = []
+			for movie in Movie.objects.all():
+				first_char = movie.title[0]
+				if first_letter == first_char:
+					main_movies.append(movie)
+		
+	#Genre filter
+	genre = request.GET.get('genre')
+	if genre is not None:
+			films_not_filtered = False
+			main_movies = []
+			for movie in Movie.objects.all():
+				list_genre = movie.genre
+				if genre in list_genre[:]:
+					main_movies.append(movie)
+	
+	#Date filter
+	date = request.GET.get('date')
+	if date is not None:
+			films_not_filtered = False
+			main_movies = []
+			if int(date) is not 90: 
+				if int(date) is not 80:
+					for movie in Movie.objects.all():
+						if movie.date.year == int(date):
+							main_movies.append(movie)
+			if int(date) is 90:
+				years = [1999,1998,1997,1996,1995,1994,1993,1992,1991,1990]
+				for movie in Movie.objects.all():
+					if movie.date.year in years[:]:
+						main_movies.append(movie)
+			if int(date) is 80:
+				years = [1989,1988,1987,1986,1985,1984,1983,1982,1981,1980]
+				for movie in Movie.objects.all():
+					if movie.date.year in years[:]:
+						main_movies.append(movie)
+	
+	#Query Filter
+	search_query = request.GET.get('search_query')
+	#Search inside title, description, genre
+	#in the future also for the actor...
+	if search_query is not None:
+			capitalized_query = search_query.capitalize()
+			films_not_filtered = False
+			main_movies = []
+			for movie in Movie.objects.all():
+				list_title_strings = movie.title.split()
+				list_description_strings = movie.description.split()
+				list_strings_movie = []
+				for item in list_title_strings:
+					list_strings_movie.append(item)
+				for item in list_description_strings:
+					list_strings_movie.append(item)
+				for item in movie.genre:
+					list_strings_movie.append(item)
+				if search_query in list_strings_movie:
+					main_movies.append(movie)
+				elif capitalized_query in list_strings_movie:
+					main_movies.append(movie)
 	main_movies_title = 'Last updates'
 	#compute and show pages
 	last_page = True if len(main_movies) <= (page-1)*9+9 else False
@@ -73,12 +140,6 @@ def main(request):
 @view_config(name='about', context='milo_app:resources.Root',
 				 renderer='templates/about.pt')
 def about(request):
-	return dict()
-
-
-@view_config(name='categories', context='milo_app:resources.Root',
-				 renderer='templates/categories.pt')
-def categories(request):
 	return dict()
 
 @view_config(name='profile', context='milo_app:resources.Root',

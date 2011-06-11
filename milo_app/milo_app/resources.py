@@ -32,8 +32,12 @@ class User(Document):
 	cwid = IntField()
 	#Can be subscribed, not subscribed, submitted: Approach handles only one survey per user
 	survey_status = StringField()
-	
-	
+
+#To login in the admin!
+class Admin(Document):
+	username = StringField(required=True)
+	password = StringField()
+
 #AND IF the user has already done the survey, but is added in another one???????????? Now it is just handling exclusively one survey...
 #A user can receive different keys... should check the key, not the user.... can be a list of strings here!
 	#surveys = ListField(EmbeddedDocumentField(SurveyRegistered))
