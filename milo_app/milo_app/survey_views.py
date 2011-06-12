@@ -29,12 +29,18 @@ def survey(request):
 	email = ''
 	key = ''
 	message = ''
-	rated_movies = None
 	
+	#Initialize rated movies
+	try:
+		session['rated_movies']
+	except:
+		session['rated_movies'] = []
 	#max_ratings = 0
 	#survey_n_ratings = 0
 	#Login in wizard and put user_login inside the session and the users list of the survey
 	if 'form.key.submitted' in request.params:
+		#Then the user must rate again anyway...
+		session['rated_movies'] = []
 		email = request.params['key_email']
 		key = request.params['key_password']
 		user = User.objects.filter(email=email).first()
@@ -50,6 +56,7 @@ def survey(request):
 						session['user']
 						if session['user'] != user.email:
 							session['concluded_until_step'] = None
+							#session['rated_movies'] = []
 							session['user'] = email
 					except:	
 						session['user'] = email
@@ -85,8 +92,8 @@ def survey(request):
 	else:
 		survey_n_ratings = session['max_ratings']
 		#Determine the size of the list showed (to be changed...)
-		rated_movies = Movie.objects()[:session['max_ratings']]
-	
+		#rated_movies = Movie.objects()[:session['max_ratings']]
+		
 	#numero di ratings as a query now
 	
 	if request.GET.get('rating') is not None:
@@ -118,6 +125,7 @@ def survey(request):
 	
 	movie_title = request.GET.get('movie_title')
 	rating = request.GET.get('rating')
+	
 	if movie_title is not None:
 		#Here we would accept just if the movie hasnt been rated
 		#if SurveyAnswer.objects.filter(key=movie_title).first() == None:
@@ -127,7 +135,13 @@ def survey(request):
 			sur = Survey.objects.filter(name=session['survey']).first()
 			sur.answers.append(movie_rated)
 			sur.save()			
-
+			
+#APPEND THE RATED MOVIE TO THE RATED MOVIES LIST
+			for item in Movie.objects.all():
+					if item == Movie.objects.filter(title=movie_title).first():
+						session['rated_movies'].append(item)
+			#print 'List after: '+str(session['rated_movies'])
+			
 #Add RATING IN WHISPERER
 #MAYBE THE PROBLEM IS THE SPACING IN movie_title...
 			whisperer_url = url_fix('http://whisperer.vincenzo-ampolo.net/item/'+movie_title+'/addRating')
@@ -135,10 +149,10 @@ def survey(request):
 			req = urllib2.Request(whisperer_url, data)
 #Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
 			response = urllib2.urlopen(req)
-			print whisperer_url
-			print data
-			print req
-			print response
+			#print whisperer_url
+			#print data
+			#print req
+			#print response
 	
 	#Questions in step 3 and 4 might not be useful actually.... Should I take the answers?
 
@@ -184,10 +198,10 @@ def survey(request):
 			req = urllib2.Request(whisperer_url, data)
 #Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
 			response = urllib2.urlopen(req)
-			print whisperer_url
-			print data
-			print req
-			print response
+			#print whisperer_url
+			#print data
+			#print req
+			#print response
 			
 			
 			return HTTPFound(location=request.resource_url(request.root, 'Survey','5'))
@@ -220,21 +234,22 @@ def survey(request):
 			session['user'] = None
 			return HTTPFound(location=request.resource_url(request.root, ''))
 	
-	#should be just inside the if...? or this flag is simply unuseful?
+	#Create complete movie list
 	main_movies = Movie.objects().order_by('-date')
-	films_not_filtered = True
 	
-	if films_not_filtered == True:
+	#films_not_filtered = True
+	
+	#if films_not_filtered == True:
 		#Get objects of DB to retrieve the movie catalogue
-		main_movies = Movie.objects().order_by('-date')
+		#main_movies = Movie.objects().order_by('-date')
 	
 	#Filters in step 2
 	#Title filter
 	first_letter = request.GET.get('title')
 	if first_letter is not None:
-			films_not_filtered = False
+			#films_not_filtered = False
 			main_movies = []
-			for movie in Movie.objects.all():
+			for movie in Movie.objects().order_by('-date'):
 				first_char = movie.title[0]
 				if first_letter == first_char:
 					main_movies.append(movie)
@@ -242,9 +257,9 @@ def survey(request):
 	#Genre filter
 	genre = request.GET.get('genre')
 	if genre is not None:
-			films_not_filtered = False
+			#films_not_filtered = False
 			main_movies = []
-			for movie in Movie.objects.all():
+			for movie in Movie.objects().order_by('-date'):
 				list_genre = movie.genre
 				if genre in list_genre[:]:
 					main_movies.append(movie)
@@ -252,11 +267,11 @@ def survey(request):
 	#Date filter
 	date = request.GET.get('date')
 	if date is not None:
-			films_not_filtered = False
+			#films_not_filtered = False
 			main_movies = []
 			if int(date) is not 90: 
 				if int(date) is not 80:
-					for movie in Movie.objects.all():
+					for movie in Movie.objects().order_by('-date'):
 						if movie.date.year == int(date):
 							main_movies.append(movie)
 			if int(date) is 90:
@@ -276,9 +291,9 @@ def survey(request):
 	#in the future also for the actor...
 	if search_query is not None:
 			capitalized_query = search_query.capitalize()
-			films_not_filtered = False
+			#films_not_filtered = False
 			main_movies = []
-			for movie in Movie.objects.all():
+			for movie in Movie.objects().order_by('-date'):
 				list_title_strings = movie.title.split()
 				list_description_strings = movie.description.split()
 				list_strings_movie = []
@@ -293,13 +308,23 @@ def survey(request):
 				elif capitalized_query in list_strings_movie:
 					main_movies.append(movie)
 	
+	#Create the list of rated movies
+	rated_movies = session['rated_movies']
+	
+	#Delete the rated movies from the main_list
+	if rated_movies is not None:
+			main_movies = []
+			for movie in Movie.objects().order_by('-date'):
+				if movie not in rated_movies:
+					main_movies.append(movie)
+	
 	#Testing Next/Previous buttons
 	page = request.GET.get('page')
 	if page is None:
 		page = 1
 	else:
 		page = int(page)
-					
+	
 	#compute and show pages
 	last_page = True if len(main_movies) <= (page-1)*9+9 else False
 	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9])

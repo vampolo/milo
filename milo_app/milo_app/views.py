@@ -72,7 +72,7 @@ def main(request):
 			filter_by = first_letter
 			films_not_filtered = False
 			main_movies = []
-			for movie in Movie.objects.all():
+			for movie in Movie.objects().order_by('-date'):
 				first_char = movie.title[0]
 				if first_letter == first_char:
 					main_movies.append(movie)
@@ -83,7 +83,7 @@ def main(request):
 			filter_by = genre
 			films_not_filtered = False
 			main_movies = []
-			for movie in Movie.objects.all():
+			for movie in Movie.objects().order_by('-date'):
 				list_genre = movie.genre
 				if genre in list_genre[:]:
 					main_movies.append(movie)
@@ -96,7 +96,7 @@ def main(request):
 			main_movies = []
 			if int(date) is not 90: 
 				if int(date) is not 80:
-					for movie in Movie.objects.all():
+					for movie in Movie.objects().order_by('-date'):
 						if movie.date.year == int(date):
 							main_movies.append(movie)
 			if int(date) is 90:
@@ -119,7 +119,7 @@ def main(request):
 			capitalized_query = search_query.capitalize()
 			films_not_filtered = False
 			main_movies = []
-			for movie in Movie.objects.all():
+			for movie in Movie.objects().order_by('-date'):
 				list_title_strings = movie.title.split()
 				list_description_strings = movie.description.split()
 				list_strings_movie = []

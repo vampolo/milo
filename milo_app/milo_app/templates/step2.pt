@@ -20,7 +20,7 @@
 	  </metal:home>
 	
 	 <metal:search fill-slot="search">
-	 <div id="site-search">
+	 <div tal:condition="not rating_finished" id="site-search">
 
           <script type="text/javascript">
 			 //<![CDATA[
@@ -465,8 +465,10 @@
 			<h2>Wizard - Step 2</h2>	
 			
 			<div id="step2_description">
-				<p>
-				Rating finished! The rated movies are presented next:
+				<p>  
+				This list can be edited, but <b>new ratings will be required</b>.<br/> 
+				If you are satisfied with this list simply go to the next step.<br/> <br/>
+				The movies you rated are:
 				</p>
 			</div>
 			
@@ -498,17 +500,7 @@
             </div>
             <!-- movie-item , first_page='false')-->
 
-			</tal:r>
-			
-			<div id="after_list">
-				<p>
-				This list can be edited, but new ratings will be required.<br/> 
-				If you are satisfied with this list simply go to the next step.
-				
-				TODO...
-				</p>
-			</div>
-		
+			</tal:r>	
 	
         </div><!--category-post-->
      </div><!-- post-container -->
