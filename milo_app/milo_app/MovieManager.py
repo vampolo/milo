@@ -2,6 +2,7 @@ from MediaRetriever import MediaRetriever
 from resources import *
 import urllib
 import urllib2
+import urlparse
 import os
 import datetime
 from mongoengine import connect
@@ -27,38 +28,47 @@ class MovieManager(object):
 			fp.write(urllib.urlopen(poster).read())
 		if len(Movie.objects(title=title, date=datetime.datetime(year=int(year), month=1, day=1))) == 0:
 			movie = Movie(title=title, date=datetime.datetime(year=int(year), month=1, day=1), description=description, image=title+'_image.jpg', poster=title+'_poster.jpg', trailer=trailer, genre=genre)
+			print 'saving movie'
 			movie.save()
 			
-			'''
-			COMMENTING FOR NOW
-			
-			#create a Whisperer Item here
+			#create a Whisperer Item here - HAVE TO TEST WITH NEW MOVIES =/!
 			whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/add'
 			data = urllib.urlencode({'name':title})
 			req = urllib2.Request(whisperer_url, data)
 			#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
-			response_dict = urllib2.urlopen(req)
-			whisperer_page = response_dict.read()
+			#response_dict = urllib2.urlopen(req)
+			response = urllib2.urlopen(req)
+			print whisperer_url
+			print data
+			print req
+			print response
+			#whisperer_page = response_dict.read()
 			#Find the id of the whisperer item just created
-			whisperer_item_id = response_dict.get('id')
-			print whisperer_item_id 
-			print whisperer_page
+			#whisperer_item_id = response_dict.get('id')
+			#print whisperer_item_id 
+			#print whisperer_page
 
 #LOOP THROUGH ALL METADATA
 #ADD ALL STRINGS IN ONE ONLY LIST THE SPLIT! #DESCRIPTION #TITLE #GENRES #ACTORS #DIRECTORS #YEAR
 #DONT DO IT -> THERE IS THE "TYPE" -> better to do a for to each single list....
+#URL_FIX =D
 
 #YEAR EXAMPLE
 			#Create metadata and add to item -> loop to all metadata! -> example of the release date
-			whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/'+title+'/addMetadata'
+			whisperer_url = url_fix('http://whisperer.vincenzo-ampolo.net/item/'+title+'/addMetadata')
 			data = urllib.urlencode({'name':year,'type':'year','lang':'eng'})          
 			req = urllib2.Request(whisperer_url, data)
 			#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
+#PROBLEM HERE! AGAIN TITLE INVOLVED... MUST BE THE SPACING!
 			response = urllib2.urlopen(req)
-			whisperer_page = response.read() 
-			print whisperer_page
+			print whisperer_url
+			print data
+			print req
+			print response
+			#whisperer_page = response.read() 
+			#print whisperer_page
 
-			'''
+			
 			return movie
 		return None
 		
@@ -75,8 +85,15 @@ class MovieManager(object):
 				if os.path.exists(path):
 					os.remove(path)
 			movie.delete()
+	
+def url_fix(s, charset='utf-8'):
+    if isinstance(s, unicode):
+        s = s.encode(charset, 'ignore')
+    scheme, netloc, path, qs, anchor = urlparse.urlsplit(s)
+    path = urllib.quote(path, '/%')
+    qs = urllib.quote_plus(qs, ':&=')
+    return urlparse.urlunsplit((scheme, netloc, path, qs, anchor))
 			
-		
 if __name__ == '__main__':
 	
 	import unittest
@@ -101,10 +118,10 @@ if __name__ == '__main__':
 		
 		
 		def test_import_basic_movies(self):
-			movies = ['rio', 'matrix', 'matrix reloaded',  'matrix revolutions', 'the notebook', 'along came polly',  'vanilla sky', 'batman begins', 'butterfly effect', 'the godfather', 'inception', 'city of god', 'forrest gump', 'finding nemo', 'back to the future', 'gladiator', "the king's speech", 'the milionaire', 'slumdog millionaire', 'kill bill', 'toy story 1', 'toy story 2', 'toy story 3', 'avatar', 'how to train your dragon', 'ratatouille', 'the social network', 'rocky', 'thron legacy', 'letters from iwo jima', 'il caimano', 'shutter island', 'monsters inc', 'v for vendetta', 'amores perros']
+			#movies = ['rio', 'matrix', 'matrix reloaded',  'matrix revolutions', 'the notebook', 'along came polly',  'vanilla sky', 'batman begins', 'butterfly effect', 'the godfather', 'inception', 'city of god', 'forrest gump', 'finding nemo', 'back to the future', 'gladiator', "the king's speech", 'the milionaire', 'slumdog millionaire', 'kill bill', 'toy story 1', 'toy story 2', 'toy story 3', 'avatar', 'how to train your dragon', 'ratatouille', 'the social network', 'rocky', 'thron legacy', 'letters from iwo jima', 'il caimano', 'shutter island', 'monsters inc', 'v for vendetta', 'amores perros']
+			movies = ['pirates of the caribbean 3']
 			for movie in movies:
 				print 'adding '+movie
 				self.mm.add_movie(name=movie)
 				
 	unittest.main()
-

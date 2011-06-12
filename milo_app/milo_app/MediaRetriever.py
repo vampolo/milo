@@ -105,7 +105,7 @@ if __name__ == '__main__':
 			for movie in ['the king speach']:
 				m = MediaRetriever(movie)
 				for i in m.get_info():
-					print m.get_info()
+					#print m.get_info()
 					self.assertNotEqual(i, None)
 	
 	unittest.main()
