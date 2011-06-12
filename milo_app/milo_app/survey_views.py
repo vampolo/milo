@@ -35,12 +35,17 @@ def survey(request):
 		session['rated_movies']
 	except:
 		session['rated_movies'] = []
+	try:
+		session['ratings']
+	except:
+		session['ratings'] = []
 	#max_ratings = 0
 	#survey_n_ratings = 0
 	#Login in wizard and put user_login inside the session and the users list of the survey
 	if 'form.key.submitted' in request.params:
 		#Then the user must rate again anyway...
 		session['rated_movies'] = []
+		session['ratings'] = []
 		email = request.params['key_email']
 		key = request.params['key_password']
 		user = User.objects.filter(email=email).first()
@@ -134,6 +139,8 @@ def survey(request):
 			movie_rated = SurveyAnswer(user = user, key=movie_title, value=rating)
 			sur = Survey.objects.filter(name=session['survey']).first()
 			sur.answers.append(movie_rated)
+			session['ratings'].append(rating)
+			print session['ratings']
 			sur.save()			
 			
 #APPEND THE RATED MOVIE TO THE RATED MOVIES LIST
@@ -232,6 +239,9 @@ def survey(request):
 			#Where I will go when i click "continue"
 			session['concluded_until_step'] = None
 			session['user'] = None
+			#Necessary?!
+			#session['rated_movies'] = []
+			#session['ratings'] = []
 			return HTTPFound(location=request.resource_url(request.root, ''))
 	
 	#Create complete movie list
@@ -310,6 +320,7 @@ def survey(request):
 	
 	#Create the list of rated movies
 	rated_movies = session['rated_movies']
+	ratings = session['ratings']
 	
 	#Delete the rated movies from the main_list
 	if rated_movies is not None:
@@ -329,4 +340,4 @@ def survey(request):
 	last_page = True if len(main_movies) <= (page-1)*9+9 else False
 	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9])
 	
-	return dict(survey_n_ratings=survey_n_ratings,message = message, rated_movies = rated_movies, rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)
+	return dict(ratings = ratings,survey_n_ratings=survey_n_ratings,message = message, rated_movies = rated_movies, rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)

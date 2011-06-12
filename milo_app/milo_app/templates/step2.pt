@@ -489,7 +489,7 @@
               	<ul class="post-meta">
   
 					
-					<li class="genre">Rating given: <b>Like</b></li>
+					<li class="genre">Rating given: <b>${ratings[repeat.movie.index]}</b></li>
 					<!--hidden current div...-->
 
 					<div id="delete">
