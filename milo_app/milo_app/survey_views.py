@@ -140,7 +140,6 @@ def survey(request):
 			sur = Survey.objects.filter(name=session['survey']).first()
 			sur.answers.append(movie_rated)
 			session['ratings'].append(rating)
-			print session['ratings']
 			sur.save()			
 			
 #APPEND THE RATED MOVIE TO THE RATED MOVIES LIST
@@ -155,7 +154,7 @@ def survey(request):
 			data = urllib.urlencode({'useremail':session['user'], 'rating':rating})          
 			req = urllib2.Request(whisperer_url, data)
 #Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
-			response = urllib2.urlopen(req)
+			#response = urllib2.urlopen(req)
 			#print whisperer_url
 			#print data
 			#print req
@@ -204,7 +203,7 @@ def survey(request):
 			data = urllib.urlencode({'alg':sur.algorithm})
 			req = urllib2.Request(whisperer_url, data)
 #Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
-			response = urllib2.urlopen(req)
+			#response = urllib2.urlopen(req)
 			#print whisperer_url
 			#print data
 			#print req
@@ -318,9 +317,27 @@ def survey(request):
 				elif capitalized_query in list_strings_movie:
 					main_movies.append(movie)
 	
+	#The ratings done of ratings done
+	ratings = session['ratings']
+	
+	#Deleting a movie from the list
+	deleted_movie = request.GET.get('delete')
+	deleted_movie_index = request.GET.get('index')
+	if deleted_movie is not None and deleted_movie_index is not None:
+		print ratings
+		print int(deleted_movie_index)
+		print ratings[1]
+		del session['ratings'][int(deleted_movie_index)]
+		del ratings[int(deleted_movie_index)]
+		for movie in Movie.objects().order_by('-date'):
+				if deleted_movie == movie.title:
+					session['rated_movies'].remove(movie)
+					session['ratings_executed'] = session['ratings_executed'] - 1
+					rating_finished=False
+					session['concluded_until_step'] = 1
+	
 	#Create the list of rated movies
 	rated_movies = session['rated_movies']
-	ratings = session['ratings']
 	
 	#Delete the rated movies from the main_list
 	if rated_movies is not None:

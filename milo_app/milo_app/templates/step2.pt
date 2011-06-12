@@ -1,7 +1,7 @@
 <metal:html use-macro="base.macros['main']">
   <metal:add_js metal:fill-slot="add_js">
-  <script tal:condition="rating_finished" type='text/javascript' src="${request.static_url('milo_app:static/js/rating_done.js')}">
-  </script>
+  <!--<script tal:condition="rating_finished" type='text/javascript' src="${request.static_url('milo_app:static/js/rating_done.js')}">
+  </script>-->
   </metal:add_js>
 		<metal:panel metal:fill-slot="panel">
 		<div id="communication-panel">
@@ -9,6 +9,8 @@
 			  <span></span>
 			  <a tal:condition="not rating_finished" id="agree_button" href="" title="Ok!"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/></a>
 			  <a tal:condition="not rating_finished" id="disagree_button" href="javascript:panel_up();" title="Undo rating"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/></a>
+			  <a tal:condition="rating_finished" id="agree_button" href="" title="Confirm delete"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/accept.png')}"/></a>
+			  <a tal:condition="rating_finished" id="disagree_button" href="javascript:panel_up();" title="Keep rating"><img src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/delete.png')}"/></a>
 		  </div>
 		</div>
 		</metal:panel>
@@ -494,7 +496,7 @@
 
 					<div id="delete">
 <!--FIX CASE OF DELETING: SHOULD UPDATE THE SESSION['executed_ratings']-->
-					<li class="genre"><a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(delete=movie.title))}','${movie.title} about to be deleted from your rated list! Submit?');">Delete</a></li>
+					<li class="genre"><a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(delete=movie.title, index=repeat.movie.index))}','${movie.title} about to be deleted from your rated list! Submit?');">Delete</a></li>
 					</div>
               </ul>
             </div>
