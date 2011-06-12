@@ -154,8 +154,8 @@ $(document).ready(function()
 	
 	//Sorting Tables
 	
-	$("#surveys_table").tablesorter(); 
-    $("#users_table").tablesorter(); 
+	//$("#surveys_table").tablesorter(); 
+    //$("#users_table").tablesorter(); 
     
 	//fix for chrome
 	$("input[type='text']").bind('focus', function() {
@@ -166,6 +166,7 @@ $(document).ready(function()
 	$(this).css('background-color', '#3E4852');
 	});
 	
+	//PROFILE DRAG N DROP
 	
 	$(".options-style div").hover(function() {
 	  $(this).next("span").animate({opacity: "show", top: "-15"}, "slow");

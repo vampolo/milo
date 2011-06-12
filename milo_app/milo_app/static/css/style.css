@@ -196,12 +196,13 @@ margin: 45px 0;
 
 input#s {
 border: none;
-background: none;
+background-color: #EBEBEB !important;
 color: #3E4852;
 font-size: 14px;
 float: left;
 width: 260px;
 margin: 16px 0 0 15px;
+cursor: text;
 }
 
 input#search-submit {
@@ -1595,6 +1596,12 @@ float: right;
 12. My Profile Styles
 
 *********************************************************************************************/
+
+#my-profile{
+margin: 18px 0 19px 5px;
+padding: 0 0 3px 0;
+
+}
 
 .tab-style{
 min-height: 300px;

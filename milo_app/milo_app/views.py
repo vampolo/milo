@@ -26,6 +26,7 @@ def main(request):
 	slider_movies = None
 	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title="More Top Movies")
 	wizard_movie = False
+	filter_by = None
 	session = request.session
 	
 	if request.GET.get('wizard_movie') == 'details':
@@ -68,6 +69,7 @@ def main(request):
 	#Title filter
 	first_letter = request.GET.get('title')
 	if first_letter is not None:
+			filter_by = first_letter
 			films_not_filtered = False
 			main_movies = []
 			for movie in Movie.objects.all():
@@ -78,6 +80,7 @@ def main(request):
 	#Genre filter
 	genre = request.GET.get('genre')
 	if genre is not None:
+			filter_by = genre
 			films_not_filtered = False
 			main_movies = []
 			for movie in Movie.objects.all():
@@ -88,6 +91,7 @@ def main(request):
 	#Date filter
 	date = request.GET.get('date')
 	if date is not None:
+			filter_by = date 
 			films_not_filtered = False
 			main_movies = []
 			if int(date) is not 90: 
@@ -111,6 +115,7 @@ def main(request):
 	#Search inside title, description, genre
 	#in the future also for the actor...
 	if search_query is not None:
+			filter_by = search_query
 			capitalized_query = search_query.capitalize()
 			films_not_filtered = False
 			main_movies = []
@@ -135,7 +140,7 @@ def main(request):
 	rated_movies = Movie.objects()[:num_ratings]
 	# the upper two lines are magic
 	slider_movies = slider_movies if slider_movies else Movie.objects()[rand:rand+5]
-	return dict(rated_movies = rated_movies, wizard_movie = wizard_movie, num_ratings = num_ratings, rating_finished=rating_finished, movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category, page=page, last_page=last_page, new_rec=new_rec)
+	return dict(filter_by=filter_by, rated_movies = rated_movies, wizard_movie = wizard_movie, num_ratings = num_ratings, rating_finished=rating_finished, movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category, page=page, last_page=last_page, new_rec=new_rec)
 
 @view_config(name='about', context='milo_app:resources.Root',
 				 renderer='templates/about.pt')
@@ -483,7 +488,7 @@ def admin(request):
 		algorithm = request.params['survey_algorithm']
 		ratings = request.params['NumSurveyRatings']
 		#Now users is just a bit string... I should separate them be the comma...
-		set_users = request.params['set_of_users'].split(',')
+		set_users = request.params['set_of_users'].split(';')
 		#Check if all inputs are filled
 		if name is not None and algorithm is not None and ratings is not None and users is not None:
 			#Check if there is already this survey
@@ -501,8 +506,6 @@ def admin(request):
 					
 					if User.objects.filter(email=item).first() is None:
 						user_added = User(email = item, password='defaultsurveykey')
-						print user_added.email
-						print user_added.password
 						user_added.save()
 						
 						#create a Whisperer User here
@@ -516,6 +519,9 @@ def admin(request):
 						
 					else:
 						user_added = User.objects.filter(email=item).first()
+					
+					print user_added.email
+					print user_added.password	
 					survey_added.users.append(user_added)
 					survey_added.save()
 	

@@ -60,7 +60,7 @@
 			</div><!--field-->
 			
 			<div id="add_users">
-			<label>Set of users(emails comma-separated):</label><br/>
+			<label>Set of users(emails semicolon-separated and without spacing):</label><br/>
 			<br class="hid" />
 			<span class="textarea"><textarea cols="40" rows="4" name="set_of_users"></textarea></span><br class="hid" />
 			</div>

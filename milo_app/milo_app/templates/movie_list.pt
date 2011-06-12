@@ -3,7 +3,8 @@
 	 <!--Remove Slider-->
      </metal:slider>
      <metal:filter fill-slot="filter">
-     <span id="list-orientation">${request.view_name} Movies</span>
+     <span id="list-orientation" tal:condition="not filter_by">${request.view_name} Movies</span>
+     <span id="list-orientation" tal:condition="filter_by">Filtered movie list: "${filter_by}"</span>
 	<!--Remove Filter-->
 	</metal:filter>
 </metal:html>

@@ -11,6 +11,7 @@ milo_app/MovieManager.py
 milo_app/__init__.py
 milo_app/helpers.py
 milo_app/login.py
+milo_app/login_admin.py
 milo_app/resources.py
 milo_app/rest.py
 milo_app/tests.py
@@ -4342,6 +4343,7 @@ milo_app/templates/base.pt
 milo_app/templates/categories.pt
 milo_app/templates/finish.pt
 milo_app/templates/login.pt
+milo_app/templates/login_admin.pt
 milo_app/templates/login_milo.pt
 milo_app/templates/movie.pt
 milo_app/templates/movie_list.pt
