@@ -37,18 +37,14 @@ def admin(request):
 					if User.objects.filter(email=item).first() is None:
 						user_added = User(email = item, password='defaultsurveykey')
 						user_added.save()
-						
 						#create a Whisperer User here
 						whisperer_url = 'http://whisperer.vincenzo-ampolo.net/user/add'
-						data = urllib.urlencode({'name':item})          
+						data = urllib.urlencode({'name':item})
 						req = urllib2.Request(whisperer_url, data)
 						#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
 						response = urllib2.urlopen(req)
-						#print whisperer_url
-						#print data
-						#print req
-						#print response
-						
+						whisperer_page = response.read() 
+						print whisperer_page
 					else:
 						user_added = User.objects.filter(email=item).first()
 					survey_added.users.append(user_added)

@@ -155,6 +155,8 @@ def survey(request):
 			req = urllib2.Request(whisperer_url, data)
 #Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
 			#response = urllib2.urlopen(req)
+			#whisperer_page = response.read() 
+			#print whisperer_page
 			#print whisperer_url
 			#print data
 			#print req
@@ -199,15 +201,13 @@ def survey(request):
 			sur.save()
 			
 #GENERATE THE RECOMMENDATION LIST
-			whisperer_url = 'http://whisperer.vincenzo-ampolo.net/user/'+session['user']+'/getRec'
+			whisperer_url = url_fix('http://whisperer.vincenzo-ampolo.net/user/'+session['user']+'/getRec')
 			data = urllib.urlencode({'alg':sur.algorithm})
 			req = urllib2.Request(whisperer_url, data)
 #Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
-			#response = urllib2.urlopen(req)
-			#print whisperer_url
-			#print data
-			#print req
-			#print response
+			response = urllib2.urlopen(req)
+			whisperer_page = response.read() 
+			print whisperer_page
 			
 			
 			return HTTPFound(location=request.resource_url(request.root, 'Survey','5'))
@@ -324,9 +324,9 @@ def survey(request):
 	deleted_movie = request.GET.get('delete')
 	deleted_movie_index = request.GET.get('index')
 	if deleted_movie is not None and deleted_movie_index is not None:
-		print ratings
-		print int(deleted_movie_index)
-		print ratings[1]
+		#print ratings
+		#print int(deleted_movie_index)
+		#print ratings[1]
 		del session['ratings'][int(deleted_movie_index)]
 		del ratings[int(deleted_movie_index)]
 		for movie in Movie.objects().order_by('-date'):

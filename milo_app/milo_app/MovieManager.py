@@ -36,17 +36,10 @@ class MovieManager(object):
 			data = urllib.urlencode({'name':title})
 			req = urllib2.Request(whisperer_url, data)
 			#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
-			#response_dict = urllib2.urlopen(req)
 			response = urllib2.urlopen(req)
-			print whisperer_url
-			print data
-			print req
-			print response
-			#whisperer_page = response_dict.read()
-			#Find the id of the whisperer item just created
-			#whisperer_item_id = response_dict.get('id')
-			#print whisperer_item_id 
-			#print whisperer_page
+			whisperer_page = response.read() 
+			print whisperer_page
+			
 
 #LOOP THROUGH ALL METADATA
 #ADD ALL STRINGS IN ONE ONLY LIST THE SPLIT! #DESCRIPTION #TITLE #GENRES #ACTORS #DIRECTORS #YEAR
@@ -55,16 +48,15 @@ class MovieManager(object):
 
 #YEAR EXAMPLE
 			#Create metadata and add to item -> loop to all metadata! -> example of the release date
-			whisperer_url = url_fix('http://whisperer.vincenzo-ampolo.net/item/'+title+'/addMetadata')
-			data = urllib.urlencode({'name':year,'type':'year','lang':'eng'})          
-			req = urllib2.Request(whisperer_url, data)
-			#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
-#PROBLEM HERE! AGAIN TITLE INVOLVED... MUST BE THE SPACING!
-			response = urllib2.urlopen(req)
-			print whisperer_url
-			print data
-			print req
-			print response
+			#whisperer_url = url_fix('http://whisperer.vincenzo-ampolo.net/item/'+title+'/addMetadata')
+			#print whisperer_url
+			#data = urllib.urlencode({'name':year,'type':'year','lang':'eng'})          
+			#print data
+			#req = urllib2.Request(whisperer_url, data)
+			#print req
+			##Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
+##PROBLEM HERE! AGAIN TITLE INVOLVED... MUST BE THE SPACING!
+			#response = urllib2.urlopen(req)
 			#whisperer_page = response.read() 
 			#print whisperer_page
 
@@ -119,7 +111,7 @@ if __name__ == '__main__':
 		
 		def test_import_basic_movies(self):
 			#movies = ['rio', 'matrix', 'matrix reloaded',  'matrix revolutions', 'the notebook', 'along came polly',  'vanilla sky', 'batman begins', 'butterfly effect', 'the godfather', 'inception', 'city of god', 'forrest gump', 'finding nemo', 'back to the future', 'gladiator', "the king's speech", 'the milionaire', 'slumdog millionaire', 'kill bill', 'toy story 1', 'toy story 2', 'toy story 3', 'avatar', 'how to train your dragon', 'ratatouille', 'the social network', 'rocky', 'thron legacy', 'letters from iwo jima', 'il caimano', 'shutter island', 'monsters inc', 'v for vendetta', 'amores perros']
-			movies = ['pirates of the caribbean 3']
+			movies = ['thor']
 			for movie in movies:
 				print 'adding '+movie
 				self.mm.add_movie(name=movie)
