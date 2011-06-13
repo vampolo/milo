@@ -20,16 +20,13 @@ from MovieManager import url_fix
 				 renderer='templates/finish.pt')                                                          
 def survey(request):
 	
-	#Declare
+	#Some declarations
 	rating_finished = None	
-    
-	#Session: control current step
 	session = request.session
 	user = None
 	email = ''
 	key = ''
 	message = ''
-	
 	#Initialize rated movies
 	try:
 		session['rated_movies']
@@ -39,9 +36,9 @@ def survey(request):
 		session['ratings']
 	except:
 		session['ratings'] = []
-	#max_ratings = 0
-	#survey_n_ratings = 0
+	
 	#Login in wizard and put user_login inside the session and the users list of the survey
+	
 	if 'form.key.submitted' in request.params:
 		#Then the user must rate again anyway...
 		session['rated_movies'] = []
@@ -49,19 +46,16 @@ def survey(request):
 		email = request.params['key_email']
 		key = request.params['key_password']
 		user = User.objects.filter(email=email).first()
-		#For now the key is simply the password:
+		#For now the key is simply the password, if I wasn't registered before the password is "defaultsurveykey":
 		if user is not None:
 			if user.survey_status == 'submitted':
 				message = 'User has already submit this survey'
 			if user.survey_status is None:
 				if user.password == key:
-#TESTAR SE ALGUEM TENTA "CORTAR SESSION"... DEVO ZERAR SESSION: ALERTA! DEPOIS O USER ANTES DEVE REFAZER
-#TUDO...#DEVO APAGAR OQ FOI ADICIONADO NO SURVEY? SOH PEGAR ULTIMOS RESULTADOS...
 					try:
 						session['user']
 						if session['user'] != user.email:
 							session['concluded_until_step'] = None
-							#session['rated_movies'] = []
 							session['user'] = email
 					except:	
 						session['user'] = email
@@ -74,44 +68,51 @@ def survey(request):
 								sur = Survey.objects.filter(name=item.name).first()
 								if sur is not None:
 									session['survey']=sur.name
-									#Set the number of ratings
+									#Set the number of ratings to be executed
 									session['max_ratings'] = (int(sur.number_of_ratings))
 									session['ratings_executed'] = 0
 									#Control until when the user finished the survey
 									try:
 										session['concluded_until_step']
 									except:
+										#If the user goes to the first step of the survey, 
+										#is better to clean all the registers of responses given by the user
+										sur = Survey.objects.filter(name=session['survey']).first()
+										for item in sur.answers:
+											user = User.objects.filter(email=session['user']).first()
+											if item.user == user:
+												sur.answers.remove(item)
 										return HTTPFound(location = request.resource_url(request.root, 'Survey', '1'))
 									if session ['concluded_until_step'] is not None:
 										step_to_go = int(session['concluded_until_step'])+1
 										return HTTPFound(location = request.resource_url(request.root, 'Survey', str(step_to_go)))							
+									#New user on the session
 									else:
+										#Again, it is better to clean all the registers of responses given by the user
+										sur = Survey.objects.filter(name=session['survey']).first()
+										for item in sur.answers:
+											user = User.objects.filter(email=session['user']).first()
+											if item.user == user:
+												sur.answers.remove(item)
 										return HTTPFound(location = request.resource_url(request.root, 'Survey', '1'))
 		if message == '':
 			message = 'User not registered in any survey or invalid password'
-	
 	
 	#Control if session['max_ratings'] has been defined already (after login) or not
 	if request.view_name == 'wizard':
 		survey_n_ratings = 0
 	else:
 		survey_n_ratings = session['max_ratings']
-		#Determine the size of the list showed (to be changed...)
-		#rated_movies = Movie.objects()[:session['max_ratings']]
 		
-	#numero di ratings as a query now
-	
+	#Number di ratings as a query now
 	if request.GET.get('rating') is not None:
 		session['ratings_executed'] = session['ratings_executed'] + 1
 		if session['ratings_executed'] == session['max_ratings']:		
 			rating_finished=True
 			session['concluded_until_step'] = request.view_name
 		
-		
-	
 	#Form submission Step 1
-	
-	if 'form.info.submitted.1' in request.params:
+	if 'form.info.submitted.1' in request.params:			
 			session['concluded_until_step'] = request.view_name
 			user = User.objects.filter(email=session['user']).first()
 			age = SurveyAnswer(user = user, key='age', value=request.params['age'])
@@ -128,44 +129,35 @@ def survey(request):
 			sur.save()
 			return HTTPFound(location=request.resource_url(request.root, 'Survey','2'))
 	
+	#Rating submission in step 2
+	
 	movie_title = request.GET.get('movie_title')
 	rating = request.GET.get('rating')
-	
 	if movie_title is not None:
-		#Here we would accept just if the movie hasnt been rated
-		#if SurveyAnswer.objects.filter(key=movie_title).first() == None:
-#the right is to eliminate the rated movies from the list!
+			#Here we would accept just if the movie hasnt been rated
 			user = User.objects.filter(email=session['user']).first()
 			movie_rated = SurveyAnswer(user = user, key=movie_title, value=rating)
 			sur = Survey.objects.filter(name=session['survey']).first()
 			sur.answers.append(movie_rated)
 			session['ratings'].append(rating)
 			sur.save()			
-			
-#APPEND THE RATED MOVIE TO THE RATED MOVIES LIST
+			#APPEND THE RATED MOVIE TO THE RATED session LIST
+			#Because of the limited size of the session, maybe it's better to retrieve the answers
 			for item in Movie.objects.all():
 					if item == Movie.objects.filter(title=movie_title).first():
-						session['rated_movies'].append(item)
-			#print 'List after: '+str(session['rated_movies'])
+						session['rated_movies'].append(item)			
 			
-#Add RATING IN WHISPERER
-#MAYBE THE PROBLEM IS THE SPACING IN movie_title...
+			#Add RATING IN WHISPERER - change to movie ID
 			whisperer_url = url_fix('http://whisperer.vincenzo-ampolo.net/item/'+movie_title+'/addRating')
 			data = urllib.urlencode({'useremail':session['user'], 'rating':rating})          
 			req = urllib2.Request(whisperer_url, data)
-#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
+			#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
 			#response = urllib2.urlopen(req)
 			#whisperer_page = response.read() 
 			#print whisperer_page
-			#print whisperer_url
-			#print data
-			#print req
-			#print response
 	
-	#Questions in step 3 and 4 might not be useful actually.... Should I take the answers?
-
+	
 	#Form submission step 3
-	
 	specific = ''
 	missing = ''
 	missing1 = ''
@@ -189,8 +181,7 @@ def survey(request):
 			sur.save()
 			return HTTPFound(location=request.resource_url(request.root, 'Survey','4'))
 	
-	#Form submission step 4 - I am not getting checklist information now because is actually "fake" questions... Should I?
-	
+	#Form submission step 4 - I am not getting checklist information now because is actually "fake" questions
 	confuse = ''
 	if 'form.info.submitted.4' in request.params:
 			session['concluded_until_step'] = request.view_name
@@ -200,11 +191,11 @@ def survey(request):
 			sur.answers.append(confuse)
 			sur.save()
 			
-#GENERATE THE RECOMMENDATION LIST
+		#GENERATE THE RECOMMENDATION LIST - to be used in step 5
 			#whisperer_url = url_fix('http://whisperer.vincenzo-ampolo.net/user/'+session['user']+'/getRec')
 			#data = urllib.urlencode({'alg':sur.algorithm})
 			#req = urllib2.Request(whisperer_url, data)
-#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
+			#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
 			#response = urllib2.urlopen(req)
 			#whisperer_page = response.read() 
 			#print whisperer_page
@@ -235,21 +226,20 @@ def survey(request):
 			sur.answers.append(reason)
 			sur.save()
 			user.save()
-			#Where I will go when i click "continue"
+			#Clean un session
 			session['concluded_until_step'] = None
 			session['user'] = None
-			#Necessary?!
-			#session['rated_movies'] = []
-			#session['ratings'] = []
 			return HTTPFound(location=request.resource_url(request.root, ''))
+
+########### Manage the movie list in step 2 ##########
 	
 	#Create complete movie list
 	main_movies = Movie.objects().order_by('-date')
 	
-	#The ratings done of ratings done
+	#The ratings done until the moment
 	ratings = session['ratings']
 	
-	#Deleting a movie from the list
+	#Deleting a movie from the final rated list
 	deleted_movie = request.GET.get('delete')
 	deleted_movie_index = request.GET.get('index')
 	if deleted_movie is not None and deleted_movie_index is not None:
@@ -272,9 +262,7 @@ def survey(request):
 				if movie not in rated_movies:
 					main_movies.append(movie)
 	
-	
-	#Filters in step 2
-	
+	#FILTERS
 	#Title filter
 	first_letter = request.GET.get('title')
 	if first_letter is not None:
@@ -337,10 +325,9 @@ def survey(request):
 	#Query Filter
 	search_query = request.GET.get('search_query')
 	#Search inside title, description, genre
-	#in the future also for the actor...
+	#In the future also for the actor, director, all metadata...
 	if search_query is not None:
 			capitalized_query = search_query.capitalize()
-			#films_not_filtered = False
 			main_movies = []
 			for movie in Movie.objects().order_by('-date'):
 				list_title_strings = movie.title.split()
@@ -365,15 +352,17 @@ def survey(request):
 					else:
 						main_movies.append(movie)
 	
-	#Testing Next/Previous buttons
+	#Next/Previous buttons to browse the catalog
 	page = request.GET.get('page')
 	if page is None:
 		page = 1
 	else:
 		page = int(page)
 	
-	#compute and show pages
+	#Control if it is the last page of movies
 	last_page = True if len(main_movies) <= (page-1)*9+9 else False
+	
+	#Get the 9 movies to be shown
 	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9])
 	
 	return dict(ratings = ratings,survey_n_ratings=survey_n_ratings,message = message, rated_movies = rated_movies, rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)
