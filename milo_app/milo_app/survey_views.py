@@ -201,13 +201,13 @@ def survey(request):
 			sur.save()
 			
 #GENERATE THE RECOMMENDATION LIST
-			whisperer_url = url_fix('http://whisperer.vincenzo-ampolo.net/user/'+session['user']+'/getRec')
-			data = urllib.urlencode({'alg':sur.algorithm})
-			req = urllib2.Request(whisperer_url, data)
+			#whisperer_url = url_fix('http://whisperer.vincenzo-ampolo.net/user/'+session['user']+'/getRec')
+			#data = urllib.urlencode({'alg':sur.algorithm})
+			#req = urllib2.Request(whisperer_url, data)
 #Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
-			response = urllib2.urlopen(req)
-			whisperer_page = response.read() 
-			print whisperer_page
+			#response = urllib2.urlopen(req)
+			#whisperer_page = response.read() 
+			#print whisperer_page
 			
 			
 			return HTTPFound(location=request.resource_url(request.root, 'Survey','5'))
@@ -246,23 +246,47 @@ def survey(request):
 	#Create complete movie list
 	main_movies = Movie.objects().order_by('-date')
 	
-	#films_not_filtered = True
+	#The ratings done of ratings done
+	ratings = session['ratings']
 	
-	#if films_not_filtered == True:
-		#Get objects of DB to retrieve the movie catalogue
-		#main_movies = Movie.objects().order_by('-date')
+	#Deleting a movie from the list
+	deleted_movie = request.GET.get('delete')
+	deleted_movie_index = request.GET.get('index')
+	if deleted_movie is not None and deleted_movie_index is not None:
+		del session['ratings'][int(deleted_movie_index)]
+		del ratings[int(deleted_movie_index)]		
+		for movie in Movie.objects().order_by('-date'):
+				if deleted_movie == movie.title:
+					session['rated_movies'].remove(movie)
+					session['ratings_executed'] = session['ratings_executed'] - 1
+					rating_finished=False
+					session['concluded_until_step'] = 1
+	
+	#Create the list of rated movies
+	rated_movies = session['rated_movies']
+	
+	#Delete the rated movies from the main_list
+	if rated_movies is not None:
+			main_movies = []
+			for movie in Movie.objects().order_by('-date'):
+				if movie not in rated_movies:
+					main_movies.append(movie)
+	
 	
 	#Filters in step 2
+	
 	#Title filter
 	first_letter = request.GET.get('title')
 	if first_letter is not None:
-			#films_not_filtered = False
 			main_movies = []
 			for movie in Movie.objects().order_by('-date'):
 				first_char = movie.title[0]
 				if first_letter == first_char:
-					main_movies.append(movie)
-		
+					if rated_movies is not None:
+						if movie not in rated_movies:
+							main_movies.append(movie)
+					else:
+						main_movies.append(movie)
 	#Genre filter
 	genre = request.GET.get('genre')
 	if genre is not None:
@@ -271,7 +295,11 @@ def survey(request):
 			for movie in Movie.objects().order_by('-date'):
 				list_genre = movie.genre
 				if genre in list_genre[:]:
-					main_movies.append(movie)
+					if rated_movies is not None:
+						if movie not in rated_movies:
+							main_movies.append(movie)
+					else:
+						main_movies.append(movie)
 	
 	#Date filter
 	date = request.GET.get('date')
@@ -282,17 +310,29 @@ def survey(request):
 				if int(date) is not 80:
 					for movie in Movie.objects().order_by('-date'):
 						if movie.date.year == int(date):
-							main_movies.append(movie)
+							if rated_movies is not None:
+								if movie not in rated_movies:
+									main_movies.append(movie)
+							else:
+								main_movies.append(movie)
 			if int(date) is 90:
 				years = [1999,1998,1997,1996,1995,1994,1993,1992,1991,1990]
 				for movie in Movie.objects.all():
 					if movie.date.year in years[:]:
-						main_movies.append(movie)
+						if rated_movies is not None:
+							if movie not in rated_movies:
+								main_movies.append(movie)
+						else:
+							main_movies.append(movie)
 			if int(date) is 80:
 				years = [1989,1988,1987,1986,1985,1984,1983,1982,1981,1980]
 				for movie in Movie.objects.all():
 					if movie.date.year in years[:]:
-						main_movies.append(movie)
+						if rated_movies is not None:
+							if movie not in rated_movies:
+								main_movies.append(movie)
+						else:
+							main_movies.append(movie)
 	
 	#Query Filter
 	search_query = request.GET.get('search_query')
@@ -313,38 +353,17 @@ def survey(request):
 				for item in movie.genre:
 					list_strings_movie.append(item)
 				if search_query in list_strings_movie:
-					main_movies.append(movie)
+					if rated_movies is not None:
+						if movie not in rated_movies:
+							main_movies.append(movie)
+					else:
+						main_movies.append(movie)
 				elif capitalized_query in list_strings_movie:
-					main_movies.append(movie)
-	
-	#The ratings done of ratings done
-	ratings = session['ratings']
-	
-	#Deleting a movie from the list
-	deleted_movie = request.GET.get('delete')
-	deleted_movie_index = request.GET.get('index')
-	if deleted_movie is not None and deleted_movie_index is not None:
-		#print ratings
-		#print int(deleted_movie_index)
-		#print ratings[1]
-		del session['ratings'][int(deleted_movie_index)]
-		del ratings[int(deleted_movie_index)]
-		for movie in Movie.objects().order_by('-date'):
-				if deleted_movie == movie.title:
-					session['rated_movies'].remove(movie)
-					session['ratings_executed'] = session['ratings_executed'] - 1
-					rating_finished=False
-					session['concluded_until_step'] = 1
-	
-	#Create the list of rated movies
-	rated_movies = session['rated_movies']
-	
-	#Delete the rated movies from the main_list
-	if rated_movies is not None:
-			main_movies = []
-			for movie in Movie.objects().order_by('-date'):
-				if movie not in rated_movies:
-					main_movies.append(movie)
+					if rated_movies is not None:
+						if movie not in rated_movies:
+							main_movies.append(movie)
+					else:
+						main_movies.append(movie)
 	
 	#Testing Next/Previous buttons
 	page = request.GET.get('page')
