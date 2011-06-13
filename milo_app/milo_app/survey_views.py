@@ -33,14 +33,25 @@ def survey(request):
 	except:
 		session['rated_movies'] = []
 	try:
+		rated_movies
+	except:
+		rated_movies = []
+	try:
 		session['ratings']
 	except:
 		session['ratings'] = []
 	
+#NOW
+	try:
+		session['survey']
+	except:
+		session['survey'] = None
+		
 	#Login in wizard and put user_login inside the session and the users list of the survey
 	
 	if 'form.key.submitted' in request.params:
 		#Then the user must rate again anyway...
+		rated_movies = []
 		session['rated_movies'] = []
 		session['ratings'] = []
 		email = request.params['key_email']
@@ -82,6 +93,7 @@ def survey(request):
 											user = User.objects.filter(email=session['user']).first()
 											if item.user == user:
 												sur.answers.remove(item)
+												sur.save()
 										return HTTPFound(location = request.resource_url(request.root, 'Survey', '1'))
 									if session ['concluded_until_step'] is not None:
 										step_to_go = int(session['concluded_until_step'])+1
@@ -93,7 +105,9 @@ def survey(request):
 										for item in sur.answers:
 											user = User.objects.filter(email=session['user']).first()
 											if item.user == user:
+#CHECK IF IT IS REALLY REMOVING...
 												sur.answers.remove(item)
+												sur.save()
 										return HTTPFound(location = request.resource_url(request.root, 'Survey', '1'))
 		if message == '':
 			message = 'User not registered in any survey or invalid password'
@@ -244,7 +258,6 @@ def survey(request):
 	deleted_movie_index = request.GET.get('index')
 	if deleted_movie is not None and deleted_movie_index is not None:
 		del session['ratings'][int(deleted_movie_index)]
-		del ratings[int(deleted_movie_index)]		
 		for movie in Movie.objects().order_by('-date'):
 				if deleted_movie == movie.title:
 					session['rated_movies'].remove(movie)
@@ -253,6 +266,10 @@ def survey(request):
 					session['concluded_until_step'] = 1
 	
 	#Create the list of rated movies
+	
+	#Create the list of rated movies without using session 
+	#(remember to delete the answers that wont be used: just add the ones at the end... create a "submit.step2" to do it!)
+	
 	rated_movies = session['rated_movies']
 	
 	#Delete the rated movies from the main_list
@@ -261,6 +278,17 @@ def survey(request):
 			for movie in Movie.objects().order_by('-date'):
 				if movie not in rated_movies:
 					main_movies.append(movie)
+	
+	
+	#if session['survey'] is not None:
+		#sur = Survey.objects.filter(name=session['survey']).first()
+		#for item in sur.answers:
+			#user = User.objects.filter(email=session['user']).first()
+			#if item.user == user:
+					#if item.value == 'like' or item.value == 'dislike':
+						#print user.email
+						#rated_movies.append(item.key)
+						#print rated_movies
 	
 	#FILTERS
 	#Title filter
