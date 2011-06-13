@@ -1,6 +1,5 @@
 from views import *
-import urllib
-import urllib2
+import urllib, urllib2, simplejson
 
 @view_config(name='add_algorithm', context='milo_app:resources.Root',
 				 renderer='templates/add_algorithm.pt')
@@ -30,16 +29,16 @@ def admin(request):
 					#IF THE USER IS ALREADY IN DB, we will simply add to the list... if it is not, we will add a default key
 					#This is the current approach adopted in the case that the user will be registered only in one type of survey, never 2 surveys will be linked to a same email
 					if User.objects.filter(email=item).first() is None:
-						user_added = User(email = item, password='defaultsurveykey')
-						user_added.save()
 						#create a Whisperer User
 						whisperer_url = 'http://whisperer.vincenzo-ampolo.net/user/add'
 						#Using email to add the new user
 						data = urllib.urlencode({'name':item})
 						req = urllib2.Request(whisperer_url, data)
-						response = urllib2.urlopen(req)
-						whisperer_page = response.read() 
-						print whisperer_page
+						response = simplejson.load(urllib2.urlopen(req))
+						#Get the user id inside whisperer and store in Milo
+						user_added = User(email = item, password='defaultsurveykey',whisperer_id=response['id'])
+						print user_added.whisperer_id
+						user_added.save()
 					else:
 						user_added = User.objects.filter(email=item).first()
 					survey_added.users.append(user_added)
@@ -80,20 +79,19 @@ def survey_users(request):
 					#IF THE USER IS ALREADY IN DB, we will simply add to the list... if it is not, we will add a default key
 					#This is the current approach adopted in the case that the user will be registered only in one type of survey, never 2 surveys will be linked to a same email
 					if User.objects.filter(email=item).first() is None:
-						user_added = User(email = item, password='defaultsurveykey')
-						user_added.save()
 						#create a Whisperer User
 						whisperer_url = 'http://whisperer.vincenzo-ampolo.net/user/add'
 						#Using email to add the new user
 						data = urllib.urlencode({'name':item})
 						req = urllib2.Request(whisperer_url, data)
-						response = urllib2.urlopen(req)
-						whisperer_page = response.read() 
-						print whisperer_page
+						response = simplejson.load(urllib2.urlopen(req))
+						#Get the user id inside whisperer and storing in Milo
+						user_added = User(email = item, password='defaultsurveykey',whisperer_id=response['id'])
+						print user_added.whisperer_id
+						user_added.save()
 					else:
 						user_added = User.objects.filter(email=item).first()
 					current_survey.users.append(user_added)
-					print current_survey.users
 					current_survey.save()
 					return HTTPFound(location=request.resource_url(request.root, 'view_users', query=dict(survey=survey_name)))
 	users = dict(users=users_objects_list[:])

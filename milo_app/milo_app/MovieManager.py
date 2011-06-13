@@ -5,6 +5,7 @@ import urllib2
 import urlparse
 import os
 import datetime
+import simplejson
 from mongoengine import connect
 
 basepath = os.path.join(os.path.split(os.path.abspath( __file__ ))[0], 'static', 'movie_data')
@@ -26,40 +27,41 @@ class MovieManager(object):
 		if poster is not None:
 			fp = open(os.path.join(basepath, title+'_poster.jpg'), 'w')
 			fp.write(urllib.urlopen(poster).read())
-		if len(Movie.objects(title=title, date=datetime.datetime(year=int(year), month=1, day=1))) == 0:
-			movie = Movie(title=title, date=datetime.datetime(year=int(year), month=1, day=1), description=description, image=title+'_image.jpg', poster=title+'_poster.jpg', trailer=trailer, genre=genre)
-			print 'saving movie'
-			movie.save()
-			
-			#create a Whisperer Item here - HAVE TO TEST WITH NEW MOVIES =/!
+		if len(Movie.objects(title=title, date=datetime.datetime(year=int(year), month=1, day=1))) == 0:			
+			#create a Whisperer Item
 			whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/add'
+			#Using email to add the new user
 			data = urllib.urlencode({'name':title})
 			req = urllib2.Request(whisperer_url, data)
-			#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
-			response = urllib2.urlopen(req)
-			whisperer_page = response.read() 
-			print whisperer_page
+			response = simplejson.load(urllib2.urlopen(req))
+			#Get the item id inside whisperer and store in Milo
+			movie = Movie(title=title, whisperer_id=response['id'],date=datetime.datetime(year=int(year), month=1, day=1), description=description, image=title+'_image.jpg', poster=title+'_poster.jpg', trailer=trailer, genre=genre)
+			print 'saving movie'
+			print movie.whisperer_id
+			movie.save()
+
+			#Adding metadata
+			#Shouldn't it add just if doesnt exist already this metadata? hmmm... here is doing both things at the same time?
 			
-
-#LOOP THROUGH ALL METADATA
-#ADD ALL STRINGS IN ONE ONLY LIST THE SPLIT! #DESCRIPTION #TITLE #GENRES #ACTORS #DIRECTORS #YEAR
-#DONT DO IT -> THERE IS THE "TYPE" -> better to do a for to each single list....
-#URL_FIX =D
-
-#YEAR EXAMPLE
+			#YEAR
 			#Create metadata and add to item -> loop to all metadata! -> example of the release date
-			#whisperer_url = url_fix('http://whisperer.vincenzo-ampolo.net/item/'+title+'/addMetadata')
-			#print whisperer_url
-			#data = urllib.urlencode({'name':year,'type':'year','lang':'eng'})          
-			#print data
-			#req = urllib2.Request(whisperer_url, data)
-			#print req
-			##Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
-##PROBLEM HERE! AGAIN TITLE INVOLVED... MUST BE THE SPACING!
-			#response = urllib2.urlopen(req)
-			#whisperer_page = response.read() 
-			#print whisperer_page
-
+			whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/'+str(movie.whisperer_id)+'/addMetadata'
+			data = urllib.urlencode({'name':year,'type':'year','lang':'eng'})          
+			req = urllib2.Request(whisperer_url, data)
+			response = simplejson.load(urllib2.urlopen(req))
+			print response
+			
+			#GENRE
+			for item in genre:
+				whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/'+str(movie.whisperer_id)+'/addMetadata'
+				data = urllib.urlencode({'name':item,'type':'genre','lang':'eng'})          
+				req = urllib2.Request(whisperer_url, data)
+				response = simplejson.load(urllib2.urlopen(req))
+				print response	
+			
+			#ACTOR
+			
+			#DIRECTOR
 			
 			return movie
 		return None
@@ -111,7 +113,7 @@ if __name__ == '__main__':
 		
 		def test_import_basic_movies(self):
 			#movies = ['rio', 'matrix', 'matrix reloaded',  'matrix revolutions', 'the notebook', 'along came polly',  'vanilla sky', 'batman begins', 'butterfly effect', 'the godfather', 'inception', 'city of god', 'forrest gump', 'finding nemo', 'back to the future', 'gladiator', "the king's speech", 'the milionaire', 'slumdog millionaire', 'kill bill', 'toy story 1', 'toy story 2', 'toy story 3', 'avatar', 'how to train your dragon', 'ratatouille', 'the social network', 'rocky', 'thron legacy', 'letters from iwo jima', 'il caimano', 'shutter island', 'monsters inc', 'v for vendetta', 'amores perros']
-			movies = ['thor']
+			movies = ['jurassic park']
 			for movie in movies:
 				print 'adding '+movie
 				self.mm.add_movie(name=movie)

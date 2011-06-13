@@ -514,14 +514,16 @@
      
      <metal:footer fill-slot="foot-content"> 
 		<div id="footer">
+						<form id="form_step2" action="${request.resource_url(request.root, 'Survey','2')}" method="POST" autocomplete="off">
 						<div id="footer-inside">
 							<div id="footer-content">
 							<a href="${request.resource_url(request.root, 'Survey','1')}" target="_new"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
 							<tal:next condition="rating_finished">
-							<a href="${request.resource_url(request.root, 'Survey','3')}"><input id="next_button" name="form.info.submitted" type="submit" value=""/></a>
+							<input id="next_button" name="form.info.submitted.2" type="submit" value=""/>
 							</tal:next>
 							</div><!-- footer-content-->
 						</div><!-- footer-inside -->
+						</form>
 		</div><!-- footer -->
 		
 	 </metal:footer>

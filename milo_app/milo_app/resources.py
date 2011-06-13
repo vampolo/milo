@@ -28,6 +28,7 @@ class User(Document):
 	first_name = StringField()
 	last_name = StringField()
 	password = StringField()
+	#The id the user has in whisperer
 	whisperer_id = IntField()
 	#The flag that defines if the user has submitted the survey: "None" or "submitted" (handling just one survey per email)
 	survey_status = StringField()
@@ -105,6 +106,7 @@ class Movie(Document):
 		
 	#movie is identified by title and year
 	title = StringField(required=True)
+	whisperer_id = IntField()
 	date = DateTimeField()
 	description = StringField()
 	trailer = URLField()

@@ -2,6 +2,7 @@ from views import *
 import urllib
 import urllib2
 import urlparse
+import simplejson
 from MovieManager import url_fix
 
 @view_config(name='wizard', context='milo_app:resources.Root',
@@ -160,16 +161,6 @@ def survey(request):
 			for item in Movie.objects.all():
 					if item == Movie.objects.filter(title=movie_title).first():
 						session['rated_movies'].append(item)			
-			
-			#Add RATING IN WHISPERER - change to movie ID
-			whisperer_url = url_fix('http://whisperer.vincenzo-ampolo.net/item/'+movie_title+'/addRating')
-			data = urllib.urlencode({'useremail':session['user'], 'rating':rating})          
-			req = urllib2.Request(whisperer_url, data)
-			#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
-			#response = urllib2.urlopen(req)
-			#whisperer_page = response.read() 
-			#print whisperer_page
-	
 	
 	#Form submission step 3
 	specific = ''
@@ -217,6 +208,17 @@ def survey(request):
 			
 			return HTTPFound(location=request.resource_url(request.root, 'Survey','5'))
 	
+	#Get recommendation if the user is in step 5:
+	if request.view_name == '5':
+		user = User.objects.filter(email=session['user']).first()
+		sur = Survey.objects.filter(name=session['survey']).first()
+		whisperer_url = 'http://whisperer.vincenzo-ampolo.net/user/'+str(user.whisperer_id)+'/getRec'
+		data = urllib.urlencode({'alg':sur.algorithm})
+		req = urllib2.Request(whisperer_url, data)
+		response = simplejson.load(urllib2.urlopen(req))
+		print response
+	#Then i must get the ids of the movies to retrieved to the user =]! Finally, step 5 can be implemented
+		
 	#Form submission step 5 - loop for all movie list retrieved...
 	
 	if 'form.info.submitted.5' in request.params:
@@ -279,7 +281,26 @@ def survey(request):
 				if movie not in rated_movies:
 					main_movies.append(movie)
 	
-	
+	#Add RATINGS IN WHISPERER (Shouldnt be None, never actually)
+	#JUST WHEN USER CONFIRMS THE FINAL LIST
+	if 'form.info.submitted.2' in request.params:
+			index = 0
+			for movie in rated_movies:
+				user = User.objects.filter(email=session['user']).first()
+				if user.whisperer_id is not None:
+					if movie.whisperer_id is not None:
+						whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/'+str(movie.whisperer_id)+'/addRating'
+						if session['ratings'][index] == 'like':
+							data = urllib.urlencode({'user_id':user.whisperer_id, 'rating':5})          
+						if session['ratings'][index] == 'dislike':
+							data = urllib.urlencode({'user_id':user.whisperer_id, 'rating':1})
+						print data	
+						req = urllib2.Request(whisperer_url, data)
+						response = simplejson.load(urllib2.urlopen(req))
+						print response
+						index = index + 1
+			return HTTPFound(location=request.resource_url(request.root, 'Survey','3'))
+				
 	#if session['survey'] is not None:
 		#sur = Survey.objects.filter(name=session['survey']).first()
 		#for item in sur.answers:
