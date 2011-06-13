@@ -9,11 +9,13 @@ milo_app/CWwrapper.py
 milo_app/MediaRetriever.py
 milo_app/MovieManager.py
 milo_app/__init__.py
+milo_app/admin_views.py
 milo_app/helpers.py
 milo_app/login.py
 milo_app/login_admin.py
 milo_app/resources.py
 milo_app/rest.py
+milo_app/survey_views.py
 milo_app/tests.py
 milo_app/views.py
 milo_app.egg-info/PKG-INFO
@@ -4295,6 +4297,10 @@ milo_app/static/movie_data/Inception_image.jpg
 milo_app/static/movie_data/Inception_poster.jpg
 milo_app/static/movie_data/Kill Bill: volume 1_image.jpg
 milo_app/static/movie_data/Kill Bill: volume 1_poster.jpg
+milo_app/static/movie_data/Kung Fu Panda_image.jpg
+milo_app/static/movie_data/Kung Fu Panda_poster.jpg
+milo_app/static/movie_data/La maledizione della prima luna_image.jpg
+milo_app/static/movie_data/La maledizione della prima luna_poster.jpg
 milo_app/static/movie_data/Le pagine della nostra vita_image.jpg
 milo_app/static/movie_data/Le pagine della nostra vita_poster.jpg
 milo_app/static/movie_data/Lettere da Iwo Jima_image.jpg
@@ -4307,6 +4313,12 @@ milo_app/static/movie_data/Matrix_image.jpg
 milo_app/static/movie_data/Matrix_poster.jpg
 milo_app/static/movie_data/Monsters & Co._image.jpg
 milo_app/static/movie_data/Monsters & Co._poster.jpg
+milo_app/static/movie_data/Pirati dei Caraibi - Ai confini del mondo_image.jpg
+milo_app/static/movie_data/Pirati dei Caraibi - Ai confini del mondo_poster.jpg
+milo_app/static/movie_data/Pirati dei Caraibi - La maledizione del forziere fantasma_image.jpg
+milo_app/static/movie_data/Pirati dei Caraibi - La maledizione del forziere fantasma_poster.jpg
+milo_app/static/movie_data/Pirati dei Caraibi: Oltre i confini del mare_image.jpg
+milo_app/static/movie_data/Pirati dei Caraibi: Oltre i confini del mare_poster.jpg
 milo_app/static/movie_data/Ratatouille_image.jpg
 milo_app/static/movie_data/Ratatouille_poster.jpg
 milo_app/static/movie_data/Rio_image.jpg
@@ -4325,12 +4337,16 @@ milo_app/static/movie_data/The Millionaire_image.jpg
 milo_app/static/movie_data/The Millionaire_poster.jpg
 milo_app/static/movie_data/The Social Network_image.jpg
 milo_app/static/movie_data/The Social Network_poster.jpg
+milo_app/static/movie_data/Thor_image.jpg
+milo_app/static/movie_data/Thor_poster.jpg
 milo_app/static/movie_data/Toy story - Il mondo dei giocattoli_image.jpg
 milo_app/static/movie_data/Toy story - Il mondo dei giocattoli_poster.jpg
 milo_app/static/movie_data/Toy story 2 - Woody e Buzz alla riscossa_image.jpg
 milo_app/static/movie_data/Toy story 2 - Woody e Buzz alla riscossa_poster.jpg
 milo_app/static/movie_data/Toy story 3 - La grande fuga_image.jpg
 milo_app/static/movie_data/Toy story 3 - La grande fuga_poster.jpg
+milo_app/static/movie_data/Tropa de Elite_image.jpg
+milo_app/static/movie_data/Tropa de Elite_poster.jpg
 milo_app/static/movie_data/V per vendetta_image.jpg
 milo_app/static/movie_data/V per vendetta_poster.jpg
 milo_app/static/movie_data/Vanilla Sky_image.jpg
