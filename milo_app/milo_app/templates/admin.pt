@@ -44,9 +44,11 @@
             	<a href="${request.resource_url(request.root, 'admin')}" title="MiloAdmin">MiloAdmin</a>
             </li>
 			<li id='survey_mng'><a href="${request.resource_url(request.root, 'add_survey')}" title="Surveys Management">Surveys Management</a></li>
+			<!-- Not applied for now
 			<li id='algorithms' class="subitems">
 				<a href="${request.resource_url(request.root, 'add_algorithm')}" title="Set Users">Users Management</a>
 			</li>
+			-->
 		</ul>
 		<span class="clear"></span>	
 	</div>

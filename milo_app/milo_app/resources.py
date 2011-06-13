@@ -28,9 +28,8 @@ class User(Document):
 	first_name = StringField()
 	last_name = StringField()
 	password = StringField()
-	#Can I delete this?!
-	cwid = IntField()
-	#Can be subscribed, not subscribed, submitted: Approach handles only one survey per user
+	whisperer_id = IntField()
+	#The flag that defines if the user has submitted the survey: "None" or "submitted" (handling just one survey per email)
 	survey_status = StringField()
 
 #To login in the admin!

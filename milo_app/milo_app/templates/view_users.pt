@@ -36,7 +36,19 @@
 			</p>
 -->
 		</div>
-	
+		
+		<form method="POST" autocomplete="off" action="${request.resource_url(request.root, 'view_users', query=dict(survey=survey_name))}">
+		<fieldset>
+		<div id="add_users">
+			<label>Add users to this survey (emails semicolon-separated and without spacing):</label><br/>
+			<br class="hid" />
+			<span class="textarea"><textarea cols="10" rows="4" name="set_of_users"></textarea></span><br class="hid" />
+		</div>
+		<div id="add_survey" class="button">
+			<input class="button" name="submit.survey.users" type="submit" value="Add Users"/>
+		</div>
+		</fieldset>
+		</form>
 	</div>
 	</metal:content>
 </metal:html>
