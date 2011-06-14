@@ -4273,6 +4273,8 @@ milo_app/static/js/fancybox/images/fancybox-y.png
 milo_app/static/js/fancybox/images/fancybox.png
 milo_app/static/movie_data/...E alla fine arriva Polly_image.jpg
 milo_app/static/movie_data/...E alla fine arriva Polly_poster.jpg
+milo_app/static/movie_data/10 cose che odio di te_image.jpg
+milo_app/static/movie_data/10 cose che odio di te_poster.jpg
 milo_app/static/movie_data/Alla ricerca di Nemo_image.jpg
 milo_app/static/movie_data/Alla ricerca di Nemo_poster.jpg
 milo_app/static/movie_data/Amores perros_poster.jpg
@@ -4295,10 +4297,14 @@ milo_app/static/movie_data/Il padrino_image.jpg
 milo_app/static/movie_data/Il padrino_poster.jpg
 milo_app/static/movie_data/Inception_image.jpg
 milo_app/static/movie_data/Inception_poster.jpg
+milo_app/static/movie_data/Jurassic Park_image.jpg
+milo_app/static/movie_data/Jurassic Park_poster.jpg
 milo_app/static/movie_data/Kill Bill: volume 1_image.jpg
 milo_app/static/movie_data/Kill Bill: volume 1_poster.jpg
 milo_app/static/movie_data/Kung Fu Panda_image.jpg
 milo_app/static/movie_data/Kung Fu Panda_poster.jpg
+milo_app/static/movie_data/L'incredibile Hulk_image.jpg
+milo_app/static/movie_data/L'incredibile Hulk_poster.jpg
 milo_app/static/movie_data/La maledizione della prima luna_image.jpg
 milo_app/static/movie_data/La maledizione della prima luna_poster.jpg
 milo_app/static/movie_data/Le pagine della nostra vita_image.jpg
@@ -4329,6 +4335,8 @@ milo_app/static/movie_data/Rocky_image.jpg
 milo_app/static/movie_data/Rocky_poster.jpg
 milo_app/static/movie_data/Shutter Island_image.jpg
 milo_app/static/movie_data/Shutter Island_poster.jpg
+milo_app/static/movie_data/Sucker Punch_image.jpg
+milo_app/static/movie_data/Sucker Punch_poster.jpg
 milo_app/static/movie_data/TRON: Legacy_image.jpg
 milo_app/static/movie_data/TRON: Legacy_poster.jpg
 milo_app/static/movie_data/The Butterfly Effect_image.jpg

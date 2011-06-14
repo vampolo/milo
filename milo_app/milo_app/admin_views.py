@@ -1,5 +1,5 @@
 from views import *
-import urllib, urllib2, simplejson
+import urllib, urllib2, simplejson, smtplib
 
 @view_config(name='add_algorithm', context='milo_app:resources.Root',
 				 renderer='templates/add_algorithm.pt')
@@ -41,6 +41,37 @@ def admin(request):
 						user_added.save()
 					else:
 						user_added = User.objects.filter(email=item).first()
+					#Send an email to user_added.email - sending individually
+					SERVER = "localhost"
+					FROM = "milosurvey@noreply.com"
+					TO = user_added.email
+					SUBJECT = "Milo's Survey Invitation"
+					TEXT = "This is an invitation to participate on Milo survey." 
+					TEXT1 ="Access http://milo.vincenzo-ampolo.net/wizard and enter this information to login:"
+					TEXT2 = "Email: "+user_added.email	
+					TEXT3 = 'Password: '+user_added.password
+					# Prepare actual message
+					message = """
+					
+					
+					From: %s
+					To: %s
+					Subject: %s
+					
+					%s
+					
+					%s
+					
+					%s
+					%s
+					""" %( FROM,  TO, SUBJECT, TEXT, TEXT1, TEXT2, TEXT3 )
+					# Send the mail
+					server = smtplib.SMTP(SERVER)
+					server.sendmail(FROM, TO, message)
+					server.quit()
+					
+					
+										
 					survey_added.users.append(user_added)
 					survey_added.save()
 	
@@ -87,10 +118,37 @@ def survey_users(request):
 						response = simplejson.load(urllib2.urlopen(req))
 						#Get the user id inside whisperer and storing in Milo
 						user_added = User(email = item, password='defaultsurveykey',whisperer_id=response['id'])
-						print user_added.whisperer_id
 						user_added.save()
 					else:
 						user_added = User.objects.filter(email=item).first()
+					#Send an email to user_added.email - sending individually
+					SERVER = "localhost"
+					FROM = "milosurvey@noreply.com"
+					TO = user_added.email
+					SUBJECT = "Milo's Survey Invitation"
+					TEXT = "This is an invitation to participate on Milo survey." 
+					TEXT1 ="Access http://milo.vincenzo-ampolo.net/wizard and enter this information to login:"
+					TEXT2 = "Email: "+user_added.email	
+					TEXT3 = 'Password: '+user_added.password
+					# Prepare actual message
+					message = """
+					
+					
+					From: %s
+					To: %s
+					Subject: %s
+					
+					%s
+					
+					%s
+					
+					%s
+					%s
+					""" %( FROM,  TO, SUBJECT, TEXT, TEXT1, TEXT2, TEXT3 )
+					# Send the mail
+					server = smtplib.SMTP(SERVER)
+					server.sendmail(FROM, TO, message)
+					server.quit()
 					current_survey.users.append(user_added)
 					current_survey.save()
 					return HTTPFound(location=request.resource_url(request.root, 'view_users', query=dict(survey=survey_name)))

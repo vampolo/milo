@@ -291,9 +291,9 @@ def survey(request):
 					if movie.whisperer_id is not None:
 						whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/'+str(movie.whisperer_id)+'/addRating'
 						if session['ratings'][index] == 'like':
-							data = urllib.urlencode({'user_id':user.whisperer_id, 'rating':5})          
+							data = urllib.urlencode({'userid':user.whisperer_id, 'rating':5})          
 						if session['ratings'][index] == 'dislike':
-							data = urllib.urlencode({'user_id':user.whisperer_id, 'rating':1})
+							data = urllib.urlencode({'userid':user.whisperer_id, 'rating':1})
 						print data	
 						req = urllib2.Request(whisperer_url, data)
 						response = simplejson.load(urllib2.urlopen(req))
