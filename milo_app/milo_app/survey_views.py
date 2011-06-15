@@ -41,7 +41,10 @@ def survey(request):
 		session['ratings']
 	except:
 		session['ratings'] = []
-	
+	try:
+		main_movies
+	except:
+		main_movies = []
 #NOW
 	try:
 		session['survey']
@@ -212,11 +215,14 @@ def survey(request):
 	if request.view_name == '5':
 		user = User.objects.filter(email=session['user']).first()
 		sur = Survey.objects.filter(name=session['survey']).first()
-		whisperer_url = 'http://whisperer.vincenzo-ampolo.net/user/'+str(user.whisperer_id)+'/getRec'
-		data = urllib.urlencode({'alg':sur.algorithm})
-		req = urllib2.Request(whisperer_url, data)
-		response = simplejson.load(urllib2.urlopen(req))
-		print response
+		print user.whisperer_id
+		if user.whisperer_id is not None:
+						whisperer_url = 'http://whisperer.vincenzo-ampolo.net/user/'+str(user.whisperer_id)+'/getRec'
+						data = urllib.urlencode({'alg':sur.algorithm})
+						req = urllib2.Request(whisperer_url, data)
+						response = simplejson.load(urllib2.urlopen(req))
+						print response
+		
 	#Then i must get the ids of the movies to retrieved to the user =]! Finally, step 5 can be implemented
 		
 	#Form submission step 5 - loop for all movie list retrieved...
@@ -250,7 +256,9 @@ def survey(request):
 ########### Manage the movie list in step 2 ##########
 	
 	#Create complete movie list
-	main_movies = Movie.objects().order_by('-date')
+	for movie in Movie.objects().order_by('-date'):
+		if movie.whisperer_id is not None:
+			main_movies.append(movie)
 	
 	#The ratings done until the moment
 	ratings = session['ratings']
@@ -261,11 +269,12 @@ def survey(request):
 	if deleted_movie is not None and deleted_movie_index is not None:
 		del session['ratings'][int(deleted_movie_index)]
 		for movie in Movie.objects().order_by('-date'):
-				if deleted_movie == movie.title:
-					session['rated_movies'].remove(movie)
-					session['ratings_executed'] = session['ratings_executed'] - 1
-					rating_finished=False
-					session['concluded_until_step'] = 1
+				if movie.whisperer_id is not None:
+					if deleted_movie == movie.title:
+						session['rated_movies'].remove(movie)
+						session['ratings_executed'] = session['ratings_executed'] - 1
+						rating_finished=False
+						session['concluded_until_step'] = 1
 	
 	#Create the list of rated movies
 	
@@ -278,8 +287,9 @@ def survey(request):
 	if rated_movies is not None:
 			main_movies = []
 			for movie in Movie.objects().order_by('-date'):
-				if movie not in rated_movies:
-					main_movies.append(movie)
+				if movie.whisperer_id is not None:
+					if movie not in rated_movies:
+						main_movies.append(movie)
 	
 	#Add RATINGS IN WHISPERER (Shouldnt be None, never actually)
 	#JUST WHEN USER CONFIRMS THE FINAL LIST
@@ -294,10 +304,8 @@ def survey(request):
 							data = urllib.urlencode({'userid':user.whisperer_id, 'rating':5})          
 						if session['ratings'][index] == 'dislike':
 							data = urllib.urlencode({'userid':user.whisperer_id, 'rating':1})
-						print data	
 						req = urllib2.Request(whisperer_url, data)
 						response = simplejson.load(urllib2.urlopen(req))
-						print response
 						index = index + 1
 			return HTTPFound(location=request.resource_url(request.root, 'Survey','3'))
 				
@@ -317,26 +325,28 @@ def survey(request):
 	if first_letter is not None:
 			main_movies = []
 			for movie in Movie.objects().order_by('-date'):
-				first_char = movie.title[0]
-				if first_letter == first_char:
-					if rated_movies is not None:
-						if movie not in rated_movies:
+				if movie.whisperer_id is not None:
+					first_char = movie.title[0]
+					if first_letter == first_char:
+						if rated_movies is not None:
+							if movie not in rated_movies:
+								main_movies.append(movie)
+						else:
 							main_movies.append(movie)
-					else:
-						main_movies.append(movie)
 	#Genre filter
 	genre = request.GET.get('genre')
 	if genre is not None:
 			#films_not_filtered = False
 			main_movies = []
 			for movie in Movie.objects().order_by('-date'):
-				list_genre = movie.genre
-				if genre in list_genre[:]:
-					if rated_movies is not None:
-						if movie not in rated_movies:
+				if movie.whisperer_id is not None:
+					list_genre = movie.genre
+					if genre in list_genre[:]:
+						if rated_movies is not None:
+							if movie not in rated_movies:
+								main_movies.append(movie)
+						else:
 							main_movies.append(movie)
-					else:
-						main_movies.append(movie)
 	
 	#Date filter
 	date = request.GET.get('date')
@@ -346,30 +356,31 @@ def survey(request):
 			if int(date) is not 90: 
 				if int(date) is not 80:
 					for movie in Movie.objects().order_by('-date'):
-						if movie.date.year == int(date):
+						if movie.whisperer_id is not None:
+							if movie.date.year == int(date):
+								if rated_movies is not None:
+									if movie not in rated_movies:
+										main_movies.append(movie)
+								else:
+									main_movies.append(movie)
+				if int(date) is 90:
+					years = [1999,1998,1997,1996,1995,1994,1993,1992,1991,1990]
+					for movie in Movie.objects.all():
+						if movie.date.year in years[:]:
 							if rated_movies is not None:
 								if movie not in rated_movies:
 									main_movies.append(movie)
 							else:
 								main_movies.append(movie)
-			if int(date) is 90:
-				years = [1999,1998,1997,1996,1995,1994,1993,1992,1991,1990]
-				for movie in Movie.objects.all():
-					if movie.date.year in years[:]:
-						if rated_movies is not None:
-							if movie not in rated_movies:
+				if int(date) is 80:
+					years = [1989,1988,1987,1986,1985,1984,1983,1982,1981,1980]
+					for movie in Movie.objects.all():
+						if movie.date.year in years[:]:
+							if rated_movies is not None:
+								if movie not in rated_movies:
+									main_movies.append(movie)
+							else:
 								main_movies.append(movie)
-						else:
-							main_movies.append(movie)
-			if int(date) is 80:
-				years = [1989,1988,1987,1986,1985,1984,1983,1982,1981,1980]
-				for movie in Movie.objects.all():
-					if movie.date.year in years[:]:
-						if rated_movies is not None:
-							if movie not in rated_movies:
-								main_movies.append(movie)
-						else:
-							main_movies.append(movie)
 	
 	#Query Filter
 	search_query = request.GET.get('search_query')
@@ -379,27 +390,28 @@ def survey(request):
 			capitalized_query = search_query.capitalize()
 			main_movies = []
 			for movie in Movie.objects().order_by('-date'):
-				list_title_strings = movie.title.split()
-				list_description_strings = movie.description.split()
-				list_strings_movie = []
-				for item in list_title_strings:
-					list_strings_movie.append(item)
-				for item in list_description_strings:
-					list_strings_movie.append(item)
-				for item in movie.genre:
-					list_strings_movie.append(item)
-				if search_query in list_strings_movie:
-					if rated_movies is not None:
-						if movie not in rated_movies:
+				if movie.whisperer_id is not None:
+					list_title_strings = movie.title.split()
+					list_description_strings = movie.description.split()
+					list_strings_movie = []
+					for item in list_title_strings:
+						list_strings_movie.append(item)
+					for item in list_description_strings:
+						list_strings_movie.append(item)
+					for item in movie.genre:
+						list_strings_movie.append(item)
+					if search_query in list_strings_movie:
+						if rated_movies is not None:
+							if movie not in rated_movies:
+								main_movies.append(movie)
+						else:
 							main_movies.append(movie)
-					else:
-						main_movies.append(movie)
-				elif capitalized_query in list_strings_movie:
-					if rated_movies is not None:
-						if movie not in rated_movies:
+					elif capitalized_query in list_strings_movie:
+						if rated_movies is not None:
+							if movie not in rated_movies:
+								main_movies.append(movie)
+						else:
 							main_movies.append(movie)
-					else:
-						main_movies.append(movie)
 	
 	#Next/Previous buttons to browse the catalog
 	page = request.GET.get('page')

@@ -270,8 +270,8 @@
 					<tal:logged condition="logged">
 					<li class="info info-logged">
 						<span>Rated it: </span>
-						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Like this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
-						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Dislike this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
+						<a href="javascript:panel_down(&quot;${request.resource_url(request.root, query=dict(rec='new'))}&quot;,&quot;A new recommendation is available. Do you want to load it?&quot;);" title="Like this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
+						<a href="javascript:panel_down(&quot;${request.resource_url(request.root, query=dict(rec='new'))}&quot;,&quot;A new recommendation is available. Do you want to load it?&quot;);" title="Dislike this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
 					</li>
 					</tal:logged>
 					<li class="info"><img src="${request.static_url('milo_app:static/images/icons/play.png')}"/>Views: <span>2.000</span> </li>

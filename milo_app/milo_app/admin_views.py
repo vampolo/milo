@@ -86,7 +86,17 @@ def admin(request):
 		Survey.objects.filter(name=survey_name).delete()
 	
 	
-	return dict(surveys=surveys)
+	algnames=[]
+	num_algs=0
+	#create a Whisperer User
+	whisperer_url = 'http://whisperer.vincenzo-ampolo.net/algnames'
+	req = urllib2.Request(whisperer_url)
+	response = simplejson.load(urllib2.urlopen(req))					
+	algnames = response['algnames']
+	num_algs = len(algnames)
+	
+	
+	return dict(surveys=surveys, algnames=algnames, num_algs=num_algs)
 
 @view_config(name='view_users', context='milo_app:resources.Root',
 				 renderer='templates/view_users.pt')

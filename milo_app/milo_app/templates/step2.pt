@@ -416,8 +416,8 @@
             	<ul class="post-meta">
             	<li class="info info-logged">
 						<span>Rated it: </span>
-						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(rating='like', movie_title=movie.title))}','${movie.title} rated as liked! Submit?');" title="Like this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
-						<a href="javascript:panel_down_wizard('${request.resource_url(context, request.view_name, query=dict(rating='dislike', movie_title=movie.title))}','${movie.title} rated as disliked... Submit?');" title="Dislike this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
+						<a href="javascript:panel_down_wizard(&quot;${request.resource_url(context, request.view_name, query=dict(rating='like', movie_title=movie.title))}&quot;,&quot;${movie.title} rated as liked! Submit?&quot;);" title="Like this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
+						<a href="javascript:panel_down_wizard(&quot;${request.resource_url(context, request.view_name, query=dict(rating='dislike', movie_title=movie.title))}&quot;,&quot;${movie.title} rated as disliked... Submit?&quot;);" title="Dislike this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
 				</li>
             	</ul>
             	<div class="post-thumbnail">

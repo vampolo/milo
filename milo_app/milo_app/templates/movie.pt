@@ -41,8 +41,8 @@
 				<tal:logged condition="logged">
 					<div id='like-film'>
 						<li class="recommend-thumbs-slider">
-						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Like this movie">Like <img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
-						<a href="javascript:panel_down('${request.resource_url(request.root, query=dict(rec='new'))}','A new recommendation is available. Do you want to load it?');" title="Dislike this movie">Dislike <img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
+						<a href="javascript:panel_down(&quot;${request.resource_url(request.root, query=dict(rec='new'))}&quot;,&quot;A new recommendation is available. Do you want to load it?&quot;);" title="Like this movie">Like <img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
+						<a href="javascript:panel_down(&quot;${request.resource_url(request.root, query=dict(rec='new'))}&quot;,&quot;A new recommendation is available. Do you want to load it?&quot;);" title="Dislike this movie">Dislike <img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
 						</li>	
 					</div><!--like-film-->
 				</tal:logged>	

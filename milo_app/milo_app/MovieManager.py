@@ -113,7 +113,7 @@ if __name__ == '__main__':
 		
 		def test_import_basic_movies(self):
 			#movies = ['rio', 'matrix', 'matrix reloaded',  'matrix revolutions', 'the notebook', 'along came polly',  'vanilla sky', 'batman begins', 'butterfly effect', 'the godfather', 'inception', 'city of god', 'forrest gump', 'finding nemo', 'back to the future', 'gladiator', "the king's speech", 'the milionaire', 'slumdog millionaire', 'kill bill', 'toy story 1', 'toy story 2', 'toy story 3', 'avatar', 'how to train your dragon', 'ratatouille', 'the social network', 'rocky', 'thron legacy', 'letters from iwo jima', 'il caimano', 'shutter island', 'monsters inc', 'v for vendetta', 'amores perros']
-			movies = ['jurassic park']
+			movies = ['x men first class']
 			for movie in movies:
 				print 'adding '+movie
 				self.mm.add_movie(name=movie)

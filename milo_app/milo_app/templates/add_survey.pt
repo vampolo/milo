@@ -33,10 +33,11 @@
 						<label for="survey_alg">Algorithm type:</label><br/>
 						<select name="survey_algorithm" size="1">
 								<option value="  " selected>(select the survey's algorithm)
-								<option value="alg1">Algorithm #1
-								<option value="alg2">Algorithm #2 
-								<option value="alg3">Algorithm #3
-								<option value="alg4">Algorithm #4 
+			
+								<tal:r repeat="algorithm algnames">
+								<option tal:attributes="value algnames[repeat.algorithm.index]">${algnames[repeat.algorithm.index]}
+								</tal:r>
+			
 						</select>
 			</div><!--field-->
 			
