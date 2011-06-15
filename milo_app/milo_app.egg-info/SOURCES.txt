@@ -4359,6 +4359,8 @@ milo_app/static/movie_data/V per vendetta_image.jpg
 milo_app/static/movie_data/V per vendetta_poster.jpg
 milo_app/static/movie_data/Vanilla Sky_image.jpg
 milo_app/static/movie_data/Vanilla Sky_poster.jpg
+milo_app/static/movie_data/X-Men: L' inizio_image.jpg
+milo_app/static/movie_data/X-Men: L' inizio_poster.jpg
 milo_app/templates/about.pt
 milo_app/templates/add_algorithm.pt
 milo_app/templates/add_survey.pt
