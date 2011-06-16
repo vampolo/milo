@@ -70,6 +70,16 @@ $(document).ready(function()
         }
      });
      
+     $("#form_step5").validate(
+	{ 
+        rules: { 
+        seen: "required",    
+        }, 
+        messages: { 
+        seen:  "Select a response",   
+        }
+     });
+     
      $("#form_finish").validate(
 	{ 
         rules: { 

@@ -81,7 +81,7 @@
             </div><!-- film-description -->				
 		  </div> <!--step5-movie-description-->
 		  
-		  <form action="${request.resource_url(request.root, 'Survey','5', request.view_name)}" method="POST" autocomplete="off">
+		  <form id="form_step5" action="${request.resource_url(request.root, 'Survey','5', request.view_name)}" method="POST" autocomplete="off">
 			  
 		  <div id="step5-question1" class="step5-question">
 			<div class="select info_field">

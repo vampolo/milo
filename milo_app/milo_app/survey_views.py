@@ -228,7 +228,7 @@ def survey(request):
 	#Create the list of rated movies
 	rated_movies = session['rated_movies']
 	
-	recMovie_views = ['recMovie1','recMovie2','recMovie3','recMovie4']
+	recMovie_views = ['recMovie1','recMovie2','recMovie3','recMovie4','recMovie5']
 	#Get recommendation if the user is in step 5:
 	if request.view_name in recMovie_views:
 		user = User.objects.filter(email=session['user']).first()
@@ -271,38 +271,32 @@ def survey(request):
 			user = User.objects.filter(email=session['user']).first()
 			seen = SurveyAnswer(user = user, key='seen '+recommended_movies[index_recMovie].title, value=request.params['seen'])
 			sur = Survey.objects.filter(name=session['survey']).first()
+			sur.answers.append(seen)
 			#Adjustments necessary because of the javascript "hide"
 			try:
 				request.params['rating1']
 				rating1 = SurveyAnswer(user = user, key='rating1 '+recommended_movies[index_recMovie].title, value=request.params['rating1'])
+				sur.answers.append(rating1)
 			except:
 				rating1 = ''
 			try:
 				request.params['heard']
 				heard = SurveyAnswer(user = user, key='heard '+recommended_movies[index_recMovie].title, value=request.params['heard'])
+				sur.answers.append(heard)
 			except:	
 				heard = ''
 			try:
 				request.params['rating2']
 				rating2 = SurveyAnswer(user = user, key='rating2 '+recommended_movies[index_recMovie].title, value=request.params['rating2'])
+				sur.answers.append(rating2)
 			except:
 				rating2 = ''
 			try:
 				request.params['rating3']
 				rating3 = SurveyAnswer(user = user, key='rating3 '+recommended_movies[index_recMovie].title, value=request.params['rating3'])
+				sur.answers.append(rating3)
 			except:
 				rating3 = ''
-			
-			print seen
-			print rating1
-			print heard
-			print rating2
-			print rating3
-			sur.answers.append(seen)
-			sur.answers.append(rating1)
-			sur.answers.append(heard)
-			sur.answers.append(rating2)
-			sur.answers.append(rating3)
 			if sur is not None:
 				sur.save()
 			if request.view_name == 'recMovie1':
