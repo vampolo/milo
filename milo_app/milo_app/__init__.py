@@ -5,16 +5,18 @@ from pyramid.renderers import get_renderer
 from pyramid.session import UnencryptedCookieSessionFactoryConfig
 from milo_app.resources import Root
 from milo_app import helpers
+from milo_app.security import adminfinder
 
 from mongoengine import connect
 
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
 
+
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
-    authn_policy = AuthTktAuthenticationPolicy(secret='miloSecretMessageForAuthToken')
+    authn_policy = AuthTktAuthenticationPolicy(secret='miloSecretMessageForAuthToken', callback=adminfinder)
     authz_policy = ACLAuthorizationPolicy()
     my_session_factory = UnencryptedCookieSessionFactoryConfig('miloSecretMessageToSignTheCookie')
     config = Configurator(root_factory=Root, settings=settings,

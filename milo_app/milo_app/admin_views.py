@@ -1,12 +1,13 @@
 from views import *
+
 import urllib, urllib2, simplejson, smtplib
 
 @view_config(name='add_algorithm', context='milo_app:resources.Root',
-				 renderer='templates/add_algorithm.pt')
+				 renderer='templates/add_algorithm.pt', permission='admin')
 @view_config(name='add_survey', context='milo_app:resources.Root',
-				 renderer='templates/add_survey.pt')
+				 renderer='templates/add_survey.pt', permission='admin')
 @view_config(name='admin', context='milo_app:resources.Root',
-				 renderer='templates/admin.pt')
+				 renderer='templates/admin.pt', permission='admin')
 def admin(request):
 	name=''
 	algorithm=''

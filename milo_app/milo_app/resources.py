@@ -1,8 +1,15 @@
 from mongoengine import *
 
+from pyramid.security import Allow
+from pyramid.security import Everyone
+
 class Root(object):
     __name__= None
     __parent__= None
+    
+#New authorization stuff 
+    __acl__ = [ (Allow, Everyone, 'view'),
+                (Allow, 'group:admin', 'admin') ]
     
     def __init__(self, request):
 		self.request = request
@@ -32,11 +39,6 @@ class User(Document):
 	whisperer_id = IntField()
 	#The flag that defines if the user has submitted the survey: "None" or "submitted" (handling just one survey per email)
 	survey_status = StringField()
-
-#To login in the admin!
-class Admin(Document):
-	username = StringField(required=True)
-	password = StringField()
 
 #AND IF the user has already done the survey, but is added in another one???????????? Now it is just handling exclusively one survey...
 #A user can receive different keys... should check the key, not the user.... can be a list of strings here!
