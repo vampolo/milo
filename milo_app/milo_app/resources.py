@@ -55,6 +55,7 @@ class Survey(Document):
 	name = StringField(required=True)
 	algorithm = StringField()
 	number_of_ratings = IntField()
+	typeRatings = IntField()
 	answers = ListField(EmbeddedDocumentField(SurveyAnswer))
 	users = ListField(ReferenceField(User))
 	

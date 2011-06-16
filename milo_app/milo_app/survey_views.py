@@ -69,14 +69,19 @@ def survey(request):
 		session['survey']
 	except:
 		session['survey'] = None
-		
-	#Login in wizard and put user_login inside the session and the users list of the survey
 	
+	try:
+		session['rating_type']
+	except:
+		#Default is the like/dislike
+		session['rating_type'] = 2
+	#Login in wizard and put user_login inside the session and the users list of the survey
 	if 'form.key.submitted' in request.params:
 		#Then the user must rate again anyway...
 		rated_movies = []
 		session['rated_movies'] = []
 		session['ratings'] = []
+		session['rating_type'] = 2
 		email = request.params['key_email']
 		key = request.params['key_password']
 		user = User.objects.filter(email=email).first()
@@ -105,6 +110,8 @@ def survey(request):
 									#Set the number of ratings to be executed
 									session['max_ratings'] = (int(sur.number_of_ratings))
 									session['ratings_executed'] = 0
+									#Get if it is 5 stars or binary
+									session['rating_type'] = sur.typeRatings
 									#Control until when the user finished the survey
 									try:
 										session['concluded_until_step']
@@ -140,6 +147,12 @@ def survey(request):
 										return HTTPFound(location = request.resource_url(request.root, 'Survey', '1'))
 		if message == '':
 			message = 'User not registered in any survey or invalid password'
+	
+	
+	ratings_stars = False
+	#If the survey is of 5 stars type, receives 'ratings_stars' receives TRUE
+	if session['rating_type'] == 5:
+		ratings_stars = True
 	
 	#Control if session['max_ratings'] has been defined already (after login) or not
 	if request.view_name == 'wizard':
@@ -275,6 +288,7 @@ def survey(request):
 			#Adjustments necessary because of the javascript "hide"
 			try:
 				request.params['rating1']
+				print request.params['rating1']
 				rating1 = SurveyAnswer(user = user, key='rating1 '+recommended_movies[index_recMovie].title, value=request.params['rating1'])
 				sur.answers.append(rating1)
 			except:
@@ -377,6 +391,16 @@ def survey(request):
 							data = urllib.urlencode({'userid':user.whisperer_id, 'rating':5})          
 						if session['ratings'][index] == 'dislike':
 							data = urllib.urlencode({'userid':user.whisperer_id, 'rating':1})
+						if session['ratings'][index] == '1 star':
+							data = urllib.urlencode({'userid':user.whisperer_id, 'rating':1})          
+						if session['ratings'][index] == '2 stars':
+							data = urllib.urlencode({'userid':user.whisperer_id, 'rating':2})
+						if session['ratings'][index] == '3 stars':
+							data = urllib.urlencode({'userid':user.whisperer_id, 'rating':3})          
+						if session['ratings'][index] == '4 stars':
+							data = urllib.urlencode({'userid':user.whisperer_id, 'rating':4})          
+						if session['ratings'][index] == '5 stars':
+							data = urllib.urlencode({'userid':user.whisperer_id, 'rating':5})
 						req = urllib2.Request(whisperer_url, data)
 						response = simplejson.load(urllib2.urlopen(req))
 						index = index + 1
@@ -499,4 +523,4 @@ def survey(request):
 	#Get the 9 movies to be shown
 	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9])
 	
-	return dict(index_recMovie = index_recMovie, recommended_movies = recommended_movies, ratings = ratings,survey_n_ratings=survey_n_ratings,message = message, rated_movies = rated_movies, rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)
+	return dict(ratings_stars = ratings_stars, index_recMovie = index_recMovie, recommended_movies = recommended_movies, ratings = ratings,survey_n_ratings=survey_n_ratings,message = message, rated_movies = rated_movies, rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)

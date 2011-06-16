@@ -416,8 +416,29 @@
             	<ul class="post-meta">
             	<li class="info info-logged">
 						<span>Rated it: </span>
+					<tal:rating_binary condition="not ratings_stars">
 						<a href="javascript:panel_down_wizard(&quot;${request.resource_url(context, request.view_name, query=dict(rating='like', movie_title=movie.title))}&quot;,&quot;${movie.title} rated as liked! Submit?&quot;);" title="Like this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_up.png')}"></a>
 						<a href="javascript:panel_down_wizard(&quot;${request.resource_url(context, request.view_name, query=dict(rating='dislike', movie_title=movie.title))}&quot;,&quot;${movie.title} rated as disliked... Submit?&quot;);" title="Dislike this movie"><img width="18" height="18" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/thumb_down.png')}"></a>
+					</tal:rating_binary>
+					<tal:rating_stars condition="ratings_stars">
+						<div id="rate_star" class="rating">
+							<div class="star">
+								<a href="javascript:panel_down_wizard(&quot;${request.resource_url(context, request.view_name, query=dict(rating='1 star', movie_title=movie.title))}&quot;,&quot;${movie.title} rated with 1 star. Submit?&quot;);" title="Give it 1/5" style="width: 100%">1</a>
+							</div>
+							<div class="star">
+								<a href="javascript:panel_down_wizard(&quot;${request.resource_url(context, request.view_name, query=dict(rating='2 stars', movie_title=movie.title))}&quot;,&quot;${movie.title} rated with 2 stars. Submit?&quot;);" title="Give it 2/5" style="width: 100%">2</a>
+							</div>
+							<div class="star">
+								<a href="javascript:panel_down_wizard(&quot;${request.resource_url(context, request.view_name, query=dict(rating='3 stars', movie_title=movie.title))}&quot;,&quot;${movie.title} rated with 3 stars. Submit?&quot;);" title="Give it 3/5" style="width: 100%">3</a>
+							</div>
+							<div class="star">
+								<a href="javascript:panel_down_wizard(&quot;${request.resource_url(context, request.view_name, query=dict(rating='4 stars', movie_title=movie.title))}&quot;,&quot;${movie.title} rated with 4 stars. Submit?&quot;);" title="Give it 4/5" style="width: 100%">4</a>
+							</div>
+							<div class="star">
+								<a href="javascript:panel_down_wizard(&quot;${request.resource_url(context, request.view_name, query=dict(rating='5 stars', movie_title=movie.title))}&quot;,&quot;${movie.title} rated with 5 stars. Submit?&quot;);" title="Give it 5/5" style="width: 100%">5</a>
+							</div>
+						</div>
+					</tal:rating_stars>
 				</li>
             	</ul>
             	<div class="post-thumbnail">

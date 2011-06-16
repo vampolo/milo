@@ -60,6 +60,15 @@
 						</select>
 			</div><!--field-->
 			
+			<div class="option">
+						<label for="TypeRatings">Type of ratings:</label><br/>
+						<select name="TypeRatings" size="1">
+								<option value="  " selected>(select the type of ratings)
+								<option value="2">Binary (Like/Dislike)
+								<option value="5">5 Stars Scale
+						</select>
+			</div><!--field-->
+			
 			<div id="add_users">
 			<label>Set of users(emails semicolon-separated and without spacing):</label><br/>
 			<br class="hid" />

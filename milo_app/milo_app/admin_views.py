@@ -11,18 +11,20 @@ def admin(request):
 	name=''
 	algorithm=''
 	ratings=''
+	typeRatings='2'
 	set_users = ''
 	
 	if 'submit.survey' in request.params:
 		name = request.params['SurveyName']
 		algorithm = request.params['survey_algorithm']
 		ratings = request.params['NumSurveyRatings']
+		typeRatings = request.params['TypeRatings']
 		set_users = request.params['set_of_users'].split(';')
 		#Check if all inputs are filled
 		if name is not None and algorithm is not None and ratings is not None and set_users is not None:
 			#Check if there is already this survey
 			if Survey.objects.filter(name=name).first() is None:
-				survey_added = Survey(name=name, algorithm=algorithm, number_of_ratings=int(ratings))
+				survey_added = Survey(name=name, algorithm=algorithm, typeRatings = int(typeRatings), number_of_ratings=int(ratings))
 				survey_added.save()
 				#Append each item of users list above
 				for item in set_users:	
