@@ -3,6 +3,7 @@ import urllib
 import urllib2
 import urlparse
 import simplejson
+import operator
 from MovieManager import url_fix
 
 @view_config(name='wizard', context='milo_app:resources.Root',
@@ -18,7 +19,17 @@ from MovieManager import url_fix
 @view_config(name='5', context='milo_app:resources.Survey',
 				 renderer='templates/step5.pt')
 @view_config(name='finish', context='milo_app:resources.Survey',
-				 renderer='templates/finish.pt')                                                          
+				 renderer='templates/finish.pt')
+@view_config(name='recMovie1', context='milo_app:resources.Step5',
+				 renderer='templates/step5.pt')
+@view_config(name='recMovie2', context='milo_app:resources.Step5',
+				 renderer='templates/step5.pt')       
+@view_config(name='recMovie3', context='milo_app:resources.Step5',
+				 renderer='templates/step5.pt')
+@view_config(name='recMovie4', context='milo_app:resources.Step5',
+				 renderer='templates/step5.pt')                                                                 
+@view_config(name='recMovie5', context='milo_app:resources.Step5',
+				 renderer='templates/step5.pt')       
 def survey(request):
 	
 	#Some declarations
@@ -37,6 +48,14 @@ def survey(request):
 		rated_movies
 	except:
 		rated_movies = []
+	try:
+		index_recMovie
+	except:
+		index_recMovie = 0
+	try:
+		recommended_movies
+	except:
+		recommended_movies = []			
 	try:
 		session['ratings']
 	except:
@@ -101,7 +120,13 @@ def survey(request):
 										return HTTPFound(location = request.resource_url(request.root, 'Survey', '1'))
 									if session ['concluded_until_step'] is not None:
 										step_to_go = int(session['concluded_until_step'])+1
-										return HTTPFound(location = request.resource_url(request.root, 'Survey', str(step_to_go)))							
+										if step_to_go == 5:
+											return HTTPFound(location = request.resource_url(request.root, 'Survey', str(step_to_go), 'recMovie1'))
+#FIXME
+										#elif step_to_go == 6:
+										#	return HTTPFound(location = request.resource_url(request.root, 'Survey', 'finish')
+										#else:
+										return HTTPFound(location = request.resource_url(request.root, 'Survey', str(step_to_go)))
 									#New user on the session
 									else:
 										#Again, it is better to clean all the registers of responses given by the user
@@ -197,44 +222,100 @@ def survey(request):
 			confuse = SurveyAnswer(user = user, key='confuse', value=request.params['confuse'])
 			sur = Survey.objects.filter(name=session['survey']).first()
 			sur.answers.append(confuse)
-			sur.save()
-			
-		#GENERATE THE RECOMMENDATION LIST - to be used in step 5
-			#whisperer_url = url_fix('http://whisperer.vincenzo-ampolo.net/user/'+session['user']+'/getRec')
-			#data = urllib.urlencode({'alg':sur.algorithm})
-			#req = urllib2.Request(whisperer_url, data)
-			#Testing if it works -> should print in the command line the new user email and ID or an error message, if the user already exists (shouldn't be the case...)
-			#response = urllib2.urlopen(req)
-			#whisperer_page = response.read() 
-			#print whisperer_page
-			
-			
-			return HTTPFound(location=request.resource_url(request.root, 'Survey','5'))
+			sur.save()			
+			return HTTPFound(location=request.resource_url(request.root, 'Survey','5', 'recMovie1'))
 	
+	#Create the list of rated movies
+	rated_movies = session['rated_movies']
+	
+	recMovie_views = ['recMovie1','recMovie2','recMovie3','recMovie4']
 	#Get recommendation if the user is in step 5:
-	if request.view_name == '5':
+	if request.view_name in recMovie_views:
 		user = User.objects.filter(email=session['user']).first()
 		sur = Survey.objects.filter(name=session['survey']).first()
-		print user.whisperer_id
 		if user.whisperer_id is not None:
 						whisperer_url = 'http://whisperer.vincenzo-ampolo.net/user/'+str(user.whisperer_id)+'/getRec'
 						data = urllib.urlencode({'alg':sur.algorithm})
 						req = urllib2.Request(whisperer_url, data)
 						response = simplejson.load(urllib2.urlopen(req))
-						print response
+						#order dictionary by the values, getting the bigger
+						sorted_response = sorted(response.iteritems(), key=operator.itemgetter(1), reverse=True)
+						#Sorted response is a list of tuples... I want a list of the first element of the tuple
+						for movie_tuple in sorted_response:
+							rec_movie_id = movie_tuple[0]
+							#Create a list of movie objects just with the ones on Milo and not in rated_movies list
+							#recommended_movies_ids.append(rec_movie_id)
+							if Movie.objects.filter(whisperer_id=int(rec_movie_id)).first() is not None:
+								movie = Movie.objects.filter(whisperer_id=int(rec_movie_id)).first()
+								if movie not in rated_movies:
+									recommended_movies.append(movie)
+						#HERE WE CUT THE RECOMMENDED LIST IN THE NUMBER OF MOVIES WE WANT THE USER TO EVALUATE:
+						recommended_movies = recommended_movies[0:5]
+#MAYBE CAN BE SET BY THE ADMIN AGAIN...	
 		
 	#Then i must get the ids of the movies to retrieved to the user =]! Finally, step 5 can be implemented
-		
-	#Form submission step 5 - loop for all movie list retrieved...
 	
+	#Setting the right film index	
+	if request.view_name == 'recMovie2':
+		index_recMovie = 1
+	if request.view_name == 'recMovie3':
+		index_recMovie = 2
+	if request.view_name == 'recMovie4':
+		index_recMovie = 3
+	if request.view_name == 'recMovie5':
+		index_recMovie = 4
+	
+	#Form submission step 5 - loop for all movie list retrieved...
+	seen = ''
 	if 'form.info.submitted.5' in request.params:
-			session['concluded_until_step'] = request.view_name
 			user = User.objects.filter(email=session['user']).first()
-			#confuse = SurveyAnswer(user = user, key='confuse', value=request.params['confuse'])
-			#sur = Survey.objects.filter(name=session['survey']).first()
-			#sur.answers.append(confuse)
-			#sur.save()
-			return HTTPFound(location=request.resource_url(request.root, 'Survey','finish'))
+			seen = SurveyAnswer(user = user, key='seen '+recommended_movies[index_recMovie].title, value=request.params['seen'])
+			sur = Survey.objects.filter(name=session['survey']).first()
+			#Adjustments necessary because of the javascript "hide"
+			try:
+				request.params['rating1']
+				rating1 = SurveyAnswer(user = user, key='rating1 '+recommended_movies[index_recMovie].title, value=request.params['rating1'])
+			except:
+				rating1 = ''
+			try:
+				request.params['heard']
+				heard = SurveyAnswer(user = user, key='heard '+recommended_movies[index_recMovie].title, value=request.params['heard'])
+			except:	
+				heard = ''
+			try:
+				request.params['rating2']
+				rating2 = SurveyAnswer(user = user, key='rating2 '+recommended_movies[index_recMovie].title, value=request.params['rating2'])
+			except:
+				rating2 = ''
+			try:
+				request.params['rating3']
+				rating3 = SurveyAnswer(user = user, key='rating3 '+recommended_movies[index_recMovie].title, value=request.params['rating3'])
+			except:
+				rating3 = ''
+			
+			print seen
+			print rating1
+			print heard
+			print rating2
+			print rating3
+			sur.answers.append(seen)
+			sur.answers.append(rating1)
+			sur.answers.append(heard)
+			sur.answers.append(rating2)
+			sur.answers.append(rating3)
+			if sur is not None:
+				sur.save()
+			if request.view_name == 'recMovie1':
+				return HTTPFound(location=request.resource_url(request.root, 'Survey','5','recMovie2'))
+			if request.view_name == 'recMovie2':
+				return HTTPFound(location=request.resource_url(request.root, 'Survey','5','recMovie3'))
+			if request.view_name == 'recMovie3':
+				return HTTPFound(location=request.resource_url(request.root, 'Survey','5','recMovie4'))
+			if request.view_name == 'recMovie4':
+				return HTTPFound(location=request.resource_url(request.root, 'Survey','5','recMovie5'))
+			if request.view_name == 'recMovie5':
+				session['concluded_until_step'] = 5
+				return HTTPFound(location=request.resource_url(request.root, 'Survey','finish'))
 	
 	#Final form submission
 	
@@ -276,13 +357,11 @@ def survey(request):
 						rating_finished=False
 						session['concluded_until_step'] = 1
 	
-	#Create the list of rated movies
+	
 	
 	#Create the list of rated movies without using session 
 	#(remember to delete the answers that wont be used: just add the ones at the end... create a "submit.step2" to do it!)
-	
-	rated_movies = session['rated_movies']
-	
+
 	#Delete the rated movies from the main_list
 	if rated_movies is not None:
 			main_movies = []
@@ -426,4 +505,4 @@ def survey(request):
 	#Get the 9 movies to be shown
 	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9])
 	
-	return dict(ratings = ratings,survey_n_ratings=survey_n_ratings,message = message, rated_movies = rated_movies, rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)
+	return dict(index_recMovie = index_recMovie, recommended_movies = recommended_movies, ratings = ratings,survey_n_ratings=survey_n_ratings,message = message, rated_movies = rated_movies, rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)

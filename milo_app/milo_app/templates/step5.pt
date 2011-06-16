@@ -30,38 +30,36 @@
      <div id="content-inside">
 		<div id='post-container'>
 			<div id='category-posts'>
-				<h2>Wizard - Step 5  <i>(Movie #1  example)</i></h2><br/>
+				<h2>Wizard - Step 5 </h2><br/>
 				<p>Answer the next questions related to the information about this movie:</p>
 			<div id="step5-movie-description" class="step5-question">
 				<div id="film-description-header">
-				<!--<h2>${movie.title} ( <a href="#FIXME" title="Check the list of films released on this year">${movie.date.strftime('%Y')}</a> )<h2> 
+				<!--<h2>${recommended_movies[index_recMovie].title} ( <a href="#FIXME" title="Check the list of films released on this year">${movie.date.strftime('%Y')}</a> )<h2> 
 				<ul class="post-meta post-meta-post">
 					<li class="date">Released on ${movie.date.strftime('%D')}</li>
 				</ul>-->
-				<h2>Dragon Trainer ( <a href="#FIXME" title="Check the list of films released on this year">2010</a> )<h2> 
+				<h2>${recommended_movies[index_recMovie].title} <h2> 
 				<ul class="post-meta post-meta-post"> 
-					<li class="date">Released on 01/01/10</li> 
+					<li class="date">Released on ${recommended_movies[index_recMovie].date.strftime('%Y')}</li> 
 				</ul> 
 			</div><!-- film-description-header -->	
 
 			<div id="film-description" class="post-content">
               
               <div id="film-cover-container">
-				<!--<img src="${request.static_url('milo_app:static/movie_data/'+movie.poster)}" alt="Dragon Trainer" title="Dragon Trainer" width="180" height="250" class="size-medium wp-image-378" />-->  
-                <img src="${request.static_url('milo_app:static/movie_data/Dragon Trainer_poster.jpg')}" alt="Dragon Trainer" title="Dragon Trainer" width="180" height="250" class="size-medium wp-image-378" />
+				<img src="${request.static_url('milo_app:static/movie_data/'+recommended_movies[index_recMovie].poster)}" alt="${recommended_movies[index_recMovie].title}" title="${recommended_movies[index_recMovie].title}" width="180" height="250" class="size-medium wp-image-378" />
                 <p class="image-caption">Image Caption</p>
               </div><!-- film-cover-container -->
 			  
 			  <div id="movie-description-text" class="div-movie-details">
-			  <!--<p tal:content="movie.description"></p>-->
-			  <p>A hapless young Viking who aspires to hunt dragons becomes the unlikely friend of a young dragon himself, and learns there may be more to the creatures than he assumed.</p> 
+			  <p tal:content="recommended_movies[index_recMovie].description"></p>
               </div><!-- movie-description-text -->
               <div id='info-film'>
 				    <div id="genre-info" class="div-movie-details">
 						<h3>Genre:</h3>
-						<p>
-						Animation Adventure Comedy 
-						</p>
+						<span tal:repeat="g recommended_movies[index_recMovie].genre">
+						<b>${g} &nbsp;&nbsp;</b>
+						</span>
 					</div><!--genre-info-->
 					<!--<p class='infoandlike-film'>Genre: <a href="#" title="Search films of this genre" tal:repeat="g movie.genre">${g}</a><br/>-->
 					<!--<a href="#" title="Search films of this genre" tal:repeat="g movie.genre">${g}</a></p>-->
@@ -83,7 +81,7 @@
             </div><!-- film-description -->				
 		  </div> <!--step5-movie-description-->
 		  
-		  <form action="${request.resource_url(request.root, 'Survey','5')}" method="POST" autocomplete="off">
+		  <form action="${request.resource_url(request.root, 'Survey','5', request.view_name)}" method="POST" autocomplete="off">
 			  
 		  <div id="step5-question1" class="step5-question">
 			<div class="select info_field">
@@ -121,7 +119,7 @@
 		  <div id="video-container-wizard" class="step5-question hidden-question">
 			
 			<div class='video-embedded-and-related'>
-			<iframe id="player" type="text/html" src="http://www.youtube.com/embed/qHUhygdAZIw?enablejsapi=1&amp;rel=0&amp;autohide=1"></iframe> 
+			<iframe id="player" type="text/html" src="${recommended_movies[index_recMovie].trailer}?enablejsapi=1&rel=0&autohide=1"></iframe> 
 			</div><!-- video-embedded-and-related -->  	
 			<div id='embedded-video-footer'>			 
 				<div id="step5-rate3" class="select info_field">
@@ -136,7 +134,7 @@
 						<div id="footer-inside">
 							<div id="footer-content">
 							<a href="${request.resource_url(request.root, 'Survey','4')}"><input id="prev_button"/></a>
-							<div id="next-final-step" class="hidden-question"><a href="${request.resource_url(request.root, 'Survey','finish')}"><input id="next_button" name="form.info.submitted.5" type="submit" value=""/></a></div>
+							<div id="next-final-step" class="hidden-question"><input id="next_button" name="form.info.submitted.5" type="submit" value=""/></div>
 							</div><!-- footer-content-->
 						</div><!-- footer-inside -->
 			</div><!-- footer -->
