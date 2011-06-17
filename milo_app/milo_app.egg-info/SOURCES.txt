@@ -15,6 +15,7 @@ milo_app/login.py
 milo_app/login_admin.py
 milo_app/resources.py
 milo_app/rest.py
+milo_app/security.py
 milo_app/survey_views.py
 milo_app/tests.py
 milo_app/views.py
@@ -26,6 +27,7 @@ milo_app.egg-info/not-zip-safe
 milo_app.egg-info/paster_plugins.txt
 milo_app.egg-info/requires.txt
 milo_app.egg-info/top_level.txt
+milo_app/static/css/rating.css
 milo_app/static/css/style.css
 milo_app/static/css/style.css3.css
 milo_app/static/css/style_admin.css
@@ -80,6 +82,7 @@ milo_app/static/images/right.png
 milo_app/static/images/rss.png
 milo_app/static/images/search-submit.png
 milo_app/static/images/search.png
+milo_app/static/images/star.gif
 milo_app/static/images/start1.png
 milo_app/static/images/start2.png
 milo_app/static/images/submit1.png
@@ -4261,6 +4264,7 @@ milo_app/static/js/jquery.tablesorter.js
 milo_app/static/js/jquery.validate.js
 milo_app/static/js/jqueryui.js
 milo_app/static/js/l10n.js
+milo_app/static/js/rating.js
 milo_app/static/js/rating_done.js
 milo_app/static/js/ui.js
 milo_app/static/js/ui_admin.js
