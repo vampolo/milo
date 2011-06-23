@@ -10,6 +10,7 @@ milo_app/MediaRetriever.py
 milo_app/MovieManager.py
 milo_app/__init__.py
 milo_app/admin_views.py
+milo_app/changeYear.py
 milo_app/helpers.py
 milo_app/login.py
 milo_app/login_admin.py
@@ -4280,8 +4281,6 @@ milo_app/static/movie_data/'Z' la formica_image.jpg
 milo_app/static/movie_data/'Z' la formica_poster.jpg
 milo_app/static/movie_data/...E alla fine arriva Polly_image.jpg
 milo_app/static/movie_data/...E alla fine arriva Polly_poster.jpg
-milo_app/static/movie_data/...First Do No Harm_poster.jpg
-milo_app/static/movie_data/...e giustizia per tutti_poster.jpg
 milo_app/static/movie_data/007 zona pericolo_image.jpg
 milo_app/static/movie_data/007 zona pericolo_poster.jpg
 milo_app/static/movie_data/1 km da Wall Street_image.jpg
@@ -4610,6 +4609,8 @@ milo_app/static/movie_data/Alla ricerca della valle incantata 4_poster.jpg
 milo_app/static/movie_data/Alla ricerca della valle incantata 5 - L'isola misteriosa_poster.jpg
 milo_app/static/movie_data/Alla ricerca della valle incantata_image.jpg
 milo_app/static/movie_data/Alla ricerca della valle incantata_poster.jpg
+milo_app/static/movie_data/Alla ricerca di Nemo_image.jpg
+milo_app/static/movie_data/Alla ricerca di Nemo_poster.jpg
 milo_app/static/movie_data/Allan Quatermain e le miniere di re Salomone_poster.jpg
 milo_app/static/movie_data/Allarme rosso_image.jpg
 milo_app/static/movie_data/Allarme rosso_poster.jpg
@@ -4954,6 +4955,8 @@ milo_app/static/movie_data/Autopsia di un delitto_poster.jpg
 milo_app/static/movie_data/Autumn in New York_image.jpg
 milo_app/static/movie_data/Autumn in New York_poster.jpg
 milo_app/static/movie_data/Avalon_poster.jpg
+milo_app/static/movie_data/Avatar_image.jpg
+milo_app/static/movie_data/Avatar_poster.jpg
 milo_app/static/movie_data/Avenging Angelo - Vendicando Angelo_image.jpg
 milo_app/static/movie_data/Avenging Angelo - Vendicando Angelo_poster.jpg
 milo_app/static/movie_data/Avik e Albertine_image.jpg
@@ -5714,6 +5717,8 @@ milo_app/static/movie_data/Citty citty bang bang_poster.jpg
 milo_app/static/movie_data/Città amara_poster.jpg
 milo_app/static/movie_data/City Hall_image.jpg
 milo_app/static/movie_data/City Hall_poster.jpg
+milo_app/static/movie_data/City of God_image.jpg
+milo_app/static/movie_data/City of God_poster.jpg
 milo_app/static/movie_data/Class of Nuke 'Em High_poster.jpg
 milo_app/static/movie_data/Claudine_image.jpg
 milo_app/static/movie_data/Claudine_poster.jpg
@@ -6279,6 +6284,8 @@ milo_app/static/movie_data/Dracula's legacy - Il fascino del male_image.jpg
 milo_app/static/movie_data/Dracula's legacy - Il fascino del male_poster.jpg
 milo_app/static/movie_data/Dragon Fighter_image.jpg
 milo_app/static/movie_data/Dragon Fighter_poster.jpg
+milo_app/static/movie_data/Dragon Trainer_image.jpg
+milo_app/static/movie_data/Dragon Trainer_poster.jpg
 milo_app/static/movie_data/Dragon: la storia di Bruce Lee_poster.jpg
 milo_app/static/movie_data/Dragonheart 2 - Una nuova avventura_poster.jpg
 milo_app/static/movie_data/Dragonheart_image.jpg
@@ -7622,6 +7629,7 @@ milo_app/static/movie_data/Il cacciatore di indiani_image.jpg
 milo_app/static/movie_data/Il cacciatore di indiani_poster.jpg
 milo_app/static/movie_data/Il cacciatore_image.jpg
 milo_app/static/movie_data/Il cacciatore_poster.jpg
+milo_app/static/movie_data/Il caimano_poster.jpg
 milo_app/static/movie_data/Il campo di cipolle_poster.jpg
 milo_app/static/movie_data/Il campo_image.jpg
 milo_app/static/movie_data/Il campo_poster.jpg
@@ -7718,6 +7726,8 @@ milo_app/static/movie_data/Il diavolo in blu_poster.jpg
 milo_app/static/movie_data/Il dilemma_image.jpg
 milo_app/static/movie_data/Il dilemma_poster.jpg
 milo_app/static/movie_data/Il diritto d'uccidere_poster.jpg
+milo_app/static/movie_data/Il discorso del re_image.jpg
+milo_app/static/movie_data/Il discorso del re_poster.jpg
 milo_app/static/movie_data/Il distintivo di vetro_poster.jpg
 milo_app/static/movie_data/Il distinto gentiluomo_poster.jpg
 milo_app/static/movie_data/Il dittatore del Parador in arte Jack_image.jpg
@@ -8247,6 +8257,8 @@ milo_app/static/movie_data/In the Woods_poster.jpg
 milo_app/static/movie_data/In the soup - un mare di guai_poster.jpg
 milo_app/static/movie_data/In viaggio verso Bountiful_poster.jpg
 milo_app/static/movie_data/Incantesimo_poster.jpg
+milo_app/static/movie_data/Inception_image.jpg
+milo_app/static/movie_data/Inception_poster.jpg
 milo_app/static/movie_data/Incident at Loch Ness_poster.jpg
 milo_app/static/movie_data/Incognito_poster.jpg
 milo_app/static/movie_data/Incontri ravvicinati del terzo tipo_image.jpg
@@ -8574,6 +8586,8 @@ milo_app/static/movie_data/Kuch Kuch Hota Hai_poster.jpg
 milo_app/static/movie_data/Kull - Il conquistatore_image.jpg
 milo_app/static/movie_data/Kull - Il conquistatore_poster.jpg
 milo_app/static/movie_data/Kundun_poster.jpg
+milo_app/static/movie_data/Kung Fu Panda_image.jpg
+milo_app/static/movie_data/Kung Fu Panda_poster.jpg
 milo_app/static/movie_data/Kung Fusion_image.jpg
 milo_app/static/movie_data/Kung Fusion_poster.jpg
 milo_app/static/movie_data/Kung Pow_image.jpg
@@ -8700,6 +8714,7 @@ milo_app/static/movie_data/L'importanza di chiamarsi Ernest_poster.jpg
 milo_app/static/movie_data/L'incantesimo del lago_poster.jpg
 milo_app/static/movie_data/L'incarico_image.jpg
 milo_app/static/movie_data/L'incarico_poster.jpg
+milo_app/static/movie_data/L'incredibile Hulk_image.jpg
 milo_app/static/movie_data/L'incredibile Hulk_poster.jpg
 milo_app/static/movie_data/L'incredibile avventura di Mr. Holland_image.jpg
 milo_app/static/movie_data/L'incredibile avventura di Mr. Holland_poster.jpg
@@ -9605,6 +9620,8 @@ milo_app/static/movie_data/Lettera d'amore_image.jpg
 milo_app/static/movie_data/Lettera d'amore_poster.jpg
 milo_app/static/movie_data/Lettere d'amore_image.jpg
 milo_app/static/movie_data/Lettere d'amore_poster.jpg
+milo_app/static/movie_data/Lettere da Iwo Jima_image.jpg
+milo_app/static/movie_data/Lettere da Iwo Jima_poster.jpg
 milo_app/static/movie_data/Leviathan_poster.jpg
 milo_app/static/movie_data/Levity_image.jpg
 milo_app/static/movie_data/Levity_poster.jpg
@@ -10735,6 +10752,12 @@ milo_app/static/movie_data/Piramide di paura_image.jpg
 milo_app/static/movie_data/Piramide di paura_poster.jpg
 milo_app/static/movie_data/Piranha_image.jpg
 milo_app/static/movie_data/Piranha_poster.jpg
+milo_app/static/movie_data/Pirati dei Caraibi - Ai confini del mondo_image.jpg
+milo_app/static/movie_data/Pirati dei Caraibi - Ai confini del mondo_poster.jpg
+milo_app/static/movie_data/Pirati dei Caraibi - La maledizione del forziere fantasma_image.jpg
+milo_app/static/movie_data/Pirati dei Caraibi - La maledizione del forziere fantasma_poster.jpg
+milo_app/static/movie_data/Pirati dei Caraibi: Oltre i confini del mare_image.jpg
+milo_app/static/movie_data/Pirati dei Caraibi: Oltre i confini del mare_poster.jpg
 milo_app/static/movie_data/Pistaaa... arriva il gatto delle nevi_poster.jpg
 milo_app/static/movie_data/Pistole sporche_poster.jpg
 milo_app/static/movie_data/Pit Fighter_image.jpg
@@ -11053,6 +11076,8 @@ milo_app/static/movie_data/Rat Pack - Da Hollywood a Washington_image.jpg
 milo_app/static/movie_data/Rat Pack - Da Hollywood a Washington_poster.jpg
 milo_app/static/movie_data/Rat Race_image.jpg
 milo_app/static/movie_data/Rat Race_poster.jpg
+milo_app/static/movie_data/Ratatouille_image.jpg
+milo_app/static/movie_data/Ratatouille_poster.jpg
 milo_app/static/movie_data/Rated X_image.jpg
 milo_app/static/movie_data/Rated X_poster.jpg
 milo_app/static/movie_data/Razor Blade Smile_poster.jpg
@@ -11136,6 +11161,8 @@ milo_app/static/movie_data/Ringu_poster.jpg
 milo_app/static/movie_data/Rio Bravo_poster.jpg
 milo_app/static/movie_data/Rio Lobo_image.jpg
 milo_app/static/movie_data/Rio Lobo_poster.jpg
+milo_app/static/movie_data/Rio_image.jpg
+milo_app/static/movie_data/Rio_poster.jpg
 milo_app/static/movie_data/Ripensando a quella notte_poster.jpg
 milo_app/static/movie_data/Riposseduta_image.jpg
 milo_app/static/movie_data/Riposseduta_poster.jpg
@@ -11609,6 +11636,8 @@ milo_app/static/movie_data/Showtime_poster.jpg
 milo_app/static/movie_data/Shredder_poster.jpg
 milo_app/static/movie_data/Shrek 2_image.jpg
 milo_app/static/movie_data/Shrek 2_poster.jpg
+milo_app/static/movie_data/Shutter Island_image.jpg
+milo_app/static/movie_data/Shutter Island_poster.jpg
 milo_app/static/movie_data/Si gira a Manhattan_image.jpg
 milo_app/static/movie_data/Si gira a Manhattan_poster.jpg
 milo_app/static/movie_data/Si riparla dell'uomo ombra_poster.jpg
@@ -11995,6 +12024,8 @@ milo_app/static/movie_data/Sua maestà viene da Las Vegas_image.jpg
 milo_app/static/movie_data/Sua maestà viene da Las Vegas_poster.jpg
 milo_app/static/movie_data/Submerged_poster.jpg
 milo_app/static/movie_data/Subway_poster.jpg
+milo_app/static/movie_data/Sucker Punch_image.jpg
+milo_app/static/movie_data/Sucker Punch_poster.jpg
 milo_app/static/movie_data/Sugarland Express_poster.jpg
 milo_app/static/movie_data/Suicide Kings_image.jpg
 milo_app/static/movie_data/Suicide Kings_poster.jpg
@@ -12257,6 +12288,8 @@ milo_app/static/movie_data/The Bunker_image.jpg
 milo_app/static/movie_data/The Bunker_poster.jpg
 milo_app/static/movie_data/The Business of Strangers_image.jpg
 milo_app/static/movie_data/The Business of Strangers_poster.jpg
+milo_app/static/movie_data/The Butterfly Effect_image.jpg
+milo_app/static/movie_data/The Butterfly Effect_poster.jpg
 milo_app/static/movie_data/The Center of the World_poster.jpg
 milo_app/static/movie_data/The Cheetah Girls_poster.jpg
 milo_app/static/movie_data/The Cherokee Kid_poster.jpg
@@ -12445,6 +12478,8 @@ milo_app/static/movie_data/The Meteor Man_image.jpg
 milo_app/static/movie_data/The Meteor Man_poster.jpg
 milo_app/static/movie_data/The Mexican_image.jpg
 milo_app/static/movie_data/The Mexican_poster.jpg
+milo_app/static/movie_data/The Millionaire_image.jpg
+milo_app/static/movie_data/The Millionaire_poster.jpg
 milo_app/static/movie_data/The Minus Man_image.jpg
 milo_app/static/movie_data/The Minus Man_poster.jpg
 milo_app/static/movie_data/The Missing_image.jpg
@@ -12535,6 +12570,8 @@ milo_app/static/movie_data/The Smashing Machine_poster.jpg
 milo_app/static/movie_data/The Snapper_image.jpg
 milo_app/static/movie_data/The Snapper_poster.jpg
 milo_app/static/movie_data/The Snow Walker_poster.jpg
+milo_app/static/movie_data/The Social Network_image.jpg
+milo_app/static/movie_data/The Social Network_poster.jpg
 milo_app/static/movie_data/The Source_poster.jpg
 milo_app/static/movie_data/The Specials_image.jpg
 milo_app/static/movie_data/The Specials_poster.jpg
@@ -12760,6 +12797,8 @@ milo_app/static/movie_data/Toy story - Il mondo dei giocattoli_image.jpg
 milo_app/static/movie_data/Toy story - Il mondo dei giocattoli_poster.jpg
 milo_app/static/movie_data/Toy story 2 - Woody e Buzz alla riscossa_image.jpg
 milo_app/static/movie_data/Toy story 2 - Woody e Buzz alla riscossa_poster.jpg
+milo_app/static/movie_data/Toy story 3 - La grande fuga_image.jpg
+milo_app/static/movie_data/Toy story 3 - La grande fuga_poster.jpg
 milo_app/static/movie_data/Toys - giocattoli_image.jpg
 milo_app/static/movie_data/Toys - giocattoli_poster.jpg
 milo_app/static/movie_data/Tra cielo e terra_poster.jpg
@@ -12818,6 +12857,8 @@ milo_app/static/movie_data/Trixie_poster.jpg
 milo_app/static/movie_data/Troma's War_poster.jpg
 milo_app/static/movie_data/Tron_image.jpg
 milo_app/static/movie_data/Tron_poster.jpg
+milo_app/static/movie_data/Tropa de Elite_image.jpg
+milo_app/static/movie_data/Tropa de Elite_poster.jpg
 milo_app/static/movie_data/Troy_image.jpg
 milo_app/static/movie_data/Troy_poster.jpg
 milo_app/static/movie_data/True Lies_image.jpg
