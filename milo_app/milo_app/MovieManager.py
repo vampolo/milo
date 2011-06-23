@@ -16,7 +16,7 @@ class MovieManager(object):
 		whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/add'
 			#Using email to add the new user
 		print 'title is', title, repr(title)
-		data = urllib.urlencode(dict(name=title.encode('utf-8')))
+		data = urllib.urlencode(dict(name=title))
 		req = urllib2.Request(whisperer_url, data)
 		while True:
 				try:
@@ -43,6 +43,7 @@ class MovieManager(object):
 			trailer = None
 		if not title:
 			title = name
+		title = title.encode('utf-8')
 		filename=title.replace('/','-')
 		if image is not None:
 			fi = open(os.path.join(basepath, filename+'_image.jpg'), 'w')
@@ -51,21 +52,26 @@ class MovieManager(object):
 			fp = open(os.path.join(basepath, filename+'_poster.jpg'), 'w')
 			fp.write(urllib.urlopen(poster).read())
 		if not year:
-			year = 1
+			year = 1980
 		if len(Movie.objects(title=title, date=datetime.datetime(year=int(year), month=1, day=1))) == 0:			
 			#create a Whisperer Item
 			i = 0
 			while True:
 				response = self._whisperer_add_item(title)
 				if response.get('message') == 'Item already exists, please insert another':
-					title = name + '_'*i
+					title = name + u'_'*i
 					i = i + 1
 				else:
 					break
+			
+			if not description:
+				description = u''
+			else:
+				description = description.encode('utf-8')		
 				
 			movie = Movie(title=title, whisperer_id=response['id'],date=datetime.datetime(year=int(year), month=1, day=1), description=description, image=filename+'_image.jpg', poster=filename+'_poster.jpg', trailer=trailer, genre=genre)
 			print 'saving movie'
-			print movie.whisperer_id
+			print 'title: %s, whisperer_id: %s filename: %s, genre: %s' % (title, response['id'], filename, genre)
 			movie.save()
 
 			#Adding metadata
@@ -89,7 +95,7 @@ class MovieManager(object):
 			#GENRE
 			for item in genre:
 				whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/'+str(movie.whisperer_id)+'/addMetadata'
-				data = urllib.urlencode({'name':item,'type':'genre','lang':'eng'})          
+				data = urllib.urlencode({'name':item.encode("utf-8"),'type':'genre','lang':'eng'})          
 				req = urllib2.Request(whisperer_url, data)
 				while True:
 					try:
@@ -121,8 +127,9 @@ class MovieManager(object):
 			
 	def import_movies_from_file(self, filename='/tmp/movie_titles.txt'):
 		f = open(filename)
-		Movie.drop_collection()
-		for movie in f.readlines()[6360:]:
+		self.add_movie(name='Bringing Out the Dead')
+		return 
+		for movie in f.readlines():
 			print 'adding '+movie
 			self.add_movie(name=movie)
 	
