@@ -16,7 +16,7 @@ class MovieManager(object):
 		whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/add'
 			#Using email to add the new user
 		print 'title is', title, repr(title)
-		data = urllib.urlencode(dict(name=title))
+		data = urllib.urlencode(dict(name=title.encode('utf-8')))
 		req = urllib2.Request(whisperer_url, data)
 		while True:
 				try:
@@ -43,7 +43,7 @@ class MovieManager(object):
 			trailer = None
 		if not title:
 			title = name
-		title = title.encode('utf-8')
+		title = unicode(title)
 		filename=title.replace('/','-')
 		if image is not None:
 			fi = open(os.path.join(basepath, filename+'_image.jpg'), 'w')
@@ -71,7 +71,7 @@ class MovieManager(object):
 				
 			movie = Movie(title=title, whisperer_id=response['id'],date=datetime.datetime(year=int(year), month=1, day=1), description=description, image=filename+'_image.jpg', poster=filename+'_poster.jpg', trailer=trailer, genre=genre)
 			print 'saving movie'
-			print 'title: %s, whisperer_id: %s filename: %s, genre: %s' % (title, response['id'], filename, genre)
+			print u'title: %s, whisperer_id: %s filename: %s, genre: %s' % (title, response['id'], filename, genre)
 			movie.save()
 
 			#Adding metadata
@@ -127,8 +127,6 @@ class MovieManager(object):
 			
 	def import_movies_from_file(self, filename='/tmp/movie_titles.txt'):
 		f = open(filename)
-		self.add_movie(name='Bringing Out the Dead')
-		return 
 		for movie in f.readlines():
 			print 'adding '+movie
 			self.add_movie(name=movie)
