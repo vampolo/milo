@@ -31,7 +31,6 @@ from MovieManager import url_fix
 @view_config(name='recMovie5', context='milo_app:resources.Step5',
 				 renderer='templates/step5.pt')       
 def survey(request):
-	
 	#Some declarations
 	rating_finished = None	
 	session = request.session
@@ -288,7 +287,6 @@ def survey(request):
 			#Adjustments necessary because of the javascript "hide"
 			try:
 				request.params['rating1']
-				print request.params['rating1']
 				rating1 = SurveyAnswer(user = user, key='rating1 '+recommended_movies[index_recMovie].title, value=request.params['rating1'])
 				sur.answers.append(rating1)
 			except:

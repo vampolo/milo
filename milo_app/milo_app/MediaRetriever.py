@@ -10,7 +10,11 @@ class MediaRetriever(object):
 	def __create_request(self, url, params=None):
 		headers = { 'User-Agent' : self.user_agent }
 		req = urllib2.Request(url, params, headers)
-		return urllib2.urlopen(req)
+		while True:
+			try:
+				return urllib2.urlopen(req)
+			except urllib2.HTTPError:
+				pass
 		
 	def get_image(self):
 		movie = self.movie_title

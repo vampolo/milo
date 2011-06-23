@@ -11,6 +11,23 @@ from mongoengine import connect
 basepath = os.path.join(os.path.split(os.path.abspath( __file__ ))[0], 'static', 'movie_data')
 
 class MovieManager(object):
+	def _whisperer_add_item(self, title):
+		"""Create a whisperer item"""
+		whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/add'
+			#Using email to add the new user
+		print 'title is', title, repr(title)
+		data = urllib.urlencode(dict(name=title.encode('utf-8')))
+		req = urllib2.Request(whisperer_url, data)
+		while True:
+				try:
+					response = simplejson.load(urllib2.urlopen(req))
+					break
+				except urllib2.HTTPError:
+					pass
+				except:
+					break
+		return response
+		
 	def add_movie(self, name=None):
 		m = MediaRetriever(name)
 		image = m.get_image().get('image')
@@ -20,22 +37,33 @@ class MovieManager(object):
 		year = d.get('year')
 		title = d.get('title')
 		genre = d.get('genre')
-		trailer = m.get_trailer().get('trailer')
+		try:
+			trailer = m.get_trailer().get('trailer')
+		except:
+			trailer = None
+		if not title:
+			title = name
+		filename=title.replace('/','-')
 		if image is not None:
-			fi = open(os.path.join(basepath, title+'_image.jpg'), 'w')
+			fi = open(os.path.join(basepath, filename+'_image.jpg'), 'w')
 			fi.write(urllib.urlopen(image).read())
 		if poster is not None:
-			fp = open(os.path.join(basepath, title+'_poster.jpg'), 'w')
+			fp = open(os.path.join(basepath, filename+'_poster.jpg'), 'w')
 			fp.write(urllib.urlopen(poster).read())
+		if not year:
+			year = 1
 		if len(Movie.objects(title=title, date=datetime.datetime(year=int(year), month=1, day=1))) == 0:			
 			#create a Whisperer Item
-			whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/add'
-			#Using email to add the new user
-			data = urllib.urlencode({'name':title})
-			req = urllib2.Request(whisperer_url, data)
-			response = simplejson.load(urllib2.urlopen(req))
-			#Get the item id inside whisperer and store in Milo
-			movie = Movie(title=title, whisperer_id=response['id'],date=datetime.datetime(year=int(year), month=1, day=1), description=description, image=title+'_image.jpg', poster=title+'_poster.jpg', trailer=trailer, genre=genre)
+			i = 0
+			while True:
+				response = self._whisperer_add_item(title)
+				if response.get('message') == 'Item already exists, please insert another':
+					title = name + '_'*i
+					i = i + 1
+				else:
+					break
+				
+			movie = Movie(title=title, whisperer_id=response['id'],date=datetime.datetime(year=int(year), month=1, day=1), description=description, image=filename+'_image.jpg', poster=filename+'_poster.jpg', trailer=trailer, genre=genre)
 			print 'saving movie'
 			print movie.whisperer_id
 			movie.save()
@@ -48,7 +76,14 @@ class MovieManager(object):
 			whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/'+str(movie.whisperer_id)+'/addMetadata'
 			data = urllib.urlencode({'name':year,'type':'year','lang':'eng'})          
 			req = urllib2.Request(whisperer_url, data)
-			response = simplejson.load(urllib2.urlopen(req))
+			while True:
+					try:
+						response = simplejson.load(urllib2.urlopen(req))
+						break
+					except urllib2.HTTPError:
+						pass
+					except:
+						break
 			print response
 			
 			#GENRE
@@ -56,7 +91,14 @@ class MovieManager(object):
 				whisperer_url = 'http://whisperer.vincenzo-ampolo.net/item/'+str(movie.whisperer_id)+'/addMetadata'
 				data = urllib.urlencode({'name':item,'type':'genre','lang':'eng'})          
 				req = urllib2.Request(whisperer_url, data)
-				response = simplejson.load(urllib2.urlopen(req))
+				while True:
+					try:
+						response = simplejson.load(urllib2.urlopen(req))
+						break
+					except urllib2.HTTPError:
+						pass
+					except:
+						break
 				print response	
 			
 			#ACTOR
@@ -69,16 +111,20 @@ class MovieManager(object):
 	def delete_movie(self, name=None):
 		m = MediaRetriever(name)
 		d = m.get_info()
-		print d.get('title')
-		print Movie.objects(title=d.get('title'))
 		for movie in Movie.objects(title=d.get('title')):
-			print movie.genre, movie.title
 			movie.save()
 			for f_ile in [movie.poster, movie.image]:
 				path = os.path.join(basepath, f_ile)
 				if os.path.exists(path):
 					os.remove(path)
 			movie.delete()
+			
+	def import_movies_from_file(self, filename='/tmp/movie_titles.txt'):
+		f = open(filename)
+		Movie.drop_collection()
+		for movie in f.readlines()[6360:]:
+			print 'adding '+movie
+			self.add_movie(name=movie)
 	
 def url_fix(s, charset='utf-8'):
     if isinstance(s, unicode):
@@ -117,4 +163,13 @@ if __name__ == '__main__':
 				print 'adding '+movie
 				self.mm.add_movie(name=movie)
 				
-	unittest.main()
+	#unittest.main()
+	
+	#postgres to remove all the items and restart:
+	#truncate table foo restart identity;
+	#so it becomes:
+	#truncate table public.item restart identity cascade;
+	connect('milo')
+	mm = MovieManager()
+	mm.import_movies_from_file('/home/goshawk/whisperer/data/movie_titles.txt')
+	
