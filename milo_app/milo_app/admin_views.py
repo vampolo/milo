@@ -1,5 +1,5 @@
 from views import *
-
+import datetime
 import urllib, urllib2, simplejson, smtplib
 
 @view_config(name='add_algorithm', context='milo_app:resources.Root',
@@ -40,7 +40,6 @@ def admin(request):
 						response = simplejson.load(urllib2.urlopen(req))
 						#Get the user id inside whisperer and store in Milo
 						user_added = User(email = item, password='defaultsurveykey',whisperer_id=response['id'])
-						print user_added.whisperer_id
 						user_added.save()
 					else:
 						user_added = User.objects.filter(email=item).first()
@@ -73,9 +72,8 @@ def admin(request):
 					server.sendmail(FROM, TO, message)
 					server.quit()
 					
-					
-										
 					survey_added.users.append(user_added)
+					survey_added.last_updated_at = datetime.datetime.now()
 					survey_added.save()
 	
 	#To vie wthe survey's table
@@ -163,6 +161,7 @@ def survey_users(request):
 					server.sendmail(FROM, TO, message)
 					server.quit()
 					current_survey.users.append(user_added)
+					current_survey.last_updated_at = datetime.datetime.now()
 					current_survey.save()
 					return HTTPFound(location=request.resource_url(request.root, 'view_users', query=dict(survey=survey_name)))
 	users = dict(users=users_objects_list[:])

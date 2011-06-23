@@ -60,6 +60,7 @@ class Survey(Document):
 	typeRatings = IntField()
 	answers = ListField(EmbeddedDocumentField(SurveyAnswer))
 	users = ListField(ReferenceField(User))
+	last_updated_at = DateTimeField()
 	
 	def __getitem__(self,key):
 		if key == "Movie":

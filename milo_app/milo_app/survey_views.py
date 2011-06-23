@@ -1,5 +1,7 @@
 from views import *
+from time import *
 import urllib
+import datetime
 import urllib2
 import urlparse
 import simplejson
@@ -105,45 +107,65 @@ def survey(request):
 							if item_user.email == session['user']:
 								sur = Survey.objects.filter(name=item.name).first()
 								if sur is not None:
-									session['survey']=sur.name
-									#Set the number of ratings to be executed
-									session['max_ratings'] = (int(sur.number_of_ratings))
-									session['ratings_executed'] = 0
-									#Get if it is 5 stars or binary
-									session['rating_type'] = sur.typeRatings
-									#Control until when the user finished the survey
-									try:
-										session['concluded_until_step']
-									except:
-										#If the user goes to the first step of the survey, 
-										#is better to clean all the registers of responses given by the user
-										sur = Survey.objects.filter(name=session['survey']).first()
-										for item in sur.answers:
-											user = User.objects.filter(email=session['user']).first()
-											if item.user == user:
-												sur.answers.remove(item)
-												sur.save()
-										return HTTPFound(location = request.resource_url(request.root, 'Survey', '1'))
-									if session ['concluded_until_step'] is not None:
-										step_to_go = int(session['concluded_until_step'])+1
-										if step_to_go == 5:
-											return HTTPFound(location = request.resource_url(request.root, 'Survey', str(step_to_go), 'recMovie1'))
-#FIXME
-										#elif step_to_go == 6:
-										#	return HTTPFound(location = request.resource_url(request.root, 'Survey', 'finish')
-										#else:
-										return HTTPFound(location = request.resource_url(request.root, 'Survey', str(step_to_go)))
-									#New user on the session
-									else:
-										#Again, it is better to clean all the registers of responses given by the user
-										sur = Survey.objects.filter(name=session['survey']).first()
-										for item in sur.answers:
-											user = User.objects.filter(email=session['user']).first()
-											if item.user == user:
-#CHECK IF IT IS REALLY REMOVING...
-												sur.answers.remove(item)
-												sur.save()
-										return HTTPFound(location = request.resource_url(request.root, 'Survey', '1'))
+									
+									#Call whisperer service that returns last model date
+									whisperer_url = 'http://whisperer.vincenzo-ampolo.net/user/'+sur.algorithm+'/alg_date'
+									print sur.algorithm
+									print sur.timestamp
+									req = urllib2.Request(whisperer_url)
+									response = simplejson.load(urllib2.urlopen(req))
+									model_last_date = None
+									#Convert response['date'] string to datetime
+									print strftime(response['date'])
+									#" '17/06/11 03:58' "
+									print sur.last_updated_at
+									# 2011-06-23 19:38:58.920640
+									model_last_date = datetime.strptime(response['date'],"%d/%m/%y %I:%M:%S%p")
+									print model_last_date
+									if model_last_date is not None:
+										if model_last_date < sur.last_updated_at:
+											message = 'Survey not yet activated. Please, try again later.'
+									
+									if message == '':
+										session['survey']=sur.name
+										#Set the number of ratings to be executed
+										session['max_ratings'] = (int(sur.number_of_ratings))
+										session['ratings_executed'] = 0
+										#Get if it is 5 stars or binary
+										session['rating_type'] = sur.typeRatings
+										#Control until when the user finished the survey
+										try:
+											session['concluded_until_step']
+										except:
+											#If the user goes to the first step of the survey, 
+											#is better to clean all the registers of responses given by the user
+											sur = Survey.objects.filter(name=session['survey']).first()
+											for item in sur.answers:
+												user = User.objects.filter(email=session['user']).first()
+												if item.user == user:
+													sur.answers.remove(item)
+													sur.save()
+											return HTTPFound(location = request.resource_url(request.root, 'Survey', '1'))
+										if session ['concluded_until_step'] is not None:
+											step_to_go = int(session['concluded_until_step'])+1
+											if step_to_go == 5:
+												return HTTPFound(location = request.resource_url(request.root, 'Survey', str(step_to_go), 'recMovie1'))
+	#FIXME
+											#elif step_to_go == 6:
+											#	return HTTPFound(location = request.resource_url(request.root, 'Survey', 'finish')
+											#else:
+											return HTTPFound(location = request.resource_url(request.root, 'Survey', str(step_to_go)))
+										#New user on the session
+										else:
+											#Again, it is better to clean all the registers of responses given by the user
+											sur = Survey.objects.filter(name=session['survey']).first()
+											for item in sur.answers:
+												user = User.objects.filter(email=session['user']).first()
+												if item.user == user:
+	#CHECK IF IT IS REALLY REMOVING...
+													sur.answers.remove(item)
+													sur.save()
+											return HTTPFound(location = request.resource_url(request.root, 'Survey', '1'))
 		if message == '':
 			message = 'User not registered in any survey or invalid password'
 	
