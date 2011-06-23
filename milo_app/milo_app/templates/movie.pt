@@ -19,7 +19,7 @@
               </div><!-- post-thumbnail-side -->
               <div class="related-content">
                 <h3><a tal:attributes="href request.resource_url(request.root, 'Movie','details', movie.title); title movie.title" rel="bookmark" title="Movie-Title#1">${movie.title}</a></h3>
-                <p>${movie.description[:70]}&hellip;</p>
+                <p tal:condition="movie.description">${movie.description[:70]}&hellip;</p>
               </div><!-- related-content -->            
             </div><!-- related-item -->
 			
