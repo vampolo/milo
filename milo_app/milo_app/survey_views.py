@@ -1,5 +1,5 @@
 from views import *
-from time import *
+import time, datetime
 import urllib
 import datetime
 import urllib2
@@ -107,24 +107,17 @@ def survey(request):
 							if item_user.email == session['user']:
 								sur = Survey.objects.filter(name=item.name).first()
 								if sur is not None:
-									
+									#Check if new model has been created or not!
 									#Call whisperer service that returns last model date
-									whisperer_url = 'http://whisperer.vincenzo-ampolo.net/user/'+sur.algorithm+'/alg_date'
-									print sur.algorithm
-									print sur.timestamp
+									whisperer_url = 'http://whisperer.vincenzo-ampolo.net/'+sur.algorithm+'/alg_date'
 									req = urllib2.Request(whisperer_url)
 									response = simplejson.load(urllib2.urlopen(req))
-									model_last_date = None
-									#Convert response['date'] string to datetime
-									print strftime(response['date'])
-									#" '17/06/11 03:58' "
-									print sur.last_updated_at
-									# 2011-06-23 19:38:58.920640
-									model_last_date = datetime.strptime(response['date'],"%d/%m/%y %I:%M:%S%p")
-									print model_last_date
-									if model_last_date is not None:
-										if model_last_date < sur.last_updated_at:
-											message = 'Survey not yet activated. Please, try again later.'
+									if response['date'] is not 'null' and response['date'] is not None:
+										#Convert response['date'] string to datetime
+										model_last_date = datetime.datetime.fromtimestamp(time.mktime(time.strptime(response['date'], "%d/%m/%y %H:%M"))) 
+										if model_last_date is not None:
+											if model_last_date < sur.last_updated_at:
+												message = 'Survey not yet activated. Please, try again later.'
 									
 									if message == '':
 										session['survey']=sur.name
