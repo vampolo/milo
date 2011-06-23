@@ -63,7 +63,7 @@
               </div><!-- film-cover-container -->
 			  
 			  <div id="movie-description-text" class="div-movie-details">
-			  <p tal:content="movie.description"></p>
+			  <p tal:condition="movie.description">${movie.description}</p>
               </div><!-- movie-description-text -->
               <div id='info-film'>
 					<p class='infoandlike-film'>Genre: <br/>

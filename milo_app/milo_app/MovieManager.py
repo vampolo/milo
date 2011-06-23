@@ -51,7 +51,7 @@ class MovieManager(object):
 			fp = open(os.path.join(basepath, filename+'_poster.jpg'), 'w')
 			fp.write(urllib.urlopen(poster).read())
 		if not year:
-			year = 1
+			year = 1980
 		if len(Movie.objects(title=title, date=datetime.datetime(year=int(year), month=1, day=1))) == 0:			
 			#create a Whisperer Item
 			i = 0

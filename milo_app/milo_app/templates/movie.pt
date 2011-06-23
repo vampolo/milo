@@ -19,7 +19,7 @@
               </div><!-- post-thumbnail-side -->
               <div class="related-content">
                 <h3><a tal:attributes="href request.resource_url(request.root, 'Movie','details', movie.title); title movie.title" rel="bookmark" title="Movie-Title#1">${movie.title}</a></h3>
-                <p>${movie.description[:70]}&hellip;</p>
+                <p tal:condition="movie.description">${movie.description[:70]}&hellip;</p>
               </div><!-- related-content -->            
             </div><!-- related-item -->
 			
@@ -71,7 +71,7 @@
               </div><!-- film-cover-container -->
 			  
 			  <div id="movie-description-text" class="div-movie-details">
-			  <p tal:content="movie.description"></p>
+			  <p tal:condition="movie.description">${movie.description}</p>
               </div><!-- movie-description-text -->
               
               <div id="list-main-actors" class="div-movie-details">
@@ -157,7 +157,7 @@
                 </div>
                 <div class="sidebar-item-content">
                   <h3><a tal:attributes="href request.resource_url(request.root, 'Movie','details', movie.title)" rel="bookmark" title="Movie-Title#1">${movie.title}</a></h3>
-                  <p>${movie.description[:70]}&hellip;</p>
+                  <p tal:condition="movie.description">${movie.description[:70]}&hellip;</p>
                 </div>
               </div><!-- sidebar-item -->
               		
