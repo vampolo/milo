@@ -118,7 +118,9 @@ def survey(request):
 										if model_last_date is not None:
 											if model_last_date < sur.last_updated_at:
 												message = 'Survey not yet activated. Please, try again later.'
-									
+									#Case in which the model has never been created
+									if response['date'] == 'null':
+										message = 'Survey not yet activated. Please, try again later.'
 									if message == '':
 										session['survey']=sur.name
 										#Set the number of ratings to be executed
