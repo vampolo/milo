@@ -35,7 +35,9 @@ class MovieManager(object):
 		poster = d.get('poster')
 		description = d.get('description')
 		year = d.get('year')
-		title = d.get('title')
+		#title = d.get('title')
+		"""forget about imdb.com returned name... it's fake"""
+		title = name.strip()
 		genre = d.get('genre')
 		try:
 			trailer = m.get_trailer().get('trailer')
@@ -43,8 +45,8 @@ class MovieManager(object):
 			trailer = None
 		if not title:
 			title = name
-		title = unicode(title)
-		filename=title.replace('/','-')
+		title = unicode(title.replace('/','-'))
+		filename=title
 		if image is not None:
 			fi = open(os.path.join(basepath, filename+'_image.jpg'), 'w')
 			fi.write(urllib.urlopen(image).read())
@@ -53,7 +55,7 @@ class MovieManager(object):
 			fp.write(urllib.urlopen(poster).read())
 		if not year:
 			year = 1980
-		if len(Movie.objects(title=title, date=datetime.datetime(year=int(year), month=1, day=1))) == 0:			
+		if len(Movie.objects(title=title)) == 0:			
 			#create a Whisperer Item
 			i = 0
 			while True:
@@ -67,8 +69,8 @@ class MovieManager(object):
 			if not description:
 				description = u''
 			else:
-				description = description.encode('utf-8')		
-				
+				description = unicode(description)		
+			
 			movie = Movie(title=title, whisperer_id=response['id'],date=datetime.datetime(year=int(year), month=1, day=1), description=description, image=filename+'_image.jpg', poster=filename+'_poster.jpg', trailer=trailer, genre=genre)
 			print 'saving movie'
 			print u'title: %s, whisperer_id: %s filename: %s, genre: %s' % (title, response['id'], filename, genre)
@@ -127,7 +129,10 @@ class MovieManager(object):
 			
 	def import_movies_from_file(self, filename='/tmp/movie_titles.txt'):
 		f = open(filename)
-		for movie in f.readlines():
+		#4917
+		print f.readlines()[5000:5010]
+		return
+		for i,movie in enumerate(f.readlines()):
 			print 'adding '+movie
 			self.add_movie(name=movie)
 	
