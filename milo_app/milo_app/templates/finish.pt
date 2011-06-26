@@ -39,25 +39,25 @@
 					<form id="form_finish" name="input" action="${request.resource_url(request.root, 'Survey','finish')}" method="POST" autocomplete="off">
 					
 						<div class="select info_field">
-							<label for="conclusion_place"> Where did this survey take place?</label><br/><br/>
+							<label for="place"> Where did this survey take place?</label><br/><br/>
 							<input type="radio" name="place" value="Uni" /><b>University</b><br/>
 							<input type="radio" name="place" value="Home" /><b>Home</b><br/>
 							<input type="radio" name="place" value="Public" /><b>Public place</b><br/>
 							
 							<div class="other_input info_field">
 								<input id="other_select1" type="radio" name="place" value="Other" />
-								<b>Other:</b>&nbsp;&nbsp;<input id="other_place" type="text" name="place" value=""/><br/>
+								<b>Other:</b>&nbsp;&nbsp;<input id="other_place" type="text" name="other_place" value=""/><br/>
 							</div>
 						</div><!--field-->
 						
 						<div class="select info_field">
-							<label for="conclusion_reason"> Why did you accepted to take part to the survey?</label><br/><br/>
+							<label for="reason"> Why did you accepted to take part to the survey?</label><br/><br/>
 							<input type="radio" name="reason" value="Friend" /><b>Do a friend a favor</b><br/>
 							<input type="radio" name="reason" value="Interest" /><b>Interest in movies/cinema</b><br/>
 							<input type="radio" name="reason" value="Relative" /><b>Help a relative</b><br/>
 							<div class="other_input info_field">
 								<input id="other_select2" type="radio" name="reason" value="Other" />
-								<b>Other:</b>&nbsp;&nbsp;<input id="other_reason" type="text" name="reason" value=""/><br/>
+								<b>Other:</b>&nbsp;&nbsp;<input id="other_reason" type="text" name="other_reason" value=""/><br/>
 							</div>
 						</div><!--field-->
 					
@@ -67,7 +67,7 @@
 						<div id="footer-inside">
 							<div id="footer-content">
 							
-							<a href="${request.resource_url(request.root, 'Survey','5')}"><input id="prev_button"/></a>
+							<a href="${request.resource_url(request.root, 'Survey','5','recMovie1', query=dict(previous_from=request.view_name))}"><input id="prev_button"/></a>
 							<input id="finish_button" name="form.info.submitted.6" type="submit" value=""/>
 							</div><!-- footer-content-->
 						</div><!-- footer-inside -->

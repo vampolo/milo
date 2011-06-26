@@ -344,28 +344,16 @@ def survey(request):
 	#Setting the right film index 
 	if request.view_name == 'recMovie2':
 		index_recMovie = 1
-		answers_to_be_deleted = 6
 	if request.view_name == 'recMovie3':
 		index_recMovie = 2
-		answers_to_be_deleted = 11
 	if request.view_name == 'recMovie4':
 		index_recMovie = 3
-		answers_to_be_deleted = 16
 	if request.view_name == 'recMovie5':
 		index_recMovie = 4
-		answers_to_be_deleted = 21
 	
 	#Set the number of answers to be deleted in case of pressing "Previous"
 	answers_to_be_deleted = 1
-	if previous_from == 'recMovie2':
-		answers_to_be_deleted = 6
-	if previous_from == 'recMovie3':
-		answers_to_be_deleted = 11
-	if previous_from == 'recMovie4':
-		answers_to_be_deleted = 16
-	if previous_from == 'recMovie5':
-		answers_to_be_deleted = 21
-		
+	recMovie_views.append('finish')		
 	#Control Previous behaviour in Step 5
 	if previous_from in recMovie_views[:]:
 		#Delete all previous answers given
@@ -374,6 +362,12 @@ def survey(request):
 		for row in sur.answers[:]:
 			if row.user.email == session['user']:
 				list_session_user_answers.append(row)
+		#Count the number of answers after the one with key "confuse"
+		for answer in list_session_user_answers[:]:
+			if answer.key == "confuse":
+				answers_to_be_deleted = len(list_session_user_answers) - list_session_user_answers.index(answer)
+				if previous_from == 'finish':
+					answers_to_be_deleted = len(list_session_user_answers) - list_session_user_answers.index(answer) - 1
 		for item in list_session_user_answers[-answers_to_be_deleted:]:
 			sur.answers.remove(item)
 			sur.save()	
@@ -430,13 +424,19 @@ def survey(request):
 	if 'form.info.submitted.6' in request.params:
 			user = User.objects.filter(email=session['user']).first()
 			user.survey_status = 'submitted'
-			place = SurveyAnswer(user = user, key='place', value=request.params['place'])
-			reason = SurveyAnswer(user = user, key='reason', value=request.params['reason'])
 			sur = Survey.objects.filter(name=session['survey']).first()
+			place = SurveyAnswer(user = user, key='place', value=request.params['place'])
 			sur.answers.append(place)
+			if request.params['other_place'] is not "":
+				other_place = SurveyAnswer(user = user, key='other_place', value=request.params['other_place'])
+				sur.answers.append(other_place)
+			reason = SurveyAnswer(user = user, key='reason', value=request.params['reason'])
 			sur.answers.append(reason)
+			if request.params['other_place'] is not "":
+				other_reason = SurveyAnswer(user = user, key='other_reason', value=request.params['other_reason'])
+				sur.answers.append(other_reason)
 			sur.save()
-			user.save()
+			user.save()			
 			#Clean un session
 			session['concluded_until_step'] = None
 			session['user'] = None
