@@ -98,7 +98,7 @@
 				<tbody>
 				<tal:row repeat="survey surveys.get('surveys')">
 					<tr class="highlight">
-					<td><a href="#" title="survey_name1">${survey.name}</a></td>
+					<td><a tal:attributes="href request.resource_url(context, 'view_answers', query=dict(survey=survey.name))" title="View submitted answers">${survey.name}</a></td>
 					<td>${survey.algorithm}</td>
 					<td>${survey.number_of_ratings}</td>
 					<td class="action">

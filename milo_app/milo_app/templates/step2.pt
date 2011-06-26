@@ -537,7 +537,7 @@
 						<form id="form_step2" action="${request.resource_url(request.root, 'Survey','2')}" method="POST" autocomplete="off">
 						<div id="footer-inside">
 							<div id="footer-content">
-							<a href="${request.resource_url(request.root, 'Survey','1')}" target="_new"><input id="prev_button" name="form.info.submitted" type="submit" value=""/></a>
+							<a tal:attributes="href request.resource_url(request.root, 'Survey','1', query=dict(previous_from=request.view_name))"><input id="prev_button"/></a>
 							<tal:next condition="rating_finished">
 							<input id="next_button" name="form.info.submitted.2" type="submit" value=""/>
 							</tal:next>

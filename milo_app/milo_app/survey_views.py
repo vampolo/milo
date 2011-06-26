@@ -40,6 +40,7 @@ def survey(request):
 	email = ''
 	key = ''
 	message = ''
+	
 	#Initialize rated movies
 	try:
 		session['rated_movies']
@@ -53,6 +54,10 @@ def survey(request):
 		index_recMovie
 	except:
 		index_recMovie = 0
+	try:
+		previous_from
+	except:
+		previous_from = 0
 	try:
 		recommended_movies
 	except:
@@ -103,7 +108,9 @@ def survey(request):
 					user_object_list = []
 					for item in Survey.objects.all():
 						user_object_list = item.users
-						for item_user in user_object_list:
+						for item_user in user_object_list[:]:
+							#print session['user']
+							#print item_user.email
 							if item_user.email == session['user']:
 								sur = Survey.objects.filter(name=item.name).first()
 								if sur is not None:
@@ -135,9 +142,8 @@ def survey(request):
 											#If the user goes to the first step of the survey, 
 											#is better to clean all the registers of responses given by the user
 											sur = Survey.objects.filter(name=session['survey']).first()
-											for item in sur.answers:
-												user = User.objects.filter(email=session['user']).first()
-												if item.user == user:
+											for item in sur.answers[:]:
+												if item.user.email == session['user']:
 													sur.answers.remove(item)
 													sur.save()
 											return HTTPFound(location = request.resource_url(request.root, 'Survey', '1'))
@@ -154,10 +160,8 @@ def survey(request):
 										else:
 											#Again, it is better to clean all the registers of responses given by the user
 											sur = Survey.objects.filter(name=session['survey']).first()
-											for item in sur.answers:
-												user = User.objects.filter(email=session['user']).first()
-												if item.user == user:
-	#CHECK IF IT IS REALLY REMOVING...
+											for item in sur.answers[:]:
+												if item.user.email == session['user']:
 													sur.answers.remove(item)
 													sur.save()
 											return HTTPFound(location = request.resource_url(request.root, 'Survey', '1'))
@@ -182,7 +186,19 @@ def survey(request):
 		if session['ratings_executed'] == session['max_ratings']:		
 			rating_finished=True
 			session['concluded_until_step'] = request.view_name
+	
+	previous_from = request.GET.get('previous_from')
+	
+	#Previous button in coming back to Step 1
+	if previous_from == '2':
+		#Delete all previous answers given
+		sur = Survey.objects.filter(name=session['survey']).first()
+		for item in sur.answers[:]:
+			if item.user.email == session['user']:
+					sur.answers.remove(item)
+					sur.save()
 		
+	
 	#Form submission Step 1
 	if 'form.info.submitted.1' in request.params:			
 			session['concluded_until_step'] = request.view_name
@@ -193,6 +209,13 @@ def survey(request):
 			nationality = SurveyAnswer(user = user, key='nationality', value=request.params['country'])
 			avg_movies = SurveyAnswer(user = user, key='avg_movies', value=request.params['avg_movie'])
 			sur = Survey.objects.filter(name=session['survey']).first()
+			#FILTER ANSWERS AVAILABLE NOW, IF THEY EXIST ALREADY, Delete all answers until now
+			#List of survey objects: print sur.answers
+			answers_objects_list = sur.answers
+			for item in sur.answers[:]:
+				if item.user.email == session['user']:
+					sur.answers.remove(item)
+					sur.save()
 			sur.answers.append(age)
 			sur.answers.append(gender)
 			sur.answers.append(education)
@@ -219,6 +242,25 @@ def survey(request):
 					if item == Movie.objects.filter(title=movie_title).first():
 						session['rated_movies'].append(item)			
 	
+	#Previous button in coming back to Step 2
+	if previous_from == '3':
+		print 'inside!'
+		#Delete all previous answers given
+		sur = Survey.objects.filter(name=session['survey']).first()
+		#Works just if I filter for THAT user
+		list_session_user_answers = []
+		for row in sur.answers[:]:
+			if row.user.email == session['user']:
+				list_session_user_answers.append(row)
+		for item in list_session_user_answers[-int(sur.number_of_ratings):]:
+			sur.answers.remove(item)
+			sur.save()
+		if session['rated_movies'] is not []:
+			session['rated_movies'] = []
+			session['ratings_executed'] = 0
+			rating_finished = False
+		
+	
 	#Form submission step 3
 	specific = ''
 	missing = ''
@@ -243,6 +285,20 @@ def survey(request):
 			sur.save()
 			return HTTPFound(location=request.resource_url(request.root, 'Survey','4'))
 	
+	
+	#Previous button in coming back to Step 2
+	if previous_from == '4':
+		#Delete all previous answers given
+		sur = Survey.objects.filter(name=session['survey']).first()
+		list_session_user_answers = []
+		for row in sur.answers[:]:
+			if row.user.email == session['user']:
+				list_session_user_answers.append(row)
+		for item in list_session_user_answers[-5:]:
+			sur.answers.remove(item)
+			sur.save()
+		
+	
 	#Form submission step 4 - I am not getting checklist information now because is actually "fake" questions
 	confuse = ''
 	if 'form.info.submitted.4' in request.params:
@@ -259,7 +315,7 @@ def survey(request):
 	
 	recMovie_views = ['recMovie1','recMovie2','recMovie3','recMovie4','recMovie5']
 	#Get recommendation if the user is in step 5:
-	if request.view_name in recMovie_views:
+	if request.view_name in recMovie_views[:]:
 		user = User.objects.filter(email=session['user']).first()
 		sur = Survey.objects.filter(name=session['survey']).first()
 		if user.whisperer_id is not None:
@@ -270,7 +326,7 @@ def survey(request):
 						#order dictionary by the values, getting the bigger
 						sorted_response = sorted(response.iteritems(), key=operator.itemgetter(1), reverse=True)
 						#Sorted response is a list of tuples... I want a list of the first element of the tuple
-						for movie_tuple in sorted_response:
+						for movie_tuple in sorted_response[:]:
 							rec_movie_id = movie_tuple[0]
 							#Create a list of movie objects just with the ones on Milo and not in rated_movies list
 							#recommended_movies_ids.append(rec_movie_id)
@@ -284,15 +340,44 @@ def survey(request):
 		
 	#Then i must get the ids of the movies to retrieved to the user =]! Finally, step 5 can be implemented
 	
-	#Setting the right film index	
+	
+	#Setting the right film index 
 	if request.view_name == 'recMovie2':
 		index_recMovie = 1
+		answers_to_be_deleted = 6
 	if request.view_name == 'recMovie3':
 		index_recMovie = 2
+		answers_to_be_deleted = 11
 	if request.view_name == 'recMovie4':
 		index_recMovie = 3
+		answers_to_be_deleted = 16
 	if request.view_name == 'recMovie5':
 		index_recMovie = 4
+		answers_to_be_deleted = 21
+	
+	#Set the number of answers to be deleted in case of pressing "Previous"
+	answers_to_be_deleted = 1
+	if previous_from == 'recMovie2':
+		answers_to_be_deleted = 6
+	if previous_from == 'recMovie3':
+		answers_to_be_deleted = 11
+	if previous_from == 'recMovie4':
+		answers_to_be_deleted = 16
+	if previous_from == 'recMovie5':
+		answers_to_be_deleted = 21
+		
+	#Control Previous behaviour in Step 5
+	if previous_from in recMovie_views[:]:
+		#Delete all previous answers given
+		sur = Survey.objects.filter(name=session['survey']).first()
+		list_session_user_answers = []
+		for row in sur.answers[:]:
+			if row.user.email == session['user']:
+				list_session_user_answers.append(row)
+		for item in list_session_user_answers[-answers_to_be_deleted:]:
+			sur.answers.remove(item)
+			sur.save()	
+	
 	
 	#Form submission step 5 - loop for all movie list retrieved...
 	seen = ''
@@ -372,6 +457,12 @@ def survey(request):
 	deleted_movie_index = request.GET.get('index')
 	if deleted_movie is not None and deleted_movie_index is not None:
 		del session['ratings'][int(deleted_movie_index)]
+		#erase from database the rating
+		sur = Survey.objects.filter(name=session['survey']).first()
+		for item in sur.answers[:]:
+			if item.key == deleted_movie:
+					sur.answers.remove(item)
+					sur.save()
 		for movie in Movie.objects().order_by('-date'):
 				if movie.whisperer_id is not None:
 					if deleted_movie == movie.title:
@@ -397,7 +488,7 @@ def survey(request):
 	#JUST WHEN USER CONFIRMS THE FINAL LIST
 	if 'form.info.submitted.2' in request.params:
 			index = 0
-			for movie in rated_movies:
+			for movie in rated_movies[:]:
 				user = User.objects.filter(email=session['user']).first()
 				if user.whisperer_id is not None:
 					if movie.whisperer_id is not None:
@@ -506,11 +597,11 @@ def survey(request):
 					list_title_strings = movie.title.split()
 					list_description_strings = movie.description.split()
 					list_strings_movie = []
-					for item in list_title_strings:
+					for item in list_title_strings[:]:
 						list_strings_movie.append(item)
-					for item in list_description_strings:
+					for item in list_description_strings[:]:
 						list_strings_movie.append(item)
-					for item in movie.genre:
+					for item in movie.genre[:]:
 						list_strings_movie.append(item)
 					if search_query in list_strings_movie:
 						if rated_movies is not None:
@@ -538,4 +629,4 @@ def survey(request):
 	#Get the 9 movies to be shown
 	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9])
 	
-	return dict(ratings_stars = ratings_stars, index_recMovie = index_recMovie, recommended_movies = recommended_movies, ratings = ratings,survey_n_ratings=survey_n_ratings,message = message, rated_movies = rated_movies, rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)
+	return dict(previous_from = previous_from, ratings_stars = ratings_stars, index_recMovie = index_recMovie, recommended_movies = recommended_movies, ratings = ratings,survey_n_ratings=survey_n_ratings,message = message, rated_movies = rated_movies, rating_finished = rating_finished, movies=movies, page=page, last_page=last_page)

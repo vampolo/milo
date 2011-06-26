@@ -173,7 +173,7 @@ if __name__ == '__main__':
 				print 'adding '+movie
 				self.mm.add_movie(name=movie)
 				
-	#unittest.main()
+#	unittest.main()
 	
 	#postgres to remove all the items and restart:
 	#truncate table foo restart identity;

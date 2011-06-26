@@ -100,7 +100,7 @@ def admin(request):
 	return dict(surveys=surveys, algnames=algnames, num_algs=num_algs)
 
 @view_config(name='view_users', context='milo_app:resources.Root',
-				 renderer='templates/view_users.pt')
+				 renderer='templates/view_users.pt', permission='admin')
 def survey_users(request):
 	
 	#To be implemented in the future, is a Milo feature, to navigate around the web application 
@@ -167,3 +167,14 @@ def survey_users(request):
 	users = dict(users=users_objects_list[:])
 	
 	return dict(survey_name=survey_name, users=users)
+
+@view_config(name='view_answers', context='milo_app:resources.Root',
+				 renderer='templates/view_answers.pt', permission='admin')
+def survey_answers(request):
+	
+	survey_name = request.GET.get('survey')
+	current_survey = Survey.objects.filter(name=survey_name).first()
+	answers_objects_list = current_survey.answers
+	answers = dict(answers=answers_objects_list[:])
+	
+	return dict(survey_name=survey_name, answers=answers)

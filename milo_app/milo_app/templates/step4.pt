@@ -69,7 +69,7 @@
 						<div id="footer">
 						<div id="footer-inside">
 							<div id="footer-content">
-							<a href="${request.resource_url(request.root, 'Survey','3')}"><input id="prev_button"/></a>
+							<a href="${request.resource_url(request.root, 'Survey','3', query=dict(previous_from=request.view_name))}"><input id="prev_button"/></a>
 							<input id="next_button" name="form.info.submitted.4" type="submit" value=""/>
 							</div><!-- footer-content-->
 						</div><!-- footer-inside -->
