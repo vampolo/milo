@@ -2,9 +2,8 @@
 #Login: admin 
 #Password: miloadminpassword
 
-USERS = {'admin':'admin'}
-GROUPS = {'admin':['group:admin']}
-
 def adminfinder(login, request):
-    if login in USERS:
-        return GROUPS.get(login, [])
+	if login == 'admin':
+		return ['admin']
+	else:
+		return []

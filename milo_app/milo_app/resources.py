@@ -9,7 +9,7 @@ class Root(object):
     
 #New authorization stuff 
     __acl__ = [ (Allow, Everyone, 'view'),
-                (Allow, 'group:admin', 'admin') ]
+                (Allow, 'admin', 'admin') ]
     
     def __init__(self, request):
 		self.request = request
