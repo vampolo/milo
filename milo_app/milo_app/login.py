@@ -34,7 +34,7 @@ def login(request):
         if user is not None and user.password == password:
 			headers = remember(request, login)
 			return HTTPFound(location = came_from,headers = headers)
-        message = 'Failed login'
+		message = 'Failed login'
     
     if 'form.registration.submitted' in request.params:
 		#we are in case of new user
@@ -52,7 +52,6 @@ def login(request):
 			response = simplejson.load(urllib2.urlopen(req))
 			#Get the user id inside whisperer and store in Milo
 			user = User(email=login, first_name=name, last_name=surname, password=password,whisperer_id=response['id'])
-			print user.whisperer_id
 			user.save()
 			headers = remember(request, login)
 			return HTTPFound(location = came_from, headers = headers)

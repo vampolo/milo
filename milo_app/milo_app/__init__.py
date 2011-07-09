@@ -16,7 +16,8 @@ from pyramid.authorization import ACLAuthorizationPolicy
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
-    authn_policy = AuthTktAuthenticationPolicy(secret='miloSecretMessageForAuthToken', callback=adminfinder)
+    authn_policy = AuthTktAuthenticationPolicy(secret='miloSecretMessageForAuthToken', 
+											   callback=adminfinder)
     authz_policy = ACLAuthorizationPolicy()
     my_session_factory = UnencryptedCookieSessionFactoryConfig('miloSecretMessageToSignTheCookie')
     config = Configurator(root_factory=Root, settings=settings,

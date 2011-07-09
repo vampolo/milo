@@ -20,6 +20,7 @@ import random
 @view_config(name='categories', context='milo_app:resources.Root',
 				 renderer='templates/categories.pt')                     
 def main(request):
+	print authenticated_userid(request)
 	rand = random.randint(0, Movie.objects().count()-10)
 	new_rec = None
 	slider_movies = None
