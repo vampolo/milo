@@ -119,15 +119,20 @@ def survey(request):
 									whisperer_url = 'http://whisperer.vincenzo-ampolo.net/'+sur.algorithm+'/alg_date'
 									req = urllib2.Request(whisperer_url)
 									response = simplejson.load(urllib2.urlopen(req))
-									if response['date'] is not 'null' and response['date'] is not None:
+									#Case in which the model has never been created
+									print response['date']
+									if response['date'] is None:
+										message = 'Survey not yet activated. Please, try again later.'
+									if response['date'] is not None and response['date'] is not None:
 										#Convert response['date'] string to datetime
-										model_last_date = datetime.datetime.fromtimestamp(time.mktime(time.strptime(response['date'], "%d/%m/%y %H:%M"))) 
+										model_last_date = datetime.datetime.fromtimestamp(time.mktime(time.strptime(response['date'], "%d/%m/%y %H:%M")))
 										if model_last_date is not None:
 											if model_last_date < sur.last_updated_at:
-												message = 'Survey not yet activated. Please, try again later.'
-									#Case in which the model has never been created
-									if response['date'] == 'null':
-										message = 'Survey not yet activated. Please, try again later.'
+												#This check must be made just with the non-model based ones, old version of the algorithms
+												if sur.algorithm == 'AsySVD' or sur.algorithm == 'movieAvg':
+													message = 'Survey not yet activated. Please, try again later.'
+									if sur.status == False:
+										message = 'Survey has already been closed.'
 									if message == '':
 										session['survey']=sur.name
 										#Set the number of ratings to be executed

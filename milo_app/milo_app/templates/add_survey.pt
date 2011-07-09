@@ -16,12 +16,58 @@
 		
 		<h2>Surveys management</h2>
 		<ul class="tabs">
-			<li id="tab1" class="active"><a href="#" title="Add"><span>Add survey</span></a></li>
-			<li id="tab2"><a href="#" title="View All"><span>View created surveys</span></a></li>
+			<li id="tab1" class="active"><a href="#" title="View All"><span>View created surveys</span></a></li>
+			<li id="tab2"><a href="#" title="Add"><span>Add survey</span></a></li>
 		</ul>
 		
 		<div id="tab1_content" class="tab_content">
 			
+		<div class="box">
+			<table id="surveys_table">
+				<thead>
+				<tr>
+					<th class="col1">Survey's Name</th>
+					<th class="col2">Algorithm Used</th>
+					<th class="col3">Number of Ratings</th>
+					<th class="col4">User's List</th>
+					<th class="col5">Survey Status</th>
+				</tr>
+				<thead>
+				<tbody>
+				<tal:row repeat="survey surveys.get('surveys')">
+					<tr class="highlight">
+					<td><a tal:attributes="href request.resource_url(context, 'view_answers', query=dict(survey=survey.name))" title="View submitted answers">${survey.name}</a></td>
+					<td>${survey.algorithm}</td>
+					<td>${survey.number_of_ratings}</td>
+					<td class="action">
+						<ul>
+							<li><a class="edit" tal:attributes="href request.resource_url(context, 'view_users', query=dict(survey=survey.name))" title="View included users in this survey"></a></li>
+						</ul>
+					</td>
+					<td class="action">
+						<ul>
+							<li tal:condition="survey.status"><a class="on" tal:attributes="href request.resource_url(context, 'add_survey', query=dict(action='turnoff',survey=survey.name))" title="Turn off this survey"></a></li>
+							<li tal:condition="not survey.status"><a class="off" tal:attributes="href request.resource_url(context, 'add_survey', query=dict(action='turnon',survey=survey.name))" title="Turn on this survey"></a></li>
+						</ul>
+					</td>
+					</tr>
+				</tal:row>
+				</tbody>
+			</table>
+<!--
+			<p id="pagin">
+				&laquo; <a href="#" title="">previous</a> &ndash;
+				<a href="#" title="">1</a>
+				<a href="#" title="">2</a>
+				<a href="#" title="">3</a>
+				&ndash; <a href="#" title="">next</a> &raquo;
+			</p>
+-->
+		</div>
+		
+		</div><!--tab1_content-->
+		
+		<div id="tab2_content" class="tab_content">
 		<form method="POST" autocomplete="off" action="${request.resource_url(request.root, 'add_survey')}">
 		<fieldset>
 			<label>To add a new survey, fill the information and submit:</label><br/><br/>
@@ -81,50 +127,6 @@
 			
 		</fieldset>
 		</form>
-		</div><!--tab1_content-->
-		
-		<div id="tab2_content" class="tab_content">
-		<div class="box">
-			<table id="surveys_table">
-				<thead>
-				<tr>
-					<th class="col1">Survey's Name</th>
-					<th class="col2">Algorithm Used</th>
-					<th class="col3">Number of Ratings</th>
-					<th class="col4">User's List</th>
-					<th class="col5">Delete this survey</th>
-				</tr>
-				<thead>
-				<tbody>
-				<tal:row repeat="survey surveys.get('surveys')">
-					<tr class="highlight">
-					<td><a tal:attributes="href request.resource_url(context, 'view_answers', query=dict(survey=survey.name))" title="View submitted answers">${survey.name}</a></td>
-					<td>${survey.algorithm}</td>
-					<td>${survey.number_of_ratings}</td>
-					<td class="action">
-						<ul>
-							<li><a class="edit" tal:attributes="href request.resource_url(context, 'view_users', query=dict(survey=survey.name))" title="View included users in this survey"></a></li>
-						</ul>
-					</td>
-					<td class="action">
-						<ul>
-							<li><a class="delete" tal:attributes="href request.resource_url(context, 'add_survey', query=dict(action='delete',survey=survey.name))" title="Delete this survey permanently"></a></li>
-						</ul>
-					</td>
-					</tr>
-				</tal:row>
-				</tbody>
-			</table>
-<!--
-			<p id="pagin">
-				&laquo; <a href="#" title="">previous</a> &ndash;
-				<a href="#" title="">1</a>
-				<a href="#" title="">2</a>
-				<a href="#" title="">3</a>
-				&ndash; <a href="#" title="">next</a> &raquo;
-			</p>
--->
-		</div>
 		</div><!--tab2_content-->
 	
 	</div>

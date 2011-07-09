@@ -176,6 +176,10 @@
 
 		<!--
         <li id="feed"><a href="#" title="Feed RSS">Feed</a></li>
+		
+		<tal:admin condition="admin">
+			<li id="admin"><a href="${request.resource_url(request.root, 'admin')}" title="Go to admin page"><img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/door_in.png')}">Access eManager</a></li>
+		</tal:admin>
 		-->
 		<tal:logged condition="logged">
 			<li id="signout"><a href="${request.resource_url(request.root, 'logout')}" title="Logout"><img width="20" height="20" src="${request.static_url('milo_app:static/images/icons/fatcow/32x32/door_out.png')}">Logout</a></li>

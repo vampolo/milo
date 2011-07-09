@@ -26,6 +26,7 @@ def main(request):
 	right_movies = dict(movies=Movie.objects()[rand+5:rand+10], title="More Top Movies")
 	wizard_movie = False
 	filter_by = None
+	session = request.session
 	
 	if request.GET.get('wizard_movie') == 'details':
 		wizard_movie == True
@@ -127,6 +128,15 @@ def main(request):
 	movies = dict(movies=main_movies[(page-1)*9:(page-1)*9+9], title=main_movies_title)	
 	#Movies in the slider are random for now
 	slider_movies = slider_movies if slider_movies else Movie.objects()[rand:rand+5]
+	
+	#Check if is administrator
+	#try:
+		#login
+		#if login == 'admin':
+			#admin = True
+	#except:
+		#admin = False
+	
 	return dict(filter_by=filter_by,  wizard_movie = wizard_movie, movies=movies, slider_movies=slider_movies, right_movies=right_movies, category=category, page=page, last_page=last_page, new_rec=new_rec)
 
 @view_config(name='about', context='milo_app:resources.Root',

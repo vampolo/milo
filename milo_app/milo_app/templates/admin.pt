@@ -30,7 +30,7 @@
 <div id="wrap">
 	<div id="header">
 		<h1><a class="bg" href="${request.resource_url(request.root, 'admin')}" title="Home"></a>Manager 1.0</h1>
-		<p id="status">Logged is as admin, <a href="${request.resource_url(request.root)}" title="Sign Out?">Sign Out?</a></p>
+		<p id="status">Need to create a model? Go to <a href="http://whisperer.vincenzo-ampolo.net/" title="Whisperer Page">Whisperer Page</a></p>
 		<metal:description define-slot="description">
 		<h2><span>Hello, this is the MiloAdmin</span></h2>
 		<p id="description">This is the management page of Milo web application.

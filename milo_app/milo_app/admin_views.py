@@ -14,6 +14,7 @@ def admin(request):
 	ratings=''
 	typeRatings='2'
 	set_users = ''
+	status = True
 	
 	if 'submit.survey' in request.params:
 		name = request.params['SurveyName']
@@ -74,18 +75,32 @@ def admin(request):
 					
 					survey_added.users.append(user_added)
 					survey_added.last_updated_at = datetime.datetime.now()
+					survey_added.status = status
 					survey_added.save()
 	
 	#To vie wthe survey's table
 	all_surveys = Survey.objects().order_by('name')
 	surveys = dict(surveys=all_surveys[:])
 	
-	#To delete a survey from the DB
-	survey_name = request.GET.get('survey')
-	delete = request.GET.get('action')
-	if delete == 'delete':
-		Survey.objects.filter(name=survey_name).delete()
+	##To delete a survey from the DB
+	#survey_name = request.GET.get('survey')
+	#delete = request.GET.get('action')
+	#if delete == 'delete':
+		#Survey.objects.filter(name=survey_name).delete()
 	
+	#To change survey status (default when created is "ON")
+	survey_name = request.GET.get('survey')
+	change_status = request.GET.get('action')
+	if change_status == 'turnon':
+		survey_edited = Survey.objects.filter(name=survey_name).first()
+		survey_edited.status = True
+		status = True
+		survey_edited.save()
+	if change_status == 'turnoff':
+		survey_edited = Survey.objects.filter(name=survey_name).first()
+		survey_edited.status = False
+		status = False
+		survey_edited.save()
 	
 	algnames=[]
 	num_algs=0

@@ -7,4 +7,4 @@ GROUPS = {'admin':['group:admin']}
 
 def adminfinder(login, request):
     if login in USERS:
-        return GROUPS.get(login, [])
+		return GROUPS.get(login, [])

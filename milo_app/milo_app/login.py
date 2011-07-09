@@ -24,14 +24,16 @@ def login(request):
     message = ''
     login = ''
     password = ''
+    
+    
+    
     if 'form.submitted' in request.params:
         login = request.params['login']
         password = request.params['password']
         user = User.objects.filter(email=login).first()
         if user is not None and user.password == password:
-            headers = remember(request, login)
-            return HTTPFound(location = came_from,
-                             headers = headers)
+			headers = remember(request, login)
+			return HTTPFound(location = came_from,headers = headers)
         message = 'Failed login'
     
     if 'form.registration.submitted' in request.params:

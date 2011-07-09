@@ -522,6 +522,17 @@ strong	{
 	background: url(../images/admin/icon_delete.png) no-repeat center center;
 	margin-left: 30px;
 }
+
+#content a.on, #content a.on:visited	{
+	background: url(../images/icons/fatcow/16x16/lightbulb.png) no-repeat center center;
+	margin-left: 30px;
+}
+
+#content a.off, #content a.off:visited	{
+	background: url(../images/icons/fatcow/16x16/lightbulb_off.png) no-repeat center center;
+	margin-left: 30px;
+}
+
 #content a.mark, #content a.mark:visited	{
 	background: url(../images/admin/icon_mark2.png) no-repeat center center;
 }
