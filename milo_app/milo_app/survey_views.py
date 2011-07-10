@@ -187,13 +187,14 @@ def survey(request):
 		
 	#Number di ratings as a query now
 	if request.GET.get('rating') is not None:
-		session['ratings_executed'] = session['ratings_executed'] + 1
-		if session['ratings_executed'] == session['max_ratings']:		
-			rating_finished=True
-			session['concluded_until_step'] = request.view_name
+		if request.GET.get('edit') is None:
+			session['ratings_executed'] = session['ratings_executed'] + 1
+			if session['ratings_executed'] == session['max_ratings']:		
+				rating_finished=True
+				session['concluded_until_step'] = request.view_name
 	
 	previous_from = request.GET.get('previous_from')
-	
+		
 	#Previous button in coming back to Step 1
 	if previous_from == '2':
 		#Delete all previous answers given
@@ -230,22 +231,35 @@ def survey(request):
 			return HTTPFound(location=request.resource_url(request.root, 'Survey','2'))
 	
 	#Rating submission in step 2
-	
+	movie_edited_index = 0
 	movie_title = request.GET.get('movie_title')
 	rating = request.GET.get('rating')
 	if movie_title is not None:
+		user = User.objects.filter(email=session['user']).first()
+		sur = Survey.objects.filter(name=session['survey']).first()
+		if request.GET.get('edit') is None:
 			#Here we would accept just if the movie hasnt been rated
-			user = User.objects.filter(email=session['user']).first()
 			movie_rated = SurveyAnswer(user = user, key=movie_title, value=rating)
-			sur = Survey.objects.filter(name=session['survey']).first()
 			sur.answers.append(movie_rated)
-			session['ratings'].append(rating)
-			sur.save()			
-			#APPEND THE RATED MOVIE TO THE RATED session LIST
-			#Because of the limited size of the session, maybe it's better to retrieve the answers
-			for item in Movie.objects.all():
-					if item == Movie.objects.filter(title=movie_title).first():
-						session['rated_movies'].append(item)			
+		#Edit a movie rating
+		if request.GET.get('edit') is not None:
+			movie_edited_index = int(request.GET.get('edit'))
+			rating_finished=True
+			session['ratings'].pop(movie_edited_index)
+			session['rated_movies'].pop(movie_edited_index)
+			for item in sur.answers[:]:
+				if item.user.email == session['user']:
+					if item.key == movie_title:
+						item.value = rating
+		session['ratings'].append(rating)
+		sur.save()			
+		#APPEND THE RATED MOVIE TO THE RATED session LIST
+		#Because of the limited size of the session, maybe it's better to retrieve the answers
+		for item in Movie.objects.all():
+				if item == Movie.objects.filter(title=movie_title).first():
+					session['rated_movies'].append(item)
+	
+		
 	
 	#Previous button in coming back to Step 2
 	if previous_from == '3':
