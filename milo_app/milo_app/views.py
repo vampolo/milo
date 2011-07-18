@@ -58,12 +58,15 @@ def main(request):
 	#Title filter
 	first_letter = request.GET.get('title')
 	if first_letter is not None:
+			lower_case = first_letter.lower()
 			filter_by = first_letter
 			films_not_filtered = False
 			main_movies = []
 			for movie in Movie.objects().order_by('-date'):
 				first_char = movie.title[0]
 				if first_letter == first_char:
+					main_movies.append(movie)
+				elif lower_case == first_char:
 					main_movies.append(movie)
 		
 	#Genre filter

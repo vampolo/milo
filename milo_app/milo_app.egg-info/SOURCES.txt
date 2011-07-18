@@ -4275,13 +4275,8 @@ milo_app/static/js/fancybox/images/fancy_title_over.png
 milo_app/static/js/fancybox/images/fancybox-x.png
 milo_app/static/js/fancybox/images/fancybox-y.png
 milo_app/static/js/fancybox/images/fancybox.png
-milo_app/static/movie_data/...And Justice for All._poster.jpg
 milo_app/static/movie_data/...E alla fine arriva Polly_image.jpg
 milo_app/static/movie_data/...E alla fine arriva Polly_poster.jpg
-milo_app/static/movie_data/...First Do No Harm_poster.jpg
-milo_app/static/movie_data/...e giustizia per tutti_poster.jpg
-milo_app/static/movie_data/.com for Murder_image.jpg
-milo_app/static/movie_data/.com for Murder_poster.jpg
 milo_app/static/movie_data/2001: Odissea nello spazio_image.jpg
 milo_app/static/movie_data/2001: Odissea nello spazio_poster.jpg
 milo_app/static/movie_data/3ciento - Chi l'ha duro... la vince_image.jpg

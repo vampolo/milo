@@ -120,7 +120,6 @@ def survey(request):
 									req = urllib2.Request(whisperer_url)
 									response = simplejson.load(urllib2.urlopen(req))
 									#Case in which the model has never been created
-									print response['date']
 									if response['date'] is None:
 										message = 'Survey not yet activated. Please, try again later.'
 									if response['date'] is not None and response['date'] is not None:
@@ -203,6 +202,11 @@ def survey(request):
 			if item.user.email == session['user']:
 					sur.answers.remove(item)
 					sur.save()
+		if session['rated_movies'] is not []:
+			session['rated_movies'] = []
+			session['ratings_executed'] = 0
+			session['ratings'] = []
+			rating_finished = False
 		
 	
 	#Form submission Step 1
@@ -257,13 +261,12 @@ def survey(request):
 		#Because of the limited size of the session, maybe it's better to retrieve the answers
 		for item in Movie.objects.all():
 				if item == Movie.objects.filter(title=movie_title).first():
-					session['rated_movies'].append(item)
+					session['rated_movies'].append(movie_title)
 	
 		
 	
 	#Previous button in coming back to Step 2
 	if previous_from == '3':
-		print 'inside!'
 		#Delete all previous answers given
 		sur = Survey.objects.filter(name=session['survey']).first()
 		#Works just if I filter for THAT user
@@ -330,7 +333,10 @@ def survey(request):
 			return HTTPFound(location=request.resource_url(request.root, 'Survey','5', 'recMovie1'))
 	
 	#Create the list of rated movies
-	rated_movies = session['rated_movies']
+	for movie_title in session['rated_movies']:
+		for item in Movie.objects.all():
+			if item == Movie.objects.filter(title=movie_title).first():
+				rated_movies.append(item)
 	
 	recMovie_views = ['recMovie1','recMovie2','recMovie3','recMovie4','recMovie5']
 	#Get recommendation if the user is in step 5:
@@ -485,7 +491,7 @@ def survey(request):
 		for movie in Movie.objects().order_by('-date'):
 				if movie.whisperer_id is not None:
 					if deleted_movie == movie.title:
-						session['rated_movies'].remove(movie)
+						session['rated_movies'].remove(movie.title)
 						session['ratings_executed'] = session['ratings_executed'] - 1
 						rating_finished=False
 						session['concluded_until_step'] = 1
@@ -545,6 +551,7 @@ def survey(request):
 	#Title filter
 	first_letter = request.GET.get('title')
 	if first_letter is not None:
+			lower_case = first_letter.lower()
 			main_movies = []
 			for movie in Movie.objects().order_by('-date'):
 				if movie.whisperer_id is not None:
@@ -555,6 +562,13 @@ def survey(request):
 								main_movies.append(movie)
 						else:
 							main_movies.append(movie)
+					elif lower_case == first_char:
+						if rated_movies is not None:
+							if movie not in rated_movies:
+								main_movies.append(movie)
+						else:
+							main_movies.append(movie)
+						
 	#Genre filter
 	genre = request.GET.get('genre')
 	if genre is not None:
