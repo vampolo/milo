@@ -106,7 +106,11 @@ class Movie_wrap(Document):
 		movie.__parent__= self
 		movie.__name__= "Movie"
 		return movie
-		
+
+class Person(EmbeddedDocument):
+	name = StringField()
+	surname = StringField()
+	
 class Movie(Document):
 	__name__ = 'Movie'
 	__parent__ = Movie_wrap
@@ -127,6 +131,9 @@ class Movie(Document):
 	image = StringField()
 	genre = ListField(StringField())
 	comments = ListField(EmbeddedDocumentField(Comment))
+	cast = ListField(EmbeddedDocumentField(Person()))
+	director = ListField(EmbeddedDocumentField(Person()))
+	keywords = ListField(Stringfield())
 	
 	def __str__(self):
 		return 'Movie(%s, %s, %s, %s, %s)' % (self.title, self.date, self.poster, self.image, self.trailer)
